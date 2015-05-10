@@ -22,7 +22,7 @@ codeigniter/
 │        │   └── libraries/  ... mock libraries
 │        ├── models/         ... put your model tests
 │        ├── phpunit.xml     ... config file for PHPUnit
-│        └── replace/        ... don't edit! files CI PHPUnit Test uses
+│        └── replace/        ... don't touch! files CI PHPUnit Test uses
 └── vendor/
 ~~~
 
@@ -179,9 +179,11 @@ The functions and the class which are modified:
 * function `is_loaded()`
 * class `CI_Loader`
 
+They are in `tests/Bootstrap.php` or `tests/replace` folder.
+
 ### exit()
 
-*CI PHPUnit Test* does not care functions/classes which `exit()` or `die()`. So if you use URL helper `redirect()` in your application code, your testing ends with it.
+*CI PHPUnit Test* does not care functions/classes which `exit()` or `die()`. So, say, if you use URL helper `redirect()` in your application code, your testing ends with it.
 
 To aviod it, you can modify `redirect()` in your application. (I think CodeIgniter code itself should be changed testable.)
 
@@ -199,6 +201,8 @@ if (ENVIRONMENT !== 'testing')
 	exit;
 }
 ~~~
+
+If there are code after `exit()`, you should add code to go back without running the code.
 
 ### Getting new CodeIgniter object
 
