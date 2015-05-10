@@ -12,7 +12,18 @@ You don't have to modify CodeIgniter core files at all!
 ## Folder Structure
 
 ~~~
-@TODO
+codeigniter/
+├── application/
+│   └── tests/
+│        ├── Bootstrap.php   ... bootstrap file for PHPUnit
+│        ├── TestCase.php    ... TestCase class
+│        ├── controllers/    ... put your controller tests
+│        ├── mocks/
+│        │   └── libraries/ ... mock libraries
+│        ├── models/         ... put your model tests
+│        ├── phpunit.xml     ... config file for PHPUnit
+│        └── replace/        ... don't edit! files CI PHPUnit Test uses
+└── vendor/
 ~~~
 
 ## Installation
@@ -159,7 +170,9 @@ The functions and the class which are modified:
 ~~~php
 exit;
 ~~~
+
 ↓
+
 *after*:
 ~~~php
 if (ENVIRONMENT !== 'testing')
@@ -174,11 +187,27 @@ CodeIgniter has a function `get_instance()` to get the CodeIgniter object (CodeI
 
 *CI PHPUnit Test* has a new function `get_new_instance()` which instantiates new CodeIgniter object. To use it, you could run tests with new state.
 
-You can see how to use it in `tests/TestCase.php`.
+You can see how to use it in [tests/TestCase.php](application/tests/TestCase.php).
 
 ### Mock Libraries
 
-@TODO
+You can put mock libraries in `tests/mocks/libraries` folder. You can see [tests/mocks/libraries/email.php](application/tests/mocks/libraries/email.php) as a sample.
+
+With mock libraries, you could replace your object in CodeIgniter instance.
+
+This is how to replace Email library with `Mock_Libraries_Email` class.
+
+~~~php
+	public function setUp()
+	{
+		$this->CI =& get_instance();
+		$this->CI->load->model('shop/Mail_model');
+		$this->obj = $this->CI->Mail_model;
+		$this->CI->email = new Mock_Libraries_Email();
+	}
+~~~
+
+Mock library classname must be `Mock_Libraries_*`, and it will be autoloaded.
 
 ## Related
 
