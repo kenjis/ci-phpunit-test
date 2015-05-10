@@ -126,6 +126,23 @@ class Inventory_model_test extends PHPUnit_Framework_TestCase
 }
 ~~~
 
+### Database Seeding
+
+I put [Seeder Library](application/libraries/Seeder.php) and a sample [Seeder File](application/database/seeds/CategorySeeder.php).
+
+They are not installed, so if you want to use, copy them manually.
+
+You can use them like below:
+
+~~~php
+	public static function setUpBeforeClass()
+	{
+		$CI =& get_instance();
+		$CI->load->library('Seeder');
+		$CI->seeder->call('CategorySeeder');
+	}
+~~~
+
 ### Controllers
 
 `tests/controllers/Welcome_test.php`
@@ -164,7 +181,9 @@ The functions and the class which are modified:
 
 ### exit()
 
-*CI PHPUnit Test* does not care functions/classes which `exit()` or `die()`. So if you use URL helper `redirect()` in your application code, your testing ends with it. To aviod it, you should modify `redirect()` in your application.
+*CI PHPUnit Test* does not care functions/classes which `exit()` or `die()`. So if you use URL helper `redirect()` in your application code, your testing ends with it.
+
+To aviod it, you can modify `redirect()` in your application. (I think CodeIgniter code itself should be changed testable.)
 
 *before:*
 ~~~php
@@ -187,11 +206,11 @@ CodeIgniter has a function `get_instance()` to get the CodeIgniter object (CodeI
 
 *CI PHPUnit Test* has a new function `get_new_instance()` which instantiates new CodeIgniter object. To use it, you could run tests with new state.
 
-You can see how to use it in [tests/TestCase.php](application/tests/TestCase.php).
+You can see how to use it in [application/tests/TestCase.php](application/tests/TestCase.php).
 
 ### Mock Libraries
 
-You can put mock libraries in `tests/mocks/libraries` folder. You can see [tests/mocks/libraries/email.php](application/tests/mocks/libraries/email.php) as a sample.
+You can put mock libraries in `tests/mocks/libraries` folder. You can see [application/tests/mocks/libraries/email.php](application/tests/mocks/libraries/email.php) as a sample.
 
 With mock libraries, you could replace your object in CodeIgniter instance.
 
@@ -207,7 +226,7 @@ This is how to replace Email library with `Mock_Libraries_Email` class.
 	}
 ~~~
 
-Mock library classname must be `Mock_Libraries_*`, and it will be autoloaded.
+Mock library classname must be `Mock_Libraries_*`, and it is autoloaded.
 
 ## Related
 
