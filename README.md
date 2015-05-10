@@ -19,7 +19,7 @@ codeigniter/
 │        ├── TestCase.php    ... TestCase class
 │        ├── controllers/    ... put your controller tests
 │        ├── mocks/
-│        │   └── libraries/ ... mock libraries
+│        │   └── libraries/  ... mock libraries
 │        ├── models/         ... put your model tests
 │        ├── phpunit.xml     ... config file for PHPUnit
 │        └── replace/        ... don't edit! files CI PHPUnit Test uses
@@ -166,14 +166,14 @@ The functions and the class which are modified:
 
 *CI PHPUnit Test* does not care functions/classes which `exit()` or `die()`. So if you use URL helper `redirect()` in your application code, your testing ends with it. To aviod it, you should modify `redirect()` in your application.
 
-*before*:
+*before:*
 ~~~php
 exit;
 ~~~
 
 ↓
 
-*after*:
+*after:*
 ~~~php
 if (ENVIRONMENT !== 'testing')
 {
