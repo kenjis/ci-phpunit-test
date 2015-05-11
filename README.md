@@ -15,14 +15,14 @@ You don't have to modify CodeIgniter core files at all!
 codeigniter/
 ├── application/
 │   └── tests/
-│        ├── Bootstrap.php   ... bootstrap file for PHPUnit
-│        ├── TestCase.php    ... TestCase class
-│        ├── controllers/    ... put your controller tests
+│        ├── _ci_phpunit_test/ ... don't touch! files CI PHPUnit Test uses
+│        ├── Bootstrap.php     ... bootstrap file for PHPUnit
+│        ├── TestCase.php      ... TestCase class
+│        ├── controllers/      ... put your controller tests
 │        ├── mocks/
-│        │   └── libraries/  ... mock libraries
-│        ├── models/         ... put your model tests
-│        ├── phpunit.xml     ... config file for PHPUnit
-│        └── replace/        ... don't touch! files CI PHPUnit Test uses
+│        │   └── libraries/    ... mock libraries
+│        ├── models/           ... put your model tests
+│        └── phpunit.xml       ... config file for PHPUnit
 └── vendor/
 ~~~
 
@@ -179,7 +179,7 @@ The functions and the class which are modified:
 * function `is_loaded()`
 * class `CI_Loader`
 
-They are in `tests/Bootstrap.php` or `tests/replace` folder.
+They are in `tests/Bootstrap.php` or `tests/_ci_phpunit_test/replacing` folder.
 
 ### exit()
 
@@ -204,7 +204,7 @@ if (ENVIRONMENT !== 'testing')
 
 When you remove `exit()`, if there are code after it (maybe in your controllers), it will run. You should make sure no code runs.
 
-### Getting new CodeIgniter object
+### Get new CodeIgniter object
 
 CodeIgniter has a function `get_instance()` to get the CodeIgniter object (CodeIgniter instance or CodeIgniter super object).
 
@@ -224,13 +224,13 @@ This is how to replace Email library with `Mock_Libraries_Email` class.
 	public function setUp()
 	{
 		$this->CI =& get_instance();
-		$this->CI->load->model('shop/Mail_model');
+		$this->CI->load->model('Mail_model');
 		$this->obj = $this->CI->Mail_model;
 		$this->CI->email = new Mock_Libraries_Email();
 	}
 ~~~
 
-Mock library classname must be `Mock_Libraries_*`, and it is autoloaded.
+Mock library class name must be `Mock_Libraries_*`, and it is autoloaded.
 
 ## Related
 

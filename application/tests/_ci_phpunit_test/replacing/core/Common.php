@@ -105,14 +105,3 @@ function &is_loaded($class = '', $reset = FALSE)
 
 	return $_is_loaded;
 }
-
-/**
- * Inject instance to load_class() function
- * 
- * @param string $classname
- * @param object $instance
- */
-function load_class_instance($classname, $instance)
-{
-	load_class($classname, '', '', '', $instance);
-}

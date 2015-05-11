@@ -282,20 +282,31 @@ switch (ENVIRONMENT)
 
 	define('VIEWPATH', $view_folder);
 
+/*
+ * -------------------------------------------------------------------
+ *  Added for CI PHPUnit Test
+ * -------------------------------------------------------------------
+ */
 // Fix CLI args
 $_SERVER['argv'] = [
-    FCPATH . 'index.php',
+	FCPATH . 'index.php',
 ];
 $_SERVER['argc'] = 1;
 
-require __DIR__ . '/replace/core/Common.php';
+// Replace a few Common functions
+require __DIR__ . '/_ci_phpunit_test/replacing/core/Common.php';
 require BASEPATH . 'core/Common.php';
+
+require __DIR__ . '/_ci_phpunit_test/functions.php';
 
 // Replace Loader
 require BASEPATH . 'core/Loader.php';
-require __DIR__ . '/replace/core/Loader.php';
+require __DIR__ . '/_ci_phpunit_test/replacing/core/Loader.php';
 $loader = new CITEST_Loader();
 load_class_instance('Loader', $loader);
+
+require __DIR__ . '/_ci_phpunit_test/autoloader.php';
+require __DIR__ . '/TestCase.php';
 
 // Change current directroy
 chdir(FCPATH);
@@ -310,56 +321,3 @@ chdir(FCPATH);
 ob_start();
 require_once BASEPATH.'core/CodeIgniter.php';
 ob_end_clean();
-
-// Autoloader for testing
-spl_autoload_register(function ($class)
-{
-	// Load mock libraries for testing
-	if (substr($class, 0, 15) === 'Mock_Libraries_')
-	{
-		$tmp = explode('_', $class);
-		$name = strtolower(array_pop($tmp));
-		require_once __DIR__ . '/mocks/libraries/' . $name . '.php';
-		return;
-	}
-
-	// Load controllers
-	foreach (glob(APPPATH.'controllers/'.$class.'.php') as $controller)
-	{
-		require_once $controller;
-	}
-});
-
-/**
- * Get new CodeIgniter instance
- * 
- * @return CI_Controller
- */
-function get_new_instance()
-{
-	// Reset loaded classes
-	load_class('', '', '', TRUE);
-	is_loaded('', TRUE);
-
-	// Load core classes
-	load_class('Benchmark', 'core');
-	$EXT =& load_class('Hooks', 'core');
-	$EXT->call_hook('pre_system');
-	load_class('Config', 'core');
-//	load_class('Utf8', 'core');
-	load_class('URI', 'core');
-	load_class('Router', 'core', isset($routing) ? $routing : NULL);
-	load_class('Output', 'core');
-	load_class('Security', 'core');
-	load_class('Input', 'core');
-	load_class('Lang', 'core');
-	$EXT->call_hook('pre_controller');
-	
-	$loader = new CITEST_Loader();
-	load_class_instance('Loader', $loader);
-	$EXT->call_hook('post_controller_constructor');
-
-	return new CI_Controller();
-}
-
-require __DIR__ . '/TestCase.php';
