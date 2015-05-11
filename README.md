@@ -171,15 +171,16 @@ Want to see more tests?
 
 *CI PHPUnit Test* does not want to modify CodeIgniter core files. The more you modify core, the more you get difficulities when you update CodeIgniter.
 
-In fact, it uses a modified class and functions. But I try to modify as little as possible.
+In fact, it uses a modified class and a few functions. But I try to modify as little as possible.
 
 The functions and the class which are modified:
 
 * function `load_class()`
 * function `is_loaded()`
+* function `is_cli()`
 * class `CI_Loader`
 
-They are in `tests/Bootstrap.php` or `tests/_ci_phpunit_test/replacing` folder.
+They are in `tests/_ci_phpunit_test/replacing` folder.
 
 ### exit()
 

@@ -50,3 +50,13 @@ function get_new_instance()
 
 	return new CI_Controller();
 }
+
+/**
+ * Set return value of is_cli() function
+ * 
+ * @param bool $return
+ */
+function set_is_cli($return)
+{
+	is_cli($return);
+}

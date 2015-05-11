@@ -105,3 +105,15 @@ function &is_loaded($class = '', $reset = FALSE)
 
 	return $_is_loaded;
 }
+
+function is_cli($return = null)
+{
+	static $_return = TRUE;
+
+	if ($return !== null)
+	{
+		$_return = $return;
+	}
+
+	return $_return;
+}
