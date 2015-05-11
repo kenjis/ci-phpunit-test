@@ -10,12 +10,15 @@
 
 class TestCase extends PHPUnit_Framework_TestCase
 {
+	protected $_error_reporting = -1;
+
 	/**
 	 * Request to Controller
 	 * 
-	 * @param string $method HTTP method
-	 * @param array $argv    controller, method [, arg1, ...]
-	 * @param array $params  POST parameters/Query string
+	 * @param string   $method   HTTP method
+	 * @param array    $argv     controller, method [, arg1, ...]
+	 * @param array    $params   POST parameters/Query string
+	 * @param callable $callable
 	 */
 	public function request($method, $argv, $params = [], $callable = null)
 	{
@@ -50,5 +53,15 @@ class TestCase extends PHPUnit_Framework_TestCase
 		$output = ob_get_clean();
 		
 		return $output;
+	}
+
+	public function warning_off()
+	{
+		$this->_error_reporting = error_reporting(E_ALL & ~E_WARNING);
+	}
+
+	public function warning_on()
+	{
+		error_reporting($this->_error_reporting);
 	}
 }
