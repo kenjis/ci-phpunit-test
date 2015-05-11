@@ -171,7 +171,7 @@ Want to see more tests?
 
 *CI PHPUnit Test* does not want to modify CodeIgniter core files. The more you modify core, the more you get difficulities when you update CodeIgniter.
 
-In fact, it uses a modified class and functions. But I try to modify as less as possible.
+In fact, it uses a modified class and functions. But I try to modify as little as possible.
 
 The functions and the class which are modified:
 
@@ -185,7 +185,7 @@ They are in `tests/Bootstrap.php` or `tests/replace` folder.
 
 *CI PHPUnit Test* does not care functions/classes which `exit()` or `die()`. So, say, if you use URL helper `redirect()` in your application code, your testing ends with it.
 
-To aviod it, you can modify `redirect()` in your application. (I think CodeIgniter code itself should be changed testable.)
+To aviod it, you can modify `redirect()` in your application. I put a sample [MY_url_helper.php](application/helpers/MY_url_helper.php). (I think CodeIgniter code itself should be changed testable.)
 
 *before:*
 ~~~php
@@ -202,7 +202,7 @@ if (ENVIRONMENT !== 'testing')
 }
 ~~~
 
-If there are code after `exit()`, you should add code to go back without running the code.
+When you remove `exit()`, if there are code after it (maybe in your controllers), it will run. You should make sure no code runs.
 
 ### Getting new CodeIgniter object
 
