@@ -12,6 +12,11 @@ class Mock_Libraries_Email
 {
 	private $data = [];
 
+	/**
+	 * @var bool return value of send()
+	 */
+	public $return_send = TRUE;
+
 	public function initialize()
 	{
 		
@@ -44,7 +49,7 @@ class Mock_Libraries_Email
 
 	public function send()
 	{
-		return TRUE;
+		return $this->return_send;
 	}
 
 	public function _get_data()
