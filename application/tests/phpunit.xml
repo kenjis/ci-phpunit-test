@@ -17,6 +17,9 @@
 			<directory suffix=".php">../controllers</directory>
 			<directory suffix=".php">../models</directory>
 			<directory suffix=".php">../views</directory>
+			<directory suffix=".php">../libraries</directory>
+			<directory suffix=".php">../helpers</directory>
+			<directory suffix=".php">../hooks</directory>
 		</whitelist>
 	</filter>
 	<logging>
