@@ -11,18 +11,13 @@
 // Autoloader for testing
 spl_autoload_register(function ($class)
 {
-	// Load mock libraries for testing
-	if (substr($class, 0, 15) === 'Mock_Libraries_')
-	{
-		$tmp = explode('_', $class);
-		$name = strtolower(array_pop($tmp));
-		require_once __DIR__ . '/../mocks/libraries/' . $name . '.php';
-		return;
-	}
-
 	// Load controllers
 	foreach (glob(APPPATH.'controllers/'.$class.'.php') as $controller)
 	{
 		require_once $controller;
 	}
 });
+
+// Register CodeIgniter's tests/mocks/autoloader.php
+require __DIR__ .'/../mocks/autoloader.php';
+spl_autoload_register('autoload');
