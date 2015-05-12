@@ -239,6 +239,72 @@ This is how to replace Email library with `Mock_Libraries_Email` class.
 
 Mock library class name must be `Mock_Libraries_*`, and it is autoloaded.
 
+## Function/Class Reference
+
+### Function load_class_instance($classname, $instance)
+
+`$classname`: (string) class name
+`$instance`: (object) object instance
+
+Inject an instance directly into `load_class()` function.
+
+~~~php
+$email = $this->getMockBuilder('CI_Email')
+	->setMethods(['send'])
+	->getMock();
+$email->method('send')
+	->willReturn(true);
+load_class_instance('email', $email);
+~~~
+
+### Function get_new_instance()
+
+`returns` CI_Controller instance
+
+Generate new CodeIgniter instance and get it.
+
+### set_is_cli($return)
+
+`$return`: (bool) return value to set
+
+Set return value of `is_cli()` function.
+
+~~~php
+set_is_cli(FALSE);
+~~~
+
+### class TestCase
+
+#### request($method, $argv, $params = [], $callable = null)
+
+`$method`: (string) HTTP method
+`$argv`: (array) controller, method [, arg1, ...]
+`$params`: (array) POST parameters/Query string
+`$callable`: (callable) function to run after `get_new_instance()`
+
+`returns` (string) output strings (view)
+
+Run a controller method after `get_new_instance()`.
+
+~~~php
+$output = $this->request('GET', ['form', 'index']);
+~~~
+
+~~~php
+$load_agent = function ($CI) {
+	$CI->load->library('user_agent');
+};
+$output = $this->request('GET', ['bbs', 'index'], [], $load_agent);
+~~~
+
+#### warning_off()
+
+Turn off WARNING in error reporting.
+
+#### warning_on()
+
+Restore error reporting.
+
 ## Related
 
 If you want to install CodeIgniter via Composer, check it.
