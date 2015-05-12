@@ -243,8 +243,8 @@ Mock library class name must be `Mock_Libraries_*`, and it is autoloaded.
 
 ### Function load_class_instance($classname, $instance)
 
-`$classname`: (string) class name
-`$instance`: (object) object instance
+`$classname`: (string) class name  
+`$instance`: (object) object instance  
 
 Inject an instance directly into `load_class()` function.
 
@@ -277,10 +277,10 @@ set_is_cli(FALSE);
 
 #### request($method, $argv, $params = [], $callable = null)
 
-`$method`: (string) HTTP method
-`$argv`: (array) controller, method [, arg1, ...]
-`$params`: (array) POST parameters/Query string
-`$callable`: (callable) function to run after `get_new_instance()`
+`$method`: (string) HTTP method  
+`$argv`: (array) controller, method [, arg1, ...]  
+`$params`: (array) POST parameters/Query string  
+`$callable`: (callable) function to run after `get_new_instance()`  
 
 `returns` (string) output strings (view)
 
