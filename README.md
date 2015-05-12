@@ -62,6 +62,8 @@ Fix the paths in `tests/Bootstrap.php` if you need.
 	define('FCPATH', realpath(dirname(__FILE__).'/../../public').'/');
 ~~~
 
+If you install CodeIgniter using [codeigniter-composer-installer](https://github.com/kenjis/codeigniter-composer-installer), you don't have to.
+
 ## How to Run Tests
 
 You have to install PHPUnit before running tests.
