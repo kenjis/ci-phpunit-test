@@ -19,5 +19,6 @@ spl_autoload_register(function ($class)
 });
 
 // Register CodeIgniter's tests/mocks/autoloader.php
+define('SYSTEM_PATH', BASEPATH);
 require __DIR__ .'/../mocks/autoloader.php';
 spl_autoload_register('autoload');
