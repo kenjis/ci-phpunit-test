@@ -241,22 +241,6 @@ Mock library class name must be `Mock_Libraries_*`, and it is autoloaded.
 
 ## Function/Class Reference
 
-### *function* load_class_instance($classname, $instance)
-
-`$classname`: (string) class name  
-`$instance`: (object) object instance  
-
-Inject an instance directly into `load_class()` function.
-
-~~~php
-$email = $this->getMockBuilder('CI_Email')
-	->setMethods(['send'])
-	->getMock();
-$email->method('send')
-	->willReturn(true);
-load_class_instance('email', $email);
-~~~
-
 ### *function* get_new_instance()
 
 `returns` CI_Controller instance
@@ -271,6 +255,22 @@ Set return value of `is_cli()` function.
 
 ~~~php
 set_is_cli(FALSE);
+~~~
+
+### *function* load_class_instance($classname, $instance)
+
+`$classname`: (string) class name  
+`$instance`: (object) object instance  
+
+Inject an instance directly into `load_class()` function.
+
+~~~php
+$email = $this->getMockBuilder('CI_Email')
+	->setMethods(['send'])
+	->getMock();
+$email->method('send')
+	->willReturn(true);
+load_class_instance('email', $email);
 ~~~
 
 ### *class* TestCase
