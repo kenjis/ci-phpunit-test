@@ -288,8 +288,9 @@ switch (ENVIRONMENT)
  * -------------------------------------------------------------------
  */
 // Fix CLI args
+$_server_backup = $_SERVER;
 $_SERVER['argv'] = [
-	FCPATH . 'index.php',
+	'index.php',
 ];
 $_SERVER['argc'] = 1;
 
@@ -322,3 +323,7 @@ require_once BASEPATH.'core/CodeIgniter.php';
 ob_end_clean();
 
 require __DIR__ . '/TestCase.php';
+
+// Restore $_SERVER
+$_SERVER = $_server_backup;
+unset($_server_backup);

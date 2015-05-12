@@ -95,7 +95,7 @@ To generate coverage report, Xdebug is needed.
 ~~~php
 <?php
 
-class Inventory_model_test extends PHPUnit_Framework_TestCase
+class Inventory_model_test extends TestCase
 {
 	public function setUp()
 	{
@@ -126,6 +126,10 @@ class Inventory_model_test extends PHPUnit_Framework_TestCase
 }
 ~~~
 
+Test case class extends `TestCase`.
+
+Don't forget `parent::setUpBeforeClass();` if you override `setUpBeforeClass()` method.
+
 ### Database Seeding
 
 I put [Seeder Library](application/libraries/Seeder.php) and a sample [Seeder File](application/database/seeds/CategorySeeder.php).
@@ -137,6 +141,8 @@ You can use them like below:
 ~~~php
 	public static function setUpBeforeClass()
 	{
+		parent::setUpBeforeClass();
+
 		$CI =& get_instance();
 		$CI->load->library('Seeder');
 		$CI->seeder->call('CategorySeeder');
@@ -159,7 +165,7 @@ class Welcome_test extends TestCase
 }
 ~~~
 
-You can use `$this->request()` method if you extend `TestCase`.
+`TestCase` class has `$this->request()` method.
 
 ### More Samples
 

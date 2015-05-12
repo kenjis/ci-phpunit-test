@@ -12,6 +12,16 @@ class TestCase extends PHPUnit_Framework_TestCase
 {
 	protected $_error_reporting = -1;
 
+	public static function setUpBeforeClass()
+	{
+		// Fix ix CLI args, because you may set invalid URI characters
+		// For example, you run tests on NetBeans
+		$_SERVER['argv'] = [
+			'index.php',
+		];
+		$_SERVER['argc'] = 1;
+	}
+
 	/**
 	 * Request to Controller
 	 * 
