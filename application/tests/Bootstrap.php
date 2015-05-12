@@ -306,7 +306,6 @@ $loader = new CITEST_Loader();
 load_class_instance('Loader', $loader);
 
 require __DIR__ . '/_ci_phpunit_test/autoloader.php';
-require __DIR__ . '/TestCase.php';
 
 // Change current directroy
 chdir(FCPATH);
@@ -321,3 +320,5 @@ chdir(FCPATH);
 ob_start();
 require_once BASEPATH.'core/CodeIgniter.php';
 ob_end_clean();
+
+require __DIR__ . '/TestCase.php';

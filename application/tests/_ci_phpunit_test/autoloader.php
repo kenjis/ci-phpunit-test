@@ -16,7 +16,7 @@ spl_autoload_register(function ($class)
 	{
 		$tmp = explode('_', $class);
 		$name = strtolower(array_pop($tmp));
-		require_once __DIR__ . '/mocks/libraries/' . $name . '.php';
+		require_once __DIR__ . '/../mocks/libraries/' . $name . '.php';
 		return;
 	}
 
