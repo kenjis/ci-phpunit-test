@@ -241,7 +241,7 @@ Mock library class name must be `Mock_Libraries_*`, and it is autoloaded.
 
 ## Function/Class Reference
 
-### Function load_class_instance($classname, $instance)
+### *function* load_class_instance($classname, $instance)
 
 `$classname`: (string) class name  
 `$instance`: (object) object instance  
@@ -257,13 +257,13 @@ $email->method('send')
 load_class_instance('email', $email);
 ~~~
 
-### Function get_new_instance()
+### *function* get_new_instance()
 
 `returns` CI_Controller instance
 
 Generate new CodeIgniter instance and get it.
 
-### Function set_is_cli($return)
+### *function* set_is_cli($return)
 
 `$return`: (bool) return value to set
 
@@ -273,7 +273,7 @@ Set return value of `is_cli()` function.
 set_is_cli(FALSE);
 ~~~
 
-### class TestCase
+### *class* TestCase
 
 #### TestCase::request($method, $argv, $params = [], $callable = null)
 
