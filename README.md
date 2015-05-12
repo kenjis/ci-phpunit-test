@@ -263,7 +263,7 @@ load_class_instance('email', $email);
 
 Generate new CodeIgniter instance and get it.
 
-### set_is_cli($return)
+### Function set_is_cli($return)
 
 `$return`: (bool) return value to set
 
@@ -275,7 +275,7 @@ set_is_cli(FALSE);
 
 ### class TestCase
 
-#### request($method, $argv, $params = [], $callable = null)
+#### TestCase::request($method, $argv, $params = [], $callable = null)
 
 `$method`: (string) HTTP method  
 `$argv`: (array) controller, method [, arg1, ...]  
@@ -297,11 +297,11 @@ $load_agent = function ($CI) {
 $output = $this->request('GET', ['bbs', 'index'], [], $load_agent);
 ~~~
 
-#### warning_off()
+#### TestCase::warning_off()
 
 Turn off WARNING in error reporting.
 
-#### warning_on()
+#### TestCase::warning_on()
 
 Restore error reporting.
 
