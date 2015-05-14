@@ -265,8 +265,10 @@ set_is_cli(FALSE);
 
 ### *function* load_class_instance($classname, $instance)
 
-`$classname`: (string) class name  
-`$instance`: (object) object instance  
+| param      | type   | description     |
+|------------|--------|-----------------|
+|`$classname`| string | class name      |
+|`$instance` | object | object instance |
 
 Inject an instance directly into `load_class()` function.
 
@@ -283,10 +285,12 @@ load_class_instance('email', $email);
 
 #### TestCase::request($method, $argv, $params = [], $callable = null)
 
-`$method`: (string) HTTP method  
-`$argv`: (array) controller, method [, arg1, ...]  
-`$params`: (array) POST parameters/Query string  
-`$callable`: (callable) function to run after `get_new_instance()`  
+| param     | type    | description                               |
+|-----------|---------|-------------------------------------------|
+|`$method`  | string  | HTTP method                               |
+|`$argv`    | array   | controller, method [, arg1, ...]          |
+|`$params`  | array   | POST parameters/Query string              |
+|`$callable`| callable| function to run after `get_new_instance()`|
 
 `returns` (string) output strings (view)
 
@@ -305,8 +309,10 @@ $output = $this->request('GET', ['bbs', 'index'], [], $load_agent);
 
 #### TestCase::getDouble($classname, $params)
 
-`$classname`: (string) class name  
-`$params`: (array) [method_name => return_value]  
+| param      | type    | description                   |
+|------------|---------|-------------------------------|
+|`$classname`| string  | class name                    |
+|`$params`   | array   | [method_name => return_value] |
 
 `returns` (object) PHPUnit mock object
 
@@ -328,10 +334,12 @@ $email = $this->getDouble('CI_Email', ['send' => TRUE]);
 
 #### TestCase::verifyInvokedMultipleTimes($mock, $method, $times, $params)
 
-`$mock`: PHPUnit mock object  
-`$method`: (string) method name  
-`$times`: (int) times  
-`$params`: (array) arguments  
+| param   | type   | description         |
+|---------|--------|---------------------|
+|`$mock`  | object | PHPUnit mock object |
+|`$method`| string | method name         |
+|`$times` | int    | times               |
+|`$params`| array  | arguments           |
 
 Verifies that method was called exactly $times times.
 
