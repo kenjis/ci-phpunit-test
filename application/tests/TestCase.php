@@ -14,7 +14,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 
 	public static function setUpBeforeClass()
 	{
-		// Fix ix CLI args, because you may set invalid URI characters
+		// Fix CLI args, because you may set invalid URI characters
 		// For example, you run tests on NetBeans
 		$_SERVER['argv'] = [
 			'index.php',
