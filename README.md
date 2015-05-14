@@ -275,7 +275,7 @@ $email = $this->getMockBuilder('CI_Email')
 	->setMethods(['send'])
 	->getMock();
 $email->method('send')
-	->willReturn(true);
+	->willReturn(TRUE);
 load_class_instance('email', $email);
 ~~~
 
@@ -301,6 +301,29 @@ $load_agent = function ($CI) {
 	$CI->load->library('user_agent');
 };
 $output = $this->request('GET', ['bbs', 'index'], [], $load_agent);
+~~~
+
+#### TestCase::get_mock($classname, $params)
+
+`$classname`: (string) class name  
+`$params`: (array) [method_name => return_value]  
+
+`returns` (object) PHPUnit mock object
+
+Get PHPUnit mock object.
+
+~~~php
+$email = $this->getMockBuilder('CI_Email')
+	->setMethods(['send'])
+	->getMock();
+$email->method('send')
+	->willReturn(TRUE);
+~~~
+
+You can write code above like below:
+
+~~~php
+$email = $this->get_mock('CI_Email', ['send' => TRUE]);
 ~~~
 
 #### TestCase::warning_off()

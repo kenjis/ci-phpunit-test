@@ -65,6 +65,37 @@ class TestCase extends PHPUnit_Framework_TestCase
 		return $output;
 	}
 
+	/**
+	 * Get Mock Object
+	 * 
+	 * $email = $this->getMockBuilder('CI_Email')
+	 *	->setMethods(['send'])
+	 *	->getMock();
+	 * $email->method('send')->willReturn(TRUE);
+	 * 
+	 *  will be
+	 * 
+	 * $email = $this->get_mock('CI_Email', ['send' => TRUE]);
+	 * 
+	 * @param string $classname
+	 * @param array $params [method_name => return_value]
+	 * @return object PHPUnit mock object
+	 */
+	public function get_mock($classname, $params)
+	{
+		$methods = array_keys($params);
+		
+		$mock = $this->getMockBuilder($classname)->setMethods($methods)
+			->getMock();
+		
+		foreach ($params as $method => $return)
+		{
+			$mock->method($method)->willReturn($return);
+		}
+		
+		return $mock;
+	}
+
 	public function warning_off()
 	{
 		$this->_error_reporting = error_reporting(E_ALL & ~E_WARNING);
