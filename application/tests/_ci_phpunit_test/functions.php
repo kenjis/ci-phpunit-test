@@ -36,7 +36,7 @@ function get_new_instance()
 	load_class('Config', 'core');
 //	load_class('Utf8', 'core');
 	load_class('URI', 'core');
-	load_class('Router', 'core', isset($routing) ? $routing : NULL);
+	load_class('Router', 'core');
 	load_class('Output', 'core');
 	load_class('Security', 'core');
 	load_class('Input', 'core');

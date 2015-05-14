@@ -53,11 +53,18 @@ class TestCase extends PHPUnit_Framework_TestCase
 			$callable($this->CI);
 		}
 		
+		// remove 'index.php'
 		array_shift($_SERVER['argv']);
-		$controller = array_shift($_SERVER['argv']);
-		$controller = ucfirst($controller);
-		$method = array_shift($_SERVER['argv']);
-		$this->obj = new $controller;
+		
+		$RTR =& load_class('Router', 'core');
+		$class = ucfirst($RTR->class);
+		$method = $RTR->method;
+		
+		// remove controller and method
+		array_shift($_SERVER['argv']);
+		array_shift($_SERVER['argv']);
+		
+		$this->obj = new $class;
 		ob_start();
 		call_user_func_array([$this->obj, $method], $_SERVER['argv']);
 		$output = ob_get_clean();
@@ -77,8 +84,8 @@ class TestCase extends PHPUnit_Framework_TestCase
 	 * 
 	 * $email = $this->getDouble('CI_Email', ['send' => TRUE]);
 	 * 
-	 * @param string $classname 
-	 * @param array  $params    [method_name => return_value]
+	 * @param  string $classname 
+	 * @param  array  $params    [method_name => return_value]
 	 * @return object PHPUnit mock object
 	 */
 	public function getDouble($classname, $params)
