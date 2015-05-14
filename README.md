@@ -303,7 +303,7 @@ $load_agent = function ($CI) {
 $output = $this->request('GET', ['bbs', 'index'], [], $load_agent);
 ~~~
 
-#### TestCase::testDouble($classname, $params)
+#### TestCase::getDouble($classname, $params)
 
 `$classname`: (string) class name  
 `$params`: (array) [method_name => return_value]  
@@ -323,7 +323,7 @@ $email->method('send')
 You could write code above like below:
 
 ~~~php
-$email = $this->testDouble('CI_Email', ['send' => TRUE]);
+$email = $this->getDouble('CI_Email', ['send' => TRUE]);
 ~~~
 
 #### TestCase::verifyInvokedMultipleTimes($mock, $method, $times, $params)

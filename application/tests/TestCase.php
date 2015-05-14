@@ -75,13 +75,13 @@ class TestCase extends PHPUnit_Framework_TestCase
 	 * 
 	 *  will be
 	 * 
-	 * $email = $this->testDouble('CI_Email', ['send' => TRUE]);
+	 * $email = $this->getDouble('CI_Email', ['send' => TRUE]);
 	 * 
 	 * @param string $classname 
 	 * @param array  $params    [method_name => return_value]
 	 * @return object PHPUnit mock object
 	 */
-	public function testDouble($classname, $params)
+	public function getDouble($classname, $params)
 	{
 		$methods = array_keys($params);
 		
