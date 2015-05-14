@@ -320,10 +320,42 @@ $email->method('send')
 	->willReturn(TRUE);
 ~~~
 
-You can write code above like below:
+You could write code above like below:
 
 ~~~php
 $email = $this->get_mock('CI_Email', ['send' => TRUE]);
+~~~
+
+#### TestCase::verifyInvokedMultipleTimes($mock, $method, $times, $params)
+
+`$mock`: PHPUnit mock object  
+`$method`: (string) method name  
+`$times`: (int) times  
+`$params`: (array) arguments  
+
+Verifies that method was called exactly $times times.
+
+~~~php
+$loader->expects($this->exactly(2))
+	->method('view')
+	->withConsecutive(
+		['shop_confirm', $this->anything(), TRUE],
+		['shop_tmpl_checkout', $this->anything()]
+	);
+~~~
+
+You could write code above like below:
+
+~~~php
+$this->verifyInvokedMultipleTimes(
+	$loader,
+	'view',
+	2,
+	[
+		['shop_confirm', $this->anything(), TRUE],
+		['shop_tmpl_checkout', $this->anything()]
+	]
+);
 ~~~
 
 #### TestCase::warning_off()

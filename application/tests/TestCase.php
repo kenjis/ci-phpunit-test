@@ -28,7 +28,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 	 * @param string   $method   HTTP method
 	 * @param array    $argv     controller, method [, arg1, ...]
 	 * @param array    $params   POST parameters/Query string
-	 * @param callable $callable
+	 * @param callable $callable 
 	 */
 	public function request($method, $argv, $params = [], $callable = null)
 	{
@@ -77,8 +77,8 @@ class TestCase extends PHPUnit_Framework_TestCase
 	 * 
 	 * $email = $this->get_mock('CI_Email', ['send' => TRUE]);
 	 * 
-	 * @param string $classname
-	 * @param array $params [method_name => return_value]
+	 * @param string $classname 
+	 * @param array  $params    [method_name => return_value]
 	 * @return object PHPUnit mock object
 	 */
 	public function get_mock($classname, $params)
@@ -94,6 +94,74 @@ class TestCase extends PHPUnit_Framework_TestCase
 		}
 		
 		return $mock;
+	}
+
+	/**
+	 * Verifies that method was called exactly $times times
+	 * 
+	 * $loader->expects($this->exactly(2))
+	 * 	->method('view')
+	 * 	->withConsecutive(
+	 *		['shop_confirm', $this->anything(), TRUE],
+	 * 		['shop_tmpl_checkout', $this->anything()]
+	 * 	);
+	 * 
+	 *  will be
+	 * 
+	 * $this->verifyInvokedMultipleTimes(
+	 * 	$loader,
+	 * 	'view',
+	 * 	2,
+	 * 	[
+	 * 		['shop_confirm', $this->anything(), TRUE],
+	 * 		['shop_tmpl_checkout', $this->anything()]
+	 * 	]
+	 * );
+	 * 
+	 * @param object $mock   PHPUnit mock object
+	 * @param string $method 
+	 * @param int    $times  
+	 * @param array  $params arguments
+	 */
+	public function verifyInvokedMultipleTimes($mock, $method, $times, $params)
+	{
+		$invocation = $mock->expects($this->exactly($times))
+			->method($method);
+		
+		$count = count($params);
+		
+		switch ($count) {
+			case 1:
+				$invocation->withConsecutive(
+					$params[0]
+				);
+				break;
+			case 2:
+				$invocation->withConsecutive(
+					$params[0], $params[1]
+				);
+				break;
+			case 3:
+				$invocation->withConsecutive(
+					$params[0], $params[1], $params[2]
+				);
+				break;
+			case 4:
+				$invocation->withConsecutive(
+					$params[0], $params[1], $params[2], $params[3]
+				);
+				break;
+			case 5:
+				$invocation->withConsecutive(
+					$params[0], $params[1], $params[2], $params[3], $params[4], $params[5]
+				);
+				break;
+			default:
+				throw new RuntimeException(
+					'Sorry, ' . $count . ' params not implemented yet'
+				);
+				break;
+		}
 	}
 
 	public function warning_off()
