@@ -75,13 +75,13 @@ class TestCase extends PHPUnit_Framework_TestCase
 	 * 
 	 *  will be
 	 * 
-	 * $email = $this->get_mock('CI_Email', ['send' => TRUE]);
+	 * $email = $this->testDouble('CI_Email', ['send' => TRUE]);
 	 * 
 	 * @param string $classname 
 	 * @param array  $params    [method_name => return_value]
 	 * @return object PHPUnit mock object
 	 */
-	public function get_mock($classname, $params)
+	public function testDouble($classname, $params)
 	{
 		$methods = array_keys($params);
 		
@@ -164,12 +164,12 @@ class TestCase extends PHPUnit_Framework_TestCase
 		}
 	}
 
-	public function warning_off()
+	public function warningOff()
 	{
 		$this->_error_reporting = error_reporting(E_ALL & ~E_WARNING);
 	}
 
-	public function warning_on()
+	public function warningOn()
 	{
 		error_reporting($this->_error_reporting);
 	}

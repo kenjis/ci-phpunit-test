@@ -303,7 +303,7 @@ $load_agent = function ($CI) {
 $output = $this->request('GET', ['bbs', 'index'], [], $load_agent);
 ~~~
 
-#### TestCase::get_mock($classname, $params)
+#### TestCase::testDouble($classname, $params)
 
 `$classname`: (string) class name  
 `$params`: (array) [method_name => return_value]  
@@ -323,7 +323,7 @@ $email->method('send')
 You could write code above like below:
 
 ~~~php
-$email = $this->get_mock('CI_Email', ['send' => TRUE]);
+$email = $this->testDouble('CI_Email', ['send' => TRUE]);
 ~~~
 
 #### TestCase::verifyInvokedMultipleTimes($mock, $method, $times, $params)
@@ -358,11 +358,11 @@ $this->verifyInvokedMultipleTimes(
 );
 ~~~
 
-#### TestCase::warning_off()
+#### TestCase::warningOff()
 
 Turn off WARNING in error reporting.
 
-#### TestCase::warning_on()
+#### TestCase::warningOn()
 
 Restore error reporting.
 
