@@ -15,12 +15,12 @@ spl_autoload_register(function ($class)
 	foreach (glob(APPPATH.'controllers/'.$class.'.php') as $controller)
 	{
 		require_once $controller;
-		break;
+		return;
 	}
 	foreach (glob(APPPATH.'controllers/*/'.$class.'.php') as $controller)
 	{
 		require_once $controller;
-		break;
+		return;
 	}
 });
 
