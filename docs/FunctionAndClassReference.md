@@ -1,0 +1,130 @@
+# CI PHPUnit Test for CodeIgniter 3.0
+
+## Function/Class Reference
+
+### *function* get_new_instance()
+
+`returns` CI_Controller instance
+
+Generate new CodeIgniter instance and get it.
+
+### *function* set_is_cli($return)
+
+`$return`: (bool) return value to set
+
+Set return value of `is_cli()` function.
+
+~~~php
+set_is_cli(FALSE);
+~~~
+
+### *function* load_class_instance($classname, $instance)
+
+| param      | type   | description     |
+|------------|--------|-----------------|
+|`$classname`| string | class name      |
+|`$instance` | object | object instance |
+
+Inject an instance directly into `load_class()` function.
+
+~~~php
+$email = $this->getMockBuilder('CI_Email')
+	->setMethods(['send'])
+	->getMock();
+$email->method('send')
+	->willReturn(TRUE);
+load_class_instance('email', $email);
+~~~
+
+### *class* TestCase
+
+#### TestCase::request($method, $argv, $params = [], $callable = null)
+
+| param     | type    | description                               |
+|-----------|---------|-------------------------------------------|
+|`$method`  | string  | HTTP method                               |
+|`$argv`    | array   | controller, method [, arg1, ...]          |
+|`$params`  | array   | POST parameters/Query string              |
+|`$callable`| callable| function to run after `get_new_instance()`|
+
+`returns` (string) output strings (view)
+
+Run a controller method after `get_new_instance()`.
+
+~~~php
+$output = $this->request('GET', ['form', 'index']);
+~~~
+
+~~~php
+$load_agent = function ($CI) {
+	$CI->load->library('user_agent');
+};
+$output = $this->request('GET', ['bbs', 'index'], [], $load_agent);
+~~~
+
+#### TestCase::getDouble($classname, $params)
+
+| param      | type    | description                   |
+|------------|---------|-------------------------------|
+|`$classname`| string  | class name                    |
+|`$params`   | array   | [method_name => return_value] |
+
+`returns` (object) PHPUnit mock object
+
+Get PHPUnit mock object.
+
+~~~php
+$email = $this->getMockBuilder('CI_Email')
+	->setMethods(['send'])
+	->getMock();
+$email->method('send')
+	->willReturn(TRUE);
+~~~
+
+You could write code above like below:
+
+~~~php
+$email = $this->getDouble('CI_Email', ['send' => TRUE]);
+~~~
+
+#### TestCase::verifyInvokedMultipleTimes($mock, $method, $times, $params)
+
+| param   | type   | description         |
+|---------|--------|---------------------|
+|`$mock`  | object | PHPUnit mock object |
+|`$method`| string | method name         |
+|`$times` | int    | times               |
+|`$params`| array  | arguments           |
+
+Verifies that method was called exactly $times times.
+
+~~~php
+$loader->expects($this->exactly(2))
+	->method('view')
+	->withConsecutive(
+		['shop_confirm', $this->anything(), TRUE],
+		['shop_tmpl_checkout', $this->anything()]
+	);
+~~~
+
+You could write code above like below:
+
+~~~php
+$this->verifyInvokedMultipleTimes(
+	$loader,
+	'view',
+	2,
+	[
+		['shop_confirm', $this->anything(), TRUE],
+		['shop_tmpl_checkout', $this->anything()]
+	]
+);
+~~~
+
+#### TestCase::warningOff()
+
+Turn off WARNING in error reporting.
+
+#### TestCase::warningOn()
+
+Restore error reporting.
