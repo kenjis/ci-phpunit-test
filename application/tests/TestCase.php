@@ -103,6 +103,48 @@ class TestCase extends PHPUnit_Framework_TestCase
 		return $mock;
 	}
 
+	protected function _verify($mock, $method, $times, $params = null, $expects, $with)
+	{
+		$invocation = $mock->expects($expects)
+			->method($method);
+		
+		$count = count($params);
+		
+		switch ($count) {
+			case 0:
+				break;
+			case 1:
+				$invocation->$with(
+					$params[0]
+				);
+				break;
+			case 2:
+				$invocation->$with(
+					$params[0], $params[1]
+				);
+				break;
+			case 3:
+				$invocation->$with(
+					$params[0], $params[1], $params[2]
+				);
+				break;
+			case 4:
+				$invocation->$with(
+					$params[0], $params[1], $params[2], $params[3]
+				);
+				break;
+			case 5:
+				$invocation->$with(
+					$params[0], $params[1], $params[2], $params[3], $params[4], $params[5]
+				);
+				break;
+			default:
+				throw new RuntimeException(
+					'Sorry, ' . $count . ' params not implemented yet'
+				);
+		}
+	}
+
 	/**
 	 * Verifies that method was called exactly $times times
 	 * 
@@ -130,45 +172,53 @@ class TestCase extends PHPUnit_Framework_TestCase
 	 * @param int    $times  
 	 * @param array  $params arguments
 	 */
-	public function verifyInvokedMultipleTimes($mock, $method, $times, $params)
+	public function verifyInvokedMultipleTimes($mock, $method, $times, $params = null)
 	{
-		$invocation = $mock->expects($this->exactly($times))
-			->method($method);
-		
-		$count = count($params);
-		
-		switch ($count) {
-			case 1:
-				$invocation->withConsecutive(
-					$params[0]
-				);
-				break;
-			case 2:
-				$invocation->withConsecutive(
-					$params[0], $params[1]
-				);
-				break;
-			case 3:
-				$invocation->withConsecutive(
-					$params[0], $params[1], $params[2]
-				);
-				break;
-			case 4:
-				$invocation->withConsecutive(
-					$params[0], $params[1], $params[2], $params[3]
-				);
-				break;
-			case 5:
-				$invocation->withConsecutive(
-					$params[0], $params[1], $params[2], $params[3], $params[4], $params[5]
-				);
-				break;
-			default:
-				throw new RuntimeException(
-					'Sorry, ' . $count . ' params not implemented yet'
-				);
-				break;
-		}
+		$this->_verify(
+			$mock, $method, $times, $params, $this->exactly($times), 'withConsecutive'
+		);
+	}
+
+	/**
+	 * Verifies a method was invoked at least once
+	 * 
+	 * @param object $mock   PHPUnit mock object
+	 * @param string $method 
+	 * @param array  $params arguments
+	 */
+	public function verifyInvoked($mock, $method, $params = null)
+	{
+		$this->_verify(
+			$mock, $method, $times, $params, $this->atLeastOnce(), 'with'
+		);
+	}
+
+	/**
+	 * Verifies that method was invoked only once
+	 * 
+	 * @param object $mock   PHPUnit mock object
+	 * @param string $method 
+	 * @param array  $params arguments
+	 */
+	public function verifyInvokedOnce($mock, $method, $params = null)
+	{
+		$this->_verify(
+			$mock, $method, $times, $params, $this->once(), 'with'
+		);
+	}
+
+	/**
+	 * Verifies that method was not called
+	 * 
+	 * @param object $mock   PHPUnit mock object
+	 * @param string $method 
+	 * @param array  $params arguments
+	 */
+	public function verifyNeverInvoked($mock, $method, $params = null)
+	{
+		$this->_verify(
+			$mock, $method, $times, $params, $this->never(), 'with'
+		);
 	}
 
 	public function warningOff()

@@ -87,6 +87,66 @@ You could write code above like below:
 $email = $this->getDouble('CI_Email', ['send' => TRUE]);
 ~~~
 
+#### TestCase::verifyInvoked($mock, $method, $params)
+
+| param   | type   | description         |
+|---------|--------|---------------------|
+|`$mock`  | object | PHPUnit mock object |
+|`$method`| string | method name         |
+|`$params`| array  | arguments           |
+
+Verifies a method was invoked at least once.
+
+~~~php
+$loader->expects($this->atLeastOnce())
+	->method('view')
+	->with(
+		['shop_confirm', $this->anything(), TRUE]
+	);
+~~~
+
+You could write code above like below:
+
+~~~php
+$this->verifyInvoked(
+	$loader,
+	'view',
+	[
+		['shop_confirm', $this->anything(), TRUE]
+	]
+);
+~~~
+
+#### TestCase::verifyInvokedOnce($mock, $method, $params)
+
+| param   | type   | description         |
+|---------|--------|---------------------|
+|`$mock`  | object | PHPUnit mock object |
+|`$method`| string | method name         |
+|`$params`| array  | arguments           |
+
+Verifies that method was invoked only once.
+
+~~~php
+$loader->expects($this->once())
+	->method('view')
+	->with(
+		['shop_confirm', $this->anything(), TRUE]
+	);
+~~~
+
+You could write code above like below:
+
+~~~php
+$this->verifyInvokedOnce(
+	$loader,
+	'view',
+	[
+		['shop_confirm', $this->anything(), TRUE]
+	]
+);
+~~~
+
 #### TestCase::verifyInvokedMultipleTimes($mock, $method, $times, $params)
 
 | param   | type   | description         |
@@ -117,6 +177,36 @@ $this->verifyInvokedMultipleTimes(
 	[
 		['shop_confirm', $this->anything(), TRUE],
 		['shop_tmpl_checkout', $this->anything()]
+	]
+);
+~~~
+
+#### TestCase::verifyNeverInvoked($mock, $method, $params)
+
+| param   | type   | description         |
+|---------|--------|---------------------|
+|`$mock`  | object | PHPUnit mock object |
+|`$method`| string | method name         |
+|`$params`| array  | arguments           |
+
+Verifies that method was not called.
+
+~~~php
+$loader->expects($this->never())
+	->method('view')
+	->with(
+		['shop_confirm', $this->anything(), TRUE]
+	);
+~~~
+
+You could write code above like below:
+
+~~~php
+$this->verifyNeverInvoked(
+	$loader,
+	'view',
+	[
+		['shop_confirm', $this->anything(), TRUE]
 	]
 );
 ~~~
