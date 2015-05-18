@@ -171,7 +171,7 @@ class Welcome_test extends TestCase
 }
 ~~~
 
-`TestCase` class has `$this->request()` method.
+[TestCase](docs/FunctionAndClassReference.md#class-testcase) class has `$this->request()` method.
 
 ### More Samples
 
