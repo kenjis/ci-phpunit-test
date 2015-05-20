@@ -69,6 +69,11 @@ class TestCase extends PHPUnit_Framework_TestCase
 		call_user_func_array([$this->obj, $method], $_SERVER['argv']);
 		$output = ob_get_clean();
 		
+		if ($output == '')
+		{
+			$output = $this->CI->output->get_output();
+		}
+		
 		return $output;
 	}
 
@@ -103,7 +108,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 		return $mock;
 	}
 
-	protected function _verify($mock, $method, $times, $params = null, $expects, $with)
+	protected function _verify($mock, $method, $params = null, $expects, $with)
 	{
 		$invocation = $mock->expects($expects)
 			->method($method);
@@ -175,7 +180,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 	public function verifyInvokedMultipleTimes($mock, $method, $times, $params = null)
 	{
 		$this->_verify(
-			$mock, $method, $times, $params, $this->exactly($times), 'withConsecutive'
+			$mock, $method, $params, $this->exactly($times), 'withConsecutive'
 		);
 	}
 
@@ -189,7 +194,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 	public function verifyInvoked($mock, $method, $params = null)
 	{
 		$this->_verify(
-			$mock, $method, $times, $params, $this->atLeastOnce(), 'with'
+			$mock, $method, $params, $this->atLeastOnce(), 'with'
 		);
 	}
 
@@ -203,7 +208,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 	public function verifyInvokedOnce($mock, $method, $params = null)
 	{
 		$this->_verify(
-			$mock, $method, $times, $params, $this->once(), 'with'
+			$mock, $method, $params, $this->once(), 'with'
 		);
 	}
 
@@ -217,7 +222,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 	public function verifyNeverInvoked($mock, $method, $params = null)
 	{
 		$this->_verify(
-			$mock, $method, $times, $params, $this->never(), 'with'
+			$mock, $method, $params, $this->never(), 'with'
 		);
 	}
 
