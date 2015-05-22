@@ -16,7 +16,7 @@ class Installer
     public static function install()
     {
         $test_folder = 'application/tests';
-        static::recursiveCopy(
+        self::recursiveCopy(
             'vendor/kenjis/ci-phpunit-test/application/tests',
             $test_folder
         );
