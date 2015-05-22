@@ -249,12 +249,8 @@ Mock library class name must be `Mock_Libraries_*`, and it is autoloaded.
 
 See [docs/FunctionAndClassReference.md](docs/FunctionAndClassReference.md)
 
-## Related
+## Related Projects for CodeIgniter 3.0
 
-If you want to install CodeIgniter via Composer, check it.
-
-* https://github.com/kenjis/codeigniter-composer-installer
-
-If you want a commnad line tool, check it.
-
-* https://github.com/kenjis/codeigniter-cli
+* [CodeIgniter Composer Installer](https://github.com/kenjis/codeigniter-composer-installer)
+* [Cli for CodeIgniter 3.0](https://github.com/kenjis/codeigniter-cli)
+* [CodeIgniter Simple and Secure Twig](https://github.com/kenjis/codeigniter-ss-twig)
