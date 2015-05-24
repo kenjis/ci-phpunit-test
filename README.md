@@ -61,7 +61,7 @@ Fix the paths in `tests/Bootstrap.php` if you need.
 ~~~php
 	$system_path = '../../vendor/codeigniter/framework/system';
 
-	$application_folder = '../application';
+	$application_folder = '../../application';
 
 	define('FCPATH', realpath(dirname(__FILE__).'/../../public').'/');
 ~~~
