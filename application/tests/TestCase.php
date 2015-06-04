@@ -60,6 +60,11 @@ class TestCase extends PHPUnit_Framework_TestCase
 		$class = ucfirst($RTR->class);
 		$method = $RTR->method;
 		
+		// display 404 page
+		if ($this->_is_404($RTR, $class, $method))
+		{
+			show_404($class.'/'.$method);
+		}
 		// remove controller and method
 		array_shift($_SERVER['argv']);
 		array_shift($_SERVER['argv']);
@@ -234,5 +239,43 @@ class TestCase extends PHPUnit_Framework_TestCase
 	public function warningOn()
 	{
 		error_reporting($this->_error_reporting);
+	}
+
+	/**
+	*  Is the query a 404
+	* 
+	* @see core/CodeIgniter.php
+	* @param object $RTR    Router object
+	* @param string $class  request controller
+	* @param array  $method request action
+	*/
+	protected function _is_404($RTR, $class, $method)
+	{
+		if (empty($class) OR ! file_exists(APPPATH.'controllers/'.$RTR->directory.$class.'.php'))
+		{
+			return TRUE;
+		}
+
+		require_once(APPPATH.'controllers/'.$RTR->directory.$class.'.php');
+		if ( ! class_exists($class, FALSE) OR $method[0] === '_' OR method_exists('CI_Controller', $method))
+		{
+			return TRUE;
+		}
+
+		if (method_exists($class, '_remap'))
+		{
+			$params = array($method, array_slice($URI->rsegments, 2));
+			$method = '_remap';
+		}
+		// WARNING: It appears that there are issues with is_callable() even in PHP 5.2!
+		// Furthermore, there are bug reports and feature/change requests related to it
+		// that make it unreliable to use in this context. Please, DO NOT change this
+		// work-around until a better alternative is available.
+		elseif ( ! in_array(strtolower($method), array_map('strtolower', get_class_methods($class)), TRUE))
+		{
+			return TRUE;
+		}
+
+		return FALSE;
 	}
 }
