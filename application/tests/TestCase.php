@@ -65,6 +65,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 		{
 			show_404($class.'/'.$method);
 		}
+		
 		// remove controller and method
 		array_shift($_SERVER['argv']);
 		array_shift($_SERVER['argv']);
