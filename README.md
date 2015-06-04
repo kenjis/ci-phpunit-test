@@ -173,6 +173,19 @@ class Welcome_test extends TestCase
 
 [TestCase](docs/FunctionAndClassReference.md#class-testcase) class has `$this->request()` method.
 
+### `show_error()` and `show_404()`
+
+~~~php
+	/**
+	* @expectedException		PHPUnit_Framework_Exception
+	* @expectedExceptionCode	404
+	*/
+	public function test_index()
+	{
+		$output = $this->request('GET', ['nocontroller', 'noaction']);
+	}
+~~~
+
 ### More Samples
 
 Want to see more tests?
@@ -190,13 +203,17 @@ The functions and the class which are modified:
 * function `load_class()`
 * function `is_loaded()`
 * function `is_cli()`
+* function `show_error()`
+* function `show_404()`
 * class `CI_Loader`
 
 They are in `tests/_ci_phpunit_test/replacing` folder.
 
 ### exit()
 
-*CI PHPUnit Test* does not care functions/classes which `exit()` or `die()`. So, say, if you use URL helper `redirect()` in your application code, your testing ends with it.
+*CI PHPUnit Test* does not care functions/classes which `exit()` or `die()` (Except for `show_error()` and `show_404()`).
+
+So, for example, if you use URL helper `redirect()` in your application code, your testing ends with it.
 
 To aviod it, you can modify `redirect()` in your application. I put a sample [MY_url_helper.php](application/helpers/MY_url_helper.php). (I think CodeIgniter code itself should be changed testable.)
 
@@ -215,7 +232,7 @@ if (ENVIRONMENT !== 'testing')
 }
 ~~~
 
-When you remove `exit()`, if there are code after it (maybe in your controllers), it will run. You should make sure no code runs.
+When you skip `exit()`, if there are code after it (maybe in your controllers), it will run. You should make sure no code runs.
 
 ### Get new CodeIgniter object
 
