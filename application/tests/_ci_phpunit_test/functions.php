@@ -20,7 +20,33 @@ function load_class_instance($classname, $instance)
 }
 
 /**
+ * Reset CodeIgniter instance
+ */
+function reset_instance()
+{
+	// Reset loaded classes
+	load_class('', '', '', TRUE);
+	is_loaded('', TRUE);
+
+	// Load core classes
+	load_class('Benchmark', 'core');
+	load_class('Hooks', 'core');
+	load_class('Config', 'core');
+//	load_class('Utf8', 'core');
+	load_class('URI', 'core');
+	load_class('Router', 'core');
+	load_class('Output', 'core');
+	load_class('Security', 'core');
+	load_class('Input', 'core');
+	load_class('Lang', 'core');
+	
+	$loader = new CITEST_Loader();
+	load_class_instance('Loader', $loader);
+}
+
+/**
  * Get new CodeIgniter instance
+ * @deprecated
  * 
  * @return CI_Controller
  */

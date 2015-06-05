@@ -234,13 +234,30 @@ if (ENVIRONMENT !== 'testing')
 
 When you skip `exit()`, if there are code after it (maybe in your controllers), it will run. You should make sure no code runs.
 
-### Get new CodeIgniter object
+### Reset CodeIgniter object
 
 CodeIgniter has a function `get_instance()` to get the CodeIgniter object (CodeIgniter instance or CodeIgniter super object).
 
-*CI PHPUnit Test* has a new function `get_new_instance()` which instantiates new CodeIgniter object. To use it, you could run tests with new state.
+*CI PHPUnit Test* has a new function `reset_instance()` which reset the current CodeIgniter object. After resetting, you can create a new your Controller instance with new state.
 
 You can see how to use it in [application/tests/TestCase.php](application/tests/TestCase.php).
+
+#### [Deprecated] `get_new_instance()`
+
+A function `get_new_instance()` is deprecated. Please use `reset_instance()` instead.
+
+*before:*
+~~~php
+$this->CI = get_new_instance();
+~~~
+
+↓
+
+*after:*
+~~~php
+reset_instance();
+$this->CI =& get_instance();
+~~~
 
 ### Mock Libraries
 

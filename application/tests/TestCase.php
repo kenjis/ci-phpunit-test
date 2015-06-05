@@ -46,12 +46,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 		}
 //		var_dump($_SERVER['REQUEST_METHOD'], $_SERVER['argv'], $_GET, $_POST); exit;
 		
-		$this->CI = get_new_instance();
-		
-		if (is_callable($callable))
-		{
-			$callable($this->CI);
-		}
+		reset_instance();
 		
 		// remove 'index.php'
 		array_shift($_SERVER['argv']);
@@ -71,6 +66,12 @@ class TestCase extends PHPUnit_Framework_TestCase
 		array_shift($_SERVER['argv']);
 		
 		$this->obj = new $class;
+		$this->CI =& get_instance();
+		if (is_callable($callable))
+		{
+			$callable($this->CI);
+		}
+		
 		ob_start();
 		call_user_func_array([$this->obj, $method], $_SERVER['argv']);
 		$output = ob_get_clean();

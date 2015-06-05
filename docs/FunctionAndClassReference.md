@@ -2,7 +2,11 @@
 
 ## Function/Class Reference
 
-### *function* get_new_instance()
+### *function* reset_instance()
+
+Reset CodeIgniter instance.
+
+### [Deprecated] *function* get_new_instance()
 
 `returns` CI_Controller instance
 

@@ -69,17 +69,6 @@ function &load_class(
 		}
 	}
 
-	// Load Session library
-	if (file_exists($path.$directory.'/'.$class.'/'.$class.'.php'))
-	{
-		$name = 'CI_'.$class;
-
-		if (class_exists($name, FALSE) === FALSE)
-		{
-			require_once($path.$directory.'/'.$class.'/'.$class.'.php');
-		}
-	}
-
 	// Did we find the class?
 	if ($name === FALSE)
 	{
