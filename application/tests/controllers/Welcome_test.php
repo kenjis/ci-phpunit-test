@@ -16,6 +16,15 @@ class Welcome_test extends TestCase
 		$this->assertContains('<title>Welcome to CodeIgniter</title>', $output);
 	}
 
+	/**
+	 * @expectedException		PHPUnit_Framework_Exception
+	 * @expectedExceptionCode	404
+	 */
+	public function test_method_404()
+	{
+		$output = $this->request('GET', ['welcome', 'method_not_exist']);
+	}
+
 	public function test_APPPATH()
 	{
 		$actual = realpath(APPPATH);
