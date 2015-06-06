@@ -256,6 +256,7 @@ $this->CI = get_new_instance();
 *after:*
 ~~~php
 reset_instance();
+$controller = new Welcome();
 $this->CI =& get_instance();
 ~~~
 
@@ -288,3 +289,5 @@ See [docs/FunctionAndClassReference.md](docs/FunctionAndClassReference.md)
 * [CodeIgniter Composer Installer](https://github.com/kenjis/codeigniter-composer-installer)
 * [Cli for CodeIgniter 3.0](https://github.com/kenjis/codeigniter-cli)
 * [CodeIgniter Simple and Secure Twig](https://github.com/kenjis/codeigniter-ss-twig)
+* [CodeIgniter Doctrine](https://github.com/kenjis/codeigniter-doctrine)
+* [CodeIgniter Deployer](https://github.com/kenjis/codeigniter-deployer)
