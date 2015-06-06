@@ -249,6 +249,7 @@ A function `get_new_instance()` is deprecated. Please use `reset_instance()` ins
 *before:*
 ~~~php
 $this->CI = get_new_instance();
+$controller = new Welcome();
 ~~~
 
 ↓
