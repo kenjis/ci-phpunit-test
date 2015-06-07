@@ -19,6 +19,9 @@ before_script:
   - php install.php
 
 script:
-  - pwd
   - cd application/tests
   - phpunit --coverage-text
+
+after_script:
+  - cd ../..
+  - php vendor/bin/coveralls -v
