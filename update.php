@@ -11,4 +11,4 @@
 require __DIR__ . '/Installer.php';
 
 $installer = new Installer();
-$installer->install();
+$installer->update();
