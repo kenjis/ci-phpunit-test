@@ -12,6 +12,28 @@ class TestCase extends PHPUnit_Framework_TestCase
 {
 	protected $_error_reporting = -1;
 
+	/**
+	 * An associative array of table names. The order of the seeders
+	 * determines the loading and unloading sequence of the seeders. This is
+	 * to help account for foreign key restraints in databases.
+	 *
+	 * For example:
+	 * public $seeders = 'users';
+	 *
+	 * For example:
+	 * public $seeders = array('groups', 'users', 'user_groups');
+	 *
+	 * For example global:
+	 * public static $seeders = 'users';
+	 *
+	 * For example global:
+	 * public static $seeders = array('groups', 'users', 'user_groups');
+	 *
+	 * @var array
+	 */
+
+	protected $CI;
+
 	public static function setUpBeforeClass()
 	{
 		// Fix CLI args, because you may set invalid URI characters
@@ -20,6 +42,45 @@ class TestCase extends PHPUnit_Framework_TestCase
 			'index.php',
 		];
 		$_SERVER['argc'] = 1;
+
+		// Load global seeders
+		$child = get_called_class();
+		if (isset($child::$seeders) && $child::$seeders != null) {
+			self::call_seeders($child::$seeders);
+		}
+	}
+
+	public function setUp()
+	{
+		// // Only run if the $seeders attribute is set.
+		if (isset($this->seeders) && !empty($this->seeders)) {
+			self::call_seeders($this->seeders);
+		}
+
+		if (method_exists($this, 'set_up')) {
+			$this->set_up();
+		}
+	}
+
+	public function tearDown()
+	{
+		if (method_exists($this, 'tear_down')) {
+			$this->tear_down();
+		}
+	}
+
+	public static function call_seeders($seeders)
+	{
+		$CI =& get_instance();
+
+		// Only run if the $seeders attribute is set.
+		if (!empty($seeders)) {
+			$seeders = is_array($seeders) ? $seeders : [$seeders];
+			isset($CI->Seeder) OR $CI->load->library('Seeder');
+			foreach ($this->seeders as $seeder) {
+				$CI->seeder->call($seeder);
+			}
+		}
 	}
 
 	/**
