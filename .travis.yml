@@ -1,0 +1,24 @@
+language: php
+
+php:
+  - 5.4
+  - 5.5
+  - 5.6
+
+before_script:
+  - pwd
+  - export cwd=`pwd`
+  - composer self-update
+  - cd ..
+  - pwd
+  - git clone https://github.com/kenjis/ci-app-for-ci-phpunit-test.git
+  - cd ci-app-for-ci-phpunit-test
+  - composer update
+  - mv vendor/kenjis/ci-phpunit-test vendor/kenjis/ci-phpunit-test.tmp
+  - mv "$cwd" vendor/kenjis/ci-phpunit-test
+  - php install.php
+
+script:
+  - pwd
+  - cd application/tests
+  - phpunit --coverage-text
