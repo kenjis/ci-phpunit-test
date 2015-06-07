@@ -258,7 +258,7 @@ CodeIgniter has a function `get_instance()` to get the CodeIgniter object (CodeI
 
 *CI PHPUnit Test* has a new function `reset_instance()` which reset the current CodeIgniter object. After resetting, you can create a new your Controller instance with new state.
 
-You can see how to use it in [application/tests/TestCase.php](application/tests/TestCase.php).
+You can see how to use it in [application/tests/_ci_phpunit_test/CIPHPUnitTestCase.php](application/tests/_ci_phpunit_test/CIPHPUnitTestCase.php).
 
 #### [Deprecated] `get_new_instance()`
 
