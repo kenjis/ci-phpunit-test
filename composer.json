@@ -22,8 +22,5 @@
         "branch-alias": {
             "dev-master": "1.0.x-dev"
         }
-    },
-    "require-dev": {
-        "satooshi/php-coveralls": "0.6.*"
     }
 }
