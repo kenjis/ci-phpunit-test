@@ -48,7 +48,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author		EllisLab Dev Team
  * @link		http://codeigniter.com/user_guide/libraries/loader.html
  */
-class CITEST_Loader extends \CI_Loader {
+class CITEST_Loader extends CI_Loader {
 
 	// All these are set automatically. Don't mess with them.
 	/**

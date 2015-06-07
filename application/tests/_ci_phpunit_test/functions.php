@@ -40,8 +40,7 @@ function reset_instance()
 	load_class('Input', 'core');
 	load_class('Lang', 'core');
 	
-	$loader = new CITEST_Loader();
-	load_class_instance('Loader', $loader);
+	CIPHPUnitTest::loadLoader();
 }
 
 /**
