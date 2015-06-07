@@ -37,6 +37,10 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+$CFG =& load_class('Config', 'core');
+$core_controller = class_exists($CFG->config['subclass_prefix'] . 'Loader') ? $CFG->config['subclass_prefix'] . 'Loader' : 'CI_Loader';
+eval('class BASE_Loader extends ' . $core_controller . ' {}');
+
 /**
  * Loader Class
  *
@@ -48,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author		EllisLab Dev Team
  * @link		http://codeigniter.com/user_guide/libraries/loader.html
  */
-class CITEST_Loader extends \CI_Loader {
+class CITEST_Loader extends \BASE_Loader {
 
 	// All these are set automatically. Don't mess with them.
 	/**
