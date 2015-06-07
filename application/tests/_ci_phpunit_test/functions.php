@@ -16,7 +16,7 @@
  */
 function load_class_instance($classname, $instance)
 {
-	load_class($classname, '', '', '', $instance);
+	load_class($classname, '', NULL, FALSE, $instance);
 }
 
 /**
@@ -25,7 +25,7 @@ function load_class_instance($classname, $instance)
 function reset_instance()
 {
 	// Reset loaded classes
-	load_class('', '', '', TRUE);
+	load_class('', '', NULL, TRUE);
 	is_loaded('', TRUE);
 
 	// Load core classes

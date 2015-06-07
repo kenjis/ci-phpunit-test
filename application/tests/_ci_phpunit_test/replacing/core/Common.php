@@ -2,6 +2,17 @@
 
 // Load this file before loading "system/core/Common.php"
 
+/**
+ * Class registry
+ * 
+ * @staticvar array $_classes
+ * @param string $class
+ * @param string $directory
+ * @param array $param
+ * @param bool $reset
+ * @param object $obj
+ * @return object
+ */
 function &load_class(
 	$class,
 	$directory = 'libraries',
@@ -88,6 +99,14 @@ function &load_class(
 	return $_classes[$class];
 }
 
+/**
+ * Keeps track of which libraries have been loaded.
+ * 
+ * @staticvar array $_is_loaded
+ * @param string $class
+ * @param bool $reset
+ * @return array
+ */
 function &is_loaded($class = '', $reset = FALSE)
 {
 	static $_is_loaded = array();
