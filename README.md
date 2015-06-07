@@ -40,7 +40,7 @@ codeigniter/
 
 Download `ci-phpunit-test`: https://github.com/kenjis/ci-phpunit-test/archive/master.zip
 
-Unzip and Copy `application/tests` folder into your `application` folder in CodeIgniter project. That's it. Go to Step 2.
+Unzip and copy `application/tests` folder into your `application` folder in CodeIgniter project. That's it. Go to Step 2.
 
 If you like Composer:
 
@@ -71,6 +71,20 @@ Fix the paths in `tests/Bootstrap.php` if you need.
 ~~~
 
 If you install CodeIgniter using [codeigniter-composer-installer](https://github.com/kenjis/codeigniter-composer-installer), you don't have to.
+
+## Upgrading
+
+Download latest `ci-phpunit-test`: https://github.com/kenjis/ci-phpunit-test/archive/master.zip
+
+Unzip and replace `application/tests/_ci_phpunit_test` folder.
+
+If you like Composer:
+
+~~~
+$ cd /path/to/codeigniter/
+$ composer update kenjis/ci-phpunit-test
+$ php vendor/kenjis/ci-phpunit-test/update.php
+~~~
 
 ## How to Run Tests
 
