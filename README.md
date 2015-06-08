@@ -15,6 +15,7 @@ You don't have to modify CodeIgniter core files at all!
 ## Requirements
 
 * PHP 5.4.0 or later
+* CodeIgniter 3.0.*
 * PHPUnit
 
 ## Folder Structure
@@ -209,6 +210,7 @@ class Welcome_test extends TestCase
 Want to see more tests?
 
 * https://github.com/kenjis/codeigniter-tettei-apps/tree/develop/application/tests
+* https://github.com/kenjis/ci-app-for-ci-phpunit-test
 
 ## Can and Can't
 
@@ -229,7 +231,7 @@ They are in `tests/_ci_phpunit_test/replacing` folder.
 
 ### MY_Loader
 
-*CI PHPUnit Test* overrides below methods of `CI_Loader`.
+*CI PHPUnit Test* replaces `CI_Loader` and modified below methods:
 
 * `CI_Loader::model()`
 * `CI_Loader::_ci_load_library`

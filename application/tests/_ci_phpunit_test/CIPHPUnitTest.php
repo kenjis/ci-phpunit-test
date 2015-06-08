@@ -10,7 +10,7 @@
 
 class CIPHPUnitTest
 {
-	private static $loader_class = 'CITEST_Loader';
+	private static $loader_class = 'CI_Loader';
 
 	public static function init()
 	{
@@ -29,16 +29,12 @@ class CIPHPUnitTest
 		require __DIR__ . '/functions.php';
 
 		// Replace Loader
-		require BASEPATH . 'core/Loader.php';
 		require __DIR__ . '/replacing/core/Loader.php';
 		$my_loader_file = APPPATH . 'core/' . config_item('subclass_prefix') . 'Loader.php';
 		if (file_exists($my_loader_file))
 		{
 			self::$loader_class = config_item('subclass_prefix') . 'Loader';
-			$loader_code = file_get_contents($my_loader_file);
-			$loader_code = preg_replace('/extends CI_Loader/', 'extends CITEST_Loader', $loader_code);
-			$loader_code = preg_replace('/\s*<\?php/', '', $loader_code);
-			eval($loader_code);
+			require $my_loader_file;
 		}
 		self::loadLoader();
 
