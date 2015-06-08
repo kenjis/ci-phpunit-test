@@ -261,13 +261,9 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 		require_once(APPPATH.'controllers/'.$RTR->directory.$class.'.php');
 
 		// If you want to test "_remap()" method
-		if ($method === '_remap' && method_exists($class, '_remap'))
+		if ($method === '_remap')
 		{
-			return FALSE;
-		}
-		elseif ($method === '_remap')
-		{
-			return TRUE;
+			return (! method_exists($class, '_remap'));
 		}
 
 		if ( ! class_exists($class, FALSE) OR $method[0] === '_' OR method_exists('CI_Controller', $method))
