@@ -227,6 +227,18 @@ The functions and the class which are modified:
 
 They are in `tests/_ci_phpunit_test/replacing` folder.
 
+### MY_Loader
+
+*CI PHPUnit Test* overrides below methods of `CI_Loader`.
+
+* `CI_Loader::model()`
+* `CI_Loader::_ci_load_library`
+* `CI_Loader::_ci_load_stock_library()`
+
+But if you place MY_Loader, your MY_Loader extends the loader of *CI PHPUnit Test*.
+
+If your MY_Loader overrides the above methods, probably *CI PHPUnit Test* does not work correctly.
+
 ### exit()
 
 *CI PHPUnit Test* does not care functions/classes which `exit()` or `die()` (Except for `show_error()` and `show_404()`).
