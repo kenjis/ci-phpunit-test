@@ -230,6 +230,8 @@ class CITEST_Loader extends CI_Loader {
 	 * @param	string	$name		An optional object name to assign to
 	 * @param	bool	$db_conn	An optional database connection configuration to initialize
 	 * @return	object
+	 * 
+	 * overridden by CI PHPUnit Test
 	 */
 	public function model($model, $name = '', $db_conn = FALSE)
 	{
@@ -958,6 +960,8 @@ class CITEST_Loader extends CI_Loader {
 	 * @param	mixed	$params		Optional parameters to pass to the class constructor
 	 * @param	string	$object_name	Optional object name to assign to
 	 * @return	void
+	 * 
+	 * overridden by CI PHPUnit Test
 	 */
 	protected function _ci_load_library($class, $params = NULL, $object_name = NULL)
 	{
@@ -1052,6 +1056,8 @@ class CITEST_Loader extends CI_Loader {
 	 * @param	mixed	$params		Optional parameters to pass to the class constructor
 	 * @param	string	$object_name	Optional object name to assign to
 	 * @return	void
+	 * 
+	 * overridden by CI PHPUnit Test
 	 */
 	protected function _ci_load_stock_library($library_name, $file_path, $params, $object_name)
 	{
