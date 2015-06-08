@@ -60,7 +60,7 @@ class CIPHPUnitTest
 		ob_end_clean();
 
 		require __DIR__ . '/CIPHPUnitTestCase.php';
-		require __DIR__ . '/../TestCase.php';
+		require APPPATH . '/tests/TestCase.php';
 
 		// Restore $_SERVER
 		$_SERVER = $_server_backup;
