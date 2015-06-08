@@ -249,7 +249,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	* @see core/CodeIgniter.php
 	* @param object $RTR    Router object
 	* @param string $class  request controller
-	* @param array  $method request action
+	* @param string $method request action
 	*/
 	protected function _is_404($RTR, $class, $method)
 	{
@@ -259,15 +259,20 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 		}
 
 		require_once(APPPATH.'controllers/'.$RTR->directory.$class.'.php');
-		if ( ! class_exists($class, FALSE) OR $method[0] === '_' OR method_exists('CI_Controller', $method))
+
+		// If you want to test "_remap()" method
+		if ($method === '_remap' && method_exists($class, '_remap'))
+		{
+			return FALSE;
+		}
+		elseif ($method === '_remap')
 		{
 			return TRUE;
 		}
 
-		if (method_exists($class, '_remap'))
+		if ( ! class_exists($class, FALSE) OR $method[0] === '_' OR method_exists('CI_Controller', $method))
 		{
-			$params = array($method, array_slice($URI->rsegments, 2));
-			$method = '_remap';
+			return TRUE;
 		}
 		// WARNING: It appears that there are issues with is_callable() even in PHP 5.2!
 		// Furthermore, there are bug reports and feature/change requests related to it
