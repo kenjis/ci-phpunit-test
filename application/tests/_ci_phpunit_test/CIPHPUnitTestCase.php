@@ -46,6 +46,11 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 		}
 //		var_dump($_SERVER['REQUEST_METHOD'], $_SERVER['argv'], $_GET, $_POST); exit;
 		
+		// Force cli mode because if not, it changes URI (and RTR) behavior
+		$cli = is_cli();
+		set_is_cli(TRUE);
+		
+		// Reset CodeIgniter instance state
 		reset_instance();
 		
 		// remove 'index.php'
@@ -54,6 +59,9 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 		$RTR =& load_class('Router', 'core');
 		$class = ucfirst($RTR->class);
 		$method = $RTR->method;
+		
+		// Restore cli mode
+		set_is_cli($cli);
 		
 		// display 404 page
 		if ($this->_is_404($RTR, $class, $method))
