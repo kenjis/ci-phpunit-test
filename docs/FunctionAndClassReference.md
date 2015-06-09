@@ -44,16 +44,16 @@ load_class_instance('email', $email);
 
 #### TestCase::request($method, $argv, $params = [], $callable = null)
 
-| param     | type    | description                               |
-|-----------|---------|-------------------------------------------|
-|`$method`  | string  | HTTP method                               |
-|`$argv`    | array   | controller, method [, arg1, ...]          |
-|`$params`  | array   | POST parameters/Query string              |
-|`$callable`| callable| function to run after `get_new_instance()`|
+| param     | type    | description                                    |
+|-----------|---------|------------------------------------------------|
+|`$method`  | string  | HTTP method                                    |
+|`$argv`    | array   | controller, method [, arg1, ...]               |
+|`$params`  | array   | POST parameters/Query string                   |
+|`$callable`| callable| function to run after controller instantiation |
 
 `returns` (string) output strings (view)
 
-Run a controller method after `get_new_instance()`.
+Run a controller method after `reset_instance()`.
 
 ~~~php
 $output = $this->request('GET', ['form', 'index']);
