@@ -210,7 +210,7 @@ class Welcome_test extends TestCase
 Want to see more tests?
 
 * https://github.com/kenjis/codeigniter-tettei-apps/tree/develop/application/tests
-* https://github.com/kenjis/ci-app-for-ci-phpunit-test
+* https://github.com/kenjis/ci-app-for-ci-phpunit-test/tree/master/application/tests
 
 ## Can and Can't
 
