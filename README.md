@@ -231,10 +231,10 @@ They are in `tests/_ci_phpunit_test/replacing` folder.
 
 ### MY_Loader
 
-*CI PHPUnit Test* replaces `CI_Loader` and modified below methods:
+*CI PHPUnit Test* replaces `CI_Loader` and modifies below methods:
 
 * `CI_Loader::model()`
-* `CI_Loader::_ci_load_library`
+* `CI_Loader::_ci_load_library()`
 * `CI_Loader::_ci_load_stock_library()`
 
 But if you place MY_Loader, your MY_Loader extends the loader of *CI PHPUnit Test*.
