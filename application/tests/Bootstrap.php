@@ -53,7 +53,11 @@
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
+// This is needed for @runInSeparateProcess
+if (! defined('ENVIRONMENT'))
+{
 	define('ENVIRONMENT', 'testing');
+}
 
 /*
  *---------------------------------------------------------------
@@ -190,10 +194,11 @@ switch (ENVIRONMENT)
  */
 
 	// Set the current directory correctly for CLI requests
-	if (defined('STDIN'))
-	{
+//	if (defined('STDIN'))
+//	{
+		// This is needed for @runInSeparateProcess
 		chdir(dirname(__FILE__));
-	}
+//	}
 
 	if (($_temp = realpath($system_path)) !== FALSE)
 	{
