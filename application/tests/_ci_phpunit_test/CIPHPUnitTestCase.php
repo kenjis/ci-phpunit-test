@@ -86,18 +86,18 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 		// Reset CodeIgniter instance state
 		reset_instance();
 		
+		// 404 checking
+		if (! class_exists($class) || ! method_exists($class, $method))
+		{
+			show_404($class.'::'.$method . '() is not found');
+		}
+		
 		// Create controller
 		$this->obj = new $class;
 		$this->CI =& get_instance();
 		if (is_callable($callable))
 		{
 			$callable($this->CI);
-		}
-		
-		// 404 checking
-		if (! method_exists($this->obj, $method))
-		{
-			show_404($class.'/'.$method);
 		}
 		
 		// Call controller method
@@ -384,7 +384,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 
 		if ($e404)
 		{
-			show_404($RTR->directory.$class.'/'.$method);
+			show_404($RTR->directory.$class.'/'.$method.' is not found');
 		}
 
 		if ($method !== '_remap')
