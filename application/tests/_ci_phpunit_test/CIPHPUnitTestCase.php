@@ -66,7 +66,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 			$_GET = $params;
 		}
 		
-		$class  = $argv[0];
+		$class  = ucfirst($argv[0]);
 		$method = $argv[1];
 		
 		// Remove controller and method
