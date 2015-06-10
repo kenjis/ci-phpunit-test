@@ -153,7 +153,7 @@ class Inventory_model_test extends TestCase
 
 Test case class extends `TestCase`.
 
-Don't forget `parent::setUpBeforeClass();` if you override `setUpBeforeClass()` method.
+Don't forget to write `parent::setUpBeforeClass();` if you override `setUpBeforeClass()` method.
 
 ### Database Seeding
 
@@ -241,7 +241,7 @@ But if you place MY_Loader, your MY_Loader extends the loader of *CI PHPUnit Tes
 
 If your MY_Loader overrides the above methods, probably *CI PHPUnit Test* does not work correctly.
 
-### exit()
+### `exit()`
 
 *CI PHPUnit Test* does not care functions/classes which `exit()` or `die()` (Except for `show_error()` and `show_404()`).
 

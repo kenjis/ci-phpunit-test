@@ -2,17 +2,34 @@
 
 ## Function/Class Reference
 
-### *function* reset_instance()
+### *function* `reset_instance()`
 
 Reset CodeIgniter instance.
 
-### [Deprecated] *function* get_new_instance()
+### [Deprecated] *function* `get_new_instance()`
 
 `returns` CI_Controller instance
 
 Generate new CodeIgniter instance and get it.
 
-### *function* set_is_cli($return)
+Please use `reset_instance()` instead.
+
+*before:*
+~~~php
+$this->CI = get_new_instance();
+$controller = new Welcome();
+~~~
+
+↓
+
+*after:*
+~~~php
+reset_instance();
+$controller = new Welcome();
+$this->CI =& get_instance();
+~~~
+
+### *function* `set_is_cli($return)`
 
 `$return`: (bool) return value to set
 
@@ -22,7 +39,7 @@ Set return value of `is_cli()` function.
 set_is_cli(FALSE);
 ~~~
 
-### *function* load_class_instance($classname, $instance)
+### *function* `load_class_instance($classname, $instance)`
 
 | param      | type   | description     |
 |------------|--------|-----------------|
@@ -42,7 +59,7 @@ load_class_instance('email', $email);
 
 ### *class* TestCase
 
-#### TestCase::request($method, $argv, $params = [], $callable = null)
+#### `TestCase::request($method, $argv, $params = [], $callable = null)`
 
 | param     | type         | description                                    |
 |-----------|--------------|------------------------------------------------|
@@ -66,7 +83,7 @@ $load_agent = function ($CI) {
 $output = $this->request('GET', ['Bbs', 'index'], [], $load_agent);
 ~~~
 
-#### TestCase::getDouble($classname, $params)
+#### `TestCase::getDouble($classname, $params)`
 
 | param      | type    | description                   |
 |------------|---------|-------------------------------|
@@ -91,7 +108,7 @@ You could write code above like below:
 $email = $this->getDouble('CI_Email', ['send' => TRUE]);
 ~~~
 
-#### TestCase::verifyInvoked($mock, $method, $params)
+#### `TestCase::verifyInvoked($mock, $method, $params)`
 
 | param   | type   | description         |
 |---------|--------|---------------------|
@@ -121,7 +138,7 @@ $this->verifyInvoked(
 );
 ~~~
 
-#### TestCase::verifyInvokedOnce($mock, $method, $params)
+#### `TestCase::verifyInvokedOnce($mock, $method, $params)`
 
 | param   | type   | description         |
 |---------|--------|---------------------|
@@ -151,7 +168,7 @@ $this->verifyInvokedOnce(
 );
 ~~~
 
-#### TestCase::verifyInvokedMultipleTimes($mock, $method, $times, $params)
+#### `TestCase::verifyInvokedMultipleTimes($mock, $method, $times, $params)`
 
 | param   | type   | description         |
 |---------|--------|---------------------|
@@ -185,7 +202,7 @@ $this->verifyInvokedMultipleTimes(
 );
 ~~~
 
-#### TestCase::verifyNeverInvoked($mock, $method, $params)
+#### `TestCase::verifyNeverInvoked($mock, $method, $params)`
 
 | param   | type   | description         |
 |---------|--------|---------------------|
@@ -215,10 +232,10 @@ $this->verifyNeverInvoked(
 );
 ~~~
 
-#### TestCase::warningOff()
+#### `TestCase::warningOff()`
 
 Turn off WARNING in error reporting.
 
-#### TestCase::warningOn()
+#### `TestCase::warningOn()`
 
 Restore error reporting.
