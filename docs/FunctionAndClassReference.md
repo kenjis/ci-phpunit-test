@@ -77,6 +77,10 @@ $output = $this->request('GET', ['Form', 'index']);
 ~~~
 
 ~~~php
+$output = $this->request('GET', 'products/shoes/show/123');
+~~~
+
+~~~php
 $load_agent = function ($CI) {
 	$CI->load->library('user_agent');
 };
