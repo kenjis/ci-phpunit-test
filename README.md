@@ -95,15 +95,15 @@ You have to install PHPUnit before running tests.
 $ cd /path/to/codeigniter/
 $ cd application/tests/
 $ phpunit
-PHPUnit 4.1.6 by Sebastian Bergmann.
+PHPUnit 4.6.10 by Sebastian Bergmann and contributors.
 
 Configuration read from /.../codeigniter/application/tests/phpunit.xml
 
-.
+...
 
-Time: 470 ms, Memory: 3.50Mb
+Time: 635 ms, Memory: 4.50Mb
 
-OK (1 test, 1 assertion)
+OK (3 tests, 4 assertions)
 
 Generating code coverage report in Clover XML format ... done
 
