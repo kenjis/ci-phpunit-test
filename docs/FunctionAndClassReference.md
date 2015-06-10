@@ -47,7 +47,7 @@ load_class_instance('email', $email);
 | param     | type         | description                                    |
 |-----------|--------------|------------------------------------------------|
 |`$method`  | string       | HTTP method                                    |
-|`$argv`    | array|string | controller, method [, arg1, ...] | URI string  |
+|`$argv`    | array|string | controller, method [, arg1, ...] / URI string  |
 |`$params`  | array        | POST parameters / Query string                 |
 |`$callable`| callable     | function to run after controller instantiation |
 
