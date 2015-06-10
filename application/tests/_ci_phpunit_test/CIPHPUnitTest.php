@@ -18,8 +18,9 @@ class CIPHPUnitTest
 		$_server_backup = $_SERVER;
 		$_SERVER['argv'] = [
 			'index.php',
+			'_dummy/_dummy'	// Force 404 route
 		];
-		$_SERVER['argc'] = 1;
+		$_SERVER['argc'] = 2;
 
 		// Replace a few Common functions
 		require __DIR__ . '/replacing/core/Common.php';
@@ -51,9 +52,17 @@ class CIPHPUnitTest
 		 *
 		 * And away we go...
 		 */
-		ob_start();
-		require_once BASEPATH . 'core/CodeIgniter.php';
-		ob_end_clean();
+		try {
+			// Request to 404 route
+			// This is needed for not to call Welcome::index()
+			// If controller Welcome is called in bootstrap, we can't test
+			// the same name sub controller Welcome even when we use
+			// `@runInSeparateProcess` and `@preserveGlobalState disabled`
+			require_once BASEPATH . 'core/CodeIgniter.php';
+		} catch (PHPUnit_Framework_Exception $e) {
+			// Catch 404 exception
+			new CI_Controller();
+		}
 
 		require __DIR__ . '/CIPHPUnitTestCase.php';
 		require APPPATH . '/tests/TestCase.php';
