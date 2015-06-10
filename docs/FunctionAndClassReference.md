@@ -70,7 +70,7 @@ load_class_instance('email', $email);
 
 `returns` (string) output strings (view)
 
-Run a controller method after `reset_instance()`.
+Run a controller method or make a request to URI string after `reset_instance()`.
 
 ~~~php
 $output = $this->request('GET', ['Form', 'index']);
@@ -82,6 +82,19 @@ $load_agent = function ($CI) {
 };
 $output = $this->request('GET', ['Bbs', 'index'], [], $load_agent);
 ~~~
+
+#### `TestCase::ajaxRequest($method, $argv, $params = [], $callable = null)`
+
+| param     | type         | description                                    |
+|-----------|--------------|------------------------------------------------|
+|`$method`  | string       | HTTP method                                    |
+|`$argv`    | array/string | controller, method [, arg1, ...] / URI string  |
+|`$params`  | array        | POST parameters / Query string                 |
+|`$callable`| callable     | function to run after controller instantiation |
+
+`returns` (string) output strings
+
+The same as `TestCase::request()`, but this makes a Ajax request. This adds `$_SERVER['HTTP_X_REQUESTED_WITH']`.
 
 #### `TestCase::getDouble($classname, $params)`
 
