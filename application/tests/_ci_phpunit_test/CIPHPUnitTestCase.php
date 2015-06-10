@@ -24,11 +24,11 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Request to Controller
-	 * 
+	 *
 	 * @param string       $http_method HTTP method
 	 * @param array|string $argv        array of controller,method,arg|uri
 	 * @param array        $params      POST parameters/Query string
-	 * @param callable     $callable    
+	 * @param callable     $callable
 	 */
 	public function request($http_method, $argv, $params = [], $callable = null)
 	{
@@ -45,18 +45,32 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	}
 
 	/**
+	 * Request to Controller using ajax request
+	 *
+	 * @param string       $http_method HTTP method
+	 * @param array|string $argv        array of controller,method,arg|uri
+	 * @param array        $params      POST parameters/Query string
+	 * @param callable     $callable
+	 */
+	public function ajaxRequest($http_method, $argv, $params = [], $callable = null)
+	{
+		$_SERVER['HTTP_X_REQUESTED_WITH'] = 'xmlhttprequest';
+		return $this->request($http_method, $argv, $params, $callable);
+	}
+
+	/**
 	 * Call Controller Method
-	 * 
+	 *
 	 * @param string   $http_method HTTP method
 	 * @param array    $argv        controller, method [, arg1, ...]
 	 * @param array    $params      POST parameters/Query string
-	 * @param callable $callable    
+	 * @param callable $callable
 	 */
 	protected function callControllerMethod($http_method, $argv, $params = [], $callable = null)
 	{
 		$_SERVER['REQUEST_METHOD'] = $http_method;
 		$_SERVER['argv'] = array_merge(['index.php'], $argv);
-		
+
 		if ($http_method === 'POST')
 		{
 			$_POST = $params;
@@ -65,14 +79,14 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 		{
 			$_GET = $params;
 		}
-		
+
 		$class  = ucfirst($argv[0]);
 		$method = $argv[1];
-		
+
 		// Remove controller and method
 		array_shift($argv);
 		array_shift($argv);
-		
+
 //		$request = [
 //			'REQUEST_METHOD' => $_SERVER['REQUEST_METHOD'],
 //			'class' => $class,
@@ -82,16 +96,16 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 //			'$_POST' => $_POST,
 //		];
 //		var_dump($request, $_SERVER['argv']);
-		
+
 		// Reset CodeIgniter instance state
 		reset_instance();
-		
+
 		// 404 checking
 		if (! class_exists($class) || ! method_exists($class, $method))
 		{
 			show_404($class.'::'.$method . '() is not found');
 		}
-		
+
 		// Create controller
 		$this->obj = new $class;
 		$this->CI =& get_instance();
@@ -99,33 +113,33 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 		{
 			$callable($this->CI);
 		}
-		
+
 		// Call controller method
 		ob_start();
 		call_user_func_array([$this->obj, $method], $argv);
 		$output = ob_get_clean();
-		
+
 		if ($output == '')
 		{
 			$output = $this->CI->output->get_output();
 		}
-		
+
 		return $output;
 	}
 
 	/**
 	 * Request to URI
-	 * 
+	 *
 	 * @param string   $http_method HTTP method
 	 * @param string   $uri         URI string
 	 * @param array    $params      POST parameters/Query string
-	 * @param callable $callable    
+	 * @param callable $callable
 	 */
 	protected function requestUri($method, $uri, $params = [], $callable = null)
 	{
 		$_SERVER['REQUEST_METHOD'] = $method;
 		$_SERVER['argv'] = ['index.php', $uri];
-		
+
 		if ($method === 'POST')
 		{
 			$_POST = $params;
@@ -134,22 +148,22 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 		{
 			$_GET = $params;
 		}
-		
+
 		// Force cli mode because if not, it changes URI (and RTR) behavior
 		$cli = is_cli();
 		set_is_cli(TRUE);
-		
+
 		// Reset CodeIgniter instance state
 		reset_instance();
-		
+
 		// Get route
 		$RTR =& load_class('Router', 'core');
 		$URI =& load_class('URI', 'core');
 		list($class, $method, $params) = $this->getRoute($RTR, $URI);
-		
+
 		// Restore cli mode
 		set_is_cli($cli);
-		
+
 //		$request = [
 //			'REQUEST_METHOD' => $_SERVER['REQUEST_METHOD'],
 //			'class' => $class,
@@ -159,7 +173,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 //			'$_POST' => $_POST,
 //		];
 //		var_dump($request, $_SERVER['argv']);
-		
+
 		// Create controller
 		$this->obj = new $class;
 		$this->CI =& get_instance();
@@ -167,48 +181,48 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 		{
 			$callable($this->CI);
 		}
-		
+
 		// Call controller method
 		ob_start();
 		call_user_func_array([$this->obj, $method], $params);
 		$output = ob_get_clean();
-		
+
 		if ($output == '')
 		{
 			$output = $this->CI->output->get_output();
 		}
-		
+
 		return $output;
 	}
 
 	/**
 	 * Get Mock Object
-	 * 
+	 *
 	 * $email = $this->getMockBuilder('CI_Email')
 	 *	->setMethods(['send'])
 	 *	->getMock();
 	 * $email->method('send')->willReturn(TRUE);
-	 * 
+	 *
 	 *  will be
-	 * 
+	 *
 	 * $email = $this->getDouble('CI_Email', ['send' => TRUE]);
-	 * 
-	 * @param  string $classname 
+	 *
+	 * @param  string $classname
 	 * @param  array  $params    [method_name => return_value]
 	 * @return object PHPUnit mock object
 	 */
 	public function getDouble($classname, $params)
 	{
 		$methods = array_keys($params);
-		
+
 		$mock = $this->getMockBuilder($classname)->setMethods($methods)
 			->getMock();
-		
+
 		foreach ($params as $method => $return)
 		{
 			$mock->method($method)->willReturn($return);
 		}
-		
+
 		return $mock;
 	}
 
@@ -216,9 +230,9 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	{
 		$invocation = $mock->expects($expects)
 			->method($method);
-		
+
 		$count = count($params);
-		
+
 		switch ($count) {
 			case 0:
 				break;
@@ -256,16 +270,16 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Verifies that method was called exactly $times times
-	 * 
+	 *
 	 * $loader->expects($this->exactly(2))
 	 * 	->method('view')
 	 * 	->withConsecutive(
 	 *		['shop_confirm', $this->anything(), TRUE],
 	 * 		['shop_tmpl_checkout', $this->anything()]
 	 * 	);
-	 * 
+	 *
 	 *  will be
-	 * 
+	 *
 	 * $this->verifyInvokedMultipleTimes(
 	 * 	$loader,
 	 * 	'view',
@@ -275,10 +289,10 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	 * 		['shop_tmpl_checkout', $this->anything()]
 	 * 	]
 	 * );
-	 * 
+	 *
 	 * @param object $mock   PHPUnit mock object
-	 * @param string $method 
-	 * @param int    $times  
+	 * @param string $method
+	 * @param int    $times
 	 * @param array  $params arguments
 	 */
 	public function verifyInvokedMultipleTimes($mock, $method, $times, $params = null)
@@ -290,9 +304,9 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Verifies a method was invoked at least once
-	 * 
+	 *
 	 * @param object $mock   PHPUnit mock object
-	 * @param string $method 
+	 * @param string $method
 	 * @param array  $params arguments
 	 */
 	public function verifyInvoked($mock, $method, $params = null)
@@ -304,9 +318,9 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Verifies that method was invoked only once
-	 * 
+	 *
 	 * @param object $mock   PHPUnit mock object
-	 * @param string $method 
+	 * @param string $method
 	 * @param array  $params arguments
 	 */
 	public function verifyInvokedOnce($mock, $method, $params = null)
@@ -318,9 +332,9 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Verifies that method was not called
-	 * 
+	 *
 	 * @param object $mock   PHPUnit mock object
-	 * @param string $method 
+	 * @param string $method
 	 * @param array  $params arguments
 	 */
 	public function verifyNeverInvoked($mock, $method, $params = null)
@@ -342,9 +356,9 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Get Route including 404 check
-	 * 
+	 *
 	 * @see core/CodeIgniter.php
-	 * 
+	 *
 	 * @param CI_Route $RTR Router object
 	 * @param CI_URI   $URI URI object
 	 * @return array   [class, method, pararms]
