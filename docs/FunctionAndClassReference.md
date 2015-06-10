@@ -44,26 +44,26 @@ load_class_instance('email', $email);
 
 #### TestCase::request($method, $argv, $params = [], $callable = null)
 
-| param     | type    | description                                    |
-|-----------|---------|------------------------------------------------|
-|`$method`  | string  | HTTP method                                    |
-|`$argv`    | array   | controller, method [, arg1, ...]               |
-|`$params`  | array   | POST parameters/Query string                   |
-|`$callable`| callable| function to run after controller instantiation |
+| param     | type         | description                                    |
+|-----------|--------------|------------------------------------------------|
+|`$method`  | string       | HTTP method                                    |
+|`$argv`    | array|string | controller, method [, arg1, ...] | URI string  |
+|`$params`  | array        | POST parameters / Query string                 |
+|`$callable`| callable     | function to run after controller instantiation |
 
 `returns` (string) output strings (view)
 
 Run a controller method after `reset_instance()`.
 
 ~~~php
-$output = $this->request('GET', ['form', 'index']);
+$output = $this->request('GET', ['Form', 'index']);
 ~~~
 
 ~~~php
 $load_agent = function ($CI) {
 	$CI->load->library('user_agent');
 };
-$output = $this->request('GET', ['bbs', 'index'], [], $load_agent);
+$output = $this->request('GET', ['Bbs', 'index'], [], $load_agent);
 ~~~
 
 #### TestCase::getDouble($classname, $params)
