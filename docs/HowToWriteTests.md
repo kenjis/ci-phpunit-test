@@ -41,11 +41,11 @@ class Inventory_model_test extends TestCase
 }
 ~~~
 
-Test case class extends `TestCase`.
+Test case class extends [TestCase](FunctionAndClassReference.md#class-testcase) class.
 
 Don't forget to write `parent::setUpBeforeClass();` if you override `setUpBeforeClass()` method.
 
-See https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/models/Category_model_test.php
+See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/models/Category_model_test.php).
 
 #### Database Seeding
 
@@ -66,11 +66,11 @@ You can use them like below:
 	}
 ~~~
 
-See https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/models/Category_model_test.php
+See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/models/Category_model_test.php).
 
 #### Using PHPUnit Mock Objects
 
-You can use `$this->getMockBuilder()`method  in PHPUnit and use `$this->verifyInvoked*()` methods in *CI PHPUnit Test*.
+You can use `$this->getMockBuilder()`method in PHPUnit and use [$this->verifyInvoked*()](FunctionAndClassReference.md#testcaseverifyinvokedmock-method-params) methods in *CI PHPUnit Test*.
 
 ~~~php
 	public function setUp()
@@ -133,13 +133,13 @@ You can use `$this->getMockBuilder()`method  in PHPUnit and use `$this->verifyIn
 	}
 ~~~
 
-See https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/models/Category_model_mocking_db_test.php
+See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/models/Category_model_mocking_db_test.php).
 
 ### Controllers
 
 #### Request to Controller
 
-You can use `$this->request()` method in *CI PHPUnit Test*.
+You can use [$this->request()](FunctionAndClassReference.md#testcaserequestmethod-argv-params---callable--null) method in *CI PHPUnit Test*.
 
 `tests/controllers/Welcome_test.php`
 ~~~php
@@ -155,9 +155,7 @@ class Welcome_test extends TestCase
 }
 ~~~
 
-[TestCase](FunctionAndClassReference.md#class-testcase) class has `$this->request()` method.
-
-See https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Welcome_test.php
+See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Welcome_test.php).
 
 #### Request to URI string
 
@@ -169,11 +167,11 @@ See https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application
 	}
 ~~~
 
-See https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/sub/Sub_test.php
+See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/sub/Sub_test.php).
 
 #### Ajax Request
 
-You can use `$this->ajaxRequest()` method in *CI PHPUnit Test*.
+You can use [$this->ajaxRequest()](FunctionAndClassReference.md#testcaseajaxrequestmethod-argv-params---callable--null) method in *CI PHPUnit Test*.
 
 ~~~php
 	public function test_index_ajax_call()
@@ -184,14 +182,15 @@ You can use `$this->ajaxRequest()` method in *CI PHPUnit Test*.
 	}
 ~~~
 
-See https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Ajax_test.php
+See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Ajax_test.php).
 
 #### Controller with Name Collision
 
 If you have two controllers with the exact same name, PHP Fatal error stops PHPUnit testing.
 
-In this case, you can use PHPUnit annotations `@runInSeparateProcess` and `@preserveGlobalState disabled`. But tests in a separate PHP process is very slow.
+In this case, you can use PHPUnit annotations `@runInSeparateProcess` and `@preserveGlobalState disabled`. But tests in a separate PHP process are very slow.
 
+`tests/controllers/sub/Welcome_test.php`
 ~~~php
 <?php
 
@@ -209,11 +208,11 @@ class sub_Welcome_test extends TestCase
 }
 ~~~
 
-See https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/sub/Welcome_test.php
+See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/sub/Welcome_test.php).
 
 ### `show_error()` and `show_404()`
 
-`show_error()` and `show_404()` in *CI PHPUnit Test* throws `PHPUnit_Framework_Exception`.
+`show_error()` and `show_404()` in *CI PHPUnit Test* throw `PHPUnit_Framework_Exception`.
 
 ~~~php
 	/**
@@ -226,7 +225,7 @@ See https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application
 	}
 ~~~
 
-See https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Nocontroller_test.php
+See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Nocontroller_test.php).
 
 ### Mock Libraries
 
