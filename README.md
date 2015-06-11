@@ -39,7 +39,7 @@ codeigniter/
 
 ### Step 1
 
-Download `ci-phpunit-test`: https://github.com/kenjis/ci-phpunit-test/archive/master.zip
+Download latest `ci-phpunit-test`: https://github.com/kenjis/ci-phpunit-test/releases
 
 Unzip and copy `application/tests` folder into your `application` folder in CodeIgniter project. That's it. Go to Step 2.
 
@@ -47,7 +47,7 @@ If you like Composer:
 
 ~~~
 $ cd /path/to/codeigniter/
-$ composer require kenjis/ci-phpunit-test:1.0.x@dev --dev
+$ composer require kenjis/ci-phpunit-test --dev
 ~~~
 
 And run `install.php`:
@@ -61,7 +61,7 @@ $ php vendor/kenjis/ci-phpunit-test/install.php
 
 ### Step 2
 
-Fix the paths in `tests/Bootstrap.php` if you need.
+Fix the three paths in `tests/Bootstrap.php` if you need. `FCPATH` is where `index.php` is.
 
 ~~~php
 	$system_path = '../../vendor/codeigniter/framework/system';
@@ -71,7 +71,7 @@ Fix the paths in `tests/Bootstrap.php` if you need.
 	define('FCPATH', realpath(dirname(__FILE__).'/../../public').'/');
 ~~~
 
-If you install CodeIgniter using [codeigniter-composer-installer](https://github.com/kenjis/codeigniter-composer-installer), you don't have to.
+If you install CodeIgniter using [codeigniter-composer-installer](https://github.com/kenjis/codeigniter-composer-installer), you don't have to change them.
 
 ## Upgrading
 
@@ -177,25 +177,6 @@ CodeIgniter has a function `get_instance()` to get the CodeIgniter object (CodeI
 *CI PHPUnit Test* has a new function `reset_instance()` which reset the current CodeIgniter object. After resetting, you can create a new your Controller instance with new state.
 
 You can see how to use it in [application/tests/_ci_phpunit_test/CIPHPUnitTestCase.php](application/tests/_ci_phpunit_test/CIPHPUnitTestCase.php).
-
-#### [Deprecated] `get_new_instance()`
-
-A function `get_new_instance()` is deprecated. Please use `reset_instance()` instead.
-
-*before:*
-~~~php
-$this->CI = get_new_instance();
-$controller = new Welcome();
-~~~
-
-↓
-
-*after:*
-~~~php
-reset_instance();
-$controller = new Welcome();
-$this->CI =& get_instance();
-~~~
 
 ## Function/Class Reference
 
