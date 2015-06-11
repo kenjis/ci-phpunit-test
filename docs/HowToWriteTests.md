@@ -45,7 +45,7 @@ Don't forget to write `parent::setUpBeforeClass();` if you override `setUpBefore
 
 ### Database Seeding
 
-I put [Seeder Library](application/libraries/Seeder.php) and a sample [Seeder File](application/database/seeds/CategorySeeder.php).
+I put [Seeder Library](../application/libraries/Seeder.php) and a sample [Seeder File](../application/database/seeds/CategorySeeder.php).
 
 They are not installed, so if you want to use, copy them manually.
 
@@ -78,7 +78,7 @@ class Welcome_test extends TestCase
 }
 ~~~
 
-[TestCase](docs/FunctionAndClassReference.md#class-testcase) class has `$this->request()` method.
+[TestCase](FunctionAndClassReference.md#class-testcase) class has `$this->request()` method.
 
 ### `show_error()` and `show_404()`
 
@@ -95,7 +95,7 @@ class Welcome_test extends TestCase
 
 ### Mock Libraries
 
-You can put mock libraries in `tests/mocks/libraries` folder. You can see [application/tests/mocks/libraries/email.php](application/tests/mocks/libraries/email.php) as a sample.
+You can put mock libraries in `tests/mocks/libraries` folder. You can see [application/tests/mocks/libraries/email.php](../application/tests/mocks/libraries/email.php) as a sample.
 
 With mock libraries, you could replace your object in CodeIgniter instance.
 
