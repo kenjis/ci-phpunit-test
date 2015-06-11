@@ -251,5 +251,5 @@ Mock library class name must be `Mock_Libraries_*`, and it is autoloaded.
 
 Want to see more tests?
 
-* https://github.com/kenjis/codeigniter-tettei-apps/tree/develop/application/tests
 * https://github.com/kenjis/ci-app-for-ci-phpunit-test/tree/master/application/tests
+* https://github.com/kenjis/codeigniter-tettei-apps/tree/develop/application/tests

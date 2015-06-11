@@ -4,7 +4,7 @@
 
 ### *function* `reset_instance()`
 
-Reset CodeIgniter instance.
+Reset CodeIgniter instance. You must create new controller instance after calling this function.
 
 ### [Deprecated] *function* `get_new_instance()`
 
@@ -12,7 +12,7 @@ Reset CodeIgniter instance.
 
 Generate new CodeIgniter instance and get it.
 
-Please use `reset_instance()` instead.
+This function is deprecated. Please use `reset_instance()` instead.
 
 *before:*
 ~~~php
