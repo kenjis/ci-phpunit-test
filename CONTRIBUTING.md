@@ -11,4 +11,4 @@ Please write tests for your code and send Pull Request to it, if you could.
 Update documentation if it is needed.
 
 * [README.md](README.md)
-* [docs/FunctionAndClassReference.md](docs/FunctionAndClassReference.md)
+* [docs](docs)
