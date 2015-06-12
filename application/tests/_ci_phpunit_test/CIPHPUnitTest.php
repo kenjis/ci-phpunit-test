@@ -58,7 +58,9 @@ class CIPHPUnitTest
 			// If controller Welcome is called in bootstrap, we can't test
 			// the same name sub controller Welcome even when we use
 			// `@runInSeparateProcess` and `@preserveGlobalState disabled`
+			ob_start();
 			require_once BASEPATH . 'core/CodeIgniter.php';
+			ob_end_clean();
 		} catch (PHPUnit_Framework_Exception $e) {
 			// Catch 404 exception
 			new CI_Controller();
