@@ -184,6 +184,41 @@ You can use [$this->ajaxRequest()](FunctionAndClassReference.md#testcaseajaxrequ
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Ajax_test.php).
 
+#### Examine DOM in Controller Output
+
+I recommend to use [symfony/dom-crawler](http://symfony.com/doc/current/components/dom_crawler.html).
+
+~~~php
+		$output = $this->request('GET', ['Welcome', 'index']);
+		$crawler = new Symfony\Component\DomCrawler\Crawler($output);
+		// Get the text of the first <h1>
+		$text = $crawler->filter('h1')->eq(0)->text();
+~~~
+
+See [working sample](https://github.com/kenjis/codeigniter-tettei-apps/blob/develop/application/tests/controllers/Bbs_test.php#L122-125).
+
+#### Controller with Authentication
+
+I recommend to use PHPUnit mock object.
+
+~~~php
+	public function test_index_logged_in()
+	{
+		$inject_ion_auth = function ($CI) {
+			// Get mock object
+			$auth = $this->getDouble(
+				'Ion_auth', ['logged_in' => TRUE, 'is_admin' => TRUE]
+			);
+			// Inject mock object
+			$CI->ion_auth = $auth;
+		};
+		$output = $this->request('GET', ['Auth', 'index'], '', $inject_ion_auth);
+		$this->assertContains('<p>Below is a list of the users.</p>', $output);
+	}
+~~~
+
+See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Auth_test.php).
+
 #### Controller with Name Collision
 
 If you have two controllers with the exact same name, PHP Fatal error stops PHPUnit testing.
