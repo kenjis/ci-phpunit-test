@@ -12,7 +12,7 @@ class Welcome_test extends TestCase
 {
 	public function test_index()
 	{
-		$output = $this->request('GET', ['welcome', 'index']);
+		$output = $this->request('GET', ['Welcome', 'index']);
 		$this->assertContains('<title>Welcome to CodeIgniter</title>', $output);
 	}
 
@@ -22,7 +22,7 @@ class Welcome_test extends TestCase
 	 */
 	public function test_method_404()
 	{
-		$this->request('GET', ['welcome', 'method_not_exist']);
+		$this->request('GET', ['Welcome', 'method_not_exist']);
 	}
 
 	public function test_APPPATH()
