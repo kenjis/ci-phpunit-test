@@ -10,13 +10,50 @@
 
 class Installer
 {
+    const TEST_FOLDER = 'application/tests';
+
     public static function install()
     {
-        $test_folder = 'application/tests';
         self::recursiveCopy(
             'vendor/kenjis/ci-phpunit-test/application/tests',
-            $test_folder
+            static::TEST_FOLDER
         );
+        self::fixPath();
+    }
+
+    /**
+     * Fix paths in Bootstrap.php
+     */
+    private static function fixPath()
+    {
+        $file = static::TEST_FOLDER . '/Bootstrap.php';
+        $contents = file_get_contents($file);
+        
+        if (! file_exists('system')) {
+            if (file_exists('vendor/codeigniter/framework/system')) {
+                $contents = str_replace(
+                    '$system_path = \'../../system\';',
+                    '$system_path = \'../../vendor/codeigniter/framework/system\';',
+                    $contents
+                );
+            } else {
+                throw new Exception('Can\'t find "system" folder.');
+            }
+        }
+        
+        if (! file_exists('index.php')) {
+            if (file_exists('public/index.php')) {
+                $contents = str_replace(
+                    "define('FCPATH', realpath(dirname(__FILE__).'/../..').'/');",
+                    "define('FCPATH', realpath(dirname(__FILE__).'/../../public').'/');",
+                    $contents
+                );
+            } else {
+                throw new Exception('Can\'t find "index.php".');
+            }
+        }
+        
+        file_put_contents($file, $contents);
     }
 
     public static function update()
