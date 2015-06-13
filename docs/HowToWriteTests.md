@@ -199,7 +199,7 @@ See [working sample](https://github.com/kenjis/codeigniter-tettei-apps/blob/deve
 
 #### Controller with Authentication
 
-I recommend to use PHPUnit mock object.
+I recommend to use PHPUnit mock object. [$this->getDouble()](FunctionAndClassReference.md#testcasegetdoubleclassname-params) methods is a helper method in *CI PHPUnit Test*.
 
 ~~~php
 	public function test_index_logged_in()
