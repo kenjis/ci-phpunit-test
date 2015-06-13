@@ -139,10 +139,20 @@ function is_cli($return = null)
 
 function show_error($message, $status_code = 500, $heading = 'An Error Was Encountered')
 {
+	while (ob_get_level() > 1)
+	{
+		ob_end_clean();
+	}
+
 	throw new PHPUnit_Framework_Exception($message, $status_code);
 }
 
 function show_404($page = '', $log_error = TRUE)
 {
+	while (ob_get_level() > 1)
+	{
+		ob_end_clean();
+	}
+
 	throw new PHPUnit_Framework_Exception($page, 404);
 }
