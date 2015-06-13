@@ -17,7 +17,6 @@ before_script:
   - mv vendor/kenjis/ci-phpunit-test vendor/kenjis/ci-phpunit-test.tmp
   - mv "$cwd" vendor/kenjis/ci-phpunit-test
   - php install.php
-  - git checkout -- application/tests/TestCase.php
 
 script:
   - cd application/tests
