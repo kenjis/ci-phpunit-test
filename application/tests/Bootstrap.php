@@ -102,7 +102,7 @@ switch (ENVIRONMENT)
  * Include the path if the folder is not in the same directory
  * as this file.
  */
-	$system_path = '../../vendor/codeigniter/framework/system';
+	$system_path = '../../system';
 
 /*
  *---------------------------------------------------------------
@@ -230,7 +230,7 @@ switch (ENVIRONMENT)
 	define('BASEPATH', str_replace('\\', '/', $system_path));
 
 	// Path to the front controller (this file)
-	define('FCPATH', realpath(dirname(__FILE__).'/../../public').'/');
+	define('FCPATH', realpath(dirname(__FILE__).'/../..').'/');
 
 	// Name of the "system folder"
 	define('SYSDIR', trim(strrchr(trim(BASEPATH, '/'), '/'), '/'));
