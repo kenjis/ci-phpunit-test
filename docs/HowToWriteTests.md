@@ -212,7 +212,7 @@ I recommend to use PHPUnit mock object. [$this->getDouble()](FunctionAndClassRef
 			// Inject mock object
 			$CI->ion_auth = $auth;
 		};
-		$output = $this->request('GET', ['Auth', 'index'], '', $inject_ion_auth);
+		$output = $this->request('GET', ['Auth', 'index'], [], $inject_ion_auth);
 		$this->assertContains('<p>Below is a list of the users.</p>', $output);
 	}
 ~~~
