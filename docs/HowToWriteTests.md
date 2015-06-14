@@ -70,7 +70,7 @@ See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/m
 
 #### Using PHPUnit Mock Objects
 
-You can use `$this->getMockBuilder()`method in PHPUnit and use [$this->verifyInvoked*()](FunctionAndClassReference.md#testcaseverifyinvokedmock-method-params) methods in *CI PHPUnit Test*.
+You can use `$this->getMockBuilder()` method in PHPUnit and [$this->verifyInvoked*()](FunctionAndClassReference.md#testcaseverifyinvokedmock-method-params) helper methods in *CI PHPUnit Test*.
 
 ~~~php
 	public function setUp()
@@ -199,7 +199,7 @@ See [working sample](https://github.com/kenjis/codeigniter-tettei-apps/blob/deve
 
 #### Controller with Authentication
 
-I recommend to use PHPUnit mock object. [$this->getDouble()](FunctionAndClassReference.md#testcasegetdoubleclassname-params) methods is a helper method in *CI PHPUnit Test*.
+I recommend to use PHPUnit mock objects. [$this->getDouble()](FunctionAndClassReference.md#testcasegetdoubleclassname-params) is a helper method in *CI PHPUnit Test*.
 
 ~~~php
 	public function test_index_logged_in()
