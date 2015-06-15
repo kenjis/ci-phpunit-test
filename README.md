@@ -135,7 +135,9 @@ If your MY_Loader overrides the above methods, probably *CI PHPUnit Test* does n
 
 So, for example, if you use URL helper `redirect()` in your application code, your testing ends with it.
 
-To aviod it, you can modify `redirect()` in your application. I put a sample [MY_url_helper.php](application/helpers/MY_url_helper.php). (I think CodeIgniter code itself should be changed testable.)
+I recommend you not to use `exit()` or `die()` in your code. And you have to skip `exit()` somehow in CodeIgniter code.
+
+For example, you can modify `redirect()` using `MY_url_helper.php` in your application. I put a sample [MY_url_helper.php](application/helpers/MY_url_helper.php). (I think CodeIgniter code itself should be changed testable.)
 
 See [How to Write Tests](docs/HowToWriteTests.md#redirect) for details.
 
