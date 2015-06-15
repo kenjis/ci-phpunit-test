@@ -137,6 +137,8 @@ So, for example, if you use URL helper `redirect()` in your application code, yo
 
 To aviod it, you can modify `redirect()` in your application. I put a sample [MY_url_helper.php](application/helpers/MY_url_helper.php). (I think CodeIgniter code itself should be changed testable.)
 
+See [How to Write Tests](docs/HowToWriteTests.md#redirect) for details.
+
 ### Reset CodeIgniter object
 
 CodeIgniter has a function `get_instance()` to get the CodeIgniter object (CodeIgniter instance or CodeIgniter super object).

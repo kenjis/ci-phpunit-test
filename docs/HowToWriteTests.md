@@ -221,7 +221,7 @@ See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/m
 
 #### `redirect()`
 
-I recommend to use [MY_url_helper.php](../application/helpers/MY_url_helper.php).
+I recommend to use this [MY_url_helper.php](../application/helpers/MY_url_helper.php).
 
 If you use it, you can write tests like this:
 
