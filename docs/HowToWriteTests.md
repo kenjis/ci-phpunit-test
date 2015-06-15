@@ -219,6 +219,26 @@ I recommend to use PHPUnit mock objects. [$this->getDouble()](FunctionAndClassRe
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Auth_test.php).
 
+#### `redirect()`
+
+I recommend to use [MY_url_helper.php](../application/helpers/MY_url_helper.php).
+
+If you use it, you can write tests like this:
+
+~~~php
+	/**
+	 * @expectedException				PHPUnit_Framework_Exception
+	 * @expectedExceptionCode			302
+	 * @expectedExceptionMessageRegExp	!\ARedirect to http://localhost/login\z!
+	 */
+	public function test_index()
+	{
+		$output = $this->request('GET', ['Admin', 'index']);
+	}
+~~~
+
+See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Redirect_test.php).
+
 #### Controller with Name Collision
 
 If you have two controllers with the exact same name, PHP Fatal error stops PHPUnit testing.

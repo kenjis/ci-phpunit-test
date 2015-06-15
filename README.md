@@ -131,28 +131,11 @@ If your MY_Loader overrides the above methods, probably *CI PHPUnit Test* does n
 
 ### `exit()`
 
-*CI PHPUnit Test* does not care functions/classes which `exit()` or `die()` (Except for `show_error()` and `show_404()`).
+*CI PHPUnit Test* does not care functions/classes which `exit()` or `die()` (Except for [show_error() and show_404()](docs/HowToWriteTests.md#show_error-and-show_404)).
 
 So, for example, if you use URL helper `redirect()` in your application code, your testing ends with it.
 
 To aviod it, you can modify `redirect()` in your application. I put a sample [MY_url_helper.php](application/helpers/MY_url_helper.php). (I think CodeIgniter code itself should be changed testable.)
-
-*before:*
-~~~php
-exit;
-~~~
-
-↓
-
-*after:*
-~~~php
-if (ENVIRONMENT !== 'testing')
-{
-	exit;
-}
-~~~
-
-When you skip `exit()`, if there are code after it (maybe in your controllers), it will run. You should make sure no code runs.
 
 ### Reset CodeIgniter object
 
