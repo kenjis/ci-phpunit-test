@@ -195,7 +195,7 @@ I recommend to use [symfony/dom-crawler](http://symfony.com/doc/current/componen
 		$text = $crawler->filter('h1')->eq(0)->text();
 ~~~
 
-See [working sample](https://github.com/kenjis/codeigniter-tettei-apps/blob/develop/application/tests/controllers/Bbs_test.php#L122-125).
+See [working sample](https://github.com/kenjis/codeigniter-tettei-apps/blob/develop/application/tests/controllers/Bbs_test.php#L126-128).
 
 #### Controller with Authentication
 
