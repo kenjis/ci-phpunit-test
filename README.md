@@ -8,7 +8,9 @@
 
 An easier way to use PHPUnit with [CodeIgniter](https://github.com/bcit-ci/CodeIgniter) 3.0.
 
-You don't have to modify CodeIgniter core files at all!
+* You don't have to modify CodeIgniter core files at all.
+* You can write controller tests.
+* Well documented.
 
 ![Screenshot: Running tests on NetBeans](http://forum.codeigniter.com/attachment.php?aid=210)
 

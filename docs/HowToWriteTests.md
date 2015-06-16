@@ -6,7 +6,7 @@
 
 #### Using Database
 
-`tests/models/Inventory_model_test.php`
+*tests/models/Inventory_model_test.php*
 ~~~php
 <?php
 
@@ -141,7 +141,7 @@ See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/m
 
 You can use [$this->request()](FunctionAndClassReference.md#testcaserequestmethod-argv-params---callable--null) method in *CI PHPUnit Test*.
 
-`tests/controllers/Welcome_test.php`
+*tests/controllers/Welcome_test.php*
 ~~~php
 <?php
 
@@ -245,7 +245,7 @@ If you have two controllers with the exact same name, PHP Fatal error stops PHPU
 
 In this case, you can use PHPUnit annotations `@runInSeparateProcess` and `@preserveGlobalState disabled`. But tests in a separate PHP process are very slow.
 
-`tests/controllers/sub/Welcome_test.php`
+*tests/controllers/sub/Welcome_test.php*
 ~~~php
 <?php
 
