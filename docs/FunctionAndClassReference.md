@@ -31,7 +31,9 @@ $this->CI =& get_instance();
 
 ### *function* `set_is_cli($return)`
 
-`$return`: (bool) return value to set
+| param   | type | description         |
+|---------|------|---------------------|
+|`$return`| bool | return value to set |
 
 Set return value of `is_cli()` function.
 
@@ -98,7 +100,7 @@ $output = $this->request('GET', ['Bbs', 'index'], [], $load_agent);
 
 `returns` (string) output strings
 
-The same as `TestCase::request()`, but this makes a Ajax request. This adds `$_SERVER['HTTP_X_REQUESTED_WITH']`.
+The same as `TestCase::request()`, but this makes a Ajax request. This adds only `$_SERVER['HTTP_X_REQUESTED_WITH']`.
 
 #### `TestCase::getDouble($classname, $params)`
 
