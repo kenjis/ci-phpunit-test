@@ -1,6 +1,5 @@
 {
     "name": "kenjis/ci-phpunit-test",
-    "type": "project",
     "description": "An easier way to use PHPUnit with CodeIgniter 3.0",
     "keywords": [
         "phpunit",
