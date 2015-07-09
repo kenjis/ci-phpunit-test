@@ -171,6 +171,8 @@ See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/m
 
 #### Request and Use Mocks
 
+You can use the 4th argument of [$this->request()](FunctionAndClassReference.md#testcaserequestmethod-argv-params---callable--null) method in *CI PHPUnit Test*. [$this->getDouble()](FunctionAndClassReference.md#testcasegetdoubleclassname-params) is a helper methods in *CI PHPUnit Test*.
+
 ~~~php
 	public function test_send_okay()
 	{
