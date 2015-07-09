@@ -28,7 +28,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	 * @param string       $http_method HTTP method
 	 * @param array|string $argv        array of controller,method,arg|uri
 	 * @param array        $params      POST parameters/Query string
-	 * @param callable     $callable
+	 * @param callable     $callable    function to run after controller instantiation
 	 */
 	public function request($http_method, $argv, $params = [], $callable = null)
 	{
@@ -64,7 +64,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	 * @param string   $http_method HTTP method
 	 * @param array    $argv        controller, method [, arg1, ...]
 	 * @param array    $params      POST parameters/Query string
-	 * @param callable $callable
+	 * @param callable $callable    function to run after controller instantiation
 	 */
 	protected function callControllerMethod($http_method, $argv, $params = [], $callable = null)
 	{
@@ -133,7 +133,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	 * @param string   $http_method HTTP method
 	 * @param string   $uri         URI string
 	 * @param array    $params      POST parameters/Query string
-	 * @param callable $callable
+	 * @param callable $callable    function to run after controller instantiation
 	 */
 	protected function requestUri($method, $uri, $params = [], $callable = null)
 	{

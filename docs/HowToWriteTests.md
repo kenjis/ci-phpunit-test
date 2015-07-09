@@ -169,6 +169,30 @@ See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/m
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/sub/Sub_test.php).
 
+#### Request and Use Mocks
+
+~~~php
+	public function test_send_okay()
+	{
+		$output = $this->request(
+			'POST',
+			['Contact', 'send'],
+			[
+				'name' => 'Mike Smith',
+				'email' => 'mike@example.jp',
+				'body' => 'This is test mail.',
+			],
+			function ($CI) {
+				$email = $this->getDouble('CI_Email', ['send' => TRUE]);
+				$CI->email = $email;
+			}
+		);
+		$this->assertContains('Mail sent', $output);
+	}
+~~~
+
+See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Mock_phpunit_test.php).
+
 #### Ajax Request
 
 You can use [$this->ajaxRequest()](FunctionAndClassReference.md#testcaseajaxrequestmethod-argv-params---callable--null) method in *CI PHPUnit Test*.
