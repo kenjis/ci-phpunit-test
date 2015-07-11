@@ -171,11 +171,17 @@ See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/m
 
 #### Request and Use Mocks
 
-You can use the 4th argument of [$this->request()](FunctionAndClassReference.md#testcaserequestmethod-argv-params---callable--null) method in *CI PHPUnit Test*. [$this->getDouble()](FunctionAndClassReference.md#testcasegetdoubleclassname-params) is a helper method in *CI PHPUnit Test*.
+You can use `$this->request->setCallable()` method in *CI PHPUnit Test*. [$this->getDouble()](FunctionAndClassReference.md#testcasegetdoubleclassname-params) is a helper method in *CI PHPUnit Test*.
 
 ~~~php
 	public function test_send_okay()
 	{
+		$this->request->setCallable(
+			function ($CI) {
+				$email = $this->getDouble('CI_Email', ['send' => TRUE]);
+				$CI->email = $email;
+			}
+		);
 		$output = $this->request(
 			'POST',
 			['Contact', 'send'],
@@ -183,11 +189,7 @@ You can use the 4th argument of [$this->request()](FunctionAndClassReference.md#
 				'name' => 'Mike Smith',
 				'email' => 'mike@example.jp',
 				'body' => 'This is test mail.',
-			],
-			function ($CI) {
-				$email = $this->getDouble('CI_Email', ['send' => TRUE]);
-				$CI->email = $email;
-			}
+			]
 		);
 		$this->assertContains('Mail sent', $output);
 	}
