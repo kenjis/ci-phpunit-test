@@ -39,23 +39,23 @@ class CIPHPUnitTestRequest
 	/**
 	 * Call Controller Method
 	 *
-	 * @param string   $http_method HTTP method
-	 * @param array    $argv        controller, method [, arg1, ...]
-	 * @param array    $params      POST parameters/Query string
-	 * @param callable $callable    [deprecated] function to run after controller instantiation. Use setCallable() method instead
+	 * @param string   $http_method    HTTP method
+	 * @param array    $argv           controller, method [, arg1, ...]
+	 * @param array    $request_params POST parameters/Query string
+	 * @param callable $callable       [deprecated] function to run after controller instantiation. Use setCallable() method instead
 	 */
-	protected function callControllerMethod($http_method, $argv, $params = [], $callable = null)
+	protected function callControllerMethod($http_method, $argv, $request_params = [], $callable = null)
 	{
 		$_SERVER['REQUEST_METHOD'] = $http_method;
 		$_SERVER['argv'] = array_merge(['index.php'], $argv);
 
 		if ($http_method === 'POST')
 		{
-			$_POST = $params;
+			$_POST = $request_params;
 		}
 		elseif ($http_method === 'GET')
 		{
-			$_GET = $params;
+			$_GET = $request_params;
 		}
 
 		$class  = ucfirst($argv[0]);
@@ -84,52 +84,37 @@ class CIPHPUnitTestRequest
 			show_404($class.'::'.$method . '() is not found');
 		}
 
-		// Create controller
-		$this->obj = new $class;
-		$this->CI =& get_instance();
+		$params = $argv;
+
+		// @deprecated
 		if (is_callable($callable))
 		{
-			$callable($this->CI);	// @deprecated
-		}
-		elseif (is_callable($this->callable))
-		{
-			$callable = $this->callable;
-			$callable($this->CI);
+			$this->callable = $callable;
 		}
 
-		// Call controller method
-		ob_start();
-		call_user_func_array([$this->obj, $method], $argv);
-		$output = ob_get_clean();
-
-		if ($output == '')
-		{
-			$output = $this->CI->output->get_output();
-		}
-
-		return $output;
+		return $this->createAndCallController($class, $method, $params);
 	}
 
 	/**
 	 * Request to URI
 	 *
-	 * @param string   $http_method HTTP method
-	 * @param string   $uri         URI string
-	 * @param array    $params      POST parameters/Query string
-	 * @param callable $callable    [deprecated] function to run after controller instantiation. Use setCallable() method instead
+	 * @param string   $http_method    HTTP method
+	 * @param string   $uri            URI string
+	 * @param array    $request_params POST parameters/Query string
+	 * @param callable $callable       [deprecated] function to run after controller instantiation. Use setCallable() method instead
 	 */
-	protected function requestUri($method, $uri, $params = [], $callable = null)
+	protected function requestUri($http_method, $uri, $request_params = [], $callable = null)
 	{
-		$_SERVER['REQUEST_METHOD'] = $method;
+		$_SERVER['REQUEST_METHOD'] = $http_method;
 		$_SERVER['argv'] = ['index.php', $uri];
 
-		if ($method === 'POST')
+		if ($http_method === 'POST')
 		{
-			$_POST = $params;
+			$_POST = $request_params;
 		}
-		elseif ($method === 'GET')
+		elseif ($http_method === 'GET')
 		{
-			$_GET = $params;
+			$_GET = $request_params;
 		}
 
 		// Force cli mode because if not, it changes URI (and RTR) behavior
@@ -157,14 +142,21 @@ class CIPHPUnitTestRequest
 //		];
 //		var_dump($request, $_SERVER['argv']);
 
+		// @deprecated
+		if (is_callable($callable))
+		{
+			$this->callable = $callable;
+		}
+
+		return $this->createAndCallController($class, $method, $params);
+	}
+
+	protected function createAndCallController($class, $method, $params)
+	{
 		// Create controller
 		$this->obj = new $class;
 		$this->CI =& get_instance();
-		if (is_callable($callable))
-		{
-			$callable($this->CI);	// @deprecated
-		}
-		elseif (is_callable($this->callable))
+		if (is_callable($this->callable))
 		{
 			$callable = $this->callable;
 			$callable($this->CI);
