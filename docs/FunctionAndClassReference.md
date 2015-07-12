@@ -101,7 +101,7 @@ $this->request->setCallable(
 		$CI->load->library('user_agent');
 	};
 );
-$output = $this->request('GET', ['Bbs', 'index'], []);
+$output = $this->request('GET', ['Bbs', 'index']);
 ~~~
 
 #### `TestCase::ajaxRequest($method, $argv, $params = [], $callable = null)`
