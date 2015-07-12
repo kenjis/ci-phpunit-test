@@ -3,6 +3,7 @@
 class CIPHPUnitTestRequest
 {
 	protected $callable;
+	protected $enableHooks = false;
 
 	/**
 	 * Set callable
@@ -12,6 +13,15 @@ class CIPHPUnitTestRequest
 	public function setCallable(callable $callable)
 	{
 		$this->callable = $callable;
+	}
+
+	/**
+	 * Enable Hooks for Controllres
+	 * This enables only pre_controller, post_controller_constructor, post_controller
+	 */
+	public function enableHooks()
+	{
+		$this->enableHooks = true;
 	}
 
 	/**
@@ -44,7 +54,7 @@ class CIPHPUnitTestRequest
 	 * @param array    $request_params POST parameters/Query string
 	 * @param callable $callable       [deprecated] function to run after controller instantiation. Use setCallable() method instead
 	 */
-	protected function callControllerMethod($http_method, $argv, $request_params = [], $callable = null)
+	protected function callControllerMethod($http_method, $argv, $request_params, $callable)
 	{
 		$_SERVER['REQUEST_METHOD'] = $http_method;
 		$_SERVER['argv'] = array_merge(['index.php'], $argv);
@@ -103,7 +113,7 @@ class CIPHPUnitTestRequest
 	 * @param array    $request_params POST parameters/Query string
 	 * @param callable $callable       [deprecated] function to run after controller instantiation. Use setCallable() method instead
 	 */
-	protected function requestUri($http_method, $uri, $request_params = [], $callable = null)
+	protected function requestUri($http_method, $uri, $request_params, $callable)
 	{
 		$_SERVER['REQUEST_METHOD'] = $http_method;
 		$_SERVER['argv'] = ['index.php', $uri];
@@ -153,6 +163,14 @@ class CIPHPUnitTestRequest
 
 	protected function createAndCallController($class, $method, $params)
 	{
+		ob_start();
+
+		if ($this->enableHooks)
+		{
+			$EXT =& load_class('Hooks', 'core');
+			$EXT->call_hook('pre_controller');
+		}
+
 		// Create controller
 		$this->obj = new $class;
 		$this->CI =& get_instance();
@@ -162,14 +180,23 @@ class CIPHPUnitTestRequest
 			$callable($this->CI);
 		}
 
+		if ($this->enableHooks)
+		{
+			$EXT->call_hook('post_controller_constructor');
+		}
+
 		// Call controller method
-		ob_start();
 		call_user_func_array([$this->obj, $method], $params);
 		$output = ob_get_clean();
 
 		if ($output == '')
 		{
 			$output = $this->CI->output->get_output();
+		}
+
+		if ($this->enableHooks)
+		{
+			$EXT->call_hook('post_controller');
 		}
 
 		return $output;
