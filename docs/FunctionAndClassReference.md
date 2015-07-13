@@ -104,6 +104,13 @@ $this->request->setCallable(
 $output = $this->request('GET', ['Bbs', 'index']);
 ~~~
 
+If you want to enable hooks, call `$this->request->enableHooks()` method. It enables only `pre_controller`, `post_controller_constructor`, `post_controller` hooks.
+
+~~~php
+$this->request->enableHooks();
+$output = $this->request('GET', 'products/shoes/show/123');
+~~~
+
 #### `TestCase::ajaxRequest($method, $argv, $params = [], $callable = null)`
 
 | param     | type         | description                                    |
