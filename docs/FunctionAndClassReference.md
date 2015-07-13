@@ -68,7 +68,7 @@ load_class_instance('email', $email);
 |`$method`  | string       | HTTP method                                    |
 |`$argv`    | array/string | controller, method [, arg1, ...] / URI string  |
 |`$params`  | array        | POST parameters / Query string                 |
-|`$callable`| callable     | function to run after controller instantiation |
+|`$callable`| callable     | [Deprecated] function to run after controller instantiation |
 
 `returns` (string) output strings (view)
 
@@ -82,11 +82,26 @@ $output = $this->request('GET', ['Form', 'index']);
 $output = $this->request('GET', 'products/shoes/show/123');
 ~~~
 
+`$callable` is deprecated. Use `$this->request->setCallable()` method instead.
+
+*before:*
 ~~~php
 $load_agent = function ($CI) {
 	$CI->load->library('user_agent');
 };
 $output = $this->request('GET', ['Bbs', 'index'], [], $load_agent);
+~~~
+
+↓
+
+*after:*
+~~~php
+$this->request->setCallable(
+	function ($CI) {
+		$CI->load->library('user_agent');
+	};
+);
+$output = $this->request('GET', ['Bbs', 'index']);
 ~~~
 
 #### `TestCase::ajaxRequest($method, $argv, $params = [], $callable = null)`
@@ -96,7 +111,7 @@ $output = $this->request('GET', ['Bbs', 'index'], [], $load_agent);
 |`$method`  | string       | HTTP method                                    |
 |`$argv`    | array/string | controller, method [, arg1, ...] / URI string  |
 |`$params`  | array        | POST parameters / Query string                 |
-|`$callable`| callable     | function to run after controller instantiation |
+|`$callable`| callable     | [Deprecated] function to run after controller instantiation |
 
 `returns` (string) output strings
 
