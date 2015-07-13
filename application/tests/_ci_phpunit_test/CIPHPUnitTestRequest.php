@@ -20,7 +20,7 @@ class CIPHPUnitTestRequest
 	 * @param string       $http_method HTTP method
 	 * @param array|string $argv        array of controller,method,arg|uri
 	 * @param array        $params      POST parameters/Query string
-	 * @param callable     $callable    [deprecated] function to run after controller instantiation. Use setRequestCallable() method instead
+	 * @param callable     $callable    [deprecated] function to run after controller instantiation. Use setCallable() method instead
 	 */
 	public function request($http_method, $argv, $params = [], $callable = null)
 	{
@@ -42,7 +42,7 @@ class CIPHPUnitTestRequest
 	 * @param string   $http_method HTTP method
 	 * @param array    $argv        controller, method [, arg1, ...]
 	 * @param array    $params      POST parameters/Query string
-	 * @param callable $callable    [deprecated] function to run after controller instantiation. Use setRequestCallable() method instead
+	 * @param callable $callable    [deprecated] function to run after controller instantiation. Use setCallable() method instead
 	 */
 	protected function callControllerMethod($http_method, $argv, $params = [], $callable = null)
 	{
@@ -116,7 +116,7 @@ class CIPHPUnitTestRequest
 	 * @param string   $http_method HTTP method
 	 * @param string   $uri         URI string
 	 * @param array    $params      POST parameters/Query string
-	 * @param callable $callable    [deprecated] function to run after controller instantiation. Use setRequestCallable() method instead
+	 * @param callable $callable    [deprecated] function to run after controller instantiation. Use setCallable() method instead
 	 */
 	protected function requestUri($method, $uri, $params = [], $callable = null)
 	{
