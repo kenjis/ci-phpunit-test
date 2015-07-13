@@ -54,7 +54,7 @@ class CIPHPUnitTestRequest
 	 * @param array    $request_params POST parameters/Query string
 	 * @param callable $callable       [deprecated] function to run after controller instantiation. Use setCallable() method instead
 	 */
-	protected function callControllerMethod($http_method, $argv, $request_params, $callable)
+	protected function callControllerMethod($http_method, $argv, $request_params, $callable = null)
 	{
 		$_SERVER['REQUEST_METHOD'] = $http_method;
 		$_SERVER['argv'] = array_merge(['index.php'], $argv);
@@ -113,7 +113,7 @@ class CIPHPUnitTestRequest
 	 * @param array    $request_params POST parameters/Query string
 	 * @param callable $callable       [deprecated] function to run after controller instantiation. Use setCallable() method instead
 	 */
-	protected function requestUri($http_method, $uri, $request_params, $callable)
+	protected function requestUri($http_method, $uri, $request_params, $callable = null)
 	{
 		$_SERVER['REQUEST_METHOD'] = $http_method;
 		$_SERVER['argv'] = ['index.php', $uri];
@@ -172,12 +172,12 @@ class CIPHPUnitTestRequest
 		}
 
 		// Create controller
-		$this->obj = new $class;
-		$this->CI =& get_instance();
+		$controller = new $class;
+		$CI =& get_instance();
 		if (is_callable($this->callable))
 		{
 			$callable = $this->callable;
-			$callable($this->CI);
+			$callable($CI);
 		}
 
 		if ($this->enableHooks)
@@ -186,12 +186,12 @@ class CIPHPUnitTestRequest
 		}
 
 		// Call controller method
-		call_user_func_array([$this->obj, $method], $params);
+		call_user_func_array([$controller, $method], $params);
 		$output = ob_get_clean();
 
 		if ($output == '')
 		{
-			$output = $this->CI->output->get_output();
+			$output = $CI->output->get_output();
 		}
 
 		if ($this->enableHooks)
