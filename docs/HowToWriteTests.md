@@ -267,6 +267,17 @@ If you use it, you can write tests like this:
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Redirect_test.php).
 
+#### Controller with Hooks
+
+If you want to enable hooks, call `$this->request->enableHooks()` method. It enables `pre_controller`, `post_controller_constructor`, `post_controller` hooks.
+
+~~~php
+$this->request->enableHooks();
+$output = $this->request('GET', 'products/shoes/show/123');
+~~~
+
+See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Hook_test.php).
+
 #### Controller with Name Collision
 
 If you have two controllers with the exact same name, PHP Fatal error stops PHPUnit testing.
