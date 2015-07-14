@@ -60,7 +60,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	 * @param string       $http_method HTTP method
 	 * @param array|string $argv        array of controller,method,arg|uri
 	 * @param array        $params      POST parameters/Query string
-	 * @param callable     $callable
+	 * @param callable     $callable    [deprecated] function to run after controller instantiation. Use $this->request->setCallable() method instead
 	 */
 	public function ajaxRequest($http_method, $argv, $params = [], $callable = null)
 	{

@@ -82,6 +82,8 @@ $output = $this->request('GET', ['Form', 'index']);
 $output = $this->request('GET', 'products/shoes/show/123');
 ~~~
 
+##### `request->setCallable()`
+
 `$callable` is deprecated. Use `$this->request->setCallable()` method instead.
 
 *before:*
@@ -103,6 +105,8 @@ $this->request->setCallable(
 );
 $output = $this->request('GET', ['Bbs', 'index']);
 ~~~
+
+##### `request->enableHooks()`
 
 If you want to enable hooks, call `$this->request->enableHooks()` method. It enables only `pre_controller`, `post_controller_constructor`, `post_controller` hooks.
 
