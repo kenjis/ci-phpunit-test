@@ -191,4 +191,28 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 			'Status code is not ' . $code . ' but ' . $actual . '.'
 		);
 	}
+
+	/**
+	 * Set Expected Redirect
+	 * 
+	 * This method needs <https://github.com/kenjis/ci-phpunit-test/blob/master/application/helpers/MY_url_helper.php>.
+	 * 
+	 * @param string $uri  URI to redirect
+	 * @param int    $code Response Code
+	 */
+	public function setExpectedRedirect($uri, $code = null)
+	{
+		if (! function_exists('site_url'))
+		{
+			$CI =& get_instance();
+			$CI->load->helper('url');
+		}
+
+		$absolute_uri = site_url($uri);
+		$exceptionMessage = 'Redirect to ' . $absolute_uri;
+
+		$this->setExpectedException(
+			'PHPUnit_Framework_Exception', $exceptionMessage, $code
+		);
+	}
 }
