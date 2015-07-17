@@ -4,6 +4,7 @@ class CIPHPUnitTestRequest
 {
 	protected $callable;
 	protected $enableHooks = false;
+	protected $CI;
 
 	/**
 	 * Set callable
@@ -173,11 +174,14 @@ class CIPHPUnitTestRequest
 
 		// Create controller
 		$controller = new $class;
-		$CI =& get_instance();
+		$this->CI =& get_instance();
+		// Set default response code 200
+		set_status_header();
+		// Run callable
 		if (is_callable($this->callable))
 		{
 			$callable = $this->callable;
-			$callable($CI);
+			$callable($this->CI);
 		}
 
 		if ($this->enableHooks)
@@ -191,7 +195,7 @@ class CIPHPUnitTestRequest
 
 		if ($output == '')
 		{
-			$output = $CI->output->get_output();
+			$output = $this->CI->output->get_output();
 		}
 
 		if ($this->enableHooks)
@@ -255,5 +259,21 @@ class CIPHPUnitTestRequest
 		}
 
 		return [$class, $method, $params];
+	}
+
+	/**
+	 * Get HTTP Status Code Info
+	 * 
+	 * @return array ['code' => code, 'text' => text]
+	 * @throws LogicException
+	 */
+	public function getStatus()
+	{
+		if (! isset($this->CI->output->_status))
+		{
+			throw new LogicException('Status code is not set. You must call $this->request() first');
+		}
+
+		return $this->CI->output->_status;
 	}
 }
