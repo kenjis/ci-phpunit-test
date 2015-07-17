@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="CI PHPUnit Test : An easier way to use PHPUnit with CodeIgniter 3.0.">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>CI PHPUnit Test</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/kenjis/ci-phpunit-test">View on GitHub</a>
+
+          <h1 id="project_title">CI PHPUnit Test</h1>
+          <h2 id="project_tagline">An easier way to use PHPUnit with CodeIgniter 3.0.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/kenjis/ci-phpunit-test/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/kenjis/ci-phpunit-test/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="ci-phpunit-test-for-codeigniter-30" class="anchor" href="#ci-phpunit-test-for-codeigniter-30" aria-hidden="true"><span class="octicon octicon-link"></span></a>CI PHPUnit Test for CodeIgniter 3.0</h1>
+
+<p><a href="https://packagist.org/packages/kenjis/ci-phpunit-test"><img src="https://poser.pugx.org/kenjis/ci-phpunit-test/v/stable" alt="Latest Stable Version"></a> <a href="https://packagist.org/packages/kenjis/ci-phpunit-test"><img src="https://poser.pugx.org/kenjis/ci-phpunit-test/downloads" alt="Total Downloads"></a> <a href="https://packagist.org/packages/kenjis/ci-phpunit-test"><img src="https://poser.pugx.org/kenjis/ci-phpunit-test/v/unstable" alt="Latest Unstable Version"></a> <a href="https://packagist.org/packages/kenjis/ci-phpunit-test"><img src="https://poser.pugx.org/kenjis/ci-phpunit-test/license" alt="License"></a></p>
+
+<p><a href="https://scrutinizer-ci.com/g/kenjis/ci-phpunit-test/?branch=master"><img src="https://scrutinizer-ci.com/g/kenjis/ci-phpunit-test/badges/quality-score.png?b=master" alt="Scrutinizer Code Quality"></a>
+<a href="https://coveralls.io/r/kenjis/ci-phpunit-test?branch=master"><img src="https://coveralls.io/repos/kenjis/ci-phpunit-test/badge.svg?branch=master" alt="Coverage Status"></a>
+<a href="https://travis-ci.org/kenjis/ci-phpunit-test"><img src="https://travis-ci.org/kenjis/ci-phpunit-test.svg?branch=master" alt="Build Status"></a></p>
+
+<p>An easier way to use PHPUnit with <a href="https://github.com/bcit-ci/CodeIgniter">CodeIgniter</a> 3.0.</p>
+
+<ul>
+<li>You don't have to modify CodeIgniter core files at all.</li>
+<li>You can write controller tests.</li>
+<li>Well documented.</li>
+</ul>
+
+<p><img src="http://forum.codeigniter.com/attachment.php?aid=210" alt="Screenshot: Running tests on NetBeans"></p>
+
+<h2>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requirements</h2>
+
+<ul>
+<li>PHP 5.4.0 or later</li>
+<li>CodeIgniter 3.0.*</li>
+<li>PHPUnit</li>
+</ul>
+
+<h2>
+<a id="folder-structure" class="anchor" href="#folder-structure" aria-hidden="true"><span class="octicon octicon-link"></span></a>Folder Structure</h2>
+
+<pre><code>codeigniter/
+├── application/
+│   └── tests/
+│        ├── _ci_phpunit_test/ ... don't touch! files CI PHPUnit Test uses
+│        ├── Bootstrap.php     ... bootstrap file for PHPUnit
+│        ├── TestCase.php      ... TestCase class
+│        ├── controllers/      ... put your controller tests
+│        ├── mocks/
+│        │   └── libraries/    ... mock libraries
+│        ├── models/           ... put your model tests
+│        └── phpunit.xml       ... config file for PHPUnit
+└── vendor/
+</code></pre>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Download latest <code>ci-phpunit-test</code>: <a href="https://github.com/kenjis/ci-phpunit-test/releases">https://github.com/kenjis/ci-phpunit-test/releases</a></p>
+
+<p>Unzip and copy <code>application/tests</code> folder into your <code>application</code> folder in CodeIgniter project. That's it.</p>
+
+<p>If you like Composer:</p>
+
+<pre><code>$ cd /path/to/codeigniter/
+$ composer require kenjis/ci-phpunit-test --dev
+</code></pre>
+
+<p>And run <code>install.php</code>:</p>
+
+<pre><code>$ php vendor/kenjis/ci-phpunit-test/install.php
+</code></pre>
+
+<ul>
+<li>Above command always overwrites exisiting files.</li>
+<li>You must run it at CodeIgniter project root folder.</li>
+</ul>
+
+<h2>
+<a id="upgrading" class="anchor" href="#upgrading" aria-hidden="true"><span class="octicon octicon-link"></span></a>Upgrading</h2>
+
+<p>Download latest <code>ci-phpunit-test</code>: <a href="https://github.com/kenjis/ci-phpunit-test/releases">https://github.com/kenjis/ci-phpunit-test/releases</a></p>
+
+<p>Unzip and replace <code>application/tests/_ci_phpunit_test</code> folder.</p>
+
+<p>If you like Composer:</p>
+
+<pre><code>$ cd /path/to/codeigniter/
+$ composer update kenjis/ci-phpunit-test
+$ php vendor/kenjis/ci-phpunit-test/update.php
+</code></pre>
+
+<h2>
+<a id="how-to-run-tests" class="anchor" href="#how-to-run-tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to Run Tests</h2>
+
+<p>You have to install PHPUnit before running tests.</p>
+
+<pre><code>$ cd /path/to/codeigniter/
+$ cd application/tests/
+$ phpunit
+PHPUnit 4.6.10 by Sebastian Bergmann and contributors.
+
+Configuration read from /.../codeigniter/application/tests/phpunit.xml
+
+...
+
+Time: 635 ms, Memory: 4.50Mb
+
+OK (3 tests, 4 assertions)
+
+Generating code coverage report in Clover XML format ... done
+
+Generating code coverage report in HTML format ... done
+</code></pre>
+
+<p>To generate coverage report, Xdebug is needed.</p>
+
+<h2>
+<a id="how-to-write-tests" class="anchor" href="#how-to-write-tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to Write Tests</h2>
+
+<p>See <a href="docs/HowToWriteTests.md">docs/HowToWriteTests.md</a></p>
+
+<h2>
+<a id="can-and-cant" class="anchor" href="#can-and-cant" aria-hidden="true"><span class="octicon octicon-link"></span></a>Can and Can't</h2>
+
+<p><em>CI PHPUnit Test</em> does not want to modify CodeIgniter core files. The more you modify core, the more you get difficulities when you update CodeIgniter.</p>
+
+<p>In fact, it uses a modified class and a few functions. But I try to modify as little as possible.</p>
+
+<p>The functions and the class which are modified:</p>
+
+<ul>
+<li>function <code>load_class()</code>
+</li>
+<li>function <code>is_loaded()</code>
+</li>
+<li>function <code>is_cli()</code>
+</li>
+<li>function <code>show_error()</code>
+</li>
+<li>function <code>show_404()</code>
+</li>
+<li>class <code>CI_Loader</code>
+</li>
+</ul>
+
+<p>They are in <code>tests/_ci_phpunit_test/replacing</code> folder.</p>
+
+<h3>
+<a id="my_loader" class="anchor" href="#my_loader" aria-hidden="true"><span class="octicon octicon-link"></span></a>MY_Loader</h3>
+
+<p><em>CI PHPUnit Test</em> replaces <code>CI_Loader</code> and modifies below methods:</p>
+
+<ul>
+<li><code>CI_Loader::model()</code></li>
+<li><code>CI_Loader::_ci_load_library()</code></li>
+<li><code>CI_Loader::_ci_load_stock_library()</code></li>
+</ul>
+
+<p>But if you place MY_Loader, your MY_Loader extends the loader of <em>CI PHPUnit Test</em>.</p>
+
+<p>If your MY_Loader overrides the above methods, probably <em>CI PHPUnit Test</em> does not work correctly.</p>
+
+<h3>
+<a id="exit" class="anchor" href="#exit" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>exit()</code>
+</h3>
+
+<p><em>CI PHPUnit Test</em> does not care functions/classes which <code>exit()</code> or <code>die()</code> (Except for <a href="docs/HowToWriteTests.md#show_error-and-show_404">show_error() and show_404()</a>).</p>
+
+<p>So, for example, if you use URL helper <code>redirect()</code> in your application code, your testing ends with it.</p>
+
+<p>I recommend you not to use <code>exit()</code> or <code>die()</code> in your code. And you have to skip <code>exit()</code> somehow in CodeIgniter code.</p>
+
+<p>For example, you can modify <code>redirect()</code> using <code>MY_url_helper.php</code> in your application. I put a sample <a href="application/helpers/MY_url_helper.php">MY_url_helper.php</a>. (I think CodeIgniter code itself should be changed testable.)</p>
+
+<p>See <a href="docs/HowToWriteTests.md#redirect">How to Write Tests</a> for details.</p>
+
+<h3>
+<a id="reset-codeigniter-object" class="anchor" href="#reset-codeigniter-object" aria-hidden="true"><span class="octicon octicon-link"></span></a>Reset CodeIgniter object</h3>
+
+<p>CodeIgniter has a function <code>get_instance()</code> to get the CodeIgniter object (CodeIgniter instance or CodeIgniter super object).</p>
+
+<p><em>CI PHPUnit Test</em> has a new function <code>reset_instance()</code> which reset the current CodeIgniter object. After resetting, you can create a new your Controller instance with new state.</p>
+
+<p>You can see how to use it in <a href="application/tests/_ci_phpunit_test/CIPHPUnitTestCase.php">application/tests/_ci_phpunit_test/CIPHPUnitTestCase.php</a>.</p>
+
+<h2>
+<a id="functionclass-reference" class="anchor" href="#functionclass-reference" aria-hidden="true"><span class="octicon octicon-link"></span></a>Function/Class Reference</h2>
+
+<p>See <a href="docs/FunctionAndClassReference.md">docs/FunctionAndClassReference.md</a></p>
+
+<h2>
+<a id="related-projects-for-codeigniter-30" class="anchor" href="#related-projects-for-codeigniter-30" aria-hidden="true"><span class="octicon octicon-link"></span></a>Related Projects for CodeIgniter 3.0</h2>
+
+<ul>
+<li><a href="https://github.com/kenjis/codeigniter-composer-installer">CodeIgniter Composer Installer</a></li>
+<li><a href="https://github.com/kenjis/codeigniter-cli">Cli for CodeIgniter 3.0</a></li>
+<li><a href="https://github.com/kenjis/codeigniter-ss-twig">CodeIgniter Simple and Secure Twig</a></li>
+<li><a href="https://github.com/kenjis/codeigniter-doctrine">CodeIgniter Doctrine</a></li>
+<li><a href="https://github.com/kenjis/codeigniter-deployer">CodeIgniter Deployer</a></li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">CI PHPUnit Test maintained by <a href="https://github.com/kenjis">kenjis</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
