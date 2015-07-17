@@ -274,8 +274,8 @@ See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/m
 If you want to enable hooks, call `$this->request->enableHooks()` method. It enables `pre_controller`, `post_controller_constructor`, `post_controller` hooks.
 
 ~~~php
-$this->request->enableHooks();
-$output = $this->request('GET', 'products/shoes/show/123');
+		$this->request->enableHooks();
+		$output = $this->request('GET', 'products/shoes/show/123');
 ~~~
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Hook_test.php).
