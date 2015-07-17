@@ -16,7 +16,7 @@
 	- [`redirect()`](#redirect)
 	- [Controller with Hooks](#controller-with-hooks)
 	- [Controller with Name Collision](#controller-with-name-collision)
-- [`show_error()` and `show_404()`](#showerror-and-show404)
+- [`show_error()` and `show_404()`](#show_error-and-show_404)
 - [Mock Libraries](#mock-libraries)
 - [More Samples](#more-samples)
 
