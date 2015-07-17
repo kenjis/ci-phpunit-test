@@ -2,6 +2,23 @@
 
 ## Function/Class Reference
 
+- [*function* `reset_instance()`](#function-reset_instance)
+- [[Deprecated] *function* `get_new_instance()`](#deprecated-function-get_new_instance)
+- [*function* `set_is_cli($return)`](#function-set_is_clireturn)
+- [*function* `load_class_instance($classname, $instance)`](#function-load_class_instanceclassname-instance)
+- [*class* TestCase](#class-testcase)
+	- [`TestCase::request($method, $argv, $params = [], $callable = null)`](#testcaserequestmethod-argv-params-callable-null)
+		- [`request->setCallable()`](#request-setcallable)
+		- [`request->enableHooks()`](#request-enablehooks)
+	- [`TestCase::ajaxRequest($method, $argv, $params = [], $callable = null)`](#testcaseajaxrequestmethod-argv-params-callable-null)
+	- [`TestCase::getDouble($classname, $params)`](#testcasegetdoubleclassname-params)
+	- [`TestCase::verifyInvoked($mock, $method, $params)`](#testcaseverifyinvokedmock-method-params)
+	- [`TestCase::verifyInvokedOnce($mock, $method, $params)`](#testcaseverifyinvokedoncemock-method-params)
+	- [`TestCase::verifyInvokedMultipleTimes($mock, $method, $times, $params)`](#testcaseverifyinvokedmultipletimesmock-method-times-params)
+	- [`TestCase::verifyNeverInvoked($mock, $method, $params)`](#testcaseverifyneverinvokedmock-method-params)
+	- [`TestCase::warningOff()`](#testcasewarningoff)
+	- [`TestCase::warningOn()`](#testcasewarningon)
+
 ### *function* `reset_instance()`
 
 Reset CodeIgniter instance. You must create new controller instance after calling this function.
