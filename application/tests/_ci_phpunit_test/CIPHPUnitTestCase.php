@@ -174,4 +174,23 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	{
 		error_reporting($this->_error_reporting);
 	}
+
+	/**
+	 * Asserts HTTP response code
+	 * 
+	 * @param int $code
+	 */
+	public function assertResponseCode($code)
+	{
+		$CI =& get_instance();
+		$output = $CI->output;
+
+		$actual = 200;	// default is 200
+		if (isset($output->_status))
+		{
+			$actual = $output->_status['code'];
+		}
+
+		$this->assertSame($code, $actual, 'Status code is not ' . $code . ' but ' . $actual . '.');
+	}
 }

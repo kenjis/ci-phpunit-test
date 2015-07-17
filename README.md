@@ -115,9 +115,14 @@ The functions and the class which are modified:
 * function `is_cli()`
 * function `show_error()`
 * function `show_404()`
+* function `set_status_header()`
 * class `CI_Loader`
 
 They are in `tests/_ci_phpunit_test/replacing` folder.
+
+And *CI PHPUnit Test* adds a property dynamically:
+
+* property `CI_Output::_status`
 
 ### MY_Loader
 
