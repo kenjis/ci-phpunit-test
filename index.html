@@ -141,7 +141,7 @@ Generating code coverage report in HTML format ... done
 <h2>
 <a id="how-to-write-tests" class="anchor" href="#how-to-write-tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to Write Tests</h2>
 
-<p>See <a href="docs/HowToWriteTests.md">docs/HowToWriteTests.md</a></p>
+<p>See <a href="https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md">How To Write Tests</a>.</p>
 
 <h2>
 <a id="can-and-cant" class="anchor" href="#can-and-cant" aria-hidden="true"><span class="octicon octicon-link"></span></a>Can and Can't</h2>
@@ -188,15 +188,15 @@ Generating code coverage report in HTML format ... done
 <a id="exit" class="anchor" href="#exit" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>exit()</code>
 </h3>
 
-<p><em>CI PHPUnit Test</em> does not care functions/classes which <code>exit()</code> or <code>die()</code> (Except for <a href="docs/HowToWriteTests.md#show_error-and-show_404">show_error() and show_404()</a>).</p>
+<p><em>CI PHPUnit Test</em> does not care functions/classes which <code>exit()</code> or <code>die()</code> (Except for <a href="https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#show_error-and-show_404">show_error() and show_404()</a>).</p>
 
 <p>So, for example, if you use URL helper <code>redirect()</code> in your application code, your testing ends with it.</p>
 
 <p>I recommend you not to use <code>exit()</code> or <code>die()</code> in your code. And you have to skip <code>exit()</code> somehow in CodeIgniter code.</p>
 
-<p>For example, you can modify <code>redirect()</code> using <code>MY_url_helper.php</code> in your application. I put a sample <a href="application/helpers/MY_url_helper.php">MY_url_helper.php</a>. (I think CodeIgniter code itself should be changed testable.)</p>
+<p>For example, you can modify <code>redirect()</code> using <code>MY_url_helper.php</code> in your application. I put a sample <a href="https://github.com/kenjis/ci-phpunit-test/blob/master/application/helpers/MY_url_helper.php">MY_url_helper.php</a>. (I think CodeIgniter code itself should be changed testable.)</p>
 
-<p>See <a href="docs/HowToWriteTests.md#redirect">How to Write Tests</a> for details.</p>
+<p>See <a href="https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#redirect">How to Write Tests</a> for details.</p>
 
 <h3>
 <a id="reset-codeigniter-object" class="anchor" href="#reset-codeigniter-object" aria-hidden="true"><span class="octicon octicon-link"></span></a>Reset CodeIgniter object</h3>
@@ -205,12 +205,12 @@ Generating code coverage report in HTML format ... done
 
 <p><em>CI PHPUnit Test</em> has a new function <code>reset_instance()</code> which reset the current CodeIgniter object. After resetting, you can create a new your Controller instance with new state.</p>
 
-<p>You can see how to use it in <a href="application/tests/_ci_phpunit_test/CIPHPUnitTestCase.php">application/tests/_ci_phpunit_test/CIPHPUnitTestCase.php</a>.</p>
+<p>You can see how to use it in <a href="https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/_ci_phpunit_test/CIPHPUnitTestCase.php">application/tests/_ci_phpunit_test/CIPHPUnitTestCase.php</a>.</p>
 
 <h2>
 <a id="functionclass-reference" class="anchor" href="#functionclass-reference" aria-hidden="true"><span class="octicon octicon-link"></span></a>Function/Class Reference</h2>
 
-<p>See <a href="docs/FunctionAndClassReference.md">docs/FunctionAndClassReference.md</a></p>
+<p>See <a href="https://github.com/kenjis/ci-phpunit-test/blob/master/docs/FunctionAndClassReference.md">Function and Class Reference</a>.</p>
 
 <h2>
 <a id="related-projects-for-codeigniter-30" class="anchor" href="#related-projects-for-codeigniter-30" aria-hidden="true"><span class="octicon octicon-link"></span></a>Related Projects for CodeIgniter 3.0</h2>
@@ -221,6 +221,7 @@ Generating code coverage report in HTML format ... done
 <li><a href="https://github.com/kenjis/codeigniter-ss-twig">CodeIgniter Simple and Secure Twig</a></li>
 <li><a href="https://github.com/kenjis/codeigniter-doctrine">CodeIgniter Doctrine</a></li>
 <li><a href="https://github.com/kenjis/codeigniter-deployer">CodeIgniter Deployer</a></li>
+<li><a href="https://github.com/kenjis/codeigniter3-filename-checker">CodeIgniter3 Filename Checker</a></li>
 </ul>
       </section>
     </div>
