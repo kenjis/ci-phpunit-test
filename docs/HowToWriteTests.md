@@ -2,6 +2,24 @@
 
 ## How to Write Tests
 
+- [Models](#models)
+	- [Using Database](#using-database)
+	- [Database Seeding](#database-seeding)
+	- [Using PHPUnit Mock Objects](#using-phpunit-mock-objects)
+- [Controllers](#controllers)
+	- [Request to Controller](#request-to-controller)
+	- [Request to URI string](#request-to-uri-string)
+	- [Request and Use Mocks](#request-and-use-mocks)
+	- [Ajax Request](#ajax-request)
+	- [Examine DOM in Controller Output](#examine-dom-in-controller-output)
+	- [Controller with Authentication](#controller-with-authentication)
+	- [`redirect()`](#redirect)
+	- [Controller with Hooks](#controller-with-hooks)
+	- [Controller with Name Collision](#controller-with-name-collision)
+- [`show_error()` and `show_404()`](#showerror-and-show404)
+- [Mock Libraries](#mock-libraries)
+- [More Samples](#more-samples)
+
 ### Models
 
 #### Using Database
@@ -96,7 +114,7 @@ You can use `$this->getMockBuilder()` method in PHPUnit and [$this->verifyInvoke
 			->disableOriginalConstructor()
 			->getMock();
 		$db->method('get')->willReturn($db_result);
-		
+
 		// Verify invocations
 		$this->verifyInvokedOnce(
 			$db_result,
