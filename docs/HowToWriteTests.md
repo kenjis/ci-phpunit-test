@@ -285,16 +285,14 @@ I recommend to use this [MY_url_helper.php](../application/helpers/MY_url_helper
 If you use it, you can write tests like this:
 
 ~~~php
-	/**
-	 * @expectedException				PHPUnit_Framework_Exception
-	 * @expectedExceptionCode			302
-	 * @expectedExceptionMessageRegExp	!\ARedirect to http://localhost/login\z!
-	 */
 	public function test_index()
 	{
+		$this->setExpectedRedirect('login', 302);
 		$output = $this->request('GET', ['Admin', 'index']);
 	}
 ~~~
+
+`$this->setExpectedRedirect()` is a method in *CI PHPUnit Test*.
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Redirect_test.php).
 
