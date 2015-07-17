@@ -100,7 +100,7 @@ To generate coverage report, Xdebug is needed.
 
 ## How to Write Tests
 
-See [docs/HowToWriteTests.md](docs/HowToWriteTests.md)
+See [How To Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md).
 
 ## Can and Can't
 
@@ -133,15 +133,15 @@ If your MY_Loader overrides the above methods, probably *CI PHPUnit Test* does n
 
 ### `exit()`
 
-*CI PHPUnit Test* does not care functions/classes which `exit()` or `die()` (Except for [show_error() and show_404()](docs/HowToWriteTests.md#show_error-and-show_404)).
+*CI PHPUnit Test* does not care functions/classes which `exit()` or `die()` (Except for [show_error() and show_404()](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#show_error-and-show_404)).
 
 So, for example, if you use URL helper `redirect()` in your application code, your testing ends with it.
 
 I recommend you not to use `exit()` or `die()` in your code. And you have to skip `exit()` somehow in CodeIgniter code.
 
-For example, you can modify `redirect()` using `MY_url_helper.php` in your application. I put a sample [MY_url_helper.php](application/helpers/MY_url_helper.php). (I think CodeIgniter code itself should be changed testable.)
+For example, you can modify `redirect()` using `MY_url_helper.php` in your application. I put a sample [MY_url_helper.php](https://github.com/kenjis/ci-phpunit-test/blob/master/application/helpers/MY_url_helper.php). (I think CodeIgniter code itself should be changed testable.)
 
-See [How to Write Tests](docs/HowToWriteTests.md#redirect) for details.
+See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#redirect) for details.
 
 ### Reset CodeIgniter object
 
@@ -149,11 +149,11 @@ CodeIgniter has a function `get_instance()` to get the CodeIgniter object (CodeI
 
 *CI PHPUnit Test* has a new function `reset_instance()` which reset the current CodeIgniter object. After resetting, you can create a new your Controller instance with new state.
 
-You can see how to use it in [application/tests/_ci_phpunit_test/CIPHPUnitTestCase.php](application/tests/_ci_phpunit_test/CIPHPUnitTestCase.php).
+You can see how to use it in [application/tests/_ci_phpunit_test/CIPHPUnitTestCase.php](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/_ci_phpunit_test/CIPHPUnitTestCase.php).
 
 ## Function/Class Reference
 
-See [docs/FunctionAndClassReference.md](docs/FunctionAndClassReference.md)
+See [Function and Class Reference](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/FunctionAndClassReference.md).
 
 ## Related Projects for CodeIgniter 3.0
 
@@ -162,3 +162,4 @@ See [docs/FunctionAndClassReference.md](docs/FunctionAndClassReference.md)
 * [CodeIgniter Simple and Secure Twig](https://github.com/kenjis/codeigniter-ss-twig)
 * [CodeIgniter Doctrine](https://github.com/kenjis/codeigniter-doctrine)
 * [CodeIgniter Deployer](https://github.com/kenjis/codeigniter-deployer)
+* [CodeIgniter3 Filename Checker](https://github.com/kenjis/codeigniter3-filename-checker)
