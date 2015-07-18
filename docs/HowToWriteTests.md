@@ -14,9 +14,9 @@
 	- [Examine DOM in Controller Output](#examine-dom-in-controller-output)
 	- [Controller with Authentication](#controller-with-authentication)
 	- [`redirect()`](#redirect)
+	- [`show_error()` and `show_404()`](#show_error-and-show_404)
 	- [Controller with Hooks](#controller-with-hooks)
 	- [Controller with Name Collision](#controller-with-name-collision)
-- [`show_error()` and `show_404()`](#show_error-and-show_404)
 - [Mock Libraries](#mock-libraries)
 - [More Samples](#more-samples)
 
@@ -287,6 +287,23 @@ If you use it, you can write tests like this:
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Redirect_test.php).
 
+#### `show_error()` and `show_404()`
+
+`show_error()` and `show_404()` in *CI PHPUnit Test* throw `PHPUnit_Framework_Exception`.
+
+~~~php
+	/**
+	* @expectedException		PHPUnit_Framework_Exception
+	* @expectedExceptionCode	404
+	*/
+	public function test_index()
+	{
+		$output = $this->request('GET', ['nocontroller', 'noaction']);
+	}
+~~~
+
+See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Nocontroller_test.php).
+
 #### Controller with Hooks
 
 If you want to enable hooks, call `$this->request->enableHooks()` method. It enables `pre_controller`, `post_controller_constructor`, `post_controller` hooks.
@@ -323,23 +340,6 @@ class sub_Welcome_test extends TestCase
 ~~~
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/sub/Welcome_test.php).
-
-### `show_error()` and `show_404()`
-
-`show_error()` and `show_404()` in *CI PHPUnit Test* throw `PHPUnit_Framework_Exception`.
-
-~~~php
-	/**
-	* @expectedException		PHPUnit_Framework_Exception
-	* @expectedExceptionCode	404
-	*/
-	public function test_index()
-	{
-		$output = $this->request('GET', ['nocontroller', 'noaction']);
-	}
-~~~
-
-See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Nocontroller_test.php).
 
 ### Mock Libraries
 
