@@ -189,7 +189,7 @@ See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/m
 
 #### Request and Use Mocks
 
-You can use `$this->request->setCallable()` method in *CI PHPUnit Test*. [$this->getDouble()](FunctionAndClassReference.md#testcasegetdoubleclassname-params) is a helper method in *CI PHPUnit Test*.
+You can use [$this->request->setCallable()](FunctionAndClassReference.md#request-setcallable) method in *CI PHPUnit Test*. [$this->getDouble()](FunctionAndClassReference.md#testcasegetdoubleclassname-params) is a helper method in *CI PHPUnit Test*.
 
 ~~~php
 	public function test_send_okay()
@@ -306,7 +306,7 @@ See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/m
 
 #### Controller with Hooks
 
-If you want to enable hooks, call `$this->request->enableHooks()` method. It enables `pre_controller`, `post_controller_constructor`, `post_controller` hooks.
+If you want to enable hooks, call [$this->request->enableHooks()](FunctionAndClassReference.md#request-enablehooks) method. It enables `pre_controller`, `post_controller_constructor`, `post_controller` hooks.
 
 ~~~php
 		$this->request->enableHooks();
