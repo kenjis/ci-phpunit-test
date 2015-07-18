@@ -4,9 +4,9 @@ Writing tests for CodeIgniter 3.0 application has troublesome. Because CodeIgnit
 
 This is request list for CodeIgniter 3.x.
 
-## Bootstrap file for PHPUnit.
+## Bootstrap file for PHPUnit
 
-`core/CodeIgniter.php` always calls a controller. We need bootstrap file which does not call controllers for testing.
+`core/CodeIgniter.php` calls a controller. We need bootstrap file which does not call controllers for testing.
 
 ## Functions which don't call `exit()`
 
