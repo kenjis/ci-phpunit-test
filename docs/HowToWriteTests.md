@@ -292,7 +292,7 @@ If you use it, you can write tests like this:
 	}
 ~~~
 
-`$this->setExpectedRedirect()` is a method in *CI PHPUnit Test*.
+[$this->setExpectedRedirect()](FunctionAndClassReference.md#testcasesetexpectedredirecturi-code) is a method in *CI PHPUnit Test*.
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Redirect_test.php).
 

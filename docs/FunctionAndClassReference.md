@@ -11,7 +11,7 @@
 		- [`request->setCallable()`](#request-setcallable)
 		- [`request->enableHooks()`](#request-enablehooks)
 	- [`TestCase::ajaxRequest($method, $argv, $params = [], $callable = null)`](#testcaseajaxrequestmethod-argv-params---callable--null)
-	- [`TestCase::assertResponseCode($code)`](#testcaseassertresponsecode)
+	- [`TestCase::assertResponseCode($code)`](#testcaseassertresponsecodecode)
 	- [`TestCase::setExpectedRedirect($uri, $code)`](#testcasesetexpectedredirecturi-code)
 	- [`TestCase::getDouble($classname, $params)`](#testcasegetdoubleclassname-params)
 	- [`TestCase::verifyInvoked($mock, $method, $params)`](#testcaseverifyinvokedmock-method-params)
