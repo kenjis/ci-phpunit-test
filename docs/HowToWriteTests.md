@@ -230,6 +230,17 @@ You can use [$this->ajaxRequest()](FunctionAndClassReference.md#testcaseajaxrequ
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Ajax_test.php).
 
+#### Check Status Code
+
+When you use `$this->output->set_status_header()` in your code, you can use [$this->assertResponseCode()](FunctionAndClassReference.md#testcaseassertresponsecodecode) method in *CI PHPUnit Test*.
+
+~~~php
+		$this->request('GET', 'welcome');
+		$this->assertResponseCode(200);
+~~~
+
+But when you use `show_error()` and `show_404()` in your code, see [show_error() and show_404()](#show_error-and-show_404).
+
 #### Examine DOM in Controller Output
 
 I recommend to use [symfony/dom-crawler](http://symfony.com/doc/current/components/dom_crawler.html).

@@ -301,3 +301,11 @@ Turn off WARNING in error reporting.
 #### `TestCase::warningOn()`
 
 Restore error reporting.
+
+#### `TestCase::assertResponseCode($code)`
+
+| param   | type | description      |
+|---------|------|------------------|
+|`$code`  | int  | HTTP status code |
+
+Check for a specific response code on your controller tests.
