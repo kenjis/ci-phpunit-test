@@ -22,7 +22,7 @@ An easier way to use PHPUnit with [CodeIgniter](https://github.com/bcit-ci/CodeI
 
 ## Change Log
 
-See [Change Log](docs/ChangeLog.md).
+See [Change Log](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/ChangeLog.md).
 
 ## Folder Structure
 
