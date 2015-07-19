@@ -152,7 +152,7 @@ function show_error($message, $status_code = 500, $heading = 'An Error Was Encou
 		ob_end_clean();
 	}
 
-	throw new PHPUnit_Framework_Exception($message, $status_code);
+	throw new CIPHPUnitTestShowErrorException($message, $status_code);
 }
 
 function show_404($page = '', $log_error = TRUE)
@@ -162,7 +162,7 @@ function show_404($page = '', $log_error = TRUE)
 		ob_end_clean();
 	}
 
-	throw new PHPUnit_Framework_Exception($page, 404);
+	throw new CIPHPUnitTestShow404Exception($page, 404);
 }
 
 function set_status_header($code = 200, $text = '')
@@ -233,8 +233,9 @@ function set_status_header($code = 200, $text = '')
 	$CI =& get_instance();
 	$output = $CI->output;
 	$output->_status = [
-		'code' => $code,
-		'text' => $text
+		'code'     => $code,
+		'text'     => $text,
+		'redirect' => null,
 	];
 
 	if (is_cli())

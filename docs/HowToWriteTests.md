@@ -236,14 +236,12 @@ See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/m
 
 #### Check Status Code
 
-When you use `$this->output->set_status_header()` in your code, you can use [$this->assertResponseCode()](FunctionAndClassReference.md#testcaseassertresponsecodecode) method in *CI PHPUnit Test*.
+You can use [$this->assertResponseCode()](FunctionAndClassReference.md#testcaseassertresponsecodecode) method in *CI PHPUnit Test*.
 
 ~~~php
 		$this->request('GET', 'welcome');
 		$this->assertResponseCode(200);
 ~~~
-
-But when you use `show_error()` and `show_404()` in your code, see [show_error() and show_404()](#show_error-and-show_404).
 
 #### Examine DOM in Controller Output
 
@@ -291,31 +289,87 @@ If you use it, you can write tests like this:
 ~~~php
 	public function test_index()
 	{
-		$this->setExpectedRedirect('login', 302);
-		$output = $this->request('GET', ['Admin', 'index']);
+		$this->request('GET', ['Admin', 'index']);
+		$this->assertRedirect('login', 302);
 	}
 ~~~
 
-[$this->setExpectedRedirect()](FunctionAndClassReference.md#testcasesetexpectedredirecturi-code) is a method in *CI PHPUnit Test*.
+[$this->assertRedirect()](FunctionAndClassReference.md#testcaseassertredirecturi-code--null) is a method in *CI PHPUnit Test*.
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Redirect_test.php).
 
-#### `show_error()` and `show_404()`
+**Upgrade Note for v0.4.0**
 
-`show_error()` and `show_404()` in *CI PHPUnit Test* throw `PHPUnit_Framework_Exception`.
+v0.4.0 has new `MY_url_helper.php`. If you use it, you must update your tests.
 
+*before:*
 ~~~php
 	/**
-	* @expectedException		PHPUnit_Framework_Exception
-	* @expectedExceptionCode	404
-	*/
+	 * @expectedException				PHPUnit_Framework_Exception
+	 * @expectedExceptionCode			302
+	 * @expectedExceptionMessageRegExp	!\ARedirect to http://localhost/\z!
+	 */
 	public function test_index()
 	{
-		$output = $this->request('GET', ['nocontroller', 'noaction']);
+		$output = $this->request('GET', ['Redirect', 'index']);
+	}
+~~~
+
+↓
+
+*after:*
+~~~php
+	public function test_index()
+	{
+		$this->request('GET', ['Redirect', 'index']);
+		$this->assertRedirect('/', 302);
+	}
+~~~
+
+#### `show_error()` and `show_404()`
+
+You can use [$this->assertResponseCode()](FunctionAndClassReference.md#testcaseassertresponsecodecode) method in *CI PHPUnit Test*.
+
+~~~php
+	public function test_index()
+	{
+		$this->request('GET', ['nocontroller', 'noaction']);
+		$this->assertResponseCode(404);
 	}
 ~~~
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Nocontroller_test.php).
+
+If you don't call `$this->request()` in your tests, `show_error()` throws `CIPHPUnitTestShowErrorException` and `show_404()` throws `CIPHPUnitTestShow404Exception`. So you must expect the exceptions. You can use `@expectedException` annotation in PHPUnit.
+
+**Upgrade Note for v0.4.0**
+
+v0.4.0 has changed how to test `show_error()` and `show_404()`. You must update your tests.
+
+*before:*
+~~~php
+	/**
+	 * @expectedException		PHPUnit_Framework_Exception
+	 * @expectedExceptionCode	404
+	 */
+	public function test_index()
+	{
+		$this->request('GET', 'show404');
+	}
+~~~
+
+↓
+
+*after:*
+~~~php
+	public function test_index()
+	{
+		$this->request('GET', 'show404');
+		$this->assertResponseCode(404);
+	}
+~~~
+
+If you don't want to update your tests, set property `$bc_mode_throw_PHPUnit_Framework_Exception` `true` in [CIPHPUnitTestRequest](../application/tests/_ci_phpunit_test/CIPHPUnitTestRequest.php) class. But `$bc_mode_throw_PHPUnit_Framework_Exception` is deprecated.
 
 #### Controller with Hooks
 

@@ -22,6 +22,13 @@ class CIPHPUnitTest
 		];
 		$_SERVER['argc'] = 2;
 
+		require __DIR__ . '/CIPHPUnitTestCase.php';
+		require __DIR__ . '/CIPHPUnitTestRequest.php';
+		require __DIR__ . '/CIPHPUnitTestDouble.php';
+		require __DIR__ . '/exceptions/CIPHPUnitTestRedirectException.php';
+		require __DIR__ . '/exceptions/CIPHPUnitTestShow404Exception.php';
+		require __DIR__ . '/exceptions/CIPHPUnitTestShowErrorException.php';
+
 		// Replace a few Common functions
 		require __DIR__ . '/replacing/core/Common.php';
 		require BASEPATH . 'core/Common.php';
@@ -61,14 +68,11 @@ class CIPHPUnitTest
 			ob_start();
 			require_once BASEPATH . 'core/CodeIgniter.php';
 			ob_end_clean();
-		} catch (PHPUnit_Framework_Exception $e) {
+		} catch (CIPHPUnitTestShow404Exception $e) {
 			// Catch 404 exception
 			new CI_Controller();
 		}
 
-		require __DIR__ . '/CIPHPUnitTestCase.php';
-		require __DIR__ . '/CIPHPUnitTestRequest.php';
-		require __DIR__ . '/CIPHPUnitTestDouble.php';
 		require APPPATH . '/tests/TestCase.php';
 
 		// Restore $_SERVER

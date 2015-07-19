@@ -200,19 +200,36 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	 * @param string $uri  URI to redirect
 	 * @param int    $code Response Code
 	 */
-	public function setExpectedRedirect($uri, $code = null)
+	public function assertRedirect($uri, $code = null)
 	{
+		$status = $this->request->getStatus();
+
+		if ($status['redirect'] === null)
+		{
+			$this->fail('redirect() is not called.');
+		}
+
 		if (! function_exists('site_url'))
 		{
 			$CI =& get_instance();
 			$CI->load->helper('url');
 		}
+		$absolute_url = site_url($uri);
+		$expected = 'Redirect to ' . $absolute_url;
 
-		$absolute_uri = site_url($uri);
-		$exceptionMessage = 'Redirect to ' . $absolute_uri;
-
-		$this->setExpectedException(
-			'PHPUnit_Framework_Exception', $exceptionMessage, $code
+		$this->assertSame(
+			$expected,
+			$status['redirect'],
+			'URL to redirect is not ' . $expected . ' but ' . $status['redirect'] . '.'
 		);
+
+		if ($code !== null)
+		{
+			$this->assertSame(
+				$code,
+				$status['code'],
+				'Status code is not ' . $code . ' but ' . $status['code'] . '.'
+			);
+		}
 	}
 }

@@ -16,7 +16,7 @@ version: **master** |
 		- [`request->enableHooks()`](#request-enablehooks)
 	- [`TestCase::ajaxRequest($method, $argv, $params = [], $callable = null)`](#testcaseajaxrequestmethod-argv-params---callable--null)
 	- [`TestCase::assertResponseCode($code)`](#testcaseassertresponsecodecode)
-	- [`TestCase::setExpectedRedirect($uri, $code)`](#testcasesetexpectedredirecturi-code)
+	- [`TestCase::assertRedirect($uri, $code = null)`](#testcaseassertredirecturi-code--null)
 	- [`TestCase::getDouble($classname, $params)`](#testcasegetdoubleclassname-params)
 	- [`TestCase::verifyInvoked($mock, $method, $params)`](#testcaseverifyinvokedmock-method-params)
 	- [`TestCase::verifyInvokedOnce($mock, $method, $params)`](#testcaseverifyinvokedoncemock-method-params)
@@ -159,21 +159,14 @@ The same as `TestCase::request()`, but this makes a Ajax request. This adds only
 
 Check for a specific response code on your controller tests.
 
-#### `TestCase::setExpectedRedirect($uri, $code)`
+#### `TestCase::assertRedirect($uri, $code = null)`
 
 | param   | type   | description      |
 |---------|--------|------------------|
-|`$uri `  | string | URI to redirect  |
+|`$uri`   | string | URI to redirect  |
 |`$code`  | int    | HTTP status code |
 
-Check if `redirect()` is called on controller tests.
-
-This method needs [MY_url_helper.php](../application/helpers/MY_url_helper.php).
-
-~~~php
-$this->setExpectedRedirect('/', 302);
-$this->request('GET', 'welcome/index');
-~~~
+Check if `redirect()` is called on your controller tests.
 
 #### `TestCase::getDouble($classname, $params)`
 
