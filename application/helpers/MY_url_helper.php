@@ -97,6 +97,6 @@ function redirect($uri = '', $method = 'auto', $code = NULL)
 			ob_end_clean();
 		}
 
-		throw new PHPUnit_Framework_Exception('Redirect to ' . $uri, $code);
+		throw new CIPHPUnitTestRedirectException('Redirect to ' . $uri, $code);
 	}
 }
