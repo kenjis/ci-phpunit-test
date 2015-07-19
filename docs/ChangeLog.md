@@ -1,11 +1,11 @@
-# Change Log for CI PHPUnit Test for CodeIgniter 3.0
+# Change Log for CI PHPUnit Test
 
 ## v0.4.0 (Not Released)
 
 ### Changed
 
-* Changed `MY_url_helper.php` as sample. If you use new `MY_url_helper.php`, you must update your tests for `redirect()` using new `$this->assertRedirect()` method. See [How to Write Tests](HowToWriteTests.md#redirect).
-* Changed how to test `show_404()` and `show_error()`. If you don't want to update your tests, set property `$bc_mode_throw_PHPUnit_Framework_Exception` `true` in `CIPHPUnitTestRequest` class. But `$bc_mode_throw_PHPUnit_Framework_Exception` is deprecated. See [How to Write Tests](HowToWriteTests.md#show_error-and-show_404).
+* Changed `MY_url_helper.php` as sample. If you use new `MY_url_helper.php`, you must update your tests for `redirect()` using new `$this->assertRedirect()` method. See [How to Write Tests](HowToWriteTests.md#redirect). [#28](https://github.com/kenjis/ci-phpunit-test/pull/28)
+* Changed how to test `show_404()` and `show_error()`. If you don't want to update your tests, set property `$bc_mode_throw_PHPUnit_Framework_Exception` `true` in `CIPHPUnitTestRequest` class. But `$bc_mode_throw_PHPUnit_Framework_Exception` is deprecated. See [How to Write Tests](HowToWriteTests.md#show_error-and-show_404). [#28](https://github.com/kenjis/ci-phpunit-test/pull/28)
 
 ### Added
 
@@ -32,6 +32,6 @@
 
 * Improve installation. See [Installation](https://github.com/kenjis/ci-phpunit-test#installation)
 * Fix bug that Bootstrap outputs 404 page when 404_override
-* Fix bug that risky tests occur #14
+* Fix bug that risky tests occur [#14](https://github.com/kenjis/ci-phpunit-test/issues/14)
 
 ## v0.1.0 (2015/06/12)
