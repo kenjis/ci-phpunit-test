@@ -44,7 +44,7 @@
 
 <ul>
 <li>You don't have to modify CodeIgniter core files at all.</li>
-<li>You can write controller tests.</li>
+<li>You can write controller tests easily.</li>
 <li>Well documented.</li>
 </ul>
 
@@ -58,6 +58,11 @@
 <li>CodeIgniter 3.0.*</li>
 <li>PHPUnit</li>
 </ul>
+
+<h2>
+<a id="change-log" class="anchor" href="#change-log" aria-hidden="true"><span class="octicon octicon-link"></span></a>Change Log</h2>
+
+<p>See <a href="https://github.com/kenjis/ci-phpunit-test/blob/master/docs/ChangeLog.md">Change Log</a>.</p>
 
 <h2>
 <a id="folder-structure" class="anchor" href="#folder-structure" aria-hidden="true"><span class="octicon octicon-link"></span></a>Folder Structure</h2>
@@ -163,11 +168,20 @@ Generating code coverage report in HTML format ... done
 </li>
 <li>function <code>show_404()</code>
 </li>
+<li>function <code>set_status_header()</code>
+</li>
 <li>class <code>CI_Loader</code>
 </li>
 </ul>
 
 <p>They are in <code>tests/_ci_phpunit_test/replacing</code> folder.</p>
+
+<p>And <em>CI PHPUnit Test</em> adds a property dynamically:</p>
+
+<ul>
+<li>property <code>CI_Output::_status</code>
+</li>
+</ul>
 
 <h3>
 <a id="my_loader" class="anchor" href="#my_loader" aria-hidden="true"><span class="octicon octicon-link"></span></a>MY_Loader</h3>
