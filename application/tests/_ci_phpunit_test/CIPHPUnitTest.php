@@ -68,6 +68,7 @@ class CIPHPUnitTest
 
 		require __DIR__ . '/CIPHPUnitTestCase.php';
 		require __DIR__ . '/CIPHPUnitTestRequest.php';
+		require __DIR__ . '/CIPHPUnitTestDouble.php';
 		require APPPATH . '/tests/TestCase.php';
 
 		// Restore $_SERVER

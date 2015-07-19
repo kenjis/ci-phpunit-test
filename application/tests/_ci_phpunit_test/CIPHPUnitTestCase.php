@@ -16,6 +16,11 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	 * @var CIPHPUnitTestRequest
 	 */
 	protected $request;
+	
+	/**
+	 * @var CIPHPUnitTestDouble
+	 */
+	protected $double;
 
 	/**
 	 * Constructs a test case with the given name.
@@ -29,6 +34,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 		parent::__construct($name, $data, $dataName);
 
 		$this->request = new CIPHPUnitTestRequest();
+		$this->double = new CIPHPUnitTestDouble($this);
 	}
 
 	public static function setUpBeforeClass()
@@ -86,59 +92,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	 */
 	public function getDouble($classname, $params)
 	{
-		$methods = array_keys($params);
-
-		$mock = $this->getMockBuilder($classname)->setMethods($methods)
-			->getMock();
-
-		foreach ($params as $method => $return)
-		{
-			$mock->method($method)->willReturn($return);
-		}
-
-		return $mock;
-	}
-
-	protected function _verify($mock, $method, $params = null, $expects, $with)
-	{
-		$invocation = $mock->expects($expects)
-			->method($method);
-
-		$count = count($params);
-
-		switch ($count) {
-			case 0:
-				break;
-			case 1:
-				$invocation->$with(
-					$params[0]
-				);
-				break;
-			case 2:
-				$invocation->$with(
-					$params[0], $params[1]
-				);
-				break;
-			case 3:
-				$invocation->$with(
-					$params[0], $params[1], $params[2]
-				);
-				break;
-			case 4:
-				$invocation->$with(
-					$params[0], $params[1], $params[2], $params[3]
-				);
-				break;
-			case 5:
-				$invocation->$with(
-					$params[0], $params[1], $params[2], $params[3], $params[4], $params[5]
-				);
-				break;
-			default:
-				throw new RuntimeException(
-					'Sorry, ' . $count . ' params not implemented yet'
-				);
-		}
+		return $this->double->getDouble($classname, $params);
 	}
 
 	/**
@@ -170,8 +124,8 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	 */
 	public function verifyInvokedMultipleTimes($mock, $method, $times, $params = null)
 	{
-		$this->_verify(
-			$mock, $method, $params, $this->exactly($times), 'withConsecutive'
+		$this->double->verifyInvokedMultipleTimes(
+			$mock, $method, $times, $params
 		);
 	}
 
@@ -184,9 +138,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	 */
 	public function verifyInvoked($mock, $method, $params = null)
 	{
-		$this->_verify(
-			$mock, $method, $params, $this->atLeastOnce(), 'with'
-		);
+		$this->double->verifyInvoked($mock, $method, $params);
 	}
 
 	/**
@@ -198,9 +150,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	 */
 	public function verifyInvokedOnce($mock, $method, $params = null)
 	{
-		$this->_verify(
-			$mock, $method, $params, $this->once(), 'with'
-		);
+		$this->double->verifyInvokedOnce($mock, $method, $params);
 	}
 
 	/**
@@ -212,9 +162,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	 */
 	public function verifyNeverInvoked($mock, $method, $params = null)
 	{
-		$this->_verify(
-			$mock, $method, $params, $this->never(), 'with'
-		);
+		$this->double->verifyNeverInvoked($mock, $method, $params);
 	}
 
 	public function warningOff()
