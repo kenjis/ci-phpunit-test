@@ -7,6 +7,7 @@ version: **master** |
 ## How to Write Tests
 
 - [Introduction](#introduction)
+- [Testing Environment](#testing-environment)
 - [Models](#models)
 	- [Using Database](#using-database)
 	- [Database Seeding](#database-seeding)
@@ -31,6 +32,12 @@ Here is my advice:
 
 * You don't have to write your business logic in your controllers. Write them in your models.
 * You should test models first, and test them well.
+
+### Testing Environment
+
+Tests always run on `testing` environment.
+
+If you don't know well about config files and environments, see [CodeIgniter User Guide](http://www.codeigniter.com/user_guide/libraries/config.html#environments).
 
 ### Models
 
