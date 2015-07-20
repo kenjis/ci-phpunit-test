@@ -311,7 +311,7 @@ v0.4.0 has new `MY_url_helper.php`. If you use it, you must update your tests.
 	 */
 	public function test_index()
 	{
-		$output = $this->request('GET', ['Redirect', 'index']);
+		$this->request('GET', ['Redirect', 'index']);
 	}
 ~~~
 
