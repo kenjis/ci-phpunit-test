@@ -4,6 +4,13 @@ php:
   - 5.4
   - 5.5
   - 5.6
+  - 7
+  - hhvm
+
+matrix:
+  allow_failures:
+    - php: 7
+    - php: hhvm
 
 before_script:
   - pwd
@@ -24,4 +31,6 @@ script:
 
 after_script:
   - cd ../..
-  - php vendor/bin/coveralls -v
+  - if [[ "$TRAVIS_PHP_VERSION" == "5.4" ]]; then php vendor/bin/coveralls -v; fi
+  - if [[ "$TRAVIS_PHP_VERSION" == "5.5" ]]; then php vendor/bin/coveralls -v; fi
+  - if [[ "$TRAVIS_PHP_VERSION" == "5.6" ]]; then php vendor/bin/coveralls -v; fi
