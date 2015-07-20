@@ -91,7 +91,7 @@ load_class_instance('email', $email);
 |`$method`  | string       | HTTP method                                    |
 |`$argv`    | array/string | controller, method [, arg1, ...] / URI string  |
 |`$params`  | array        | POST parameters / Query string                 |
-|`$callable`| callable     | [Deprecated] function to run after controller instantiation |
+|`$callable`| callable     | **[Deprecated]** function to run after controller instantiation |
 
 `returns` (string) output strings (view)
 
@@ -145,7 +145,7 @@ $output = $this->request('GET', 'products/shoes/show/123');
 |`$method`  | string       | HTTP method                                    |
 |`$argv`    | array/string | controller, method [, arg1, ...] / URI string  |
 |`$params`  | array        | POST parameters / Query string                 |
-|`$callable`| callable     | [Deprecated] function to run after controller instantiation |
+|`$callable`| callable     | **[Deprecated]** function to run after controller instantiation |
 
 `returns` (string) output strings
 
