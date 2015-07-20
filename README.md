@@ -156,9 +156,7 @@ See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/d
 
 CodeIgniter has a function `get_instance()` to get the CodeIgniter object (CodeIgniter instance or CodeIgniter super object).
 
-*CI PHPUnit Test* has a new function `reset_instance()` which reset the current CodeIgniter object. After resetting, you can create a new your Controller instance with new state.
-
-You can see how to use it in [application/tests/_ci_phpunit_test/CIPHPUnitTestCase.php](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/_ci_phpunit_test/CIPHPUnitTestCase.php).
+*CI PHPUnit Test* has a new function `reset_instance()` which reset the current CodeIgniter object. After resetting, you can (and must) create a new your Controller instance with new state.
 
 ## Function/Class Reference
 
