@@ -39,6 +39,58 @@ Tests always run on `testing` environment.
 
 If you don't know well about config files and environments, see [CodeIgniter User Guide](http://www.codeigniter.com/user_guide/libraries/config.html#environments).
 
+### Can and Can't
+
+*CI PHPUnit Test* does not want to modify CodeIgniter core files. The more you modify core, the more you get difficulities when you update CodeIgniter.
+
+In fact, it uses a modified class and a few functions. But I try to modify as little as possible.
+
+The functions and the class which are modified:
+
+* function `load_class()`
+* function `is_loaded()`
+* function `is_cli()`
+* function `show_error()`
+* function `show_404()`
+* function `set_status_header()`
+* class `CI_Loader`
+
+They are in `tests/_ci_phpunit_test/replacing` folder.
+
+And *CI PHPUnit Test* adds a property dynamically:
+
+* property `CI_Output::_status`
+
+#### MY_Loader
+
+*CI PHPUnit Test* replaces `CI_Loader` and modifies below methods:
+
+* `CI_Loader::model()`
+* `CI_Loader::_ci_load_library()`
+* `CI_Loader::_ci_load_stock_library()`
+
+But if you place MY_Loader, your MY_Loader extends the loader of *CI PHPUnit Test*.
+
+If your MY_Loader overrides the above methods, probably *CI PHPUnit Test* does not work correctly.
+
+#### `exit()`
+
+*CI PHPUnit Test* does not care functions/classes which `exit()` or `die()` (Except for [show_error() and show_404()](#show_error-and-show_404)).
+
+So, for example, if you use URL helper `redirect()` in your application code, your testing ends with it.
+
+I recommend you not to use `exit()` or `die()` in your code. And you have to skip `exit()` somehow in CodeIgniter code.
+
+For example, you can modify `redirect()` using `MY_url_helper.php` in your application. I put a sample [MY_url_helper.php](https://github.com/kenjis/ci-phpunit-test/blob/master/application/helpers/MY_url_helper.php). (I think CodeIgniter code itself should be changed testable.)
+
+See [`redirect()`](#redirect) for details.
+
+#### Reset CodeIgniter object
+
+CodeIgniter has a function `get_instance()` to get the CodeIgniter object (CodeIgniter instance or CodeIgniter super object).
+
+*CI PHPUnit Test* has a new function `reset_instance()` which reset the current CodeIgniter object. After resetting, you can (and must) create a new your Controller instance with new state.
+
 ### Models
 
 #### Using Database
