@@ -37,6 +37,8 @@ Here is my advice:
 * You don't have to write your business logic in your controllers. Write them in your models.
 * You should test models first, and test them well.
 
+And PHPUnit has great documentation. You should read [Writing Tests for PHPUnit](https://phpunit.de/manual/current/en/writing-tests-for-phpunit.html).
+
 ### Testing Environment
 
 Tests always run on `testing` environment.
