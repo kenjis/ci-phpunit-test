@@ -35,3 +35,6 @@
 * Fix bug that risky tests occur [#14](https://github.com/kenjis/ci-phpunit-test/issues/14)
 
 ## v0.1.0 (2015/06/12)
+
+* Initial version
+* Compatible with CodeIgniter 3.0.0
