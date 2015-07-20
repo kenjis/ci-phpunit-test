@@ -189,7 +189,9 @@ Generating code coverage report in HTML format ... done
 <span class="pl-s1">    <span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">test_index</span>()</span>
 <span class="pl-s1">    {</span>
 <span class="pl-s1">        <span class="pl-smi">$output</span> <span class="pl-k">=</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>request(<span class="pl-s"><span class="pl-pds">'</span>GET<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>welcome/index<span class="pl-pds">'</span></span>);</span>
-<span class="pl-s1">        <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>assertContains(<span class="pl-s"><span class="pl-pds">'</span>&lt;title&gt;Welcome to CodeIgniter&lt;/title&gt;<span class="pl-pds">'</span></span>, <span class="pl-smi">$output</span>);</span>
+<span class="pl-s1">        <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>assertContains(</span>
+<span class="pl-s1">            <span class="pl-s"><span class="pl-pds">'</span>&lt;title&gt;Welcome to CodeIgniter&lt;/title&gt;<span class="pl-pds">'</span></span>, <span class="pl-smi">$output</span></span>
+<span class="pl-s1">        );</span>
 <span class="pl-s1">    }</span>
 <span class="pl-s1">}</span></pre></div>
 
