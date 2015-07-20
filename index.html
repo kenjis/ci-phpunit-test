@@ -146,80 +146,54 @@ Generating code coverage report in HTML format ... done
 <h2>
 <a id="how-to-write-tests" class="anchor" href="#how-to-write-tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to Write Tests</h2>
 
-<p>See <a href="https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md">How To Write Tests</a>.</p>
+<p>As an example, a test case class for Inventory_model would be as follows:</p>
 
-<h2>
-<a id="can-and-cant" class="anchor" href="#can-and-cant" aria-hidden="true"><span class="octicon octicon-link"></span></a>Can and Can't</h2>
+<div class="highlight highlight-php"><pre><span class="pl-pse">&lt;?php</span><span class="pl-s1"></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">class</span> <span class="pl-en">Inventory_model_test</span> <span class="pl-k">extends</span> <span class="pl-e">TestCase</span></span>
+<span class="pl-s1">{</span>
+<span class="pl-s1">    <span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">setUp</span>()</span>
+<span class="pl-s1">    {</span>
+<span class="pl-s1">        <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">CI</span> <span class="pl-k">=</span><span class="pl-k">&amp;</span> get_instance();</span>
+<span class="pl-s1">        <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">CI</span><span class="pl-k">-&gt;</span><span class="pl-smi">load</span><span class="pl-k">-&gt;</span>model(<span class="pl-s"><span class="pl-pds">'</span>Inventory_model<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1">        <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">obj</span> <span class="pl-k">=</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">CI</span><span class="pl-k">-&gt;</span><span class="pl-smi">Inventory_model</span>;</span>
+<span class="pl-s1">    }</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">test_get_category_list</span>()</span>
+<span class="pl-s1">    {</span>
+<span class="pl-s1">        <span class="pl-smi">$expected</span> <span class="pl-k">=</span> [</span>
+<span class="pl-s1">            <span class="pl-c1">1</span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>Book<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">            <span class="pl-c1">2</span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>CD<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">            <span class="pl-c1">3</span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>DVD<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">        ];</span>
+<span class="pl-s1">        <span class="pl-smi">$list</span> <span class="pl-k">=</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">obj</span><span class="pl-k">-&gt;</span>get_category_list();</span>
+<span class="pl-s1">        <span class="pl-k">foreach</span> (<span class="pl-smi">$list</span> <span class="pl-k">as</span> <span class="pl-smi">$category</span>) {</span>
+<span class="pl-s1">            <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>assertEquals(<span class="pl-smi">$expected</span>[<span class="pl-smi">$category</span><span class="pl-k">-&gt;</span><span class="pl-smi">id</span>], <span class="pl-smi">$category</span><span class="pl-k">-&gt;</span><span class="pl-smi">name</span>);</span>
+<span class="pl-s1">        }</span>
+<span class="pl-s1">    }</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">test_get_category_name</span>()</span>
+<span class="pl-s1">    {</span>
+<span class="pl-s1">        <span class="pl-smi">$actual</span> <span class="pl-k">=</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">obj</span><span class="pl-k">-&gt;</span>get_category_name(<span class="pl-c1">1</span>);</span>
+<span class="pl-s1">        <span class="pl-smi">$expected</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>Book<span class="pl-pds">'</span></span>;</span>
+<span class="pl-s1">        <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>assertEquals(<span class="pl-smi">$expected</span>, <span class="pl-smi">$actual</span>);</span>
+<span class="pl-s1">    }</span>
+<span class="pl-s1">}</span></pre></div>
 
-<p><em>CI PHPUnit Test</em> does not want to modify CodeIgniter core files. The more you modify core, the more you get difficulities when you update CodeIgniter.</p>
+<p>As an example, a test case class for Welcome controller would be as follows:</p>
 
-<p>In fact, it uses a modified class and a few functions. But I try to modify as little as possible.</p>
+<div class="highlight highlight-php"><pre><span class="pl-pse">&lt;?php</span><span class="pl-s1"></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">class</span> <span class="pl-en">Welcome_test</span> <span class="pl-k">extends</span> <span class="pl-e">TestCase</span></span>
+<span class="pl-s1">{</span>
+<span class="pl-s1">    <span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">test_index</span>()</span>
+<span class="pl-s1">    {</span>
+<span class="pl-s1">        <span class="pl-smi">$output</span> <span class="pl-k">=</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>request(<span class="pl-s"><span class="pl-pds">'</span>GET<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>welcome/index<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1">        <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>assertContains(<span class="pl-s"><span class="pl-pds">'</span>&lt;title&gt;Welcome to CodeIgniter&lt;/title&gt;<span class="pl-pds">'</span></span>, <span class="pl-smi">$output</span>);</span>
+<span class="pl-s1">    }</span>
+<span class="pl-s1">}</span></pre></div>
 
-<p>The functions and the class which are modified:</p>
-
-<ul>
-<li>function <code>load_class()</code>
-</li>
-<li>function <code>is_loaded()</code>
-</li>
-<li>function <code>is_cli()</code>
-</li>
-<li>function <code>show_error()</code>
-</li>
-<li>function <code>show_404()</code>
-</li>
-<li>function <code>set_status_header()</code>
-</li>
-<li>class <code>CI_Loader</code>
-</li>
-</ul>
-
-<p>They are in <code>tests/_ci_phpunit_test/replacing</code> folder.</p>
-
-<p>And <em>CI PHPUnit Test</em> adds a property dynamically:</p>
-
-<ul>
-<li>property <code>CI_Output::_status</code>
-</li>
-</ul>
-
-<h3>
-<a id="my_loader" class="anchor" href="#my_loader" aria-hidden="true"><span class="octicon octicon-link"></span></a>MY_Loader</h3>
-
-<p><em>CI PHPUnit Test</em> replaces <code>CI_Loader</code> and modifies below methods:</p>
-
-<ul>
-<li><code>CI_Loader::model()</code></li>
-<li><code>CI_Loader::_ci_load_library()</code></li>
-<li><code>CI_Loader::_ci_load_stock_library()</code></li>
-</ul>
-
-<p>But if you place MY_Loader, your MY_Loader extends the loader of <em>CI PHPUnit Test</em>.</p>
-
-<p>If your MY_Loader overrides the above methods, probably <em>CI PHPUnit Test</em> does not work correctly.</p>
-
-<h3>
-<a id="exit" class="anchor" href="#exit" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>exit()</code>
-</h3>
-
-<p><em>CI PHPUnit Test</em> does not care functions/classes which <code>exit()</code> or <code>die()</code> (Except for <a href="https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#show_error-and-show_404">show_error() and show_404()</a>).</p>
-
-<p>So, for example, if you use URL helper <code>redirect()</code> in your application code, your testing ends with it.</p>
-
-<p>I recommend you not to use <code>exit()</code> or <code>die()</code> in your code. And you have to skip <code>exit()</code> somehow in CodeIgniter code.</p>
-
-<p>For example, you can modify <code>redirect()</code> using <code>MY_url_helper.php</code> in your application. I put a sample <a href="https://github.com/kenjis/ci-phpunit-test/blob/master/application/helpers/MY_url_helper.php">MY_url_helper.php</a>. (I think CodeIgniter code itself should be changed testable.)</p>
-
-<p>See <a href="https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#redirect">How to Write Tests</a> for details.</p>
-
-<h3>
-<a id="reset-codeigniter-object" class="anchor" href="#reset-codeigniter-object" aria-hidden="true"><span class="octicon octicon-link"></span></a>Reset CodeIgniter object</h3>
-
-<p>CodeIgniter has a function <code>get_instance()</code> to get the CodeIgniter object (CodeIgniter instance or CodeIgniter super object).</p>
-
-<p><em>CI PHPUnit Test</em> has a new function <code>reset_instance()</code> which reset the current CodeIgniter object. After resetting, you can create a new your Controller instance with new state.</p>
-
-<p>You can see how to use it in <a href="https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/_ci_phpunit_test/CIPHPUnitTestCase.php">application/tests/_ci_phpunit_test/CIPHPUnitTestCase.php</a>.</p>
+<p>See <a href="https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md">How To Write Tests</a> for details.</p>
 
 <h2>
 <a id="functionclass-reference" class="anchor" href="#functionclass-reference" aria-hidden="true"><span class="octicon octicon-link"></span></a>Function/Class Reference</h2>
