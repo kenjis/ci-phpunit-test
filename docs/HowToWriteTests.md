@@ -6,6 +6,7 @@ version: **master** |
 
 ## How to Write Tests
 
+- [Introduction](#introduction)
 - [Models](#models)
 	- [Using Database](#using-database)
 	- [Database Seeding](#database-seeding)
@@ -23,6 +24,13 @@ version: **master** |
 	- [Controller with Name Collision](#controller-with-name-collision)
 - [Mock Libraries](#mock-libraries)
 - [More Samples](#more-samples)
+
+### Introduction
+
+Here is my advice:
+
+* You don't have to write your business logic in your controllers. Write them in your models.
+* You should test models first, and test them well.
 
 ### Models
 
