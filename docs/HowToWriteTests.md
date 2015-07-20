@@ -8,6 +8,10 @@ version: **master** |
 
 - [Introduction](#introduction)
 - [Testing Environment](#testing-environment)
+- [Can and Can't](#can-and-cant)
+	- [MY_Loader](#my_loader)
+	- [`exit()`](#exit)
+	- [Reset CodeIgniter object](#reset-codeigniter-object)
 - [Models](#models)
 	- [Using Database](#using-database)
 	- [Database Seeding](#database-seeding)
