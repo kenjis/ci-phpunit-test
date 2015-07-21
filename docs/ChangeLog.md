@@ -4,13 +4,13 @@
 
 ### Changed
 
-* Changed `MY_url_helper.php` as sample. If you use new `MY_url_helper.php`, you must update your tests for `redirect()` using new `$this->assertRedirect()` method. See [How to Write Tests](HowToWriteTests.md#redirect) and [#28](https://github.com/kenjis/ci-phpunit-test/pull/28).
-* Changed how to test `show_404()` and `show_error()`. See [How to Write Tests](HowToWriteTests.md#show_error-and-show_404) and [#28](https://github.com/kenjis/ci-phpunit-test/pull/28).
+* Changed `MY_url_helper.php` as sample. If you use new `MY_url_helper.php`, you must update your tests for `redirect()` using new `$this->assertRedirect()` method. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/1d4c6dc4736357107e0ae4eb747c22239b6c4b3c/docs/HowToWriteTests.md#redirect) and [#28](https://github.com/kenjis/ci-phpunit-test/pull/28).
+* Changed how to test `show_404()` and `show_error()`. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/1d4c6dc4736357107e0ae4eb747c22239b6c4b3c/docs/HowToWriteTests.md#show_error-and-show_404) and [#28](https://github.com/kenjis/ci-phpunit-test/pull/28).
 
 ### Added
 
-* `$this->assertResponseCode()` to check response code in controller tests. See [Function/Class Reference](FunctionAndClassReference.md#testcaseassertresponsecodecode).
-* `$this->assertRedirect()` to check if `redirect()` is called in controller tests. See [Function/Class Reference](FunctionAndClassReference.md#testcaseassertredirecturi-code--null).
+* `$this->assertResponseCode()` to check response code in controller tests. See [Function/Class Reference](https://github.com/kenjis/ci-phpunit-test/blob/1d4c6dc4736357107e0ae4eb747c22239b6c4b3c/docs/FunctionAndClassReference.md#testcaseassertresponsecodecode).
+* `$this->assertRedirect()` to check if `redirect()` is called in controller tests. See [Function/Class Reference](https://github.com/kenjis/ci-phpunit-test/blob/1d4c6dc4736357107e0ae4eb747c22239b6c4b3c/docs/FunctionAndClassReference.md#testcaseassertredirecturi-code--null).
 * Property `$bc_mode_throw_PHPUnit_Framework_Exception` in `CIPHPUnitTestRequest` class
 
 ### Deprecated
@@ -19,7 +19,7 @@
 
 ### Others
 
-* Improved documentation. See [How to Write Test](HowToWriteTests.md).
+* Improved documentation. See [How to Write Test](https://github.com/kenjis/ci-phpunit-test/blob/1d4c6dc4736357107e0ae4eb747c22239b6c4b3c/docs/HowToWriteTests.md).
 
 ## v0.3.0 (2015/07/14)
 
