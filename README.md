@@ -157,7 +157,7 @@ class Welcome_test extends TestCase
 }
 ~~~
 
-See [How To Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md) for details.
+See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md) for details.
 
 ## Function/Class Reference
 
