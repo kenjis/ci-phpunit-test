@@ -1,16 +1,25 @@
 # Change Log for CI PHPUnit Test
 
-## v0.4.0 (Not Released)
+## v0.4.0 (2015/07/21)
 
 ### Changed
 
-* Changed `MY_url_helper.php` as sample. If you use new `MY_url_helper.php`, you must update your tests for `redirect()` using new `$this->assertRedirect()` method. See [How to Write Tests](HowToWriteTests.md#redirect). [#28](https://github.com/kenjis/ci-phpunit-test/pull/28)
-* Changed how to test `show_404()` and `show_error()`. If you don't want to update your tests, set property `$bc_mode_throw_PHPUnit_Framework_Exception` `true` in `CIPHPUnitTestRequest` class. But `$bc_mode_throw_PHPUnit_Framework_Exception` is deprecated. See [How to Write Tests](HowToWriteTests.md#show_error-and-show_404). [#28](https://github.com/kenjis/ci-phpunit-test/pull/28)
+* Changed `MY_url_helper.php` as sample. If you use new `MY_url_helper.php`, you must update your tests for `redirect()` using new `$this->assertRedirect()` method. See [How to Write Tests](HowToWriteTests.md#redirect) and [#28](https://github.com/kenjis/ci-phpunit-test/pull/28).
+* Changed how to test `show_404()` and `show_error()`. See [How to Write Tests](HowToWriteTests.md#show_error-and-show_404) and [#28](https://github.com/kenjis/ci-phpunit-test/pull/28).
 
 ### Added
 
 * `$this->assertResponseCode()` to check response code in controller tests. See [Function/Class Reference](FunctionAndClassReference.md#testcaseassertresponsecodecode).
 * `$this->assertRedirect()` to check if `redirect()` is called in controller tests. See [Function/Class Reference](FunctionAndClassReference.md#testcaseassertredirecturi-code--null).
+* Property `$bc_mode_throw_PHPUnit_Framework_Exception` in `CIPHPUnitTestRequest` class
+
+### Deprecated
+
+* Property `$bc_mode_throw_PHPUnit_Framework_Exception` in `CIPHPUnitTestRequest` class
+
+### Others
+
+* Improved documentation.
 
 ## v0.3.0 (2015/07/14)
 
