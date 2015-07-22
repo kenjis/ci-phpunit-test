@@ -106,9 +106,11 @@ $output = $this->request('GET', ['Form', 'index']);
 $output = $this->request('GET', 'products/shoes/show/123');
 ~~~
 
+`$callable` is deprecated. Use `$this->request->setCallable()` method instead.
+
 ##### `request->setCallable()`
 
-`$callable` is deprecated. Use `$this->request->setCallable()` method instead.
+Set function to run after controller instantiation.
 
 *before:*
 ~~~php
