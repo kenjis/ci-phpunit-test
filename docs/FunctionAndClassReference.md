@@ -110,7 +110,7 @@ $output = $this->request('GET', 'products/shoes/show/123');
 
 Set function to run after controller instantiation.
 
-4th param `$callable` of `request()` method is deprecated. Use `$this->request->setCallable()` method instead.
+4th param `$callable` of `$this->request()` method is deprecated. Use `$this->request->setCallable()` method instead.
 
 *before:*
 ~~~php
