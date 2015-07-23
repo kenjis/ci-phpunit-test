@@ -48,11 +48,11 @@ If you don't know well about config files and environments, see [CodeIgniter Use
 
 ### Can and Can't
 
-*CI PHPUnit Test* does not want to modify CodeIgniter core files. The more you modify core, the more you get difficulities when you update CodeIgniter.
+*CI PHPUnit Test* does not want to modify CodeIgniter files. The more you modify them, the more you get difficulities when you update CodeIgniter.
 
 In fact, it uses a modified class and a few functions. But I try to modify as little as possible.
 
-The functions and the class which are modified:
+The core functions and a class which are modified:
 
 * function `load_class()`
 * function `is_loaded()`
@@ -62,7 +62,11 @@ The functions and the class which are modified:
 * function `set_status_header()`
 * class `CI_Loader`
 
-They are in `tests/_ci_phpunit_test/replacing` folder.
+and a helper which is modified:
+
+* function `redirect()` in URL helper
+
+All of them are in `tests/_ci_phpunit_test/replacing` folder.
 
 And *CI PHPUnit Test* adds a property dynamically:
 
@@ -84,7 +88,7 @@ If your MY_Loader overrides the above methods, probably *CI PHPUnit Test* does n
 
 When a test exercises code that contains `exit()` or `die()` statement, the execution of the whole test suite is aborted.
 
-For example, if you use URL helper `redirect()` function in your application code, your testing ends with it.
+For example, if you write `exit()` in your controller code, your testing ends with it.
 
 I recommend you not to use `exit()` or `die()` in your code.
 
@@ -136,9 +140,7 @@ And *CI PHPUnit Test* has special [show_error() and show_404()](#show_error-and-
 
 **`redirect()`**
 
-Speaking of `redirect()`, I put a sample [MY_url_helper.php](https://github.com/kenjis/ci-phpunit-test/blob/master/application/helpers/MY_url_helper.php).
-
-If you use the `MY_url_helper.php`, you can easily test controllers that contain `redirect()`. See [`redirect()`](#redirect) for details.
+*CI PHPUnit Test* replaces `redirect()` function in URL helper. Using it, you can easily test controllers that contain `redirect()`. See [`redirect()`](#redirect) for details.
 
 #### Reset CodeIgniter object
 
@@ -406,9 +408,11 @@ See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/m
 
 #### `redirect()`
 
-I recommend to use this [MY_url_helper.php](../application/helpers/MY_url_helper.php).
+By default, *CI PHPUnit Test* replaces `redirect()` function in URL helper. Using it, you can easily test controllers that contain `redirect()`.
 
-If you use it, you can write tests like this:
+But you could still override `redirect()` using your `MY_url_helper.php`. If you place `MY_url_helper.php`, your `redirect()` will be used.
+
+If you use `redirect()` in *CI PHPUnit Test*, you can write tests like this:
 
 ~~~php
 	public function test_index()
