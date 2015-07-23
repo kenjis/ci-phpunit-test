@@ -22,12 +22,7 @@ class CIPHPUnitTest
 		];
 		$_SERVER['argc'] = 2;
 
-		require __DIR__ . '/CIPHPUnitTestCase.php';
-		require __DIR__ . '/CIPHPUnitTestRequest.php';
-		require __DIR__ . '/CIPHPUnitTestDouble.php';
-		require __DIR__ . '/exceptions/CIPHPUnitTestRedirectException.php';
-		require __DIR__ . '/exceptions/CIPHPUnitTestShow404Exception.php';
-		require __DIR__ . '/exceptions/CIPHPUnitTestShowErrorException.php';
+		self::loadCIPHPUnitTestClasses();
 
 		// Replace a few Common functions
 		require __DIR__ . '/replacing/core/Common.php';
@@ -37,14 +32,7 @@ class CIPHPUnitTest
 		require __DIR__ . '/functions.php';
 
 		// Replace Loader
-		require __DIR__ . '/replacing/core/Loader.php';
-		$my_loader_file = APPPATH . 'core/' . config_item('subclass_prefix') . 'Loader.php';
-		if (file_exists($my_loader_file))
-		{
-			self::$loader_class = config_item('subclass_prefix') . 'Loader';
-			require $my_loader_file;
-		}
-		self::loadLoader();
+		self::replaceLoader();
 
 		// Load autoloader for CIPHPUnitTest
 		require __DIR__ . '/autoloader.php';
@@ -77,6 +65,57 @@ class CIPHPUnitTest
 
 		// Restore $_SERVER
 		$_SERVER = $_server_backup;
+
+		if (isset(TestCase::$enable_patcher) && TestCase::$enable_patcher)
+		{
+			self::enablePatcher();
+		}
+	}
+
+	protected static function replaceLoader()
+	{
+		require __DIR__ . '/replacing/core/Loader.php';
+		$my_loader_file = APPPATH . 'core/' . config_item('subclass_prefix') . 'Loader.php';
+		if (file_exists($my_loader_file))
+		{
+			self::$loader_class = config_item('subclass_prefix') . 'Loader';
+			require $my_loader_file;
+		}
+		self::loadLoader();
+	}
+
+	protected static function loadCIPHPUnitTestClasses()
+	{
+		require __DIR__ . '/CIPHPUnitTestCase.php';
+		require __DIR__ . '/CIPHPUnitTestRequest.php';
+		require __DIR__ . '/CIPHPUnitTestDouble.php';
+		require __DIR__ . '/exceptions/CIPHPUnitTestRedirectException.php';
+		require __DIR__ . '/exceptions/CIPHPUnitTestShow404Exception.php';
+		require __DIR__ . '/exceptions/CIPHPUnitTestShowErrorException.php';
+		require __DIR__ . '/exceptions/CIPHPUnitTestExitException.php';
+	}
+
+	protected static function enablePatcher()
+	{
+		require __DIR__ . '/patcher/CIPHPUnitTestIncludeStream.php';
+		require __DIR__ . '/patcher/CIPHPUnitTestPatchPathChecker.php';
+		require __DIR__ . '/patcher/CIPHPUnitTestPatcher.php';
+
+		// Register include stream wrapper for monkey patching
+		CIPHPUnitTestIncludeStream::wrap();
+
+		CIPHPUnitTestPatchPathChecker::setWhitelistDir(
+			[
+				APPPATH,
+			]
+		);
+		CIPHPUnitTestPatchPathChecker::setBlacklistDir(
+			[
+				realpath(APPPATH . '../vendor/'),
+				APPPATH . 'tests/',
+			]
+		);
+		CIPHPUnitTestPatcher::setCacheDir(APPPATH . 'tests/tmp/cache');
 	}
 
 	public static function loadLoader()
