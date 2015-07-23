@@ -31,8 +31,8 @@ class CIPHPUnitTest
 		// Load new functions of CIPHPUnitTest
 		require __DIR__ . '/functions.php';
 
-		// Replace Loader
 		self::replaceLoader();
+		self::replaceHelpers();
 
 		// Load autoloader for CIPHPUnitTest
 		require __DIR__ . '/autoloader.php';
@@ -82,6 +82,16 @@ class CIPHPUnitTest
 			require $my_loader_file;
 		}
 		self::loadLoader();
+	}
+
+	protected static function replaceHelpers()
+	{
+		$my_helper_file = APPPATH . 'helpers/' . config_item('subclass_prefix') . 'url_helper.php';
+		if (file_exists($my_helper_file))
+		{
+			require $my_helper_file;
+		}
+		require __DIR__ . '/replacing/helpers/url_helper.php';
 	}
 
 	protected static function loadCIPHPUnitTestClasses()
