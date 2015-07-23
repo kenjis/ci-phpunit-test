@@ -1,9 +1,9 @@
 # CI PHPUnit Test for CodeIgniter 3.0
 
 version: **master** | 
-[v0.4.0](https://github.com/kenjis/ci-phpunit-test/blob/1d4c6dc4736357107e0ae4eb747c22239b6c4b3c/docs/HowToWriteTests.md) | 
-[v0.3.0](https://github.com/kenjis/ci-phpunit-test/blob/7ef8acd7d7f80c1cf342a12f9464d2156b749b92/docs/HowToWriteTests.md) | 
-[v0.2.0](https://github.com/kenjis/ci-phpunit-test/blob/aa3bf9d6c22c17ab2f3b47beac923f36bf0f6fd6/docs/HowToWriteTests.md)
+[v0.4.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.4.0/docs/HowToWriteTests.md) | 
+[v0.3.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.3.0/docs/HowToWriteTests.md) | 
+[v0.2.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.2.0/docs/HowToWriteTests.md)
 
 ## How to Write Tests
 

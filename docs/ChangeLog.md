@@ -1,16 +1,22 @@
 # Change Log for CI PHPUnit Test
 
+## v0.5.0 (Not Released)
+
+### Added
+
+* 
+
 ## v0.4.0 (2015/07/21)
 
 ### Changed
 
-* Changed `MY_url_helper.php` as sample. If you use new `MY_url_helper.php`, you must update your tests for `redirect()` using new `$this->assertRedirect()` method. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/1d4c6dc4736357107e0ae4eb747c22239b6c4b3c/docs/HowToWriteTests.md#redirect) and [#28](https://github.com/kenjis/ci-phpunit-test/pull/28).
-* Changed how to test `show_404()` and `show_error()`. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/1d4c6dc4736357107e0ae4eb747c22239b6c4b3c/docs/HowToWriteTests.md#show_error-and-show_404) and [#28](https://github.com/kenjis/ci-phpunit-test/pull/28).
+* Changed `MY_url_helper.php` as sample. If you use new `MY_url_helper.php`, you must update your tests for `redirect()` using new `$this->assertRedirect()` method. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/v0.4.0/docs/HowToWriteTests.md#redirect) and [#28](https://github.com/kenjis/ci-phpunit-test/pull/28).
+* Changed how to test `show_404()` and `show_error()`. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/v0.4.0/docs/HowToWriteTests.md#show_error-and-show_404) and [#28](https://github.com/kenjis/ci-phpunit-test/pull/28).
 
 ### Added
 
-* `$this->assertResponseCode()` to check response code in controller tests. See [Function/Class Reference](https://github.com/kenjis/ci-phpunit-test/blob/1d4c6dc4736357107e0ae4eb747c22239b6c4b3c/docs/FunctionAndClassReference.md#testcaseassertresponsecodecode).
-* `$this->assertRedirect()` to check if `redirect()` is called in controller tests. See [Function/Class Reference](https://github.com/kenjis/ci-phpunit-test/blob/1d4c6dc4736357107e0ae4eb747c22239b6c4b3c/docs/FunctionAndClassReference.md#testcaseassertredirecturi-code--null).
+* `$this->assertResponseCode()` to check response code in controller tests. See [Function/Class Reference](https://github.com/kenjis/ci-phpunit-test/blob/v0.4.0/docs/FunctionAndClassReference.md#testcaseassertresponsecodecode).
+* `$this->assertRedirect()` to check if `redirect()` is called in controller tests. See [Function/Class Reference](https://github.com/kenjis/ci-phpunit-test/blob/v0.4.0/docs/FunctionAndClassReference.md#testcaseassertredirecturi-code--null).
 * Property `$bc_mode_throw_PHPUnit_Framework_Exception` in `CIPHPUnitTestRequest` class
 
 ### Deprecated
@@ -19,18 +25,18 @@
 
 ### Others
 
-* Improved documentation. See [How to Write Test](https://github.com/kenjis/ci-phpunit-test/blob/1d4c6dc4736357107e0ae4eb747c22239b6c4b3c/docs/HowToWriteTests.md).
+* Improved documentation. See [How to Write Test](https://github.com/kenjis/ci-phpunit-test/blob/v0.4.0/docs/HowToWriteTests.md).
 
 ## v0.3.0 (2015/07/14)
 
 ### Deprecated
 
-* 4th param `$callable` of `$this->request()` and  `$this->ajaxRequest()`. Use `$this->request->setCallable()` method instead. See [Function/Class Reference](https://github.com/kenjis/ci-phpunit-test/blob/7ef8acd7d7f80c1cf342a12f9464d2156b749b92/docs/FunctionAndClassReference.md#testcaserequestmethod-argv-params---callable--null).
+* 4th param `$callable` of `$this->request()` and  `$this->ajaxRequest()`. Use `$this->request->setCallable()` method instead. See [Function/Class Reference](https://github.com/kenjis/ci-phpunit-test/blob/v0.3.0/docs/FunctionAndClassReference.md#testcaserequestmethod-argv-params---callable--null).
 
 ### Added
 
-* `$this->request->setCallable()` See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/7ef8acd7d7f80c1cf342a12f9464d2156b749b92/docs/HowToWriteTests.md#request-and-use-mocks).
-* You can enable hooks for controller in controller testing. `$this->request->enableHooks()` is added. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/7ef8acd7d7f80c1cf342a12f9464d2156b749b92/docs/HowToWriteTests.md#controller-with-hooks).
+* `$this->request->setCallable()` See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/v0.3.0/docs/HowToWriteTests.md#request-and-use-mocks).
+* You can enable hooks for controller in controller testing. `$this->request->enableHooks()` is added. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/v0.3.0/docs/HowToWriteTests.md#controller-with-hooks).
 
 ## v0.2.0 (2015/06/19)
 
