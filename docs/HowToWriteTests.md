@@ -134,6 +134,8 @@ A test could be like this:
 	}
 ~~~
 
+See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Exit_to_exception_test.php).
+
 **`show_error()` and `show_404()`**
 
 And *CI PHPUnit Test* has special [show_error() and show_404()](#show_error-and-show_404).
