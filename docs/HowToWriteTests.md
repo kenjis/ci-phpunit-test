@@ -347,6 +347,31 @@ You can use [$this->request->setCallable()](FunctionAndClassReference.md#request
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Mock_phpunit_test.php).
 
+The function you set by `$this->request->setCallable()` runs after controller instantiation. So you can't inject mocks into controller constructor.
+
+In that case, You can use [$this->request->setCallablePreConstructor()](FunctionAndClassReference.md#request-setcallablepreconstructor) method and [load_class_instance()](FunctionAndClassReference.md#function-load_class_instanceclassname-instance) function in *CI PHPUnit Test*.
+
+~~~php
+	public function test_index_logged_in()
+	{
+		$this->request->setCallablePreConstructor(
+			function () {
+				// Get mock object
+				$auth = $this->getDouble(
+					'Ion_auth', ['logged_in' => TRUE]
+				);
+				// Inject mock object
+				load_class_instance('ion_auth', $auth);
+			}
+		);
+
+		$output = $this->request('GET', 'auth_check_in_construct');
+		$this->assertContains('You are logged in.', $output);
+	}
+~~~
+
+See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Auth_check_in_construct.php).
+
 #### Ajax Request
 
 You can use [$this->ajaxRequest()](FunctionAndClassReference.md#testcaseajaxrequestmethod-argv-params---callable--null) method in *CI PHPUnit Test*.

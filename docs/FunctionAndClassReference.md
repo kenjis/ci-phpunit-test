@@ -14,6 +14,7 @@ version: **master** |
 - [*class* TestCase](#class-testcase)
 	- [`TestCase::request($method, $argv, $params = [], $callable = null)`](#testcaserequestmethod-argv-params---callable--null)
 		- [`request->setCallable()`](#request-setcallable)
+		- [`request->setCallablePreConstructor()`](#request-setcallablepreconstructor)
 		- [`request->enableHooks()`](#request-enablehooks)
 	- [`TestCase::ajaxRequest($method, $argv, $params = [], $callable = null)`](#testcaseajaxrequestmethod-argv-params---callable--null)
 	- [`TestCase::assertResponseCode($code)`](#testcaseassertresponsecodecode)
@@ -130,6 +131,23 @@ $this->request->setCallable(
 	};
 );
 $output = $this->request('GET', ['Bbs', 'index']);
+~~~
+
+##### `request->setCallablePreConstructor()`
+
+Set function to run before controller instantiation.
+
+~~~php
+$this->request->setCallablePreConstructor(
+	function () {
+		// Get mock object
+		$auth = $this->getDouble(
+			'Ion_auth', ['logged_in' => TRUE]
+		);
+		// Inject mock object
+		load_class_instance('ion_auth', $auth);
+	}
+);
 ~~~
 
 ##### `request->enableHooks()`
