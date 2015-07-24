@@ -82,15 +82,63 @@ If your MY_Loader overrides the above methods, probably *CI PHPUnit Test* does n
 
 #### `exit()`
 
-*CI PHPUnit Test* does not care functions/classes which `exit()` or `die()` (Except for [show_error() and show_404()](#show_error-and-show_404)).
+When a test exercises code that contains `exit()` or `die()` statement, the execution of the whole test suite is aborted.
 
-So, for example, if you use URL helper `redirect()` in your application code, your testing ends with it.
+For example, if you use URL helper `redirect()` function in your application code, your testing ends with it.
 
-I recommend you not to use `exit()` or `die()` in your code. And you have to skip `exit()` somehow in CodeIgniter code.
+I recommend you not to use `exit()` or `die()` in your code.
 
-For example, you can modify `redirect()` using `MY_url_helper.php` in your application. I put a sample [MY_url_helper.php](https://github.com/kenjis/ci-phpunit-test/blob/master/application/helpers/MY_url_helper.php). (I think CodeIgniter code itself should be changed testable.)
+**Monkey Patching on `exit()`**
 
-See [`redirect()`](#redirect) for details.
+*CI PHPUnit Test* now has functionality that makes all `exit()` and `die()` in your code throw `CIPHPUnitTestExitException`.
+
+If you want to use this functionality, add `public static $enable_patcher = true;` in your `TestCase` class:
+
+~~~php
+<?php
+class TestCase extends CIPHPUnitTestCase
+{
+	public static $enable_patcher = true;
+...
+~~~
+
+And if you have a controller like below:
+
+~~~php
+	public function index()
+	{
+		$this->output
+			->set_status_header(200)
+			->set_content_type('application/json', 'utf-8')
+			->set_output(json_encode(['foo' => 'bar']))
+			->_display();
+		exit();
+	}
+~~~
+
+A test could be like this:
+
+~~~php
+	public function test_index()
+	{
+		try {
+			$this->request('GET', 'welcome/index');
+		} catch (CIPHPUnitTestExitException $e) {
+			$output = ob_get_clean();
+		}
+		$this->assertContains('{"foo":"bar"}', $output);
+	}
+~~~
+
+**`show_error()` and `show_404()`**
+
+And *CI PHPUnit Test* has special [show_error() and show_404()](#show_error-and-show_404).
+
+**`redirect()`**
+
+Speaking of `redirect()`, I put a sample [MY_url_helper.php](https://github.com/kenjis/ci-phpunit-test/blob/master/application/helpers/MY_url_helper.php).
+
+If you use the `MY_url_helper.php`, you can easily test controllers that contain `redirect()`. See [`redirect()`](#redirect) for details.
 
 #### Reset CodeIgniter object
 
