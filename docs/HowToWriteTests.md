@@ -370,7 +370,7 @@ In that case, You can use [$this->request->setCallablePreConstructor()](Function
 	}
 ~~~
 
-See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Auth_check_in_construct.php).
+See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Auth_check_in_construct_test.php).
 
 #### Ajax Request
 
