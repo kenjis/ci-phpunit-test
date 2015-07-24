@@ -2,4 +2,3 @@ filter:
     excluded_paths:
         - 'bin/*'
         - 'docs/*'
-        - 'application/tests/_ci_phpunit_test/tests/*'
