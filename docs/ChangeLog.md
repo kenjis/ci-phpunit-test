@@ -2,9 +2,13 @@
 
 ## v0.5.0 (Not Released)
 
+### Changed
+
+* Now *CI PHPUnit Test* replaces `redirect()` function by default. See [#33](https://github.com/kenjis/ci-phpunit-test/pull/33).
+
 ### Added
 
-* 
+* Monkey Patching on `exit()`. *CI PHPUnit Test* could convert `exit()` in your code to Exception on the fly. See [#32](https://github.com/kenjis/ci-phpunit-test/pull/32).
 
 ## v0.4.0 (2015/07/21)
 
