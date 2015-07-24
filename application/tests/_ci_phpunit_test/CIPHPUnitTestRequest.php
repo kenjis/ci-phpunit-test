@@ -1,11 +1,28 @@
 <?php
+/**
+ * Part of CI PHPUnit Test
+ *
+ * @author     Kenji Suzuki <https://github.com/kenjis>
+ * @license    MIT License
+ * @copyright  2015 Kenji Suzuki
+ * @link       https://github.com/kenjis/ci-phpunit-test
+ */
 
 class CIPHPUnitTestRequest
 {
+	/**
+	 * @var callable callable post controller constructor
+	 */
 	protected $callable;
+	
+	/**
+	 * @var callable callable pre controller constructor
+	 */
+	protected $callablePreConstructor;
+
 	protected $enableHooks = false;
 	protected $CI;
-
+	
 	/**
 	 * @var bool whether throwing PHPUnit_Framework_Exception or not
 	 * 
@@ -23,6 +40,16 @@ class CIPHPUnitTestRequest
 	public function setCallable(callable $callable)
 	{
 		$this->callable = $callable;
+	}
+
+	/**
+	 * Set callable pre constructor
+	 * 
+	 * @param callable $callable function to run before controller instantiation
+	 */
+	public function setCallablePreConstructor(callable $callable)
+	{
+		$this->callablePreConstructor = $callable;
 	}
 
 	/**
@@ -224,6 +251,13 @@ class CIPHPUnitTestRequest
 		{
 			$EXT =& load_class('Hooks', 'core');
 			$EXT->call_hook('pre_controller');
+		}
+
+		// Run callablePreConstructor
+		if (is_callable($this->callablePreConstructor))
+		{
+			$callable = $this->callablePreConstructor;
+			$callable();
 		}
 
 		// Create controller
