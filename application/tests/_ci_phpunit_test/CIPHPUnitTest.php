@@ -55,9 +55,9 @@ class CIPHPUnitTest
 			// `@runInSeparateProcess` and `@preserveGlobalState disabled`
 			ob_start();
 			require_once BASEPATH . 'core/CodeIgniter.php';
-			ob_end_clean();
 		} catch (CIPHPUnitTestShow404Exception $e) {
 			// Catch 404 exception
+			ob_end_clean();
 			new CI_Controller();
 		}
 
