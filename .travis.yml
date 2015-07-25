@@ -27,7 +27,7 @@ before_script:
 
 script:
   - cd application/tests
-  - phpunit --coverage-text
+  - ../../vendor/bin/phpunit --coverage-text
 
 after_script:
   - cd ../..
