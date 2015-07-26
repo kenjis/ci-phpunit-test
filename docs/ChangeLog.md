@@ -11,6 +11,10 @@
 * Monkey Patching on `exit()`. *CI PHPUnit Test* could convert `exit()` in your code to Exception on the fly. See [#32](https://github.com/kenjis/ci-phpunit-test/pull/32).
 * `$this->request->setCallablePreConstructor()` to inject mocks into your controller constructors. See [#29](https://github.com/kenjis/ci-phpunit-test/pull/29).
 
+### Fixed
+
+* Fix bug that PHPUnit debug info of the first test is not outputted.
+
 ## v0.4.0 (2015/07/21)
 
 ### Changed
