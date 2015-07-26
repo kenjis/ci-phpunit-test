@@ -57,13 +57,7 @@ class CIPHPUnitTest
 			require_once BASEPATH . 'core/CodeIgniter.php';
 		} catch (CIPHPUnitTestShow404Exception $e) {
 			// Catch 404 exception
-			// if statement below is needed. If there is not, following error
-			// ocurrs when you use `@runInSeparateProcess`
-			// ob_end_clean(): failed to delete buffer. No buffer to deleteF
-			if (ob_get_length() > 0 )
-			{
-				ob_end_clean();
-			}
+			ob_end_clean();
 			new CI_Controller();
 		}
 
