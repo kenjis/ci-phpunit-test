@@ -13,6 +13,7 @@ version: **master** |
 	- [MY_Loader](#my_loader)
 	- [`exit()`](#exit)
 	- [Reset CodeIgniter object](#reset-codeigniter-object)
+	- [Hooks](#hooks)
 - [Models](#models)
 	- [Using Database](#using-database)
 	- [Database Seeding](#database-seeding)
@@ -149,6 +150,14 @@ And *CI PHPUnit Test* has special [show_error() and show_404()](#show_error-and-
 CodeIgniter has a function `get_instance()` to get the CodeIgniter object (CodeIgniter instance or CodeIgniter super object).
 
 *CI PHPUnit Test* has a new function `reset_instance()` which reset the current CodeIgniter object. After resetting, you can (and must) create a new your Controller instance with new state.
+
+#### Hooks
+
+If you enable CodeIgniter's hooks, hook `pre_system` is called once in PHPUnit bootstrap.
+
+If you use `$this->request->enableHooks()` and `$this->request()`, hook `pre_controller`, `post_controller_constructor` and `post_controller` are called on every `$this->request()` to a controller.
+
+See [Controller with Hooks](#controller-with-hooks) for details.
 
 ### Models
 
