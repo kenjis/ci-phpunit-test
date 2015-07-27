@@ -21,6 +21,11 @@ class CIPHPUnitTestPatcher
 		self::loadPatchers();
 	}
 
+	public static function getCacheDir()
+	{
+		return self::$cache_dir;
+	}
+
 	protected static function createDir($dir)
 	{
 		if (! is_dir($dir))
