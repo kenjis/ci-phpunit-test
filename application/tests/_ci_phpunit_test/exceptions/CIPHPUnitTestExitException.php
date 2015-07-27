@@ -17,7 +17,7 @@ class CIPHPUnitTestExitException extends RuntimeException
 	public $exit_status;
 }
 
-function exit_($status = null)
+function exit__($status = null)
 {
 	$trace = debug_backtrace();
 	$file = $trace[0]['file'];

@@ -28,11 +28,11 @@ class CIPHPUnitTestExitPatcher
 			{
 				if ($tokens[$i+1] === ';')
 				{
-					$new_source .= 'exit_()';
+					$new_source .= 'exit__()';
 				}
 				else
 				{
-					$new_source .= 'exit_';
+					$new_source .= 'exit__';
 				}
 				$patched = true;
 			}
