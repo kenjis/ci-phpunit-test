@@ -44,20 +44,6 @@ function reset_instance()
 }
 
 /**
- * Get new CodeIgniter instance
- * @deprecated
- * 
- * @return CI_Controller
- */
-function get_new_instance()
-{
-	reset_instance();
-	
-	$controller = new CI_Controller();
-	return $controller;
-}
-
-/**
  * Set return value of is_cli() function
  * 
  * @param bool $return

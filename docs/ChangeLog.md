@@ -15,6 +15,10 @@
 
 * Fix bug that PHPUnit debug info of the first test is not outputted.
 
+### Removed
+
+* `get_new_instance()` (deprecated since pre v0.1.0)
+
 ## v0.4.0 (2015/07/21)
 
 ### Changed

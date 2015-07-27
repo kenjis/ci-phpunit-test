@@ -8,7 +8,6 @@ version: **master** |
 ## Function/Class Reference
 
 - [*function* `reset_instance()`](#function-reset_instance)
-- [[Deprecated] *function* `get_new_instance()`](#deprecated-function-get_new_instance)
 - [*function* `set_is_cli($return)`](#function-set_is_clireturn)
 - [*function* `load_class_instance($classname, $instance)`](#function-load_class_instanceclassname-instance)
 - [*class* TestCase](#class-testcase)
@@ -31,23 +30,6 @@ version: **master** |
 
 Reset CodeIgniter instance. You must create new controller instance after calling this function.
 
-### [Deprecated] *function* `get_new_instance()`
-
-`returns` CI_Controller instance
-
-Generate new CodeIgniter instance and get it.
-
-This function is deprecated. Please use `reset_instance()` instead.
-
-*before:*
-~~~php
-$this->CI = get_new_instance();
-$controller = new Welcome();
-~~~
-
-↓
-
-*after:*
 ~~~php
 reset_instance();
 $controller = new Welcome();
