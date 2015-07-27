@@ -18,7 +18,7 @@ An easier way to use PHPUnit with [CodeIgniter](https://github.com/bcit-ci/CodeI
 
 * PHP 5.4.0 or later
 * CodeIgniter 3.0.*
-* PHPUnit
+* PHPUnit (version 4.7 is recommended)
 
 ## Change Log
 
