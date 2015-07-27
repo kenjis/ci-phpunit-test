@@ -123,7 +123,9 @@ class CIPHPUnitTest
 				APPPATH . 'tests/',
 			]
 		);
-		CIPHPUnitTestPatcher::setCacheDir(APPPATH . 'tests/tmp/cache');
+		CIPHPUnitTestPatcher::setCacheDir(
+			APPPATH . 'tests/_ci_phpunit_test/tmp/cache'
+		);
 	}
 
 	public static function loadLoader()
