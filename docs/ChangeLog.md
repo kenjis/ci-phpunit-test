@@ -1,6 +1,6 @@
 # Change Log for CI PHPUnit Test
 
-## v0.5.0 (Not Released)
+## v0.5.0 (2015/07/27)
 
 ### Changed
 
