@@ -123,6 +123,12 @@ class CIPHPUnitTest
 				APPPATH . 'tests/',
 			]
 		);
+
+		self::setPatcherCacheDir();
+	}
+
+	public static function setPatcherCacheDir()
+	{
 		CIPHPUnitTestPatcher::setCacheDir(
 			APPPATH . 'tests/_ci_phpunit_test/tmp/cache'
 		);
