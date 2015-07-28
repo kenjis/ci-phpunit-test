@@ -1,6 +1,7 @@
 # CI PHPUnit Test for CodeIgniter 3.0
 
-version: v0.5.0 | 
+version: **master** | 
+[v0.5.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.5.0/docs/FunctionAndClassReference.md) | 
 [v0.4.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.4.0/docs/FunctionAndClassReference.md) | 
 [v0.3.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.3.0/docs/FunctionAndClassReference.md) | 
 [v0.2.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.2.0/docs/FunctionAndClassReference.md)
@@ -25,6 +26,8 @@ version: v0.5.0 |
 	- [`TestCase::verifyNeverInvoked($mock, $method, $params)`](#testcaseverifyneverinvokedmock-method-params)
 	- [`TestCase::warningOff()`](#testcasewarningoff)
 	- [`TestCase::warningOn()`](#testcasewarningon)
+	- [`TestCase::patchFunction($function, $return_value)`](#testcasepatchfunctionfunction-return_value)
+	- [`TestCase::resetFunctionPatches()`](#testcaseresetfunctionpatches)
 
 ### *function* `reset_instance()`
 
@@ -327,3 +330,20 @@ Turn off WARNING in error reporting.
 #### `TestCase::warningOn()`
 
 Restore error reporting.
+
+#### `TestCase::patchFunction($function, $return_value)`
+
+| param         | type   | description             |
+|---------------|--------|-------------------------|
+|`$function`    | string | function name to mock   |
+|`$return_value`| mixed  | return value / callback |
+
+Replace PHP native function on the fly.
+
+To use this, you have to enable monkey patching. See [How to Write Tests](HowToWriteTests.md#monkey-patching).
+
+#### `TestCase::resetFunctionPatches()`
+
+Reset all mocked functions.
+
+To use this, you have to enable monkey patching. See [How to Write Tests](HowToWriteTests.md#monkey-patching).

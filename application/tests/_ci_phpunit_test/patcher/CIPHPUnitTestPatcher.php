@@ -12,7 +12,19 @@ class CIPHPUnitTestPatcher
 {
 	private static $cache_dir;
 	private static $load_patchers = false;
-	private static $patcher_classnames = [];
+	
+	/**
+	 * @var array list of patcher classname
+	 */
+	private static $patcher_list = [
+		'ExitPatcher',
+		'FunctionPatcher',
+	];
+
+	public static function setPatcherList(array $list)
+	{
+		self::$patcher_list = $list;
+	}
 
 	public static function setCacheDir($dir)
 	{
@@ -24,6 +36,26 @@ class CIPHPUnitTestPatcher
 	public static function getCacheDir()
 	{
 		return self::$cache_dir;
+	}
+
+	public static function setWhitelistDirs(array $dir_list)
+	{
+		CIPHPUnitTestPatchPathChecker::setWhitelistDirs($dir_list);
+	}
+
+	public static function setBlacklistDirs(array $dir_list)
+	{
+		CIPHPUnitTestPatchPathChecker::setBlacklistDirs($dir_list);
+	}
+
+	public static function wrap()
+	{
+		CIPHPUnitTestIncludeStream::wrap();
+	}
+
+	public static function unwrap()
+	{
+		CIPHPUnitTestIncludeStream::unwrap();
 	}
 
 	protected static function createDir($dir)
@@ -108,12 +140,10 @@ class CIPHPUnitTestPatcher
 			return;
 		}
 
-		foreach (glob(__DIR__.'/patchers/*Patcher.php') as $patcher)
+		foreach (self::$patcher_list as $classname)
 		{
-			require $patcher;
-
-			$classname = basename($patcher, '.php');
-			self::$patcher_classnames[] = $classname;
+			$classname = 'CIPHPUnitTest' . $classname;
+			require __DIR__ . '/patchers/' . $classname . '.php';
 		}
 
 		self::$load_patchers = true;
@@ -122,8 +152,9 @@ class CIPHPUnitTestPatcher
 	protected static function execPatchers($source)
 	{
 		$patched = false;
-		foreach (self::$patcher_classnames as $classname)
+		foreach (self::$patcher_list as $classname)
 		{
+			$classname = 'CIPHPUnitTest' . $classname;
 			list($source, $patched_this) = $classname::patch($source);
 			$patched = $patched || $patched_this;
 		}
