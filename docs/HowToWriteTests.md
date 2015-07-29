@@ -426,7 +426,7 @@ I recommend to use PHPUnit mock objects. [$this->getDouble()](FunctionAndClassRe
 	public function test_index_logged_in()
 	{
 		$this->request->setCallable(
-			$function ($CI) {
+			function ($CI) {
 				// Get mock object
 				$auth = $this->getDouble(
 					'Ion_auth', ['logged_in' => TRUE, 'is_admin' => TRUE]
