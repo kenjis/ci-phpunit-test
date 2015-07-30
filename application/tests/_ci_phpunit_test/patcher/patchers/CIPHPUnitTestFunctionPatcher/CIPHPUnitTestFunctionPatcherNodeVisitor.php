@@ -64,6 +64,11 @@ class CIPHPUnitTestFunctionPatcherNodeVisitor extends PhpParser\NodeVisitorAbstr
 			$replacement->set(
 				'CIPHPUnitTestFunctionPatcherProxy::' . (string) $node->name
 			);
+
+			$pos = $node->getAttribute('startTokenPos');
+			CIPHPUnitTestFunctionPatcher::$replacement[$pos] = 
+				'\CIPHPUnitTestFunctionPatcherProxy::' . (string) $node->name;
+
 			$node->name = $replacement;
 		}
 	}

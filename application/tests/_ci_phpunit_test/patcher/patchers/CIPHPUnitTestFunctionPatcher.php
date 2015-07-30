@@ -14,22 +14,57 @@ require __DIR__ . '/CIPHPUnitTestFunctionPatcher/CIPHPUnitTestFunctionPatcherPro
 
 class CIPHPUnitTestFunctionPatcher
 {
+	public static $replacement;
+
 	public static function patch($source)
 	{
 		$patched = false;
+		self::$replacement = [];
 
-		$parser = new PhpParser\Parser(new PhpParser\Lexer);
+		$parser = new PhpParser\Parser(new PhpParser\Lexer(
+			['usedAttributes' => array('startTokenPos', 'endTokenPos')]
+		));
 		$traverser = new PhpParser\NodeTraverser;
 		$traverser->addVisitor(new CIPHPUnitTestFunctionPatcherNodeVisitor());
 
 		$ast_orig = $parser->parse($source);
 		$ast_new = $traverser->traverse($ast_orig);
 
-		if ($ast_orig != $ast_new)
+		if (self::$replacement !== [])
 		{
-			$patched = true;
-			$prettyPrinter = new PhpParser\PrettyPrinter\Standard();
-			$new_source = $prettyPrinter->prettyPrintFile($ast_new);
+			$tokens = token_get_all($source);
+
+			$patched = false;
+			$new_source = '';
+			$i = -1;
+
+			ksort(self::$replacement);
+			reset(self::$replacement);
+			$replacement = each(self::$replacement);
+
+			foreach ($tokens as $token)
+			{
+				$i++;
+				
+				if (is_string($token))
+				{
+					$new_source .= $token;
+				}
+				elseif ($i == $replacement['key'])
+				{
+					$new_source .= $replacement['value'];
+					$replacement = each(self::$replacement);
+				}
+				else
+				{
+					$new_source .= $token[1];
+				}
+			}
+
+			if ($replacement !== false)
+			{
+				throw new LogicException('Replacement data still remain');
+			}
 		}
 		else
 		{
