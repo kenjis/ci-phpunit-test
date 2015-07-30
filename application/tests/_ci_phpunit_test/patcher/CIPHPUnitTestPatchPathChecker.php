@@ -13,12 +13,12 @@ class CIPHPUnitTestPatchPathChecker
 	private static $whitelist_dir = [];
 	private static $blacklist_dir = [];
 
-	public static function setWhitelistDir(array $dir)
+	public static function setWhitelistDirs(array $dir)
 	{
 		self::$whitelist_dir = $dir;
 	}
 
-	public static function setBlacklistDir(array $dir)
+	public static function setBlacklistDirs(array $dir)
 	{
 		self::$blacklist_dir = $dir;
 	}

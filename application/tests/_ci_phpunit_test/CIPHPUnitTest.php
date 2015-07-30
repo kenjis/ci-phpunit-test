@@ -110,27 +110,41 @@ class CIPHPUnitTest
 		require __DIR__ . '/patcher/CIPHPUnitTestPatcher.php';
 
 		// Register include stream wrapper for monkey patching
-		CIPHPUnitTestIncludeStream::wrap();
+		CIPHPUnitTestPatcher::wrap();
 
-		CIPHPUnitTestPatchPathChecker::setWhitelistDir(
+		self::setDirToPatch();
+		self::setPatcherCacheDir();
+
+		if (isset(TestCase::$patcher_list))
+		{
+			CIPHPUnitTestPatcher::setPatcherList(TestCase::$patcher_list);
+		}
+	}
+
+	protected static function setDirToPatch()
+	{
+		CIPHPUnitTestPatcher::setWhitelistDirs(
 			[
 				APPPATH,
 			]
 		);
-		CIPHPUnitTestPatchPathChecker::setBlacklistDir(
+		CIPHPUnitTestPatcher::setBlacklistDirs(
 			[
 				realpath(APPPATH . '../vendor/'),
 				APPPATH . 'tests/',
 			]
 		);
-
-		self::setPatcherCacheDir();
 	}
 
-	public static function setPatcherCacheDir()
+	public static function setPatcherCacheDir($dir = null)
 	{
+		if ($dir === null)
+		{
+			$dir = APPPATH . 'tests/_ci_phpunit_test/tmp/cache';
+		}
+
 		CIPHPUnitTestPatcher::setCacheDir(
-			APPPATH . 'tests/_ci_phpunit_test/tmp/cache'
+			$dir
 		);
 	}
 

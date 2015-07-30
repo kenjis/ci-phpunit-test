@@ -1,6 +1,7 @@
 # CI PHPUnit Test for CodeIgniter 3.0
 
-version: v0.5.0 | 
+version: **master** | 
+[v0.5.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.5.0/docs/HowToWriteTests.md) | 
 [v0.4.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.4.0/docs/HowToWriteTests.md) | 
 [v0.3.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.3.0/docs/HowToWriteTests.md) | 
 [v0.2.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.2.0/docs/HowToWriteTests.md)
@@ -30,6 +31,9 @@ version: v0.5.0 |
 	- [Controller with Hooks](#controller-with-hooks)
 	- [Controller with Name Collision](#controller-with-name-collision)
 - [Mock Libraries](#mock-libraries)
+- [Monkey Patching](#monkey-patching)
+	- [Converting `exit()` to Exception](#converting-exit-to-exception)
+	- [Mocking PHP Native Functions](#mocking-php-native-functions)
 - [More Samples](#more-samples)
 
 ### Introduction
@@ -95,47 +99,9 @@ I recommend you not to use `exit()` or `die()` in your code.
 
 **Monkey Patching on `exit()`**
 
-*CI PHPUnit Test* now has functionality that makes all `exit()` and `die()` in your code throw `CIPHPUnitTestExitException`.
+*CI PHPUnit Test* has functionality that makes all `exit()` and `die()` in your code throw `CIPHPUnitTestExitException`.
 
-If you want to use this functionality, add `public static $enable_patcher = true;` in your `TestCase` class:
-
-~~~php
-<?php
-class TestCase extends CIPHPUnitTestCase
-{
-	public static $enable_patcher = true;
-...
-~~~
-
-And if you have a controller like below:
-
-~~~php
-	public function index()
-	{
-		$this->output
-			->set_status_header(200)
-			->set_content_type('application/json', 'utf-8')
-			->set_output(json_encode(['foo' => 'bar']))
-			->_display();
-		exit();
-	}
-~~~
-
-A test could be like this:
-
-~~~php
-	public function test_index()
-	{
-		try {
-			$this->request('GET', 'welcome/index');
-		} catch (CIPHPUnitTestExitException $e) {
-			$output = ob_get_clean();
-		}
-		$this->assertContains('{"foo":"bar"}', $output);
-	}
-~~~
-
-See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Exit_to_exception_test.php).
+See [Monkey Patching](#monkey-patching) for details.
 
 **`show_error()` and `show_404()`**
 
@@ -591,6 +557,91 @@ This is how to replace Email library with `Mock_Libraries_Email` class.
 ~~~
 
 Mock library class name must be `Mock_Libraries_*`, and it is autoloaded.
+
+### Monkey Patching
+
+*CI PHPUnit Test* has two monkey patchers.
+
+* Converting `exit()` to Exception (`ExitPatcher`)
+* Mocking PHP Native Functions (`FunctionPatcher`)
+
+To enable monkey patching, set static property `$enable_patcher` `true` in `TestCase` class:
+
+~~~php
+<?php
+class TestCase extends CIPHPUnitTestCase
+{
+	public static $enable_patcher = true;
+...
+~~~
+
+If you want to use only one patcher, add static property `$patcher_list` in `TestCase` class:
+
+~~~php
+<?php
+class TestCase extends CIPHPUnitTestCase
+{
+	public static $enable_patcher = true;
+	public static $patcher_list = [
+		'ExitPatcher',
+	];
+...
+~~~
+
+You have to write all patchers to use in `$patcher_list`, if you define it.
+
+#### Converting `exit()` to Exception
+
+This patcher converts `exit()` or `die()` statements to exceptions on the fly.
+
+If you have a controller like below:
+
+~~~php
+	public function index()
+	{
+		$this->output
+			->set_status_header(200)
+			->set_content_type('application/json', 'utf-8')
+			->set_output(json_encode(['foo' => 'bar']))
+			->_display();
+		exit();
+	}
+~~~
+
+A test case could be like this:
+
+~~~php
+	public function test_index()
+	{
+		try {
+			$this->request('GET', 'welcome/index');
+		} catch (CIPHPUnitTestExitException $e) {
+			$output = ob_get_clean();
+		}
+		$this->assertContains('{"foo":"bar"}', $output);
+	}
+~~~
+
+See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Exit_to_exception_test.php).
+
+#### Mocking PHP Native Functions
+
+This patcher allows replacement of PHP native functions that can't be mocked by PHPUnit.
+
+~~~php
+	public function test_index()
+	{
+		$this->patchFunction('mt_rand', 100);
+		$output = $this->request('GET', 'welcome/index');
+		$this->assertContains('100', $output);
+	}
+~~~
+
+[$this->patchFunction()](FunctionAndClassReference.md#testcasepatchfunctionfunction-return_value) replaces function `mt_rand()`, and it will always return `100`.
+
+You can reset all mocked functions to call [$this->resetFunctionPatches()](FunctionAndClassReference.md#testcaseresetfunctionpatches).
+
+See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Patching_on_function_test.php).
 
 ### More Samples
 

@@ -165,6 +165,25 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 		$this->double->verifyNeverInvoked($mock, $method, $params);
 	}
 
+	/**
+	 * Override PHP native function
+	 * 
+	 * @param string $function     function name
+	 * @param mixed  $return_value return value
+	 */
+	public function patchFunction($function, $return_value)
+	{
+		CIPHPUnitTestFunctionPatcherProxy::mock($function, $return_value);
+	}
+
+	/**
+	 * Reset all overridden PHP native fuctions
+	 */
+	public function resetFunctionPatches()
+	{
+		CIPHPUnitTestFunctionPatcherProxy::reset();
+	}
+
 	public function warningOff()
 	{
 		$this->_error_reporting = error_reporting(E_ALL & ~E_WARNING);

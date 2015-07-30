@@ -1,5 +1,11 @@
 # Change Log for CI PHPUnit Test
 
+## v0.6.0 (Not Released)
+
+### Added
+
+* Monkey Patching on PHP native functions.
+
 ## v0.5.0 (2015/07/27)
 
 ### Changed
