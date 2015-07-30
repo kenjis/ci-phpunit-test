@@ -563,7 +563,7 @@ Mock library class name must be `Mock_Libraries_*`, and it is autoloaded.
 *CI PHPUnit Test* has two monkey patchers.
 
 * Converting `exit()` to Exception (`ExitPatcher`)
-* Mocking PHP Native Functions (`FunctionPatcher`)
+* Mocking Functions (`FunctionPatcher`)
 
 To enable monkey patching, set static property `$enable_patcher` `true` in `TestCase` class:
 
