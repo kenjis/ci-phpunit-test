@@ -29,17 +29,25 @@ class CIPHPUnitTestFunctionPatcherNodeVisitor extends PhpParser\NodeVisitorAbstr
 	 * @var array list of function names (in lower case) which you don't patch
 	 */
 	private static $blacklist = [
+		// Segmentation fault
 		'call_user_func_array',
+		'exit__',
+		// Error: Only variables should be assigned by reference
+		'get_instance',
+		// Special functions for ci-phpunit-test
+		'show_404',
+		'show_error',
+		'redirect'
 	];
 
 	public static function addBlacklist($function_name)
 	{
-		self::$blacklist[] = $function_name;
+		self::$blacklist[] = strtolower($function_name);
 	}
 
 	public static function removeBlacklist($function_name)
 	{
-		$key = array_search($function_name, self::$blacklist);
+		$key = array_search(strtolower($function_name), self::$blacklist);
 		array_splice(self::$blacklist, $key, 1);
 	}
 
@@ -57,7 +65,6 @@ class CIPHPUnitTestFunctionPatcherNodeVisitor extends PhpParser\NodeVisitorAbstr
 
 		if (
 			$node->name->isUnqualified()
-			&& $this->isInternalFunction((string) $node->name)
 			&& ! $this->isBlacklisted((string) $node->name)
 		) {
 			$replacement = new FullyQualified(array());
