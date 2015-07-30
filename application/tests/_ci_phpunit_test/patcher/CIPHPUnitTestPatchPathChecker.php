@@ -13,14 +13,29 @@ class CIPHPUnitTestPatchPathChecker
 	private static $whitelist_dir = [];
 	private static $blacklist_dir = [];
 
+	protected static function realPath(array $dirs)
+	{
+		$new_dirs = [];
+		foreach ($dirs as $dir)
+		{
+			$real_dir = realpath($dir);
+			if ($real_dir === FALSE)
+			{
+				throw new RuntimeException($dir . ' does not exist?');
+			}
+			$new_dirs[] = $real_dir . '/';
+		}
+		return $new_dirs;
+	}
+
 	public static function setWhitelistDirs(array $dir)
 	{
-		self::$whitelist_dir = $dir;
+		self::$whitelist_dir = self::realPath($dir);
 	}
 
 	public static function setBlacklistDirs(array $dir)
 	{
-		self::$blacklist_dir = $dir;
+		self::$blacklist_dir = self::realPath($dir);
 	}
 
 	public static function check($path)

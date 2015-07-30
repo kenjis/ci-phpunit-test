@@ -130,7 +130,7 @@ class CIPHPUnitTest
 		);
 		CIPHPUnitTestPatcher::setBlacklistDirs(
 			[
-				realpath(APPPATH . '../vendor/'),
+				APPPATH . '../vendor/',
 				APPPATH . 'tests/',
 			]
 		);
