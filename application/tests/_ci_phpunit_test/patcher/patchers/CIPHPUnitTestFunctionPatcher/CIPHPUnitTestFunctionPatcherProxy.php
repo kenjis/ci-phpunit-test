@@ -14,6 +14,11 @@ class CIPHPUnitTestFunctionPatcherProxy
 
 	public static function mock($function, $returnValue)
 	{
+		if (CIPHPUnitTestFunctionPatcher::isBlacklisted($function))
+		{
+			throw new LogicException('Can\'t patch on ' . $function);
+		}
+
 		self::$mocks[$function] = $returnValue;
 	}
 

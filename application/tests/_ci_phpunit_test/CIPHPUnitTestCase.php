@@ -166,7 +166,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * Override PHP native function
+	 * Patch on function
 	 * 
 	 * @param string $function     function name
 	 * @param mixed  $return_value return value
@@ -177,7 +177,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * Reset all overridden PHP native fuctions
+	 * Reset all patched fuctions
 	 */
 	public function resetFunctionPatches()
 	{

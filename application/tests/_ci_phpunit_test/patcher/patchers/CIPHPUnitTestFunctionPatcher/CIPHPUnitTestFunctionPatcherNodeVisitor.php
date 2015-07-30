@@ -25,32 +25,6 @@ use PhpParser\Node\Name\FullyQualified;
 
 class CIPHPUnitTestFunctionPatcherNodeVisitor extends PhpParser\NodeVisitorAbstract
 {
-	/**
-	 * @var array list of function names (in lower case) which you don't patch
-	 */
-	private static $blacklist = [
-		// Segmentation fault
-		'call_user_func_array',
-		'exit__',
-		// Error: Only variables should be assigned by reference
-		'get_instance',
-		// Special functions for ci-phpunit-test
-		'show_404',
-		'show_error',
-		'redirect'
-	];
-
-	public static function addBlacklist($function_name)
-	{
-		self::$blacklist[] = strtolower($function_name);
-	}
-
-	public static function removeBlacklist($function_name)
-	{
-		$key = array_search(strtolower($function_name), self::$blacklist);
-		array_splice(self::$blacklist, $key, 1);
-	}
-
 	public function leaveNode(PhpParser\Node $node)
 	{
 		if (! ($node instanceof FuncCall))
@@ -65,7 +39,7 @@ class CIPHPUnitTestFunctionPatcherNodeVisitor extends PhpParser\NodeVisitorAbstr
 
 		if (
 			$node->name->isUnqualified()
-			&& ! $this->isBlacklisted((string) $node->name)
+			&& ! CIPHPUnitTestFunctionPatcher::isBlacklisted((string) $node->name)
 		) {
 			$replacement = new FullyQualified(array());
 			$replacement->set(
@@ -93,19 +67,5 @@ class CIPHPUnitTestFunctionPatcherNodeVisitor extends PhpParser\NodeVisitorAbstr
 			// ReflectionException: Function xxx() does not exist
 			return false;
 		}
-	}
-
-	/**
-	 * @param string $name
-	 * @return boolean
-	 */
-	protected function isBlacklisted($name)
-	{
-		if (in_array(strtolower($name), self::$blacklist))
-		{
-			return true;
-		}
-
-		return false;
 	}
 }

@@ -14,7 +14,47 @@ require __DIR__ . '/CIPHPUnitTestFunctionPatcher/CIPHPUnitTestFunctionPatcherPro
 
 class CIPHPUnitTestFunctionPatcher
 {
+	/**
+	 * @var array list of function names (in lower case) which you don't patch
+	 */
+	private static $blacklist = [
+		// Segmentation fault
+		'call_user_func_array',
+		'exit__',
+		// Error: Only variables should be assigned by reference
+		'get_instance',
+		// Special functions for ci-phpunit-test
+		'show_404',
+		'show_error',
+		'redirect'
+	];
+
 	public static $replacement;
+
+	public static function addBlacklist($function_name)
+	{
+		self::$blacklist[] = strtolower($function_name);
+	}
+
+	public static function removeBlacklist($function_name)
+	{
+		$key = array_search(strtolower($function_name), self::$blacklist);
+		array_splice(self::$blacklist, $key, 1);
+	}
+
+	/**
+	 * @param string $name function name
+	 * @return boolean
+	 */
+	public static function isBlacklisted($name)
+	{
+		if (in_array(strtolower($name), self::$blacklist))
+		{
+			return true;
+		}
+
+		return false;
+	}
 
 	public static function patch($source)
 	{
@@ -22,7 +62,7 @@ class CIPHPUnitTestFunctionPatcher
 		self::$replacement = [];
 
 		$parser = new PhpParser\Parser(new PhpParser\Lexer(
-			['usedAttributes' => array('startTokenPos', 'endTokenPos')]
+			['usedAttributes' => ['startTokenPos', 'endTokenPos']]
 		));
 		$traverser = new PhpParser\NodeTraverser;
 		$traverser->addVisitor(new CIPHPUnitTestFunctionPatcherNodeVisitor());
