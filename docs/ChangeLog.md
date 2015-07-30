@@ -4,13 +4,13 @@
 
 ### Added
 
-* Monkey Patching on PHP native functions. See [#33](https://github.com/kenjis/ci-phpunit-test/pull/33).
+* Monkey Patching on PHP native functions. See [#35](https://github.com/kenjis/ci-phpunit-test/pull/35).
 
 ## v0.5.0 (2015/07/27)
 
 ### Changed
 
-* Now *CI PHPUnit Test* replaces `redirect()` function by default. See [#35](https://github.com/kenjis/ci-phpunit-test/pull/35).
+* Now *CI PHPUnit Test* replaces `redirect()` function by default. See [#33](https://github.com/kenjis/ci-phpunit-test/pull/33).
 
 ### Added
 
