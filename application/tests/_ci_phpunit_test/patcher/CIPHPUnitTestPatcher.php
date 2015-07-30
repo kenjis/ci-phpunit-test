@@ -38,14 +38,14 @@ class CIPHPUnitTestPatcher
 		return self::$cache_dir;
 	}
 
-	public static function setWhitelistDirs(array $dir_list)
+	public static function setIncludePaths(array $dir_list)
 	{
-		CIPHPUnitTestPatchPathChecker::setWhitelistDirs($dir_list);
+		CIPHPUnitTestPatchPathChecker::setIncludePaths($dir_list);
 	}
 
-	public static function setBlacklistDirs(array $dir_list)
+	public static function setExcludePaths(array $dir_list)
 	{
-		CIPHPUnitTestPatchPathChecker::setBlacklistDirs($dir_list);
+		CIPHPUnitTestPatchPathChecker::setExcludePaths($dir_list);
 	}
 
 	public static function wrap()

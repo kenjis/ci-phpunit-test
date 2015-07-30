@@ -123,12 +123,12 @@ class CIPHPUnitTest
 
 	protected static function setDirToPatch()
 	{
-		CIPHPUnitTestPatcher::setWhitelistDirs(
+		CIPHPUnitTestPatcher::setIncludePaths(
 			[
 				APPPATH,
 			]
 		);
-		CIPHPUnitTestPatcher::setBlacklistDirs(
+		CIPHPUnitTestPatcher::setExcludePaths(
 			[
 				APPPATH . '../vendor/',
 				APPPATH . 'tests/',
