@@ -68,43 +68,12 @@ class CIPHPUnitTestFunctionPatcher
 		$traverser->addVisitor(new CIPHPUnitTestFunctionPatcherNodeVisitor());
 
 		$ast_orig = $parser->parse($source);
-		$ast_new = $traverser->traverse($ast_orig);
+		$traverser->traverse($ast_orig);
 
 		if (self::$replacement !== [])
 		{
-			$tokens = token_get_all($source);
-
-			$patched = false;
-			$new_source = '';
-			$i = -1;
-
-			ksort(self::$replacement);
-			reset(self::$replacement);
-			$replacement = each(self::$replacement);
-
-			foreach ($tokens as $token)
-			{
-				$i++;
-				
-				if (is_string($token))
-				{
-					$new_source .= $token;
-				}
-				elseif ($i == $replacement['key'])
-				{
-					$new_source .= $replacement['value'];
-					$replacement = each(self::$replacement);
-				}
-				else
-				{
-					$new_source .= $token[1];
-				}
-			}
-
-			if ($replacement !== false)
-			{
-				throw new LogicException('Replacement data still remain');
-			}
+			$patched = true;
+			$new_source = self::generateNewSource($source);
 		}
 		else
 		{
@@ -115,5 +84,42 @@ class CIPHPUnitTestFunctionPatcher
 			$new_source,
 			$patched,
 		];
+	}
+
+	protected static function generateNewSource($source)
+	{
+		$tokens = token_get_all($source);
+		$new_source = '';
+		$i = -1;
+
+		ksort(self::$replacement);
+		reset(self::$replacement);
+		$replacement = each(self::$replacement);
+
+		foreach ($tokens as $token)
+		{
+			$i++;
+
+			if (is_string($token))
+			{
+				$new_source .= $token;
+			}
+			elseif ($i == $replacement['key'])
+			{
+				$new_source .= $replacement['value'];
+				$replacement = each(self::$replacement);
+			}
+			else
+			{
+				$new_source .= $token[1];
+			}
+		}
+
+		if ($replacement !== false)
+		{
+			throw new LogicException('Replacement data still remain');
+		}
+
+		return $new_source;
 	}
 }
