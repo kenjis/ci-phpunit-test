@@ -338,7 +338,7 @@ Restore error reporting.
 |`$function`    | string | function name to mock   |
 |`$return_value`| mixed  | return value / callback |
 
-Replace PHP native function on the fly.
+Replace function on the fly.
 
 To use this, you have to enable monkey patching. See [How to Write Tests](HowToWriteTests.md#monkey-patching).
 

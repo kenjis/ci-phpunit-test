@@ -33,7 +33,7 @@ version: **master** |
 - [Mock Libraries](#mock-libraries)
 - [Monkey Patching](#monkey-patching)
 	- [Converting `exit()` to Exception](#converting-exit-to-exception)
-	- [Mocking PHP Native Functions](#mocking-php-native-functions)
+	- [Mocking Functions](#mocking-functions)
 - [More Samples](#more-samples)
 
 ### Introduction
@@ -624,9 +624,9 @@ A test case could be like this:
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Exit_to_exception_test.php).
 
-#### Mocking PHP Native Functions
+#### Mocking Functions
 
-This patcher allows replacement of PHP native functions that can't be mocked by PHPUnit.
+This patcher allows replacement of functions that can't be mocked by PHPUnit.
 
 ~~~php
 	public function test_index()
