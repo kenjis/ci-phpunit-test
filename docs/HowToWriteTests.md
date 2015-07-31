@@ -631,15 +631,13 @@ This patcher allows replacement of functions that can't be mocked by PHPUnit.
 ~~~php
 	public function test_index()
 	{
-		$this->patchFunction('mt_rand', 100);
+		MonkeyPatch::patchFunction('mt_rand', 100);
 		$output = $this->request('GET', 'welcome/index');
 		$this->assertContains('100', $output);
 	}
 ~~~
 
-[$this->patchFunction()](FunctionAndClassReference.md#testcasepatchfunctionfunction-return_value) replaces function `mt_rand()`, and it will always return `100`.
-
-You can reset all mocked functions to call [$this->resetFunctionPatches()](FunctionAndClassReference.md#testcaseresetfunctionpatches).
+[MonkeyPatch::patchFunction()](FunctionAndClassReference.md#monkeypatchpatchfunctionfunction-return_value) replaces PHP native function `mt_rand()`, and it will always return `100`.
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Patching_on_function_test.php).
 

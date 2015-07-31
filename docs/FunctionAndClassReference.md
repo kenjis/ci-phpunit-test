@@ -26,8 +26,9 @@ version: **master** |
 	- [`TestCase::verifyNeverInvoked($mock, $method, $params)`](#testcaseverifyneverinvokedmock-method-params)
 	- [`TestCase::warningOff()`](#testcasewarningoff)
 	- [`TestCase::warningOn()`](#testcasewarningon)
-	- [`TestCase::patchFunction($function, $return_value)`](#testcasepatchfunctionfunction-return_value)
-	- [`TestCase::resetFunctionPatches()`](#testcaseresetfunctionpatches)
+- [*class* MonkeyPatch](#class-monkeypatch)
+	- [`MonkeyPatch::patchFunction($function, $return_value)`](#monkeypatchpatchfunctionfunction-return_value)
+	- [`MonkeyPatch::resetFunctionPatches()`](#monkeypatchresetfunctionpatches)
 
 ### *function* `reset_instance()`
 
@@ -331,7 +332,9 @@ Turn off WARNING in error reporting.
 
 Restore error reporting.
 
-#### `TestCase::patchFunction($function, $return_value)`
+### *class* MonkeyPatch
+
+#### `MonkeyPatch::patchFunction($function, $return_value)`
 
 | param         | type   | description             |
 |---------------|--------|-------------------------|
@@ -342,8 +345,10 @@ Replace function on the fly.
 
 To use this, you have to enable monkey patching. See [How to Write Tests](HowToWriteTests.md#monkey-patching).
 
-#### `TestCase::resetFunctionPatches()`
+#### `MonkeyPatch::resetFunctionPatches()`
 
 Reset all mocked functions.
+
+This method is called on `TestCase::tearDown()` by default. So you don't have to call it normally.
 
 To use this, you have to enable monkey patching. See [How to Write Tests](HowToWriteTests.md#monkey-patching).

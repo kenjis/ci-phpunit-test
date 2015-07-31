@@ -4,7 +4,7 @@
 
 ### Added
 
-* Monkey Patching on PHP native functions. See [#35](https://github.com/kenjis/ci-phpunit-test/pull/35).
+* Monkey Patching on functions. See [#35](https://github.com/kenjis/ci-phpunit-test/pull/35).
 
 ## v0.5.0 (2015/07/27)
 
