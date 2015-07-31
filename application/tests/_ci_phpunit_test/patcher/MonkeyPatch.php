@@ -48,7 +48,7 @@ class MonkeyPatch
 		CIPHPUnitTestMethodPatchManager::clear();
 	}
 
-	public static function VerifyInvokedMultipleTimes(
+	public static function verifyInvokedMultipleTimes(
 		$class_method, $times, $params = null
 	)
 	{
