@@ -560,10 +560,11 @@ Mock library class name must be `Mock_Libraries_*`, and it is autoloaded.
 
 ### Monkey Patching
 
-*CI PHPUnit Test* has two monkey patchers.
+*CI PHPUnit Test* has three monkey patchers.
 
 * Converting `exit()` to Exception (`ExitPatcher`)
 * Mocking Functions (`FunctionPatcher`)
+* Mocking Methods in User-defined Classes (`MethodPatcher`)
 
 To enable monkey patching, set static property `$enable_patcher` `true` in `TestCase` class:
 
@@ -575,7 +576,7 @@ class TestCase extends CIPHPUnitTestCase
 ...
 ~~~
 
-If you want to use only one patcher, add static property `$patcher_list` in `TestCase` class:
+If you want to specify patchers to use, add static property `$patcher_list` in `TestCase` class:
 
 ~~~php
 <?php
@@ -588,7 +589,7 @@ class TestCase extends CIPHPUnitTestCase
 ...
 ~~~
 
-You have to write all patchers to use in `$patcher_list`, if you define it.
+You have to set all patchers to use in `$patcher_list`, if you define it.
 
 #### Converting `exit()` to Exception
 
@@ -640,6 +641,24 @@ This patcher allows replacement of functions that can't be mocked by PHPUnit.
 [MonkeyPatch::patchFunction()](FunctionAndClassReference.md#monkeypatchpatchfunctionfunction-return_value) replaces PHP native function `mt_rand()`, and it will always return `100`.
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Patching_on_function_test.php).
+
+#### Mocking Methods in User-defined Classes
+
+This patcher allows replacement of methods in user-defined classes.
+
+~~~php
+	public function test_index()
+	{
+		MonkeyPatch::patchMethod(
+			'Category_model',
+			['get_category_list' => [(object) ['name' => 'Nothing']]]
+		);
+		$output = $this->request('GET', 'welcome/index');
+		$this->assertContains('Nothing', $output);
+	}
+~~~
+
+See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Patching_on_method_test.php).
 
 ### More Samples
 

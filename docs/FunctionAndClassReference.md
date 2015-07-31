@@ -338,16 +338,35 @@ Restore error reporting.
 
 | param         | type   | description             |
 |---------------|--------|-------------------------|
-|`$function`    | string | function name to mock   |
+|`$function`    | string | function name to patch  |
 |`$return_value`| mixed  | return value / callback |
 
 Replace function on the fly.
 
 To use this, you have to enable monkey patching. See [How to Write Tests](HowToWriteTests.md#monkey-patching).
 
-#### `MonkeyPatch::resetFunctionPatches()`
+#### `MonkeyPatch::resetFunctions()`
 
 Reset all mocked functions.
+
+This method is called on `TestCase::tearDown()` by default. So you don't have to call it normally.
+
+To use this, you have to enable monkey patching. See [How to Write Tests](HowToWriteTests.md#monkey-patching).
+
+#### `MonkeyPatch::patchMethod($classname, $params)`
+
+| param       | type   | description                   |
+|-------------|--------|-------------------------------|
+|`$classname` | string | class name to patch           |
+|`$params`    | array  | [method_name => return_value] |
+
+Replace method in user-defined classes on the fly.
+
+To use this, you have to enable monkey patching. See [How to Write Tests](HowToWriteTests.md#monkey-patching).
+
+#### `MonkeyPatch::resetMethods()`
+
+Reset all mocked class methods.
 
 This method is called on `TestCase::tearDown()` by default. So you don't have to call it normally.
 
