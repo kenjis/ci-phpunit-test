@@ -639,7 +639,7 @@ This patcher allows replacement of functions that can't be mocked by PHPUnit.
 	}
 ~~~
 
-[MonkeyPatch::patchFunction()](FunctionAndClassReference.md#monkeypatchpatchfunctionfunction-return_value) replaces PHP native function `mt_rand()`, and it will always return `100`.
+[MonkeyPatch::patchFunction()](FunctionAndClassReference.md#monkeypatchpatchfunctionfunction-return_value) replaces PHP native function `mt_rand()`, and it will return `100` in the test method.
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Patching_on_function_test.php).
 
@@ -658,6 +658,8 @@ This patcher allows replacement of methods in user-defined classes.
 		$this->assertContains('Nothing', $output);
 	}
 ~~~
+
+[MonkeyPatch::patchMethod()](FunctionAndClassReference.md#monkeypatchpatchmethodclassname-params) replaces `get_category_list()` method in `Category_model`, and it will return `[(object) ['name' => 'Nothing']]` in the test method.
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Patching_on_method_test.php).
 

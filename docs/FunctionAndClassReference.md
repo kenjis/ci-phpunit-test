@@ -349,7 +349,7 @@ To use this, you have to enable monkey patching. See [How to Write Tests](HowToW
 
 #### `MonkeyPatch::resetFunctions()`
 
-Reset all mocked functions.
+Reset all patched functions.
 
 This method is called on `TestCase::tearDown()` by default. So you don't have to call it normally.
 
@@ -368,7 +368,7 @@ To use this, you have to enable monkey patching. See [How to Write Tests](HowToW
 
 #### `MonkeyPatch::resetMethods()`
 
-Reset all mocked class methods.
+Reset all patched class methods.
 
 This method is called on `TestCase::tearDown()` by default. So you don't have to call it normally.
 
