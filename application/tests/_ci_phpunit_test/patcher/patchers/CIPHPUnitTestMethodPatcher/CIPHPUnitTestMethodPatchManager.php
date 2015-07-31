@@ -94,6 +94,24 @@ class CIPHPUnitTestMethodPatchManager
 						$class_method . '() expected to be invoked ' . $times . ' times, but invoked ' . $actual . ' times.'
 					);
 				}
+				else
+				{
+					$count = 0;
+					foreach (self::$invocations[$class_method] as $actual_params)
+					{
+						if ($actual_params == $params)
+						{
+							$count++;
+						}
+					}
+					
+					$params_print = implode(', ', $params);
+					PHPUnit_Framework_TestCase::assertEquals(
+						$times,
+						$count,
+						$class_method . '(' . $params_print . ') expected to be invoked ' . $times . ' times, but invoked ' . $count . ' times.'
+					);
+				}
 			}
 		}
 	}

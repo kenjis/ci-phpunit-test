@@ -23,6 +23,17 @@ class CIPHPUnitTestFunctionPatcher
 		'exit__',
 		// Error: Only variables should be assigned by reference
 		'get_instance',
+		'get_config',
+		'load_class',
+		'get_mimes',
+		// has reference param
+		'preg_replace',
+		'preg_match',
+		'array_unshift',
+		'array_shift',
+		'sscanf',
+		'ksort',
+		'krsort',
 		// Special functions for ci-phpunit-test
 		'show_404',
 		'show_error',

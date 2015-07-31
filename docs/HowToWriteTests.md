@@ -567,30 +567,47 @@ Mock library class name must be `Mock_Libraries_*`, and it is autoloaded.
 * Patching Functions (`FunctionPatcher`)
 * Patching Methods in User-defined Classes (`MethodPatcher`)
 
-To enable monkey patching, set static property `$enable_patcher` `true` in `TestCase` class:
+To enable monkey patching, uncommnet below code in `tests/Bootstrap.php` and configure paths:
 
 ~~~php
-<?php
-class TestCase extends CIPHPUnitTestCase
-{
-	public static $enable_patcher = true;
-...
-~~~
-
-If you want to specify patchers to use, add static property `$patcher_list` in `TestCase` class:
-
-~~~php
-<?php
-class TestCase extends CIPHPUnitTestCase
-{
-	public static $enable_patcher = true;
-	public static $patcher_list = [
+/*
+require __DIR__ . '/_ci_phpunit_test/patcher/bootstrap.php';
+CIPHPUnitTestPatcher::init([
+	'cache_dir' => APPPATH . 'tests/_ci_phpunit_test/tmp/cache',
+	// Directories to patch on source files
+	'include_paths' => [
+		APPPATH,
+		BASEPATH,
+	],
+	// Excluding directories to patch
+	'exclude_paths' => [
+		APPPATH . 'tests/',
+	],
+	// All patchers you use
+	'patcher_list' => [
 		'ExitPatcher',
-	];
-...
+		'FunctionPatcher',
+		'MethodPatcher',
+	],
+]);
+*/
 ~~~
 
-You have to set all patchers to use in `$patcher_list`, if you define it.
+**Upgrade Note for v0.6.0**
+
+Add the above code before
+
+~~~php
+/*
+ * -------------------------------------------------------------------
+ *  Added for CI PHPUnit Test
+ * -------------------------------------------------------------------
+ */
+~~~
+
+in `tests/Bootstrap.php`
+
+`TestCase::$enable_patcher` was removed. Please remove it.
 
 #### Converting `exit()` to Exception
 

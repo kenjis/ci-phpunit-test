@@ -289,6 +289,36 @@ switch (ENVIRONMENT)
 
 /*
  * -------------------------------------------------------------------
+ *  Enabling Monkey Patching
+ * -------------------------------------------------------------------
+ * 
+ * If you want to use monkey patching, uncomment below code and configure
+ * for your application.
+ */
+/*
+require __DIR__ . '/_ci_phpunit_test/patcher/bootstrap.php';
+CIPHPUnitTestPatcher::init([
+	'cache_dir' => APPPATH . 'tests/_ci_phpunit_test/tmp/cache',
+	// Directories to patch on source files
+	'include_paths' => [
+		APPPATH,
+		BASEPATH,
+	],
+	// Excluding directories to patch
+	'exclude_paths' => [
+		APPPATH . 'tests/',
+	],
+	// All patchers you use
+	'patcher_list' => [
+		'ExitPatcher',
+		'FunctionPatcher',
+		'MethodPatcher',
+	],
+]);
+*/
+
+/*
+ * -------------------------------------------------------------------
  *  Added for CI PHPUnit Test
  * -------------------------------------------------------------------
  */

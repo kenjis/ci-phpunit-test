@@ -18,7 +18,7 @@ class MonkeyPatch
 	 */
 	public static function patchFunction($function, $return_value)
 	{
-		CIPHPUnitTestFunctionPatcherProxy::mock($function, $return_value);
+		CIPHPUnitTestFunctionPatcherProxy::patch__($function, $return_value);
 	}
 
 	/**
@@ -26,7 +26,7 @@ class MonkeyPatch
 	 */
 	public static function resetFunctions()
 	{
-		CIPHPUnitTestFunctionPatcherProxy::reset();
+		CIPHPUnitTestFunctionPatcherProxy::reset__();
 	}
 
 	/**

@@ -49,7 +49,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 
 	public function tearDown()
 	{
-		if (class_exists('MonkeyPatch'))
+		if (class_exists('MonkeyPatch', false))
 		{
 			if (CIPHPUnitTestPatcher::isEnabled('FunctionPatcher'))
 			{

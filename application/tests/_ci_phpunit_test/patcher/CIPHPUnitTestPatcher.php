@@ -22,6 +22,33 @@ class CIPHPUnitTestPatcher
 		'MethodPatcher',
 	];
 
+	public static function init(array $config)
+	{
+		if (! isset($config['cache_dir']))
+		{
+			throw new LogicException('You have to set "cache_dir"');
+		}
+		CIPHPUnitTestPatcher::setCacheDir($config['cache_dir']);
+
+		if (! isset($config['include_paths']))
+		{
+			throw new LogicException('You have to set "include_paths"');
+		}
+		CIPHPUnitTestPatcher::setIncludePaths($config['include_paths']);
+
+		if (isset($config['exclude_paths']))
+		{
+			CIPHPUnitTestPatcher::setExcludePaths($config['exclude_paths']);
+		}
+
+		if (isset($config['patcher_list']))
+		{
+			CIPHPUnitTestPatcher::setPatcherList($config['patcher_list']);
+		}
+
+		self::loadPatchers();
+	}
+
 	public static function isEnabled($patcher)
 	{
 		return in_array($patcher, self::$patcher_list);
@@ -41,7 +68,6 @@ class CIPHPUnitTestPatcher
 	{
 		self::$cache_dir = $dir;
 		self::createDir($dir);
-		self::loadPatchers();
 	}
 
 	public static function getCacheDir()
@@ -106,11 +132,16 @@ class CIPHPUnitTestPatcher
 		return self::$cache_dir . $relative_path;
 	}
 
+	/**
+	 * @param string $path original source file path
+	 * @return resouce
+	 * @throws LogicException
+	 */
 	public static function patch($path)
 	{
 		if (self::$cache_dir === null)
 		{
-			throw new LogicException('You have to set $cache_dir');
+			throw new LogicException('You have to set "cache_dir"');
 		}
 
 		// Check cache file

@@ -59,15 +59,8 @@ class CIPHPUnitTest
 			new CI_Controller();
 		}
 
-		require APPPATH . '/tests/TestCase.php';
-
 		// Restore $_SERVER
 		$_SERVER = $_server_backup;
-
-		if (isset(TestCase::$enable_patcher) && TestCase::$enable_patcher)
-		{
-			self::enablePatcher();
-		}
 	}
 
 	protected static function replaceLoader()
@@ -101,35 +94,7 @@ class CIPHPUnitTest
 		require __DIR__ . '/exceptions/CIPHPUnitTestShow404Exception.php';
 		require __DIR__ . '/exceptions/CIPHPUnitTestShowErrorException.php';
 		require __DIR__ . '/exceptions/CIPHPUnitTestExitException.php';
-	}
-
-	protected static function enablePatcher()
-	{
-		require __DIR__ . '/patcher/bootstrap.php';
-
-		self::setDirToPatch();
-
-		if (isset(TestCase::$patcher_list))
-		{
-			CIPHPUnitTestPatcher::setPatcherList(TestCase::$patcher_list);
-		}
-
-		self::setPatcherCacheDir();
-	}
-
-	protected static function setDirToPatch()
-	{
-		CIPHPUnitTestPatcher::setIncludePaths(
-			[
-				APPPATH,
-			]
-		);
-		CIPHPUnitTestPatcher::setExcludePaths(
-			[
-				APPPATH . '../vendor/',
-				APPPATH . 'tests/',
-			]
-		);
+		require APPPATH . '/tests/TestCase.php';
 	}
 
 	public static function setPatcherCacheDir($dir = null)

@@ -12,17 +12,17 @@ class CIPHPUnitTestFunctionPatcherProxy
 {
 	private static $mocks = [];
 
-	public static function mock($function, $returnValue)
+	public static function patch__($function, $return_value)
 	{
 		if (CIPHPUnitTestFunctionPatcher::isBlacklisted($function))
 		{
 			throw new LogicException('Can\'t patch on ' . $function);
 		}
 
-		self::$mocks[$function] = $returnValue;
+		self::$mocks[$function] = $return_value;
 	}
 
-	public static function reset()
+	public static function reset__()
 	{
 		self::$mocks = [];
 	}
@@ -41,5 +41,26 @@ class CIPHPUnitTestFunctionPatcherProxy
 		}
 
 		return call_user_func_array($function, $arguments);
+	}
+
+	public static function preg_replace(
+		$pattern, $replacement, $subject, $limit = -1, &$count
+	)
+	{
+		if (isset(self::$mocks['preg_replace']))
+		{
+			if (is_callable(self::$mocks['preg_replace']))
+			{
+				$callable = self::$mocks['preg_replace'];
+				return call_user_func_array(
+					$callable,
+					[$pattern, $replacement, $subject, $limit, &$count]
+				);
+			}
+
+			return self::$mocks['preg_replace'];
+		}
+
+		return preg_replace($pattern, $replacement, $subject, $limit, $count);
 	}
 }
