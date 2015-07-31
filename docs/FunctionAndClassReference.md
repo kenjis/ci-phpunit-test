@@ -360,7 +360,7 @@ This method is called on `TestCase::tearDown()` by default. So you don't have to
 |`$classname` | string | class name to patch           |
 |`$params`    | array  | [method_name => return_value] |
 
-Replace method in user-defined classes on the fly.
+Replace method in user-defined class on the fly.
 
 #### `MonkeyPatch::resetMethods()`
 
