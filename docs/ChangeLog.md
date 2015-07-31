@@ -4,7 +4,8 @@
 
 ### Added
 
-* Monkey Patching on functions. See [#35](https://github.com/kenjis/ci-phpunit-test/pull/35).
+* Monkey Patching on functions. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#patching-functions).
+* Monkey Patching on methods in user-defined classes. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#patching-methods-in-user-defined-classes).
 
 ## v0.5.0 (2015/07/27)
 

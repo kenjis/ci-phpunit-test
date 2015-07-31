@@ -336,6 +336,8 @@ Restore error reporting.
 
 ### *class* MonkeyPatch
 
+To use this class, you have to enable monkey patching. See [How to Write Tests](HowToWriteTests.md#monkey-patching).
+
 #### `MonkeyPatch::patchFunction($function, $return_value)`
 
 | param         | type   | description             |
@@ -345,15 +347,11 @@ Restore error reporting.
 
 Replace function on the fly.
 
-To use this, you have to enable monkey patching. See [How to Write Tests](HowToWriteTests.md#monkey-patching).
-
 #### `MonkeyPatch::resetFunctions()`
 
 Reset all patched functions.
 
 This method is called on `TestCase::tearDown()` by default. So you don't have to call it normally.
-
-To use this, you have to enable monkey patching. See [How to Write Tests](HowToWriteTests.md#monkey-patching).
 
 #### `MonkeyPatch::patchMethod($classname, $params)`
 
@@ -364,12 +362,8 @@ To use this, you have to enable monkey patching. See [How to Write Tests](HowToW
 
 Replace method in user-defined classes on the fly.
 
-To use this, you have to enable monkey patching. See [How to Write Tests](HowToWriteTests.md#monkey-patching).
-
 #### `MonkeyPatch::resetMethods()`
 
 Reset all patched class methods.
 
 This method is called on `TestCase::tearDown()` by default. So you don't have to call it normally.
-
-To use this, you have to enable monkey patching. See [How to Write Tests](HowToWriteTests.md#monkey-patching).
