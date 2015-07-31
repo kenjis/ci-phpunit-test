@@ -105,20 +105,16 @@ class CIPHPUnitTest
 
 	protected static function enablePatcher()
 	{
-		require __DIR__ . '/patcher/CIPHPUnitTestIncludeStream.php';
-		require __DIR__ . '/patcher/CIPHPUnitTestPatchPathChecker.php';
-		require __DIR__ . '/patcher/CIPHPUnitTestPatcher.php';
-
-		// Register include stream wrapper for monkey patching
-		CIPHPUnitTestPatcher::wrap();
+		require __DIR__ . '/patcher/bootstrap.php';
 
 		self::setDirToPatch();
-		self::setPatcherCacheDir();
 
 		if (isset(TestCase::$patcher_list))
 		{
 			CIPHPUnitTestPatcher::setPatcherList(TestCase::$patcher_list);
 		}
+
+		self::setPatcherCacheDir();
 	}
 
 	protected static function setDirToPatch()

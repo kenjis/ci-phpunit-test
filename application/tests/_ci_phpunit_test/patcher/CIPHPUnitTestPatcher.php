@@ -19,10 +19,21 @@ class CIPHPUnitTestPatcher
 	private static $patcher_list = [
 		'ExitPatcher',
 		'FunctionPatcher',
+		'MethodPatcher',
 	];
+
+	public static function isEnabled($patcher)
+	{
+		return in_array($patcher, self::$patcher_list);
+	}
 
 	public static function setPatcherList(array $list)
 	{
+		if (self::$load_patchers)
+		{
+			throw new LogicException('Can\'t change patcher list after setting cache dir');
+		}
+
 		self::$patcher_list = $list;
 	}
 

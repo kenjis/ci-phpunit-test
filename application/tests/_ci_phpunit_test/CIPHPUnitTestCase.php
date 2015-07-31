@@ -40,11 +40,41 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	public static function setUpBeforeClass()
 	{
 		// Fix CLI args, because you may set invalid URI characters
-		// For example, you run tests on NetBeans
+		// For example, when you run tests on NetBeans
 		$_SERVER['argv'] = [
 			'index.php',
 		];
 		$_SERVER['argc'] = 1;
+	}
+
+	public function tearDown()
+	{
+		if (class_exists('MonkeyPatch'))
+		{
+			if (CIPHPUnitTestPatcher::isEnabled('FunctionPatcher'))
+			{
+				MonkeyPatch::resetFunctions();
+			}
+
+			try {
+				if (CIPHPUnitTestPatcher::isEnabled('MethodPatcher'))
+				{
+					MonkeyPatch::verifyInvocations();
+				}
+			} catch (Exception $e) {
+				if (CIPHPUnitTestPatcher::isEnabled('MethodPatcher'))
+				{
+					MonkeyPatch::resetMethods();
+				}
+
+				throw $e;
+			}
+
+			if (CIPHPUnitTestPatcher::isEnabled('MethodPatcher'))
+			{
+				MonkeyPatch::resetMethods();
+			}
+		}
 	}
 
 	/**
@@ -163,25 +193,6 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	public function verifyNeverInvoked($mock, $method, $params = null)
 	{
 		$this->double->verifyNeverInvoked($mock, $method, $params);
-	}
-
-	/**
-	 * Patch on function
-	 * 
-	 * @param string $function     function name
-	 * @param mixed  $return_value return value
-	 */
-	public function patchFunction($function, $return_value)
-	{
-		CIPHPUnitTestFunctionPatcherProxy::mock($function, $return_value);
-	}
-
-	/**
-	 * Reset all patched fuctions
-	 */
-	public function resetFunctionPatches()
-	{
-		CIPHPUnitTestFunctionPatcherProxy::reset();
 	}
 
 	public function warningOff()
