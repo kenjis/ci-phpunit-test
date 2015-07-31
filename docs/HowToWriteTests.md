@@ -33,7 +33,8 @@ version: **master** |
 - [Mock Libraries](#mock-libraries)
 - [Monkey Patching](#monkey-patching)
 	- [Converting `exit()` to Exception](#converting-exit-to-exception)
-	- [Mocking Functions](#mocking-functions)
+	- [Patching Functions](#patching-functions)
+	- [Patching Methods in User-defined Classes](#patching-methods-in-user-defined-classes)
 - [More Samples](#more-samples)
 
 ### Introduction
@@ -563,8 +564,8 @@ Mock library class name must be `Mock_Libraries_*`, and it is autoloaded.
 *CI PHPUnit Test* has three monkey patchers.
 
 * Converting `exit()` to Exception (`ExitPatcher`)
-* Mocking Functions (`FunctionPatcher`)
-* Mocking Methods in User-defined Classes (`MethodPatcher`)
+* Patching Functions (`FunctionPatcher`)
+* Patching Methods in User-defined Classes (`MethodPatcher`)
 
 To enable monkey patching, set static property `$enable_patcher` `true` in `TestCase` class:
 
@@ -625,7 +626,7 @@ A test case could be like this:
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Exit_to_exception_test.php).
 
-#### Mocking Functions
+#### Patching Functions
 
 This patcher allows replacement of functions that can't be mocked by PHPUnit.
 
@@ -642,7 +643,7 @@ This patcher allows replacement of functions that can't be mocked by PHPUnit.
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Patching_on_function_test.php).
 
-#### Mocking Methods in User-defined Classes
+#### Patching Methods in User-defined Classes
 
 This patcher allows replacement of methods in user-defined classes.
 

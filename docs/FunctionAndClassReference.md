@@ -28,7 +28,9 @@ version: **master** |
 	- [`TestCase::warningOn()`](#testcasewarningon)
 - [*class* MonkeyPatch](#class-monkeypatch)
 	- [`MonkeyPatch::patchFunction($function, $return_value)`](#monkeypatchpatchfunctionfunction-return_value)
-	- [`MonkeyPatch::resetFunctionPatches()`](#monkeypatchresetfunctionpatches)
+	- [`MonkeyPatch::resetFunctions()`](#monkeypatchresetfunctions)
+	- [`MonkeyPatch::patchMethod($classname, $params)`](#monkeypatchpatchmethodclassname-params)
+	- [`MonkeyPatch::resetMethods()`](#monkeypatchresetmethods)
 
 ### *function* `reset_instance()`
 
