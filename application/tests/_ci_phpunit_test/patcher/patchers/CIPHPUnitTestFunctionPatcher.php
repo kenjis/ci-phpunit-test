@@ -26,9 +26,11 @@ class CIPHPUnitTestFunctionPatcher
 		'get_config',
 		'load_class',
 		'get_mimes',
+		'_get_validation_object',
 		// has reference param
 		'preg_replace',
 		'preg_match',
+		'preg_match_all',
 		'array_unshift',
 		'array_shift',
 		'sscanf',
