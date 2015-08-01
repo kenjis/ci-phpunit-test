@@ -169,6 +169,8 @@ Test case class extends [TestCase](FunctionAndClassReference.md#class-testcase) 
 
 Don't forget to write `parent::setUpBeforeClass();` if you override `setUpBeforeClass()` method.
 
+Don't forget to write `parent::tearDown();` if you override `tearDown()` method.
+
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/models/Category_model_test.php).
 
 #### Database Seeding
