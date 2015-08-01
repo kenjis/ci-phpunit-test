@@ -19,7 +19,9 @@
  * @see        https://github.com/antecedent/patchwork/blob/1.3.4/src/Preprocessor/Stream.php
  */
 
-class CIPHPUnitTestIncludeStream
+namespace Kenjis\MonkeyPatch;
+
+class IncludeStream
 {
 	const STREAM_OPEN_FOR_INCLUDE = 128;
 
@@ -45,12 +47,12 @@ class CIPHPUnitTestIncludeStream
 
 	protected function shouldPreprocess($path)
 	{
-		return CIPHPUnitTestPatchPathChecker::check($path);
+		return PathChecker::check($path);
 	}
 
 	protected function preprocessAndOpen($path)
 	{
-		return CIPHPUnitTestPatcher::patch($path);
+		return MonkeyPatchManager::patch($path);
 	}
 
 	public function stream_open($path, $mode, $options, &$openedPath)

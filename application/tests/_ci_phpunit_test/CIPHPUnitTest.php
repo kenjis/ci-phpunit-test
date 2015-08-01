@@ -104,7 +104,7 @@ class CIPHPUnitTest
 			$dir = APPPATH . 'tests/_ci_phpunit_test/tmp/cache';
 		}
 
-		CIPHPUnitTestPatcher::setCacheDir(
+		MonkeyPatchManager::setCacheDir(
 			$dir
 		);
 	}

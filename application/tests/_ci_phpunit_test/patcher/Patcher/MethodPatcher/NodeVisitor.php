@@ -8,11 +8,17 @@
  * @link       https://github.com/kenjis/ci-phpunit-test
  */
 
-use PhpParser\Node\Stmt\ClassMethod;
+namespace Kenjis\MonkeyPatch\Patcher\MethodPatcher;
 
-class CIPHPUnitTestMethodPatcherNodeVisitor extends PhpParser\NodeVisitorAbstract
+use PhpParser\Node;
+use PhpParser\Node\Stmt\ClassMethod;
+use PhpParser\NodeVisitorAbstract;
+
+use Kenjis\MonkeyPatch\Patcher\MethodPatcher;
+
+class NodeVisitor extends NodeVisitorAbstract
 {
-	public function leaveNode(PhpParser\Node $node)
+	public function leaveNode(Node $node)
 	{
 		if (! ($node instanceof ClassMethod))
 		{
@@ -20,6 +26,6 @@ class CIPHPUnitTestMethodPatcherNodeVisitor extends PhpParser\NodeVisitorAbstrac
 		}
 
 		$pos = $node->getAttribute('startTokenPos');
-		CIPHPUnitTestMethodPatcher::$replacement[$pos] = true;
+		MethodPatcher::$replacement[$pos] = true;
 	}
 }

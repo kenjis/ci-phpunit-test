@@ -8,15 +8,23 @@
  * @link       https://github.com/kenjis/ci-phpunit-test
  */
 
-require __DIR__ . '/CIPHPUnitTestMethodPatcher/CIPHPUnitTestMethodPatcherNodeVisitor.php';
-require __DIR__ . '/CIPHPUnitTestMethodPatcher/CIPHPUnitTestMethodPatchManager.php';
+namespace Kenjis\MonkeyPatch\Patcher;
 
-const __GO_ORIG_METHOD__ = '__GO_ORIG_METHOD__';
+require __DIR__ . '/MethodPatcher/NodeVisitor.php';
+require __DIR__ . '/MethodPatcher/PatchManager.php';
 
-class CIPHPUnitTestMethodPatcher
+use LogicException;
+
+use PhpParser\Parser;
+use PhpParser\Lexer;
+use PhpParser\NodeTraverser;
+
+use Kenjis\MonkeyPatch\Patcher\MethodPatcher\NodeVisitor;
+
+class MethodPatcher
 {
 	const CODE = <<<'EOL'
-if (($__ret__ = CIPHPUnitTestMethodPatchManager::getReturn(__CLASS__, __FUNCTION__, func_get_args())) !== __GO_ORIG_METHOD__) return $__ret__;
+if (($__ret__ = __PatchManager__::getReturn(__CLASS__, __FUNCTION__, func_get_args())) !== __GO_ORIG_METHOD__) return $__ret__;
 EOL;
 
 	public static $replacement;
@@ -26,11 +34,11 @@ EOL;
 		$patched = false;
 		self::$replacement = [];
 
-		$parser = new PhpParser\Parser(new PhpParser\Lexer(
+		$parser = new Parser(new Lexer(
 			['usedAttributes' => ['startTokenPos', 'endTokenPos']]
 		));
-		$traverser = new PhpParser\NodeTraverser;
-		$traverser->addVisitor(new CIPHPUnitTestMethodPatcherNodeVisitor());
+		$traverser = new NodeTraverser;
+		$traverser->addVisitor(new NodeVisitor());
 
 		$ast_orig = $parser->parse($source);
 		$traverser->traverse($ast_orig);

@@ -8,13 +8,21 @@
  * @link       https://github.com/kenjis/ci-phpunit-test
  */
 
-class CIPHPUnitTestFunctionPatcherProxy
+namespace Kenjis\MonkeyPatch\Patcher\FunctionPatcher;
+
+class_alias('Kenjis\MonkeyPatch\Patcher\FunctionPatcher\Proxy', '__FuncProxy__');
+
+use LogicException;
+
+use Kenjis\MonkeyPatch\Patcher\FunctionPatcher;
+
+class Proxy
 {
 	private static $mocks = [];
 
 	public static function patch__($function, $return_value)
 	{
-		if (CIPHPUnitTestFunctionPatcher::isBlacklisted($function))
+		if (FunctionPatcher::isBlacklisted($function))
 		{
 			throw new LogicException('Can\'t patch on ' . $function);
 		}

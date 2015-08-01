@@ -8,7 +8,13 @@
  * @link       https://github.com/kenjis/ci-phpunit-test
  */
 
-class CIPHPUnitTestMethodPatchManager
+namespace Kenjis\MonkeyPatch\Patcher\MethodPatcher;
+
+class_alias('Kenjis\MonkeyPatch\Patcher\MethodPatcher\PatchManager', '__PatchManager__');
+
+use PHPUnit_Framework_TestCase;
+
+class PatchManager
 {
 	private static $patches = [];
 	private static $expected_invocations = [];

@@ -8,7 +8,9 @@
  * @link       https://github.com/kenjis/ci-phpunit-test
  */
 
-class CIPHPUnitTestExitPatcher
+namespace Kenjis\MonkeyPatch\Patcher;
+
+class ExitPatcher
 {
 	public static function patch($source)
 	{

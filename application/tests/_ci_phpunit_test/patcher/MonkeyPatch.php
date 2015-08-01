@@ -8,6 +8,11 @@
  * @link       https://github.com/kenjis/ci-phpunit-test
  */
 
+namespace Kenjis\MonkeyPatch;
+
+use Kenjis\MonkeyPatch\Patcher\FunctionPatcher\Proxy;
+use Kenjis\MonkeyPatch\Patcher\MethodPatcher\PatchManager;
+
 class MonkeyPatch
 {
 	/**
@@ -18,7 +23,7 @@ class MonkeyPatch
 	 */
 	public static function patchFunction($function, $return_value)
 	{
-		CIPHPUnitTestFunctionPatcherProxy::patch__($function, $return_value);
+		Proxy::patch__($function, $return_value);
 	}
 
 	/**
@@ -26,7 +31,7 @@ class MonkeyPatch
 	 */
 	public static function resetFunctions()
 	{
-		CIPHPUnitTestFunctionPatcherProxy::reset__();
+		Proxy::reset__();
 	}
 
 	/**
@@ -37,7 +42,7 @@ class MonkeyPatch
 	 */
 	public static function patchMethod($class, $params)
 	{
-		CIPHPUnitTestMethodPatchManager::set($class, $params);
+		PatchManager::set($class, $params);
 	}
 
 	/**
@@ -45,20 +50,20 @@ class MonkeyPatch
 	 */
 	public static function resetMethods()
 	{
-		CIPHPUnitTestMethodPatchManager::clear();
+		PatchManager::clear();
 	}
 
 	public static function verifyInvokedMultipleTimes(
 		$class_method, $times, $params = null
 	)
 	{
-		CIPHPUnitTestMethodPatchManager::setExpectedInvocations(
+		PatchManager::setExpectedInvocations(
 			$class_method, $times, $params
 		);
 	}
 
 	public static function verifyInvocations()
 	{
-		CIPHPUnitTestMethodPatchManager::verifyInvocations();
+		PatchManager::verifyInvocations();
 	}
 }

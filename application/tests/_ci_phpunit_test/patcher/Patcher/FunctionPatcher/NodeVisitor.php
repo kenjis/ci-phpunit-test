@@ -19,13 +19,22 @@
  * @see        https://github.com/adri/monkey/blob/dfbb93ae09a2c0712f43eab7ced76d3f49989fbe/testTest.php
  */
 
+namespace Kenjis\MonkeyPatch\Patcher\FunctionPatcher;
+
+use ReflectionFunction;
+use ReflectionException;
+
+use PhpParser\Node;
 use PhpParser\Node\Expr\FuncCall;
 use PhpParser\Node\Name;
 use PhpParser\Node\Name\FullyQualified;
+use PhpParser\NodeVisitorAbstract;
 
-class CIPHPUnitTestFunctionPatcherNodeVisitor extends PhpParser\NodeVisitorAbstract
+use Kenjis\MonkeyPatch\Patcher\FunctionPatcher;
+
+class NodeVisitor extends NodeVisitorAbstract
 {
-	public function leaveNode(PhpParser\Node $node)
+	public function leaveNode(Node $node)
 	{
 		if (! ($node instanceof FuncCall))
 		{
@@ -39,16 +48,16 @@ class CIPHPUnitTestFunctionPatcherNodeVisitor extends PhpParser\NodeVisitorAbstr
 
 		if (
 			$node->name->isUnqualified()
-			&& ! CIPHPUnitTestFunctionPatcher::isBlacklisted((string) $node->name)
+			&& ! FunctionPatcher::isBlacklisted((string) $node->name)
 		) {
 			$replacement = new FullyQualified(array());
 			$replacement->set(
-				'CIPHPUnitTestFunctionPatcherProxy::' . (string) $node->name
+				'\__FuncProxy__::' . (string) $node->name
 			);
 
 			$pos = $node->getAttribute('startTokenPos');
-			CIPHPUnitTestFunctionPatcher::$replacement[$pos] = 
-				'\CIPHPUnitTestFunctionPatcherProxy::' . (string) $node->name;
+			FunctionPatcher::$replacement[$pos] = 
+				'\__FuncProxy__::' . (string) $node->name;
 
 			$node->name = $replacement;
 		}

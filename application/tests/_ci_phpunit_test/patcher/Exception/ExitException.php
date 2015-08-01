@@ -8,7 +8,11 @@
  * @link       https://github.com/kenjis/ci-phpunit-test
  */
 
-class CIPHPUnitTestExitException extends RuntimeException
+namespace Kenjis\MonkeyPatch\Exception;
+
+use RuntimeException;
+
+class ExitException extends RuntimeException
 {
 	public $file;
 	public $line;

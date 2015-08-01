@@ -8,7 +8,11 @@
  * @link       https://github.com/kenjis/ci-phpunit-test
  */
 
-class CIPHPUnitTestPatchPathChecker
+namespace Kenjis\MonkeyPatch;
+
+use RuntimeException;
+
+class PathChecker
 {
 	private static $include_paths = [];
 	private static $exclude_paths = [];
