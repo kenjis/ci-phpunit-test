@@ -191,7 +191,7 @@ class MonkeyPatchManager
 
 	/**
 	 * @param string $path original source file path
-	 * @return resouce
+	 * @return resource
 	 * @throws LogicException
 	 */
 	public static function patch($path)

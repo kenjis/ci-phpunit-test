@@ -572,7 +572,7 @@ To enable monkey patching, uncomment below code in `tests/Bootstrap.php` and con
 ~~~php
 /*
 require __DIR__ . '/_ci_phpunit_test/patcher/bootstrap.php';
-CIPHPUnitTestPatcher::init([
+MonkeyPatchManager::init([
 	'cache_dir' => APPPATH . 'tests/_ci_phpunit_test/tmp/cache',
 	// Directories to patch on source files
 	'include_paths' => [
@@ -606,7 +606,7 @@ Add the above code before
  */
 ~~~
 
-in `tests/Bootstrap.php`
+in `tests/Bootstrap.php`.
 
 `TestCase::$enable_patcher` was removed. Please remove it.
 
