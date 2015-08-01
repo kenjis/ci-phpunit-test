@@ -647,6 +647,8 @@ See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/m
 
 This patcher allows replacement of functions that can't be mocked by PHPUnit.
 
+It can't replace functions which has parameters passed by reference.
+
 ~~~php
 	public function test_index()
 	{
