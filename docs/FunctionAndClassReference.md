@@ -347,6 +347,10 @@ To use this class, you have to enable monkey patching. See [How to Write Tests](
 
 Replace function on the fly.
 
+This can't replace functions which has parameters passed by reference.
+
+And it can't and doesn't replace some functions. See [FunctionPatcher::$blacklist](It can't replace functions which has parameters passed by reference.) for details.
+
 #### `MonkeyPatch::resetFunctions()`
 
 Reset all patched functions.
