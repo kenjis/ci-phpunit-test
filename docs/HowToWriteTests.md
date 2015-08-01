@@ -563,11 +563,11 @@ Mock library class name must be `Mock_Libraries_*`, and it is autoloaded.
 
 *CI PHPUnit Test* has three monkey patchers.
 
-* Converting `exit()` to Exception (`ExitPatcher`)
-* Patching Functions (`FunctionPatcher`)
-* Patching Methods in User-defined Classes (`MethodPatcher`)
+* `ExitPatcher`: Converting `exit()` to Exception
+* `FunctionPatcher`: Patching Functions
+* `MethodPatcher`: Patching Methods in User-defined Classes
 
-To enable monkey patching, uncommnet below code in `tests/Bootstrap.php` and configure paths:
+To enable monkey patching, uncomment below code in `tests/Bootstrap.php` and configure paths:
 
 ~~~php
 /*
@@ -590,6 +590,7 @@ CIPHPUnitTestPatcher::init([
 		'MethodPatcher',
 	],
 ]);
+MonkeyPatchManager::setExitExceptionName('CIPHPUnitTestExitException');
 */
 ~~~
 
