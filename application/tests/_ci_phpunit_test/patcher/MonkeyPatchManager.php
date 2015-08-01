@@ -13,13 +13,15 @@ namespace Kenjis\MonkeyPatch;
 use LogicException;
 use RuntimeException;
 
+use Kenjis\MonkeyPatch\Patcher\FunctionPatcher;
+
 class MonkeyPatchManager
 {
 	private static $cache_dir;
 	private static $load_patchers = false;
 	private static $exit_exception_name = 
 		'Kenjis\MonkeyPatch\Exception\ExitException';
-	
+	private static $tmp_blacklist_file;
 	/**
 	 * @var array list of patcher classname
 	 */
@@ -64,6 +66,37 @@ class MonkeyPatchManager
 		}
 
 		self::loadPatchers();
+		self::createTmpBlacklistFile();
+		self::addTmpBlacklist();
+	}
+
+	public static function getTmpBlacklistFile()
+	{
+		return self::$tmp_blacklist_file;
+	}
+
+	protected static function addTmpBlacklist()
+	{
+		$list = file(self::$tmp_blacklist_file);
+		foreach ($list as $function)
+		{
+			FunctionPatcher::addBlacklist(trim($function));
+		}
+	}
+
+	protected static function createTmpBlacklistFile()
+	{
+		$tmp_blacklist = self::getCacheDir() . '/conf/func_blacklist.php';
+		self::$tmp_blacklist_file = $tmp_blacklist;
+
+		if (is_readable($tmp_blacklist))
+		{
+			return;
+		}
+
+		$dir = dirname($tmp_blacklist);
+		self::createDir($dir);
+		touch($tmp_blacklist);
 	}
 
 	public static function isEnabled($patcher)
@@ -75,7 +108,7 @@ class MonkeyPatchManager
 	{
 		if (self::$load_patchers)
 		{
-			throw new LogicException('Can\'t change patcher list after setting cache dir');
+			throw new LogicException('Can\'t change patcher list after init');
 		}
 
 		self::$patcher_list = $list;
@@ -83,8 +116,9 @@ class MonkeyPatchManager
 
 	public static function setCacheDir($dir)
 	{
-		self::$cache_dir = $dir;
 		self::createDir($dir);
+		self::$cache_dir = realpath($dir);
+		
 	}
 
 	public static function getCacheDir()
@@ -127,9 +161,9 @@ class MonkeyPatchManager
 	 * @param string $path original source file path
 	 * @return boolean
 	 */
-	protected static function hasValidCache($path)
+	protected static function hasValidSrcCache($path)
 	{
-		$cache_file = self::getCacheFilePath($path);
+		$cache_file = self::getSrcCacheFilePath($path);
 
 		if (
 			is_readable($cache_file) && filemtime($cache_file) > filemtime($path)
@@ -141,12 +175,18 @@ class MonkeyPatchManager
 		return false;
 	}
 
-	protected static function getCacheFilePath($path)
+	public static function getSrcCacheFilePath($path)
 	{
 		$root = realpath(APPPATH . '../');
 		$len = strlen($root);
 		$relative_path = substr($path, $len);
-		return self::$cache_dir . $relative_path;
+
+		if ($relative_path === false)
+		{
+			return false;
+		}
+
+		return self::$cache_dir . '/src' . $relative_path;
 	}
 
 	/**
@@ -161,10 +201,15 @@ class MonkeyPatchManager
 			throw new LogicException('You have to set "cache_dir"');
 		}
 
-		// Check cache file
-		if (self::hasValidCache($path))
+		if (! is_readable($path))
 		{
-			return fopen(self::getCacheFilePath($path), 'r');
+			throw new LogicException('Can\'t read "' . $path . '"');
+		}
+
+		// Check cache file
+		if (self::hasValidSrcCache($path))
+		{
+			return fopen(self::getSrcCacheFilePath($path), 'r');
 		}
 
 		$source = file_get_contents($path);
@@ -172,7 +217,7 @@ class MonkeyPatchManager
 		list($new_source, $patched) = self::execPatchers($source);
 
 		// Write to cache file
-		self::writeCacheFile($path, $new_source);
+		self::writeSrcCacheFile($path, $new_source);
 
 		$resource = fopen('php://memory', 'rb+');
 		fwrite($resource, $new_source);
@@ -184,12 +229,23 @@ class MonkeyPatchManager
 	 * @param string $path   original source file path
 	 * @param string $source source code
 	 */
-	protected static function writeCacheFile($path, $source)
+	protected static function writeSrcCacheFile($path, $source)
 	{
-		$cache_file = self::getCacheFilePath($path);
-		$dir = dirname($cache_file);
+		$cache_file = self::getSrcCacheFilePath($path);
+		self::writeCacheFile($cache_file, $source);
+	}
+
+	/**
+	 * Write to cache file
+	 * 
+	 * @param string $path   file path
+	 * @param string $contents file contents
+	 */
+	public static function writeCacheFile($path, $contents)
+	{
+		$dir = dirname($path);
 		self::createDir($dir);
-		file_put_contents($cache_file, $source);
+		file_put_contents($path, $contents);
 	}
 
 	protected static function loadPatchers()

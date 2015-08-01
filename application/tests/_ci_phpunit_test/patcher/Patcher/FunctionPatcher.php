@@ -46,6 +46,9 @@ class FunctionPatcher
 		'sscanf',
 		'ksort',
 		'krsort',
+		'str_ireplace',
+		'str_replace',
+		'is_callable',
 		// Special functions for ci-phpunit-test
 		'show_404',
 		'show_error',

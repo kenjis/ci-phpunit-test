@@ -62,19 +62,4 @@ class NodeVisitor extends NodeVisitorAbstract
 			$node->name = $replacement;
 		}
 	}
-
-	/**
-	 * @param string $name
-	 * @return bool
-	 */
-	protected function isInternalFunction($name)
-	{
-		try {
-			$ref_func = new ReflectionFunction($name);
-			return $ref_func->isInternal();
-		} catch (ReflectionException $e) {
-			// ReflectionException: Function xxx() does not exist
-			return false;
-		}
-	}
 }
