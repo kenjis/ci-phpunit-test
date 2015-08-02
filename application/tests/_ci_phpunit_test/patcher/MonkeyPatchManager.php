@@ -53,6 +53,10 @@ class MonkeyPatchManager
 
 	public static function init(array $config)
 	{
+		if (isset($config['debug']))
+		{
+			self::$debug = $config['debug'];
+		}
 		if (self::$debug)
 		{
 			self::$log_file = __DIR__ . '/debug.log';
