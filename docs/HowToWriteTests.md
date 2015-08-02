@@ -589,8 +589,10 @@ MonkeyPatchManager::init([
 		'FunctionPatcher',
 		'MethodPatcher',
 	],
+	'exit_exception_classname' => [
+		'CIPHPUnitTestExitException',
+	],
 ]);
-MonkeyPatchManager::setExitExceptionName('CIPHPUnitTestExitException');
 */
 ~~~
 
