@@ -36,11 +36,9 @@ class MonkeyPatchManager
 
 	public static function log($message)
 	{
-		IncludeStream::unwrap();
 		$time = date('Y-m-d H:i:s');
 		$log = "[$time] $message\n";
 		file_put_contents(self::$log_file, $log, FILE_APPEND | LOCK_EX);
-		IncludeStream::wrap();
 	}
 
 	public static function setExitExceptionClassname($name)
@@ -233,7 +231,7 @@ class MonkeyPatchManager
 		{
 			if (MonkeyPatchManager::$debug)
 			{
-				$message = 'cache hit: ' . $path;
+				$message = 'cache_hit: ' . $path;
 				MonkeyPatchManager::log($message);
 			}
 
@@ -242,7 +240,7 @@ class MonkeyPatchManager
 
 		if (MonkeyPatchManager::$debug)
 		{
-			$message = 'cache miss: ' . $path;
+			$message = 'cache_miss: ' . $path;
 			MonkeyPatchManager::log($message);
 		}
 		$source = file_get_contents($path);
