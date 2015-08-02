@@ -57,6 +57,12 @@ class IncludeStream
 
 	public function stream_open($path, $mode, $options, &$openedPath)
 	{
+		if (MonkeyPatchManager::$debug)
+		{
+			$message = 'stream_open: ' . $path;
+			MonkeyPatchManager::log($message);
+		}
+
 		$this->unwrap();
 		$including = (bool) ($options & self::STREAM_OPEN_FOR_INCLUDE);
 		if ($including && $this->shouldPreprocess($path)) {

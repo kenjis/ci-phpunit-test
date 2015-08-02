@@ -17,6 +17,9 @@ use Kenjis\MonkeyPatch\Patcher\FunctionPatcher;
 
 class MonkeyPatchManager
 {
+	public static $debug = false;
+
+	private static $log_file;
 	private static $cache_dir;
 	private static $load_patchers = false;
 	private static $exit_exception_classname = 
@@ -31,6 +34,15 @@ class MonkeyPatchManager
 		'MethodPatcher',
 	];
 
+	public static function log($message)
+	{
+		IncludeStream::unwrap();
+		$time = date('Y-m-d H:i:s');
+		$log = "[$time] $message\n";
+		file_put_contents(self::$log_file, $log, FILE_APPEND | LOCK_EX);
+		IncludeStream::wrap();
+	}
+
 	public static function setExitExceptionClassname($name)
 	{
 		self::$exit_exception_classname = $name;
@@ -43,6 +55,11 @@ class MonkeyPatchManager
 
 	public static function init(array $config)
 	{
+		if (self::$debug)
+		{
+			self::$log_file = __DIR__ . '/debug.log';
+		}
+
 		if (! isset($config['cache_dir']))
 		{
 			throw new LogicException('You have to set "cache_dir"');
@@ -214,14 +231,30 @@ class MonkeyPatchManager
 		// Check cache file
 		if (self::hasValidSrcCache($path))
 		{
+			if (MonkeyPatchManager::$debug)
+			{
+				$message = 'cache hit: ' . $path;
+				MonkeyPatchManager::log($message);
+			}
+
 			return fopen(self::getSrcCacheFilePath($path), 'r');
 		}
 
+		if (MonkeyPatchManager::$debug)
+		{
+			$message = 'cache miss: ' . $path;
+			MonkeyPatchManager::log($message);
+		}
 		$source = file_get_contents($path);
 
 		list($new_source, $patched) = self::execPatchers($source);
 
 		// Write to cache file
+		if (MonkeyPatchManager::$debug)
+		{
+			$message = 'write cache: ' . $path;
+			MonkeyPatchManager::log($message);
+		}
 		self::writeSrcCacheFile($path, $new_source);
 
 		$resource = fopen('php://memory', 'rb+');
