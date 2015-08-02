@@ -314,9 +314,7 @@ MonkeyPatchManager::init([
 		'FunctionPatcher',
 		'MethodPatcher',
 	],
-	'exit_exception_classname' => [
-		'CIPHPUnitTestExitException',
-	],
+	'exit_exception_classname' => 'CIPHPUnitTestExitException',
 ]);
 */
 

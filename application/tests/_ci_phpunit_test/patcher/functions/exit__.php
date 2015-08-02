@@ -25,7 +25,7 @@ function exit__($status = null)
 		$message = 'exit() called in ' . $class . '::' . $method . '()';
 	}
 
-	$exception_name = Kenjis\MonkeyPatch\MonkeyPatchManager::getExitExceptionName();
+	$exception_name = Kenjis\MonkeyPatch\MonkeyPatchManager::getExitExceptionClassname();
 	$exception = new $exception_name($message);
 	$exception->file = $file;
 	$exception->line = $line;

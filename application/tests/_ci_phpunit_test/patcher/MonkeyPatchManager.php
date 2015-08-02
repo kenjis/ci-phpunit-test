@@ -36,7 +36,7 @@ class MonkeyPatchManager
 		self::$exit_exception_classname = $name;
 	}
 
-	public static function getExitExceptionName()
+	public static function getExitExceptionClassname()
 	{
 		return self::$exit_exception_classname;
 	}
