@@ -308,7 +308,7 @@ MonkeyPatchManager::init([
 	'exclude_paths' => [
 		APPPATH . 'tests/',
 	],
-	// All patchers you use
+	// All patchers you use. If you change this, remove all cache files in "cache_dir" above
 	'patcher_list' => [
 		'ExitPatcher',
 		'FunctionPatcher',
