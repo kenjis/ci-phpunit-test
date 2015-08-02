@@ -19,7 +19,7 @@ class MonkeyPatchManager
 {
 	private static $cache_dir;
 	private static $load_patchers = false;
-	private static $exit_exception_name = 
+	private static $exit_exception_classname = 
 		'Kenjis\MonkeyPatch\Exception\ExitException';
 	private static $tmp_blacklist_file;
 	/**
@@ -31,14 +31,14 @@ class MonkeyPatchManager
 		'MethodPatcher',
 	];
 
-	public static function setExitExceptionName($name)
+	public static function setExitExceptionClassname($name)
 	{
-		self::$exit_exception_name = $name;
+		self::$exit_exception_classname = $name;
 	}
 
 	public static function getExitExceptionName()
 	{
-		return self::$exit_exception_name;
+		return self::$exit_exception_classname;
 	}
 
 	public static function init(array $config)
@@ -63,6 +63,11 @@ class MonkeyPatchManager
 		if (isset($config['patcher_list']))
 		{
 			self::setPatcherList($config['patcher_list']);
+		}
+
+		if (isset($config['exit_exception_classname']))
+		{
+			self::setExitExceptionClassname($config['exit_exception_classname']);
 		}
 
 		self::loadPatchers();
