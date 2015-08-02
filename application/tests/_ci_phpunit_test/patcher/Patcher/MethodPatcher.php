@@ -28,7 +28,7 @@ use Kenjis\MonkeyPatch\Patcher\MethodPatcher\NodeVisitor;
 class MethodPatcher
 {
 	const CODE = <<<'EOL'
-if (($__ret__ = __PatchManager__::getReturn(__CLASS__, __FUNCTION__, func_get_args())) !== __GO_ORIG_METHOD__) return $__ret__;
+if (($__ret__ = __\PatchManager__::getReturn(__CLASS__, __FUNCTION__, func_get_args())) !== __GO_ORIG_METHOD__) return $__ret__;
 EOL;
 
 	public static $replacement;
