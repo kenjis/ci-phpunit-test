@@ -257,8 +257,8 @@ class MonkeyPatchManager
 		// Write to cache file
 		if (self::$debug)
 		{
-			$message = 'write cache: ' . $path;
-			self::log($message);
+			$message = 'write_cache: ' . $path;
+			MonkeyPatchManager::log($message);
 		}
 		self::writeSrcCacheFile($path, $new_source);
 
