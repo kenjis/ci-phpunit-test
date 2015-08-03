@@ -62,6 +62,30 @@ class MonkeyPatch
 		);
 	}
 
+	public static function verifyInvoked($class_method, $params = null)
+	{
+		PatchManager::setExpectedInvocations(
+			$class_method, '+', $params
+		);
+	}
+
+	public static function verifyInvokedOnce($class_method, $params = null)
+	{
+		PatchManager::setExpectedInvocations(
+			$class_method, 1, $params
+		);
+	}
+
+	public static function verifyNeverInvoked($class_method, $params = null)
+	{
+		PatchManager::setExpectedInvocations(
+			$class_method, 0, $params
+		);
+	}
+
+	/**
+	 * Run verifcations
+	 */
 	public static function verifyInvocations()
 	{
 		PatchManager::verifyInvocations();
