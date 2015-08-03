@@ -56,22 +56,15 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 				MonkeyPatch::resetFunctions();
 			}
 
-			try {
-				if (MonkeyPatchManager::isEnabled('MethodPatcher'))
-				{
-					MonkeyPatch::verifyInvocations();
-				}
-			} catch (Exception $e) {
-				if (MonkeyPatchManager::isEnabled('MethodPatcher'))
-				{
-					MonkeyPatch::resetMethods();
-				}
-
-				throw $e;
-			}
-
 			if (MonkeyPatchManager::isEnabled('MethodPatcher'))
 			{
+				try {
+					MonkeyPatch::verifyInvocations();
+				} catch (Exception $e) {
+					MonkeyPatch::resetMethods();
+					throw $e;
+				}
+
 				MonkeyPatch::resetMethods();
 			}
 		}
