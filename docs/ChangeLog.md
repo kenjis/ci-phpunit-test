@@ -6,6 +6,10 @@
 
 * How to enable Monkey Patching has been changed. `TestCase::$enable_patcher` was removed. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#monkey-patching).
 
+### Removed
+
+* `TestCase::$enable_patcher`
+
 ### Added
 
 * Monkey Patching on functions. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#patching-functions).

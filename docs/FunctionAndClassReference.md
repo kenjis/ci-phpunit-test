@@ -353,7 +353,7 @@ Replace function on the fly.
 
 This can't replace functions which has parameters passed by reference.
 
-And it can't and doesn't replace some functions. See [FunctionPatcher::$blacklist](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/_ci_phpunit_test/patcher/Patcher/FunctionPatcher.php#L30) for details.
+And it can't and doesn't replace some functions. See [FunctionPatcher::$blacklist](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/_ci_phpunit_test/patcher/Patcher/FunctionPatcher.php#L33) for details.
 
 #### `MonkeyPatch::resetFunctions()`
 
