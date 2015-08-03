@@ -52,10 +52,12 @@ class FunctionPatcher
 		'str_ireplace',
 		'str_replace',
 		'is_callable',
+		'flock',
+		'end',
 		// Special functions for ci-phpunit-test
 		'show_404',
 		'show_error',
-		'redirect'
+		'redirect',
 	];
 
 	public static $replacement;
