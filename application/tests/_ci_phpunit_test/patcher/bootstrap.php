@@ -20,9 +20,6 @@ const __GO_ORIG_METHOD__ = '__GO_ORIG_METHOD__';
 class_alias('Kenjis\MonkeyPatch\MonkeyPatch', 'MonkeyPatch');
 class_alias('Kenjis\MonkeyPatch\MonkeyPatchManager', 'MonkeyPatchManager');
 
-// Register include stream wrapper for monkey patching
-MonkeyPatchManager::wrap();
-
 // And you have to configure for your application
 //MonkeyPatchManager::init([
 //	'cache_dir' => APPPATH . 'tests/_ci_phpunit_test/tmp/cache',

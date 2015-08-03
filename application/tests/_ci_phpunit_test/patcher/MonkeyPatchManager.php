@@ -92,6 +92,9 @@ class MonkeyPatchManager
 		self::loadPatchers();
 		self::createTmpBlacklistFile();
 		self::addTmpBlacklist();
+
+		// Register include stream wrapper for monkey patching
+		self::wrap();
 	}
 
 	public static function getTmpBlacklistFile()
@@ -233,29 +236,29 @@ class MonkeyPatchManager
 		// Check cache file
 		if (self::hasValidSrcCache($path))
 		{
-			if (MonkeyPatchManager::$debug)
+			if (self::$debug)
 			{
 				$message = 'cache_hit: ' . $path;
-				MonkeyPatchManager::log($message);
+				self::log($message);
 			}
 
 			return fopen(self::getSrcCacheFilePath($path), 'r');
 		}
 
-		if (MonkeyPatchManager::$debug)
+		if (self::$debug)
 		{
 			$message = 'cache_miss: ' . $path;
-			MonkeyPatchManager::log($message);
+			self::log($message);
 		}
 		$source = file_get_contents($path);
 
 		list($new_source, $patched) = self::execPatchers($source);
 
 		// Write to cache file
-		if (MonkeyPatchManager::$debug)
+		if (self::$debug)
 		{
 			$message = 'write cache: ' . $path;
-			MonkeyPatchManager::log($message);
+			self::log($message);
 		}
 		self::writeSrcCacheFile($path, $new_source);
 
