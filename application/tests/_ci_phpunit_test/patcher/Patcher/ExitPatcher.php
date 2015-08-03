@@ -10,6 +10,8 @@
 
 namespace Kenjis\MonkeyPatch\Patcher;
 
+require __DIR__ . '/../Exception/ExitException.php';
+
 class ExitPatcher
 {
 	public static function patch($source)
