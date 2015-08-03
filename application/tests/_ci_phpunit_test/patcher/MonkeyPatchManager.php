@@ -38,7 +38,7 @@ class MonkeyPatchManager
 	{
 		$time = date('Y-m-d H:i:s');
 		$log = "[$time] $message\n";
-		file_put_contents(self::$log_file, $log, FILE_APPEND | LOCK_EX);
+		file_put_contents(self::$log_file, $log, FILE_APPEND);
 	}
 
 	public static function setExitExceptionClassname($name)
@@ -258,7 +258,7 @@ class MonkeyPatchManager
 		if (self::$debug)
 		{
 			$message = 'write_cache: ' . $path;
-			MonkeyPatchManager::log($message);
+			self::log($message);
 		}
 		self::writeSrcCacheFile($path, $new_source);
 
