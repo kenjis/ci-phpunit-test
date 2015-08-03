@@ -24,6 +24,11 @@ class CIPHPUnitTestRequest
 	protected $CI;
 	
 	/**
+	 * @var CI_Hooks
+	 */
+	protected $hooks;
+
+	/**
 	 * @var bool whether throwing PHPUnit_Framework_Exception or not
 	 * 
 	 * If true, throws PHPUnit_Framework_Exception when show_404() and show_error() are called. This behavior is compatible to v0.3.0 and before.
@@ -75,6 +80,11 @@ class CIPHPUnitTestRequest
 		// But we need $this->CI->output->_status
 		$this->CI =& get_instance();
 
+		if ($this->enableHooks)
+		{
+			$this->hooks =& load_class('Hooks', 'core');
+		}
+
 		try {
 			if (is_array($argv))
 			{
@@ -103,28 +113,25 @@ class CIPHPUnitTestRequest
 		// show_404()
 		catch (CIPHPUnitTestShow404Exception $e)
 		{
-			set_status_header($e->getCode());
-
-			// @deprecated
-			if ($this->bc_mode_throw_PHPUnit_Framework_Exception)
-			{
-				throw new PHPUnit_Framework_Exception(
-					$e->getMessage(), $e->getCode()
-				);
-			}
+			$this->processError($e);
 		}
 		// show_error()
 		catch (CIPHPUnitTestShowErrorException $e)
 		{
-			set_status_header($e->getCode());
+			$this->processError($e);
+		}
+	}
 
-			// @deprecated
-			if ($this->bc_mode_throw_PHPUnit_Framework_Exception)
-			{
-				throw new PHPUnit_Framework_Exception(
-					$e->getMessage(), $e->getCode()
-				);
-			}
+	protected function processError(Exception $e)
+	{
+		set_status_header($e->getCode());
+
+		// @deprecated
+		if ($this->bc_mode_throw_PHPUnit_Framework_Exception)
+		{
+			throw new PHPUnit_Framework_Exception(
+				$e->getMessage(), $e->getCode()
+			);
 		}
 	}
 
@@ -243,15 +250,19 @@ class CIPHPUnitTestRequest
 		return $this->createAndCallController($class, $method, $params);
 	}
 
+	protected function callHook($hook)
+	{
+		if ($this->enableHooks)
+		{
+			$this->hooks->call_hook($hook);
+		}
+	}
+
 	protected function createAndCallController($class, $method, $params)
 	{
 		ob_start();
 
-		if ($this->enableHooks)
-		{
-			$EXT =& load_class('Hooks', 'core');
-			$EXT->call_hook('pre_controller');
-		}
+		$this->callHook('pre_controller');
 
 		// Run callablePreConstructor
 		if (is_callable($this->callablePreConstructor))
@@ -272,10 +283,7 @@ class CIPHPUnitTestRequest
 			$callable($this->CI);
 		}
 
-		if ($this->enableHooks)
-		{
-			$EXT->call_hook('post_controller_constructor');
-		}
+		$this->callHook('post_controller_constructor');
 
 		// Call controller method
 		call_user_func_array([$controller, $method], $params);
@@ -286,10 +294,7 @@ class CIPHPUnitTestRequest
 			$output = $this->CI->output->get_output();
 		}
 
-		if ($this->enableHooks)
-		{
-			$EXT->call_hook('post_controller');
-		}
+		$this->callHook('post_controller');
 
 		return $output;
 	}
