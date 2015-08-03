@@ -20,6 +20,7 @@ before_script:
   - pwd
   - git clone https://github.com/kenjis/ci-app-for-ci-phpunit-test.git
   - cd ci-app-for-ci-phpunit-test
+  - rm application/tests/_ci_phpunit_test
   - composer update
   - mv vendor/kenjis/ci-phpunit-test vendor/kenjis/ci-phpunit-test.tmp
   - mv "$cwd" vendor/kenjis/ci-phpunit-test
