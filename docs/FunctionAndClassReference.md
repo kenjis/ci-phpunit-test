@@ -33,7 +33,7 @@ version: **master** |
 	- [`MonkeyPatch::resetMethods()`](#monkeypatchresetmethods)
 	- [`MonkeyPatch::verifyInvoked($class_method, $params)`](#monkeypatchverifyinvokedclass_method-params)
 	- [`MonkeyPatch::verifyInvokedOnce($class_method, $params)`](#monkeypatchverifyinvokedonceclass_method-params)
-	- [`MonkeyPatch::verifyInvokedMultipleTimes($class_method, $times, $params)`](#monkeypatchverifyinvokedonceclass_method-params)
+	- [`MonkeyPatch::verifyInvokedMultipleTimes($class_method, $times, $params)`](#monkeypatchverifyinvokedmultipletimesclass_method-times-params)
 	- [`MonkeyPatch::verifyNeverInvoked($class_method, $params)`](#monkeypatchverifyneverinvokedclass_method-params)
 
 ### *function* `reset_instance()`
