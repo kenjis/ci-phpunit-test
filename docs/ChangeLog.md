@@ -6,14 +6,14 @@
 
 * How to enable Monkey Patching has been changed. `TestCase::$enable_patcher` was removed. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#monkey-patching).
 
-### Removed
-
-* `TestCase::$enable_patcher`
-
 ### Added
 
 * Monkey Patching on functions. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#patching-functions).
 * Monkey Patching on methods in user-defined classes. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#patching-methods-in-user-defined-classes).
+
+### Removed
+
+* `TestCase::$enable_patcher`
 
 ## v0.5.0 (2015/07/27)
 

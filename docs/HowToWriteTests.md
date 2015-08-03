@@ -261,6 +261,8 @@ If you don't know well about PHPUnit Mock Objects, see [Test Doubles](https://ph
 	}
 ~~~
 
+**Note:** Once you have replaced CodeIgniter object's property with your mock, the mock remains until you call `reset_instance()` and instantiate a controller.
+
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/models/Category_model_mocking_db_test.php).
 
 ### Controllers
