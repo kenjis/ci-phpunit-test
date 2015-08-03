@@ -64,6 +64,7 @@ class CIPHPUnitTestRequest
 	public function enableHooks()
 	{
 		$this->enableHooks = true;
+		$this->hooks =& load_class('Hooks', 'core');
 	}
 
 	/**
@@ -79,11 +80,6 @@ class CIPHPUnitTestRequest
 		// We need this because if 404 route, no controller is created.
 		// But we need $this->CI->output->_status
 		$this->CI =& get_instance();
-
-		if ($this->enableHooks)
-		{
-			$this->hooks =& load_class('Hooks', 'core');
-		}
 
 		try {
 			if (is_array($argv))
