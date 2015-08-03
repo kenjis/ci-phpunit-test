@@ -76,19 +76,29 @@ class Proxy
 				$cache = MonkeyPatchManager::getSrcCacheFilePath($orig_file);
 				@unlink($cache);
 
-				$msg = '';
+				$pr_msg = '';
 				if (self::isInternalFunction($function))
 				{
-					$msg = "\n" . 'Please send Pull Request to add function "' . $function . '" to default config.';
+					$pr_msg = 'Please send Pull Request to add function "' . $function . '" to default config.';
 				}
 
-				throw new LogicException(
-					'Can\'t patch on function "' . $function . '".'
-					. ' It has reference param.' . "\n"
-					. 'Added it tmp blacklist file "'
-					. $tmp_blacklist_file . '". ' . $msg . "\n"
-					. 'And removed cache file "' . $cache . '".' . "\n"
+				$red_begin = "\033[41m";
+				$red_end   = "\033[0m";
+
+				$msg = 
+					"\n"
+					. "<red>Can't patch on function \"$function\".</red>\n"
+					. "It has param(s) passed by reference.\n"
+					. "Added it temporary blacklist file \"$tmp_blacklist_file\".\n"
+					. "And removed cache file \"$cache\"\n\n"
+					. "<red>$pr_msg</red>\n"
+					. "<red>Please run phpunit again.</red>\n";
+				$msg = str_replace(
+					['<red>', '</red>'], [$red_begin, $red_end], $msg
 				);
+				echo $msg;
+
+				exit(1);
 			}
 		}
 	}
