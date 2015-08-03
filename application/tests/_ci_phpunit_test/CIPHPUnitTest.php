@@ -28,6 +28,10 @@ class CIPHPUnitTest
 		require __DIR__ . '/replacing/core/Common.php';
 		require BASEPATH . 'core/Common.php';
 
+		// Workaround for missing CodeIgniter's error handler
+		// See https://github.com/kenjis/ci-phpunit-test/issues/37
+		set_error_handler('_error_handler');
+
 		// Load new functions of CIPHPUnitTest
 		require __DIR__ . '/functions.php';
 
