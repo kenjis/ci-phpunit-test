@@ -79,7 +79,7 @@ class Proxy
 				$pr_msg = '';
 				if (self::isInternalFunction($function))
 				{
-					$pr_msg = 'Please send Pull Request to add function "' . $function . '" to default config.';
+					$pr_msg = "<red>Please send Pull Request to add function \"$function\" to default config.</red>\n";
 				}
 
 				$red_begin = "\033[41m";
@@ -91,7 +91,7 @@ class Proxy
 					. "It has param(s) passed by reference.\n"
 					. "Added it temporary blacklist file \"$tmp_blacklist_file\".\n"
 					. "And removed cache file \"$cache\"\n\n"
-					. "<red>$pr_msg</red>\n"
+					. "$pr_msg"
 					. "<red>Please run phpunit again.</red>\n";
 				$msg = str_replace(
 					['<red>', '</red>'], [$red_begin, $red_end], $msg
