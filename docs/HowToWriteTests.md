@@ -569,6 +569,8 @@ Mock library class name must be `Mock_Libraries_*`, and it is autoloaded.
 * `FunctionPatcher`: Patching Functions
 * `MethodPatcher`: Patching Methods in User-defined Classes
 
+**Note:** This functionality has a negative impact on speed of tests.
+
 To enable monkey patching, uncomment below code in `tests/Bootstrap.php` and configure paths:
 
 ~~~php
@@ -652,7 +654,7 @@ See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/m
 
 This patcher allows replacement of functions that can't be mocked by PHPUnit.
 
-It can't replace functions which has parameters passed by reference.
+**Note:** This can't replace functions which has parameters passed by reference.
 
 ~~~php
 	public function test_index()

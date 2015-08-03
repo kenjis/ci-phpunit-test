@@ -371,3 +371,64 @@ Replace method in user-defined class on the fly.
 Reset all patched class methods.
 
 This method is called on `TestCase::tearDown()` by default. So you don't have to call it normally.
+
+#### `MonkeyPatch::verifyInvoked($class_method, $params)`
+
+| param         | type   | description   |
+|---------------|--------|---------------|
+|`$class_method`| string | class::method |
+|`$params`      | array  | arguments     |
+
+Verifies a patched class method was invoked at least once.
+
+~~~php
+MonkeyPatch::verifyInvoked(
+	'Ion_auth_model::login', ['foo', 'bar']
+);
+~~~
+
+#### `MonkeyPatch::verifyInvokedOnce($class_method, $params)`
+
+| param         | type   | description   |
+|---------------|--------|---------------|
+|`$class_method`| string | class::method |
+|`$params`      | array  | arguments     |
+
+Verifies that patched class method was invoked only once.
+
+~~~php
+MonkeyPatch::verifyInvokedOnce(
+	'CI_Input::post', ['id']
+);
+~~~
+
+#### `MonkeyPatch::verifyInvokedMultipleTimes($class_method, $times, $params)`
+
+| param         | type   | description   |
+|---------------|--------|---------------|
+|`$class_method`| string | class::method |
+|`$times`       | int    | times         |
+|`$params`      | array  | arguments     |
+
+Verifies that patched method was called exactly $times times.
+
+~~~php
+MonkeyPatch::verifyInvokedMultipleTimes(
+	'CI_Input::post', 2
+);
+~~~
+
+#### `MonkeyPatch::verifyNeverInvoked($class_method, $params)`
+
+| param         | type   | description   |
+|---------------|--------|---------------|
+|`$class_method`| string | class::method |
+|`$params`      | array  | arguments     |
+
+Verifies that patched method was not called.
+
+~~~php
+MonkeyPatch::verifyNeverInvoked(
+	'Ion_auth_model::login', ['username', 'PHS/DL1m6OMYg']
+);
+~~~
