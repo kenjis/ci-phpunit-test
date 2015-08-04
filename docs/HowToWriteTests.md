@@ -606,7 +606,7 @@ MonkeyPatchManager::init([
 
 **Upgrade Note for v0.6.0**
 
-Add the above code before
+Add the above code (`require` and `MonkeyPatchManager::init()`) before
 
 ~~~php
 /*
@@ -616,7 +616,7 @@ Add the above code before
  */
 ~~~
 
-in `tests/Bootstrap.php`.
+in [tests/Bootstrap.php](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/Bootstrap.php).
 
 `TestCase::$enable_patcher` was removed. Please remove it.
 
@@ -658,9 +658,9 @@ See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/m
 
 This patcher allows replacement of functions that can't be mocked by PHPUnit.
 
-But it has some limitations. Some functions can't be replaced.
+But it has some limitations. Some functions can't be replaced and it might cause errors.
 
-By default, we can replace only a dozen pre-defined functions in [FunctionPatcher](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/_ci_phpunit_test/patcher/Patcher/FunctionPatcher.php#L35).
+So by default we can replace only a dozen pre-defined functions in [FunctionPatcher](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/_ci_phpunit_test/patcher/Patcher/FunctionPatcher.php#L35).
 
 ~~~php
 	public function test_index()
@@ -672,6 +672,13 @@ By default, we can replace only a dozen pre-defined functions in [FunctionPatche
 ~~~
 
 [MonkeyPatch::patchFunction()](FunctionAndClassReference.md#monkeypatchpatchfunctionfunction-return_value) replaces PHP native function `mt_rand()`, and it will return `100` in the test method.
+
+If you want to patch other functions, you can add it to [functions_to_patch](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/Bootstrap.php#L318) in `MonkeyPatchManager::init()`.
+
+But there are some known limitations:
+
+* Patched functions which have parameters called by reference doesn't work.
+* You may see visibility errors if you pass non-public callbacks to patched functions. For example, you pass `[$this, 'method']` to `array_map()` and `method()` method in the class is not public.
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Patching_on_function_test.php).
 
