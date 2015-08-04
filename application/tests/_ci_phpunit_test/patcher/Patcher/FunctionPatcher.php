@@ -33,10 +33,17 @@ class FunctionPatcher
 	private static $whitelist = [
 		'mt_rand',
 		'rand',
+		'uniqid',
+		'hash_hmac',
+		'md5',
+		'sha1',
+		'hash',
 		'time',
+		'microtime',
 		'date',
 		'function_exist',
-		// has reference param
+		// Functions that has param called by reference
+		// Need to prepare method in FunctionPatcher\Proxy
 		'openssl_random_pseudo_bytes',
 	];
 	
