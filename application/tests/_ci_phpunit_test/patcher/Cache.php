@@ -21,6 +21,7 @@ class Cache
 	private static $src_cache_dir;
 	private static $tmp_function_blacklist_file;
 	private static $tmp_function_whitelist_file;
+	private static $tmp_patcher_list_file;
 
 	public static function setCacheDir($dir)
 	{
@@ -31,6 +32,8 @@ class Cache
 			self::$cache_dir . '/conf/func_whiltelist.php';
 		self::$tmp_function_blacklist_file = 
 			self::$cache_dir . '/conf/func_blacklist.php';
+		self::$tmp_patcher_list_file = 
+			self::$cache_dir . '/conf/patcher_list.php';
 	}
 
 	public static function getCacheDir()
@@ -141,12 +144,32 @@ class Cache
 		);
 	}
 
+	public static function writeTmpPatcherList(array $functions)
+	{
+		$contents = implode("\n", $functions);
+		file_put_contents(
+			self::$tmp_patcher_list_file, $contents
+		);
+	}
+
 	public static function getTmpFunctionWhitelist()
 	{
 		if (is_readable(self::$tmp_function_whitelist_file))
 		{
 			return file(
 				self::$tmp_function_whitelist_file,
+				FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES
+			);
+		}
+		return [];
+	}
+
+	public static function getTmpPatcherList()
+	{
+		if (is_readable(self::$tmp_patcher_list_file))
+		{
+			return file(
+				self::$tmp_patcher_list_file,
 				FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES
 			);
 		}
@@ -168,13 +191,13 @@ class Cache
 	public static function clearSrcCache()
 	{
 		self::recursiveUnlink(self::$src_cache_dir);
-		MonkeyPatchManager::log('clear_src_cache:');
+		MonkeyPatchManager::log('clear_src_cache: cleared');
 	}
 
 	public static function clearCache()
 	{
 		self::recursiveUnlink(self::$cache_dir);
-		MonkeyPatchManager::log('clear_cache:');
+		MonkeyPatchManager::log('clear_cache: cleared');
 	}
 
 	/**

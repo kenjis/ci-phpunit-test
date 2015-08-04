@@ -87,6 +87,8 @@ class MonkeyPatchManager
 			self::setPatcherList($config['patcher_list']);
 		}
 
+		self::checkPatcherListUpdate();
+
 		if (isset($config['exit_exception_classname']))
 		{
 			self::setExitExceptionClassname($config['exit_exception_classname']);
@@ -109,6 +111,19 @@ class MonkeyPatchManager
 		self::wrap();
 	}
 
+	protected static function checkPatcherListUpdate()
+	{
+		$cached = Cache::getTmpPatcherList();
+
+		// Updated?
+		if ($cached !== self::$patcher_list)
+		{
+			MonkeyPatchManager::log('clear_src_cache: from checkPatcherListUpdate()');
+			Cache::clearSrcCache();
+			Cache::writeTmpPatcherList(self::$patcher_list);
+		}
+	}
+
 	protected static function checkFunctionWhitelistUpdate()
 	{
 		$cached = Cache::getTmpFunctionWhitelist();
@@ -117,6 +132,7 @@ class MonkeyPatchManager
 		// Updated?
 		if ($cached !== $current)
 		{
+			MonkeyPatchManager::log('clear_src_cache: from checkFunctionWhitelistUpdate()');
 			Cache::clearSrcCache();
 			Cache::writeTmpFunctionWhitelist($current);
 		}
