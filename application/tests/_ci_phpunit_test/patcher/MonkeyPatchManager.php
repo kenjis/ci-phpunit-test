@@ -101,7 +101,7 @@ class MonkeyPatchManager
 			FunctionPatcher::addWhitelists($config['functions_to_patch']);
 		}
 
-		self::checkFunctionWhitelistUpdat();
+		self::checkFunctionWhitelistUpdate();
 
 		FunctionPatcher::lockFunctionList();
 
@@ -109,7 +109,7 @@ class MonkeyPatchManager
 		self::wrap();
 	}
 
-	protected static function checkFunctionWhitelistUpdat()
+	protected static function checkFunctionWhitelistUpdate()
 	{
 		$cached = Cache::getTmpFunctionWhitelist();
 		$current = FunctionPatcher::getFunctionWhitelist();
