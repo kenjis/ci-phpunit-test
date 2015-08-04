@@ -673,7 +673,7 @@ So by default we can replace only a dozen pre-defined functions in [FunctionPatc
 
 [MonkeyPatch::patchFunction()](FunctionAndClassReference.md#monkeypatchpatchfunctionfunction-return_value) replaces PHP native function `mt_rand()`, and it will return `100` in the test method.
 
-If you want to patch other functions, you can add it to [functions_to_patch](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/Bootstrap.php#L318) in `MonkeyPatchManager::init()`.
+If you want to patch other functions, you can add them to [functions_to_patch](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/Bootstrap.php#L318) in `MonkeyPatchManager::init()`.
 
 But there are some known limitations:
 
