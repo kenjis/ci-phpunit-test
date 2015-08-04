@@ -589,15 +589,17 @@ MonkeyPatchManager::init([
 	'exclude_paths' => [
 		APPPATH . 'tests/',
 	],
-	// All patchers you use
+	// All patchers you use. If you change this, remove all cache files in "cache_dir" above
 	'patcher_list' => [
 		'ExitPatcher',
 		'FunctionPatcher',
 		'MethodPatcher',
 	],
-	'exit_exception_classname' => [
-		'CIPHPUnitTestExitException',
+	// Functions to patch
+	'functions_to_patch' => [
+		//'random_string',
 	],
+	'exit_exception_classname' => 'CIPHPUnitTestExitException',
 ]);
 */
 ~~~
@@ -656,7 +658,9 @@ See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/m
 
 This patcher allows replacement of functions that can't be mocked by PHPUnit.
 
-**Note:** This can't replace functions which has parameters passed by reference.
+But it has some limitations. Some functions can't be replaced.
+
+By default, we can replace only a dozen pre-defined functions in [FunctionPatcher](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/_ci_phpunit_test/patcher/Patcher/FunctionPatcher.php#L35).
 
 ~~~php
 	public function test_index()
