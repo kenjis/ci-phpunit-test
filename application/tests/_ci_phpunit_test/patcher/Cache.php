@@ -90,7 +90,10 @@ class Cache
 	public static function writeSrcCacheFile($path, $source)
 	{
 		$cache_file = self::getSrcCacheFilePath($path);
-		self::writeCacheFile($cache_file, $source);
+		if ($cache_file !== false)
+		{
+			self::writeCacheFile($cache_file, $source);
+		}
 	}
 
 	/**
