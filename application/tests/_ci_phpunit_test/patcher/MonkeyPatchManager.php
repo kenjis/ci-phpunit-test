@@ -34,6 +34,11 @@ class MonkeyPatchManager
 
 	public static function log($message)
 	{
+		if (! self::$debug)
+		{
+			return;
+		}
+
 		$time = date('Y-m-d H:i:s');
 		$log = "[$time] $message\n";
 		file_put_contents(self::$log_file, $log, FILE_APPEND);
@@ -96,8 +101,25 @@ class MonkeyPatchManager
 			FunctionPatcher::addWhitelists($config['functions_to_patch']);
 		}
 
+		self::checkFunctionWhitelistUpdat();
+
+		FunctionPatcher::lockFunctionList();
+
 		// Register include stream wrapper for monkey patching
 		self::wrap();
+	}
+
+	protected static function checkFunctionWhitelistUpdat()
+	{
+		$cached = Cache::getTmpFunctionWhitelist();
+		$current = FunctionPatcher::getFunctionWhitelist();
+
+		// Updated?
+		if ($cached !== $current)
+		{
+			Cache::clearSrcCache();
+			Cache::writeTmpFunctionWhitelist($current);
+		}
 	}
 
 	protected static function addTmpFunctionBlacklist()
@@ -169,30 +191,18 @@ class MonkeyPatchManager
 		// Check cache file
 		if (Cache::hasValidSrcCache($path))
 		{
-			if (self::$debug)
-			{
-				$message = 'cache_hit: ' . $path;
-				self::log($message);
-			}
-
+			self::log('cache_hit: ' . $path);
 			return fopen(Cache::getSrcCacheFilePath($path), 'r');
 		}
 
-		if (self::$debug)
-		{
-			$message = 'cache_miss: ' . $path;
-			self::log($message);
-		}
+
+		self::log('cache_miss: ' . $path);
 		$source = file_get_contents($path);
 
 		list($new_source, $patched) = self::execPatchers($source);
 
 		// Write to cache file
-		if (self::$debug)
-		{
-			$message = 'write_cache: ' . $path;
-			self::log($message);
-		}
+		self::log('write_cache: ' . $path);
 		Cache::writeSrcCacheFile($path, $new_source);
 
 		$resource = fopen('php://memory', 'rb+');

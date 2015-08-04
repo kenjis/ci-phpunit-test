@@ -94,6 +94,7 @@ class CIPHPUnitTest
 		require __DIR__ . '/CIPHPUnitTestCase.php';
 		require __DIR__ . '/CIPHPUnitTestRequest.php';
 		require __DIR__ . '/CIPHPUnitTestDouble.php';
+		require __DIR__ . '/CIPHPUnitTestReflection.php';
 		require __DIR__ . '/exceptions/CIPHPUnitTestRedirectException.php';
 		require __DIR__ . '/exceptions/CIPHPUnitTestShow404Exception.php';
 		require __DIR__ . '/exceptions/CIPHPUnitTestShowErrorException.php';

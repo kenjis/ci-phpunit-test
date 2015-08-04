@@ -27,6 +27,8 @@ use Kenjis\MonkeyPatch\Patcher\FunctionPatcher\NodeVisitor;
 
 class FunctionPatcher
 {
+	private static $lock_function_list = false;
+	
 	/**
 	 * @var array list of function names (in lower case) which you patch
 	 */
@@ -83,23 +85,50 @@ class FunctionPatcher
 
 	public static $replacement;
 
+	protected static function checkLock($error_msg)
+	{
+		if (self::$lock_function_list)
+		{
+			throw new LogicException($error_msg);
+		}
+	}
+
 	public static function addWhitelists($function_list)
 	{
+		self::checkLock("You can't add to whitelist after initialization");
+
 		foreach ($function_list as $function_name)
 		{
 			self::$whitelist[] = strtolower($function_name);
 		}
 	}
 
+	/**
+	 * @return array
+	 */
+	public static function getFunctionWhitelist()
+	{
+		return self::$whitelist;
+	}
+
 	public static function addBlacklist($function_name)
 	{
+		self::checkLock("You can't add to blacklist after initialization");
+
 		self::$blacklist[] = strtolower($function_name);
 	}
 
 	public static function removeBlacklist($function_name)
 	{
+		self::checkLock("You can't remove from blacklist after initialization");
+
 		$key = array_search(strtolower($function_name), self::$blacklist);
 		array_splice(self::$blacklist, $key, 1);
+	}
+
+	public static function lockFunctionList()
+	{
+		self::$lock_function_list = true;
 	}
 
 	/**

@@ -20,12 +20,17 @@ class Cache
 	private static $cache_dir;
 	private static $src_cache_dir;
 	private static $tmp_function_blacklist_file;
+	private static $tmp_function_whitelist_file;
 
 	public static function setCacheDir($dir)
 	{
 		self::createDir($dir);
 		self::$cache_dir = realpath($dir);
 		self::$src_cache_dir = self::$cache_dir . '/src';
+		self::$tmp_function_whitelist_file = 
+			self::$cache_dir . '/conf/func_whiltelist.php';
+		self::$tmp_function_blacklist_file = 
+			self::$cache_dir . '/conf/func_blacklist.php';
 	}
 
 	public static function getCacheDir()
@@ -108,33 +113,60 @@ class Cache
 
 	public static function createTmpFunctionBlacklistFile()
 	{
-		$tmp_blacklist = self::getCacheDir() . '/conf/func_blacklist.php';
-		self::$tmp_function_blacklist_file = $tmp_blacklist;
-
-		if (is_readable($tmp_blacklist))
+		if (is_readable(self::$tmp_function_blacklist_file))
 		{
 			return;
 		}
 
-		$dir = dirname($tmp_blacklist);
+		$dir = dirname(self::$tmp_function_blacklist_file);
 		self::createDir($dir);
-		touch($tmp_blacklist);
+		touch(self::$tmp_function_blacklist_file);
+	}
+
+	public static function appendTmpFunctionBlacklist($function)
+	{
+		file_put_contents(
+			self::getTmpFunctionBlacklistFile(), $function . "\n", FILE_APPEND
+		);
+	}
+
+	public static function writeTmpFunctionWhitelist(array $functions)
+	{
+		$contents = implode("\n", $functions);
+		file_put_contents(
+			self::$tmp_function_whitelist_file, $contents
+		);
+	}
+
+	public static function getTmpFunctionWhitelist()
+	{
+		if (is_readable(self::$tmp_function_whitelist_file))
+		{
+			return file(
+				self::$tmp_function_whitelist_file,
+				FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES
+			);
+		}
+		return [];
 	}
 
 	public static function removeSrcCacheFile($orig_file)
 	{
 		$cache = self::getSrcCacheFilePath($orig_file);
 		@unlink($cache);
+		MonkeyPatchManager::log('remove_src_cache: ' . $cache);
 	}
 
 	public static function clearSrcCache()
 	{
 		self::recursiveUnlink(self::$src_cache_dir);
+		MonkeyPatchManager::log('clear_src_cache:');
 	}
 
 	public static function clearCache()
 	{
 		self::recursiveUnlink(self::$cache_dir);
+		MonkeyPatchManager::log('clear_cache:');
 	}
 
 	/**

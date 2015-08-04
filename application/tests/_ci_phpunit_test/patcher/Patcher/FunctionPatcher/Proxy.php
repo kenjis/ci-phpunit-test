@@ -74,10 +74,7 @@ class Proxy
 			if ($param->isPassedByReference())
 			{
 				// Add tmp blacklist
-				$tmp_blacklist_file = MonkeyPatchManager::getTmpBlacklistFile();
-				file_put_contents(
-					$tmp_blacklist_file, $function . "\n", FILE_APPEND
-				);
+				Cache::appendTmpFunctionBlacklist($function);
 
 				// Remove cache file
 				$backtrace = debug_backtrace();
