@@ -153,11 +153,16 @@ class Cache
 		return [];
 	}
 
+	/**
+	 * @param string $orig_file original source file
+	 * @return string removed cache file
+	 */
 	public static function removeSrcCacheFile($orig_file)
 	{
 		$cache = self::getSrcCacheFilePath($orig_file);
 		@unlink($cache);
 		MonkeyPatchManager::log('remove_src_cache: ' . $cache);
+		return $cache;
 	}
 
 	public static function clearSrcCache()

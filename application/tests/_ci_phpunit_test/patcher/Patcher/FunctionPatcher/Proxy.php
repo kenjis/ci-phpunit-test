@@ -14,6 +14,7 @@ class_alias('Kenjis\MonkeyPatch\Patcher\FunctionPatcher\Proxy', '__FuncProxy__')
 
 use LogicException;
 use ReflectionFunction;
+use ReflectionException;
 
 use Kenjis\MonkeyPatch\Patcher\FunctionPatcher;
 use Kenjis\MonkeyPatch\MonkeyPatchManager;
@@ -79,7 +80,7 @@ class Proxy
 				// Remove cache file
 				$backtrace = debug_backtrace();
 				$orig_file = $backtrace[1]['file'];
-				Cache::removeSrcCacheFile($orig_file);
+				$cache = Cache::removeSrcCacheFile($orig_file);
 
 				$pr_msg = '';
 				if (self::isInternalFunction($function))
@@ -87,6 +88,7 @@ class Proxy
 					$pr_msg = "<red>Please send Pull Request to add function '$function' to default config.</red>\n";
 				}
 
+				$tmp_blacklist_file = Cache::getTmpFunctionBlacklistFile();
 				$msg = 
 					"\n"
 					. "<red>Can't patch on function '$function'.</red>\n"
