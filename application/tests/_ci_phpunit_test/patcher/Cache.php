@@ -176,6 +176,11 @@ class Cache
 	*/
 	protected static function recursiveUnlink($dir)
 	{
+		if (! is_dir($dir))
+		{
+			return;
+		}
+
 		$iterator = new RecursiveIteratorIterator(
 			new RecursiveDirectoryIterator(
 				$dir, RecursiveDirectoryIterator::SKIP_DOTS
