@@ -11,6 +11,7 @@
 namespace Kenjis\MonkeyPatch;
 
 use Kenjis\MonkeyPatch\Patcher\FunctionPatcher\Proxy;
+use Kenjis\MonkeyPatch\Patcher\FunctionPatcher;
 use Kenjis\MonkeyPatch\Patcher\MethodPatcher\PatchManager;
 
 class MonkeyPatch

@@ -46,8 +46,13 @@ class NodeVisitor extends NodeVisitorAbstract
 			return;
 		}
 
+		if (! $node->name->isUnqualified())
+		{
+			return;
+		}
+
 		if (
-			$node->name->isUnqualified()
+			FunctionPatcher::isWhitelisted((string) $node->name)
 			&& ! FunctionPatcher::isBlacklisted((string) $node->name)
 		) {
 			$replacement = new FullyQualified(array());

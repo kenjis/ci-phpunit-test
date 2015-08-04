@@ -314,6 +314,10 @@ MonkeyPatchManager::init([
 		'FunctionPatcher',
 		'MethodPatcher',
 	],
+	// Functions to patch
+	'functions_to_patch' => [
+		//'random_string',
+	],
 	'exit_exception_classname' => 'CIPHPUnitTestExitException',
 ]);
 */

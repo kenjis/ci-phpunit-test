@@ -28,7 +28,18 @@ use Kenjis\MonkeyPatch\Patcher\FunctionPatcher\NodeVisitor;
 class FunctionPatcher
 {
 	/**
-	 * @var array list of function names (in lower case) which you don't patch
+	 * @var array list of function names (in lower case) which you patch
+	 */
+	private static $whitelist = [
+		'mt_rand',
+		'rand',
+		'time',
+		'date',
+		'function_exist',
+	];
+	
+	/**
+	 * @var array list of function names (in lower case) which can't be patched
 	 */
 	private static $blacklist = [
 		// Segmentation fault
@@ -54,6 +65,7 @@ class FunctionPatcher
 		'is_callable',
 		'flock',
 		'end',
+		'idn_to_ascii',
 		// Special functions for ci-phpunit-test
 		'show_404',
 		'show_error',
@@ -61,6 +73,14 @@ class FunctionPatcher
 	];
 
 	public static $replacement;
+
+	public static function addWhitelists($function_list)
+	{
+		foreach ($function_list as $function_name)
+		{
+			self::$whitelist[] = strtolower($function_name);
+		}
+	}
 
 	public static function addBlacklist($function_name)
 	{
@@ -71,6 +91,20 @@ class FunctionPatcher
 	{
 		$key = array_search(strtolower($function_name), self::$blacklist);
 		array_splice(self::$blacklist, $key, 1);
+	}
+
+	/**
+	 * @param string $name function name
+	 * @return boolean
+	 */
+	public static function isWhitelisted($name)
+	{
+		if (in_array(strtolower($name), self::$whitelist))
+		{
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

@@ -17,6 +17,7 @@ use ReflectionFunction;
 
 use Kenjis\MonkeyPatch\Patcher\FunctionPatcher;
 use Kenjis\MonkeyPatch\MonkeyPatchManager;
+use Kenjis\MonkeyPatch\Cache;
 
 class Proxy
 {
@@ -26,7 +27,17 @@ class Proxy
 	{
 		if (FunctionPatcher::isBlacklisted($function))
 		{
-			throw new LogicException('Can\'t patch on ' . $function);
+			$msg = "<red>Can't patch on '$function'. It is in blacklist.</red>";
+			self::outputMessage($msg);
+			exit(1);
+		}
+		if (! FunctionPatcher::isWhitelisted($function))
+		{
+			Cache::clearSrcCache();
+
+			$msg = "<red>Can't patch on '$function'. It is not in whitelist. If you want to patch it, please add it to 'functions_to_patch' in 'tests/Bootstrap.php'.</red>";
+			self::outputMessage($msg);
+			exit(1);
 		}
 
 		self::$mocks[$function] = $return_value;
@@ -65,7 +76,6 @@ class Proxy
 			{
 				// Add tmp blacklist
 				$tmp_blacklist_file = MonkeyPatchManager::getTmpBlacklistFile();
-				var_dump($tmp_blacklist_file);
 				file_put_contents(
 					$tmp_blacklist_file, $function . "\n", FILE_APPEND
 				);
@@ -73,34 +83,39 @@ class Proxy
 				// Remove cache file
 				$backtrace = debug_backtrace();
 				$orig_file = $backtrace[1]['file'];
-				$cache = MonkeyPatchManager::getSrcCacheFilePath($orig_file);
-				@unlink($cache);
+				Cache::removeSrcCacheFile($orig_file);
 
 				$pr_msg = '';
 				if (self::isInternalFunction($function))
 				{
-					$pr_msg = "<red>Please send Pull Request to add function \"$function\" to default config.</red>\n";
+					$pr_msg = "<red>Please send Pull Request to add function '$function' to default config.</red>\n";
 				}
-
-				$red_begin = "\033[41m";
-				$red_end   = "\033[0m";
 
 				$msg = 
 					"\n"
-					. "<red>Can't patch on function \"$function\".</red>\n"
+					. "<red>Can't patch on function '$function'.</red>\n"
 					. "It has param(s) passed by reference.\n"
-					. "Added it temporary blacklist file \"$tmp_blacklist_file\".\n"
-					. "And removed cache file \"$cache\"\n\n"
+					. "Added it temporary blacklist file '$tmp_blacklist_file'.\n"
+					. "And removed cache file '$cache'.\n"
 					. "$pr_msg"
-					. "<red>Please run phpunit again.</red>\n";
-				$msg = str_replace(
-					['<red>', '</red>'], [$red_begin, $red_end], $msg
-				);
-				echo $msg;
+					. "\n<red>Please run phpunit again.</red>";
+
+				self::outputMessage($msg);
 
 				exit(1);
 			}
 		}
+	}
+
+	protected static function outputMessage($msg)
+	{
+		$red_begin = "\033[41m\033[37m";
+		$red_end   = "\033[0m";
+
+		$msg = str_replace(
+			['<red>', '</red>'], [$red_begin, $red_end], $msg
+		);
+		echo $msg . "\n";
 	}
 
 	/**
