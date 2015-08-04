@@ -36,6 +36,8 @@ class FunctionPatcher
 		'time',
 		'date',
 		'function_exist',
+		// has reference param
+		'openssl_random_pseudo_bytes',
 	];
 	
 	/**

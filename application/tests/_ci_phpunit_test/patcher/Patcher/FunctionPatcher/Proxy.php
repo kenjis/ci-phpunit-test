@@ -62,7 +62,6 @@ class Proxy
 		}
 
 		self::checkPassedByReference($function);
-
 		return call_user_func_array($function, $arguments);
 	}
 
@@ -133,29 +132,29 @@ class Proxy
 		}
 	}
 
-	/**
-	 * If we define method like this, we can pass reference to callable,
-	 * but we always need to pass 5th param, otherwise, error ocurrs.
-	 * So this does not work well.
-	 */
-//	public static function preg_replace(
-//		$pattern, $replacement, $subject, $limit = -1, &$count
-//	)
-//	{
-//		if (isset(self::$mocks['preg_replace']))
-//		{
-//			if (is_callable(self::$mocks['preg_replace']))
-//			{
-//				$callable = self::$mocks['preg_replace'];
-//				return call_user_func_array(
-//					$callable,
-//					[$pattern, $replacement, $subject, $limit, &$count]
-//				);
-//			}
-//
-//			return self::$mocks['preg_replace'];
-//		}
-//
-//		return preg_replace($pattern, $replacement, $subject, $limit, $count);
-//	}
+	public static function openssl_random_pseudo_bytes(
+		$length, &$crypto_strong
+	)
+	{
+		if ($crypto_strong === null)
+		{
+			$crypto_strong = true;
+		}
+
+		if (isset(self::$mocks['openssl_random_pseudo_bytes']))
+		{
+			if (is_callable(self::$mocks['openssl_random_pseudo_bytes']))
+			{
+				$callable = self::$mocks['openssl_random_pseudo_bytes'];
+				return call_user_func_array(
+					$callable,
+					[$length, &$crypto_strong]
+				);
+			}
+
+			return self::$mocks['openssl_random_pseudo_bytes'];
+		}
+
+		return openssl_random_pseudo_bytes($length, $crypto_strong);
+	}
 }
