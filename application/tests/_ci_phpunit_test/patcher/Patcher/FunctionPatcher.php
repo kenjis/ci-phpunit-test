@@ -44,8 +44,8 @@ class FunctionPatcher
 		'microtime',
 		'date',
 		'function_exist',
-		// Functions that has param called by reference
-		// Need to prepare method in FunctionPatcher\Proxy
+		// Functions that have param called by reference
+		// Need to prepare method in FunctionPatcher\Proxy class
 		'openssl_random_pseudo_bytes',
 	];
 	
