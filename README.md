@@ -81,6 +81,8 @@ $ php vendor/kenjis/ci-phpunit-test/update.php
 
 You have to install PHPUnit before running tests.
 
+**Note:** You must run `phpunit` command in `application/tests` folder.
+
 ~~~
 $ cd /path/to/codeigniter/
 $ cd application/tests/
