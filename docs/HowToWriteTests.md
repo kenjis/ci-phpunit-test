@@ -677,8 +677,8 @@ If you want to patch other functions, you can add them to [functions_to_patch](h
 
 But there are some known limitations:
 
-* Patched functions which have parameters called by reference doesn't work.
-* You may see visibility errors if you pass non-public callbacks to patched functions. For example, you pass `[$this, 'method']` to `array_map()` and `method()` method in the class is not public.
+* Patched functions which have parameters called by reference don't work.
+* You may see visibility errors if you pass non-public callbacks to patched functions. For example, you pass `[$this, 'method']` to `array_map()` and the `method()` method in the class is not public.
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Patching_on_function_test.php).
 
