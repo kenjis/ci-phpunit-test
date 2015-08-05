@@ -49,7 +49,7 @@ class PatchManager
 
 		if ($patch === null)
 		{
-			return __GO_ORIG_METHOD__;
+			return __GO_TO_ORIG__;
 		}
 
 		if (is_callable($patch))

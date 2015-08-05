@@ -54,7 +54,13 @@ class Proxy
 			if (is_callable(self::$mocks[$function]))
 			{
 				$callable = self::$mocks[$function];
-				return call_user_func_array($callable, $arguments);
+				
+				$return = call_user_func_array($callable, $arguments);
+				if ($return !== __GO_TO_ORIG__)
+				{
+					return $return;
+				}
+				return call_user_func_array($function, $arguments);
 			}
 
 			return self::$mocks[$function];

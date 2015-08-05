@@ -43,7 +43,7 @@ class FunctionPatcher
 		'time',
 		'microtime',
 		'date',
-		'function_exist',
+		'function_exists',
 		// Functions that have param called by reference
 		// Need to prepare method in FunctionPatcher\Proxy class
 		'openssl_random_pseudo_bytes',
