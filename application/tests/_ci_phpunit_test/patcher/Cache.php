@@ -238,13 +238,13 @@ class Cache
 	public static function clearSrcCache()
 	{
 		self::recursiveUnlink(self::$src_cache_dir);
-		MonkeyPatchManager::log('clear_src_cache: cleared');
+		MonkeyPatchManager::log('clear_src_cache: cleared ' . self::$src_cache_dir);
 	}
 
 	public static function clearCache()
 	{
 		self::recursiveUnlink(self::$cache_dir);
-		MonkeyPatchManager::log('clear_cache: cleared');
+		MonkeyPatchManager::log('clear_cache: cleared ' . self::$cache_dir);
 	}
 
 	/**
