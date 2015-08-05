@@ -118,7 +118,7 @@ class MonkeyPatchManager
 		// Updated?
 		if ($cached !== self::$patcher_list)
 		{
-			MonkeyPatchManager::log('clear_src_cache: from checkPatcherListUpdate()');
+			MonkeyPatchManager::log('clear_src_cache: from ' . __METHOD__);
 			Cache::clearSrcCache();
 			Cache::writeTmpPatcherList(self::$patcher_list);
 		}
@@ -132,7 +132,7 @@ class MonkeyPatchManager
 		// Updated?
 		if ($cached !== $current)
 		{
-			MonkeyPatchManager::log('clear_src_cache: from checkFunctionWhitelistUpdate()');
+			MonkeyPatchManager::log('clear_src_cache: from ' . __METHOD__);
 			Cache::clearSrcCache();
 			Cache::writeTmpFunctionWhitelist($current);
 		}
