@@ -89,6 +89,7 @@ class MonkeyPatchManager
 			self::setPatcherList($config['patcher_list']);
 		}
 		self::checkPatcherListUpdate();
+		self::checkPathsUpdate();
 
 		self::loadPatchers();
 
@@ -108,6 +109,31 @@ class MonkeyPatchManager
 
 		// Register include stream wrapper for monkey patching
 		self::wrap();
+	}
+
+	protected static function checkPathsUpdate()
+	{
+		$cached = Cache::getTmpIncludePaths();
+		$current = PathChecker::getIncludePaths();
+
+		// Updated?
+		if ($cached !== $current)
+		{
+			MonkeyPatchManager::log('clear_src_cache: from ' . __METHOD__);
+			Cache::clearSrcCache();
+			Cache::writeTmpIncludePaths($current);
+		}
+
+		$cached = Cache::getTmpExcludePaths();
+		$current = PathChecker::getExcludePaths();
+
+		// Updated?
+		if ($cached !== $current)
+		{
+			MonkeyPatchManager::log('clear_src_cache: from ' . __METHOD__);
+			Cache::clearSrcCache();
+			Cache::writeTmpExcludePaths($current);
+		}
 	}
 
 	protected static function checkPatcherListUpdate()

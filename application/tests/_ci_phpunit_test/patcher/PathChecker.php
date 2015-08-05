@@ -29,6 +29,8 @@ class PathChecker
 			}
 			$new_dirs[] = $real_dir . '/';
 		}
+		array_unique($new_dirs, SORT_STRING);
+		sort($new_dirs, SORT_STRING);
 		return $new_dirs;
 	}
 
@@ -40,6 +42,16 @@ class PathChecker
 	public static function setExcludePaths(array $dir)
 	{
 		self::$exclude_paths = self::normalizePaths($dir);
+	}
+
+	public static function getIncludePaths()
+	{
+		return self::$include_paths;
+	}
+
+	public static function getExcludePaths()
+	{
+		return self::$exclude_paths;
 	}
 
 	public static function check($path)
