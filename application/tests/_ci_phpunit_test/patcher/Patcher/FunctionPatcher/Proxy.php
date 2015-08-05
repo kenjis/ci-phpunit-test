@@ -30,16 +30,16 @@ class Proxy
 		{
 			$msg = "<red>Can't patch on '$function'. It is in blacklist.</red>";
 			self::outputMessage($msg);
-			exit(1);
+			throw new LogicException($msg);
 		}
 		if (! FunctionPatcher::isWhitelisted($function))
 		{
 			MonkeyPatchManager::log('clear_src_cache: from ' . __METHOD__);
 			Cache::clearSrcCache();
 
-			$msg = "<red>Can't patch on '$function'. It is not in whitelist. If you want to patch it, please add it to 'functions_to_patch' in 'tests/Bootstrap.php'.</red>";
+			$msg = "<red>Can't patch on '$function'. It is not in whitelist. If you want to patch it, please add it to 'functions_to_patch' in 'tests/Bootstrap.php'. But note that there are some limitations. See <https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#patching-functions> for details.</red>";
 			self::outputMessage($msg);
-			exit(1);
+			throw new LogicException($msg);
 		}
 
 		self::$mocks[$function] = $return_value;
@@ -100,8 +100,7 @@ class Proxy
 					. "\n<red>Please run phpunit again.</red>";
 
 				self::outputMessage($msg);
-
-				exit(1);
+				throw new LogicException($msg);
 			}
 		}
 	}
