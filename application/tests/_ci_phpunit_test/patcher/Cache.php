@@ -117,16 +117,21 @@ class Cache
 		return self::$tmp_function_blacklist_file;
 	}
 
-	public static function createTmpFunctionBlacklistFile()
+	public static function createTmpListFiles()
 	{
-		if (is_readable(self::$tmp_function_blacklist_file))
+		if (
+			is_readable(self::$tmp_function_blacklist_file)
+			&& is_readable(self::$tmp_patcher_list_file)
+		)
 		{
 			return;
 		}
 
 		$dir = dirname(self::$tmp_function_blacklist_file);
 		self::createDir($dir);
+
 		touch(self::$tmp_function_blacklist_file);
+		touch(self::$tmp_patcher_list_file);
 	}
 
 	public static function appendTmpFunctionBlacklist($function)

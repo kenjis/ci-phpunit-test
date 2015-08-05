@@ -82,30 +82,29 @@ class MonkeyPatchManager
 			self::setExcludePaths($config['exclude_paths']);
 		}
 
+		Cache::createTmpListFiles();
+
 		if (isset($config['patcher_list']))
 		{
 			self::setPatcherList($config['patcher_list']);
 		}
-
 		self::checkPatcherListUpdate();
 
-		if (isset($config['exit_exception_classname']))
-		{
-			self::setExitExceptionClassname($config['exit_exception_classname']);
-		}
-
 		self::loadPatchers();
-		Cache::createTmpFunctionBlacklistFile();
+
 		self::addTmpFunctionBlacklist();
 
 		if (isset($config['functions_to_patch']))
 		{
 			FunctionPatcher::addWhitelists($config['functions_to_patch']);
 		}
-
 		self::checkFunctionWhitelistUpdate();
-
 		FunctionPatcher::lockFunctionList();
+
+		if (isset($config['exit_exception_classname']))
+		{
+			self::setExitExceptionClassname($config['exit_exception_classname']);
+		}
 
 		// Register include stream wrapper for monkey patching
 		self::wrap();
