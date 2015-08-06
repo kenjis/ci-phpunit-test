@@ -78,14 +78,14 @@ class Proxy
 		InvocationVerifier::verify(self::$expected_invocations, self::$invocations);
 	}
 
-	public static function __callStatic($function, array $arguments)
+	protected static function logInvocation($function, $arguments)
 	{
 		if (MonkeyPatchManager::$debug)
 		{
 			$trace = debug_backtrace();
-			$file = $trace[0]['file'];
-			$line = $trace[0]['line'];
-			$method = isset($trace[2]['class']) ? $trace[2]['class'].'::'.$trace[2]['function'] : $trace[2]['function'];
+			$file = $trace[1]['file'];
+			$line = $trace[1]['line'];
+			$method = isset($trace[3]['class']) ? $trace[3]['class'].'::'.$trace[3]['function'] : $trace[3]['function'];
 			
 			$log_args = function () use ($arguments) {
 				$output = '';
@@ -99,7 +99,11 @@ class Proxy
 				'invoke_func: ' . $function . '(' . $log_args() . ') on line ' . $line . ' in ' . $file . ' by ' . $method . '()'
 			);
 		}
+	}
 
+	public static function __callStatic($function, array $arguments)
+	{
+		self::logInvocation($function, $arguments);
 		self::$invocations[$function][] = $arguments;
 
 		if (isset(self::$patches[$function]))
@@ -191,6 +195,11 @@ class Proxy
 		$length, &$crypto_strong
 	)
 	{
+		$function = 'openssl_random_pseudo_bytes';
+		$arguments = [$length, $crypto_strong];
+		self::logInvocation($function, $arguments);
+		self::$invocations[$function][] = $arguments;
+
 		if ($crypto_strong === null)
 		{
 			$crypto_strong = true;
