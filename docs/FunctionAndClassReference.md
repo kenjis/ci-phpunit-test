@@ -12,6 +12,7 @@ version: **master** |
 - [*function* `set_is_cli($return)`](#function-set_is_clireturn)
 - [*function* `load_class_instance($classname, $instance)`](#function-load_class_instanceclassname-instance)
 - [*class* TestCase](#class-testcase)
+	- [`TestCase::resetInstance()`](#testcaseresetinstance)
 	- [`TestCase::request($method, $argv, $params = [], $callable = null)`](#testcaserequestmethod-argv-params---callable--null)
 		- [`request->setCallable()`](#request-setcallable)
 		- [`request->setCallablePreConstructor()`](#request-setcallablepreconstructor)
@@ -46,6 +47,8 @@ $controller = new Welcome();
 $this->CI =& get_instance();
 ~~~
 
+Normally, you don't have to use this function. Use [`TestCase::resetInstance()`](#testcaseresetinstance) method instead.
+
 ### *function* `set_is_cli($return)`
 
 | param   | type | description         |
@@ -77,6 +80,38 @@ load_class_instance('email', $email);
 ~~~
 
 ### *class* TestCase
+
+#### `TestCase::resetInstance()`
+
+Reset CodeIgniter instance and assign new CodeIgniter instance as `$this->CI`.
+
+~~~php
+public function setUp()
+{
+	$this->resetInstance();
+	$this->CI->load->model('Category_model');
+	$this->obj = $this->CI->Category_model;
+}
+~~~
+
+**Note:** When you call `$this->request()`, you don't have to use this method. Because `$this->request()` resets CodeIgniter instance internally.
+
+**Upgrade Note for v0.6.0**
+
+Before v0.6.0, we write `setUp()` method like this:
+
+~~~php
+public function setUp()
+{
+	$this->CI =& get_instance();
+	$this->CI->load->model('Category_model');
+	$this->obj = $this->CI->Category_model;
+}
+~~~
+
+When you use the way, you use the same CodeIgniter instance and the same `Category_model` instance in every test method.
+
+In contrast, if you use `$this->resetInstance()`, it resets CodeIgniter instance and `Category_model`. So you use new CodeIgniter instance and new `Category_model` instance in every test method.
 
 #### `TestCase::request($method, $argv, $params = [], $callable = null)`
 

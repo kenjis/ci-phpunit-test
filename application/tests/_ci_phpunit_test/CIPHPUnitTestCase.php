@@ -23,6 +23,11 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	protected $double;
 
 	/**
+	 * @var CI_Controller CodeIgniter instance
+	 */
+	protected $CI;
+
+	/**
 	 * Constructs a test case with the given name.
 	 *
 	 * @param string $name
@@ -45,6 +50,16 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 			'index.php',
 		];
 		$_SERVER['argc'] = 1;
+	}
+
+	/**
+	 * Reset CodeIgniter instance and assign new CodeIgniter instance as $this->CI
+	 */
+	public function resetInstance()
+	{
+		reset_instance();
+		new CI_Controller();
+		$this->CI =& get_instance();
 	}
 
 	public function tearDown()

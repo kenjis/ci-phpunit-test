@@ -10,6 +10,7 @@
 
 * Monkey Patching on functions. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#patching-functions).
 * Monkey Patching on methods in user-defined classes. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#patching-methods-in-user-defined-classes).
+* `$this->resetInstance()` for better model testing. See [#40](https://github.com/kenjis/ci-phpunit-test/pull/40).
 
 ### Removed
 
