@@ -40,7 +40,7 @@ class_alias('Kenjis\MonkeyPatch\MonkeyPatchManager', 'MonkeyPatchManager');
 //		'FunctionPatcher',
 //		'MethodPatcher',
 //	],
-//	// Functions to patch
+//	// Additional functions to patch
 //	'functions_to_patch' => [
 //		//'random_string',
 //	],

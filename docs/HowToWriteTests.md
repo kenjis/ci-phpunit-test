@@ -573,7 +573,7 @@ Mock library class name must be `Mock_Libraries_*`, and it is autoloaded.
 
 **Note:** This functionality has a negative impact on speed of tests.
 
-To enable monkey patching, uncomment below code in `tests/Bootstrap.php` and configure paths:
+To enable monkey patching, uncomment below code in `tests/Bootstrap.php` and configure them:
 
 ~~~php
 /*
@@ -595,7 +595,7 @@ MonkeyPatchManager::init([
 		'FunctionPatcher',
 		'MethodPatcher',
 	],
-	// Functions to patch
+	// Additional functions to patch
 	'functions_to_patch' => [
 		//'random_string',
 	],

@@ -314,7 +314,7 @@ MonkeyPatchManager::init([
 		'FunctionPatcher',
 		'MethodPatcher',
 	],
-	// Functions to patch
+	// Additional functions to patch
 	'functions_to_patch' => [
 		//'random_string',
 	],
