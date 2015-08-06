@@ -378,12 +378,12 @@ This method is called on `TestCase::tearDown()` by default. So you don't have to
 
 #### `MonkeyPatch::verifyInvoked($class_method, $params)`
 
-| param         | type   | description   |
-|---------------|--------|---------------|
-|`$class_method`| string | class::method |
-|`$params`      | array  | arguments     |
+| param         | type   | description              |
+|---------------|--------|--------------------------|
+|`$class_method`| string | class::method / function |
+|`$params`      | array  | arguments                |
 
-Verifies a patched class method was invoked at least once.
+Verifies a patched class method or a patched function was invoked at least once.
 
 ~~~php
 MonkeyPatch::verifyInvoked(
@@ -393,12 +393,12 @@ MonkeyPatch::verifyInvoked(
 
 #### `MonkeyPatch::verifyInvokedOnce($class_method, $params)`
 
-| param         | type   | description   |
-|---------------|--------|---------------|
-|`$class_method`| string | class::method |
-|`$params`      | array  | arguments     |
+| param         | type   | description              |
+|---------------|--------|--------------------------|
+|`$class_method`| string | class::method / function |
+|`$params`      | array  | arguments                |
 
-Verifies that patched class method was invoked only once.
+Verifies that patched class method or a patched function was invoked only once.
 
 ~~~php
 MonkeyPatch::verifyInvokedOnce(
@@ -408,13 +408,13 @@ MonkeyPatch::verifyInvokedOnce(
 
 #### `MonkeyPatch::verifyInvokedMultipleTimes($class_method, $times, $params)`
 
-| param         | type   | description   |
-|---------------|--------|---------------|
-|`$class_method`| string | class::method |
-|`$times`       | int    | times         |
-|`$params`      | array  | arguments     |
+| param         | type   | description              |
+|---------------|--------|--------------------------|
+|`$class_method`| string | class::method / function |
+|`$times`       | int    | times                    |
+|`$params`      | array  | arguments                |
 
-Verifies that patched method was called exactly $times times.
+Verifies that patched method or a patched function was called exactly $times times.
 
 ~~~php
 MonkeyPatch::verifyInvokedMultipleTimes(
@@ -424,12 +424,12 @@ MonkeyPatch::verifyInvokedMultipleTimes(
 
 #### `MonkeyPatch::verifyNeverInvoked($class_method, $params)`
 
-| param         | type   | description   |
-|---------------|--------|---------------|
-|`$class_method`| string | class::method |
-|`$params`      | array  | arguments     |
+| param         | type   | description              |
+|---------------|--------|--------------------------|
+|`$class_method`| string | class::method / function |
+|`$params`      | array  | arguments                |
 
-Verifies that patched method was not called.
+Verifies that patched method or a patched function was not called.
 
 ~~~php
 MonkeyPatch::verifyNeverInvoked(
