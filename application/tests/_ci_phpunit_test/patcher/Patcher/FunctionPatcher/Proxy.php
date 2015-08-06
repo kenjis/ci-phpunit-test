@@ -19,11 +19,24 @@ use ReflectionException;
 use Kenjis\MonkeyPatch\Patcher\FunctionPatcher;
 use Kenjis\MonkeyPatch\MonkeyPatchManager;
 use Kenjis\MonkeyPatch\Cache;
+use Kenjis\MonkeyPatch\InvocationVerifier;
 
 class Proxy
 {
-	private static $mocks = [];
+	private static $patches = [];
+	private static $expected_invocations = [];
+	private static $invocations = [];
 
+	/**
+	 * Set a function patch
+	 * 
+	 * This method has '__' suffix, because if it matches real function name,
+	 * '__callStatic()' catch it.
+	 * 
+	 * @param string $function    function name
+	 * @param mixed $return_value return value or callable
+	 * @throws LogicException
+	 */
 	public static function patch__($function, $return_value)
 	{
 		if (FunctionPatcher::isBlacklisted($function))
@@ -39,12 +52,30 @@ class Proxy
 			throw new LogicException($msg);
 		}
 
-		self::$mocks[$function] = $return_value;
+		self::$patches[$function] = $return_value;
 	}
 
+	/**
+	 * Clear all patches and invocation data
+	 * 
+	 * This method has '__' suffix, because if it matches real function name,
+	 * '__callStatic()' catch it.
+	 */
 	public static function reset__()
 	{
-		self::$mocks = [];
+		self::$patches = [];
+		self::$expected_invocations = [];
+		self::$invocations = [];
+	}
+
+	public static function setExpectedInvocations($function, $times, $params)
+	{
+		self::$expected_invocations[$function][] = [$params, $times];
+	}
+
+	public static function verifyInvocations()
+	{
+		InvocationVerifier::verify(self::$expected_invocations, self::$invocations);
 	}
 
 	public static function __callStatic($function, array $arguments)
@@ -69,11 +100,13 @@ class Proxy
 			);
 		}
 
-		if (isset(self::$mocks[$function]))
+		self::$invocations[$function][] = $arguments;
+
+		if (isset(self::$patches[$function]))
 		{
-			if (is_callable(self::$mocks[$function]))
+			if (is_callable(self::$patches[$function]))
 			{
-				$callable = self::$mocks[$function];
+				$callable = self::$patches[$function];
 				
 				$return = call_user_func_array($callable, $arguments);
 				if ($return !== __GO_TO_ORIG__)
@@ -83,7 +116,7 @@ class Proxy
 				return call_user_func_array($function, $arguments);
 			}
 
-			return self::$mocks[$function];
+			return self::$patches[$function];
 		}
 
 		self::checkPassedByReference($function);
@@ -163,18 +196,18 @@ class Proxy
 			$crypto_strong = true;
 		}
 
-		if (isset(self::$mocks['openssl_random_pseudo_bytes']))
+		if (isset(self::$patches['openssl_random_pseudo_bytes']))
 		{
-			if (is_callable(self::$mocks['openssl_random_pseudo_bytes']))
+			if (is_callable(self::$patches['openssl_random_pseudo_bytes']))
 			{
-				$callable = self::$mocks['openssl_random_pseudo_bytes'];
+				$callable = self::$patches['openssl_random_pseudo_bytes'];
 				return call_user_func_array(
 					$callable,
 					[$length, &$crypto_strong]
 				);
 			}
 
-			return self::$mocks['openssl_random_pseudo_bytes'];
+			return self::$patches['openssl_random_pseudo_bytes'];
 		}
 
 		return openssl_random_pseudo_bytes($length, $crypto_strong);
