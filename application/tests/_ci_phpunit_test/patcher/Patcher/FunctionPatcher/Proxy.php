@@ -49,6 +49,26 @@ class Proxy
 
 	public static function __callStatic($function, array $arguments)
 	{
+		if (MonkeyPatchManager::$debug)
+		{
+			$trace = debug_backtrace();
+			$file = $trace[0]['file'];
+			$line = $trace[0]['line'];
+			$method = isset($trace[2]['class']) ? $trace[2]['class'].'::'.$trace[2]['function'] : $trace[2]['function'];
+			
+			$log_args = function () use ($arguments) {
+				$output = '';
+				foreach ($arguments as $arg) {
+					$output .= var_export($arg, true) . ', ';
+				}
+				$output = rtrim($output, ', ');
+				return $output;
+			};
+			MonkeyPatchManager::log(
+				'invoke_func: ' . $function . '(' . $log_args() . ') on line ' . $line . ' in ' . $file . ' by ' . $method . '()'
+			);
+		}
+
 		if (isset(self::$mocks[$function]))
 		{
 			if (is_callable(self::$mocks[$function]))

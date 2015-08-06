@@ -14,6 +14,8 @@ class_alias('Kenjis\MonkeyPatch\Patcher\MethodPatcher\PatchManager', '__PatchMan
 
 use PHPUnit_Framework_TestCase;
 
+use Kenjis\MonkeyPatch\MonkeyPatchManager;
+
 class PatchManager
 {
 	private static $patches = [];
@@ -43,6 +45,27 @@ class PatchManager
 
 	public static function getReturn($class, $method, $params)
 	{
+		if (MonkeyPatchManager::$debug)
+		{
+			$trace = debug_backtrace();
+			$file = $trace[0]['file'];
+			$line = $trace[0]['line'];
+			$called_method = isset($trace[2]['class']) ? $trace[2]['class'].'::'.$trace[2]['function'] : $trace[2]['function'];
+			
+			$log_args = function () use ($params) {
+				$output = '';
+				foreach ($params as $arg) {
+					$output .= var_export($arg, true) . ', ';
+				}
+				$output = rtrim($output, ', ');
+				return $output;
+			};
+			MonkeyPatchManager::log(
+				'invoke_method: ' . $class.'::'.$method . '(' . $log_args() . ') on line ' . $line . ' in ' . $file . ' by ' . $called_method . '()'
+			);
+//			var_dump($trace); exit;
+		}
+
 		self::$invocations[$class.'::'.$method][] = $params;
 
 		$patch = isset(self::$patches[$class][$method]) ? self::$patches[$class][$method] : null;
