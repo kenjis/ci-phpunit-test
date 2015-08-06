@@ -12,9 +12,8 @@ namespace Kenjis\MonkeyPatch\Patcher\MethodPatcher;
 
 class_alias('Kenjis\MonkeyPatch\Patcher\MethodPatcher\PatchManager', '__PatchManager__');
 
-use PHPUnit_Framework_TestCase;
-
 use Kenjis\MonkeyPatch\MonkeyPatchManager;
+use Kenjis\MonkeyPatch\InvocationVerifier;
 
 class PatchManager
 {
@@ -90,64 +89,6 @@ class PatchManager
 
 	public static function verifyInvocations()
 	{
-		if (self::$expected_invocations === [])
-		{
-			return;
-		}
-
-		foreach (self::$expected_invocations as $class_method => $data)
-		{
-			foreach ($data as $params_times)
-			{
-				list($expected_params, $expected_times) = $params_times;
-
-				$invoked = isset(self::$invocations[$class_method]);
-				if ($invoked === false)
-				{
-					$actual_times = 0;
-				}
-				elseif ($expected_params === null)
-				{
-					$actual_times = count(self::$invocations[$class_method]);
-				}
-				else
-				{
-					$count = 0;
-					foreach (self::$invocations[$class_method] as $actual_params)
-					{
-						if ($actual_params == $expected_params)
-						{
-							$count++;
-						}
-					}
-					$actual_times = $count;
-				}
-
-				if ($expected_times === 0)
-				{
-					PHPUnit_Framework_TestCase::assertEquals(
-						$expected_times,
-						$actual_times,
-						$class_method . '() expected to be not invoked, but invoked ' . $actual_times . ' times.'
-					);
-				}
-				elseif ($expected_times === '+')
-				{
-					PHPUnit_Framework_TestCase::assertGreaterThanOrEqual(
-						1,
-						$actual_times,
-						$class_method . '() expected to be invoked at least one time, but invoked ' . $actual_times . ' times.'
-					);
-				}
-				else
-				{
-					PHPUnit_Framework_TestCase::assertEquals(
-						$expected_times,
-						$actual_times,
-						$class_method . '() expected to be invoked ' . $expected_times . ' times, but invoked ' . $actual_times . ' times.'
-					);
-				}
-			}
-		}
+		InvocationVerifier::verify(self::$expected_invocations, self::$invocations);
 	}
 }

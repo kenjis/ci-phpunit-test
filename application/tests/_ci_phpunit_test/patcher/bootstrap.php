@@ -13,6 +13,7 @@ require __DIR__ . '/PathChecker.php';
 require __DIR__ . '/MonkeyPatchManager.php';
 require __DIR__ . '/MonkeyPatch.php';
 require __DIR__ . '/Cache.php';
+require __DIR__ . '/InvocationVerifier.php';
 
 require __DIR__ . '/functions/exit__.php';
 
