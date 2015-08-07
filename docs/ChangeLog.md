@@ -14,7 +14,7 @@
 
 ### Removed
 
-* `TestCase::$enable_patcher`
+* `TestCase::$enable_patcher` (Introduced in v0.5.0)
 
 ## v0.5.0 (2015/07/27)
 
