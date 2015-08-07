@@ -138,7 +138,7 @@ class Inventory_model_test extends TestCase
 {
 	public function setUp()
 	{
-		$this->CI =& get_instance();
+		$this->resetInstance();
 		$this->CI->load->model('shop/Inventory_model');
 		$this->obj = $this->CI->Inventory_model;
 	}
@@ -170,6 +170,8 @@ Test case class extends [TestCase](FunctionAndClassReference.md#class-testcase) 
 Don't forget to write `parent::setUpBeforeClass();` if you override `setUpBeforeClass()` method.
 
 Don't forget to write `parent::tearDown();` if you override `tearDown()` method.
+
+[$this->resetInstance()](FunctionAndClassReference.md#testcaseresetinstance) method in *CI PHPUnit Test* is a helper method to reset CodeIgniter instance and assign new CodeIgniter instance as `$this->CI`.
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/models/Category_model_test.php).
 
@@ -256,8 +258,6 @@ If you don't know well about PHPUnit Mock Objects, see [Test Doubles](https://ph
 		}
 	}
 ~~~
-
-[$this->resetInstance()](FunctionAndClassReference.md#testcaseresetinstance) method in *CI PHPUnit Test* is a helper method to reset CodeIgniter instance and assign new CodeIgniter instance as `$this->CI`.
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/models/Category_model_mocking_db_test.php).
 
