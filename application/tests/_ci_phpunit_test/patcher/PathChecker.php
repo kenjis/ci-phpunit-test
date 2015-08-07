@@ -17,21 +17,30 @@ class PathChecker
 	private static $include_paths = [];
 	private static $exclude_paths = [];
 
-	protected static function normalizePaths(array $dirs)
+	/**
+	 * @param array $paths directory or file path
+	 * @return array
+	 * @throws RuntimeException
+	 */
+	protected static function normalizePaths(array $paths)
 	{
-		$new_dirs = [];
-		foreach ($dirs as $dir)
+		$new_paths = [];
+		foreach ($paths as $path)
 		{
-			$real_dir = realpath($dir);
-			if ($real_dir === FALSE)
+			$real_path = realpath($path);
+			if ($real_path === FALSE)
 			{
-				throw new RuntimeException($dir . ' does not exist?');
+				throw new RuntimeException($path . ' does not exist?');
 			}
-			$new_dirs[] = $real_dir . '/';
+			if (is_dir($real_path))
+			{
+				$real_path = $real_path . '/';
+			}
+			$new_paths[] = $real_path;
 		}
-		array_unique($new_dirs, SORT_STRING);
-		sort($new_dirs, SORT_STRING);
-		return $new_dirs;
+		array_unique($new_paths, SORT_STRING);
+		sort($new_paths, SORT_STRING);
+		return $new_paths;
 	}
 
 	public static function setIncludePaths(array $dir)
