@@ -203,7 +203,7 @@ If you don't know well about PHPUnit Mock Objects, see [Test Doubles](https://ph
 ~~~php
 	public function setUp()
 	{
-		$this->CI =& get_instance();
+		$this->resetInstance();
 		$this->CI->load->model('Category_model');
 		$this->obj = $this->CI->Category_model;
 	}
@@ -254,14 +254,10 @@ If you don't know well about PHPUnit Mock Objects, see [Test Doubles](https://ph
 		foreach ($list as $category) {
 			$this->assertEquals($expected[$category->id], $category->name);
 		}
-
-		// Reset CI object for next test case, unless property db won't work
-		reset_instance();
-		new CI_Controller();
 	}
 ~~~
 
-**Note:** Once you have replaced CodeIgniter object's property with your mock, the mock remains until you call `reset_instance()` and instantiate a controller.
+[$this->resetInstance()](FunctionAndClassReference.md#testcaseresetinstance) method in *CI PHPUnit Test* is a helper method to reset CodeIgniter instance and assign new CodeIgniter instance as `$this->CI`.
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/models/Category_model_mocking_db_test.php).
 

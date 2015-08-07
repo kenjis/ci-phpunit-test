@@ -106,7 +106,7 @@ To generate coverage report, Xdebug is needed.
 
 ## How to Write Tests
 
-As an example, a test case class for Inventory_model would be as follows:
+As an example, a test case class for `Inventory_model` would be as follows:
 
 ~~~php
 <?php
@@ -115,7 +115,7 @@ class Inventory_model_test extends TestCase
 {
     public function setUp()
     {
-        $this->CI =& get_instance();
+        $this->resetInstance();
         $this->CI->load->model('Inventory_model');
         $this->obj = $this->CI->Inventory_model;
     }
