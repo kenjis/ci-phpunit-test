@@ -24,6 +24,7 @@ use Kenjis\MonkeyPatch\InvocationVerifier;
 class Proxy
 {
 	private static $patches = [];
+	private static $patches_to_apply = [];
 	private static $expected_invocations = [];
 	private static $invocations = [];
 
@@ -33,12 +34,16 @@ class Proxy
 	 * This method has '__' suffix, because if it matches real function name,
 	 * '__callStatic()' catch it.
 	 * 
-	 * @param string $function    function name
-	 * @param mixed $return_value return value or callable
+	 * @param string $function     function name
+	 * @param mixed  $return_value return value or callable
+	 * @param string $class_name   class::method to apply this patch
+	 * 
 	 * @throws LogicException
 	 */
-	public static function patch__($function, $return_value)
+	public static function patch__($function, $return_value, $class_method = null)
 	{
+		$function = strtolower($function);
+
 		if (FunctionPatcher::isBlacklisted($function))
 		{
 			$msg = "<red>Can't patch on '$function'. It is in blacklist.</red>";
@@ -53,6 +58,7 @@ class Proxy
 		}
 
 		self::$patches[$function] = $return_value;
+		self::$patches_to_apply[$function] = strtolower($class_method);
 	}
 
 	/**
@@ -64,13 +70,14 @@ class Proxy
 	public static function reset__()
 	{
 		self::$patches = [];
+		self::$patches_to_apply = [];
 		self::$expected_invocations = [];
 		self::$invocations = [];
 	}
 
 	public static function setExpectedInvocations($function, $times, $params)
 	{
-		self::$expected_invocations[$function][] = [$params, $times];
+		self::$expected_invocations[strtolower($function)][] = [$params, $times];
 	}
 
 	public static function verifyInvocations()
@@ -101,13 +108,55 @@ class Proxy
 		}
 	}
 
+	protected static function checkCalledMethod($function)
+	{
+		$trace  = debug_backtrace();
+		$class  = isset($trace[3]['class']) ? strtolower($trace[3]['class']) : null;
+		$method = strtolower($trace[3]['function']);
+
+		// Patches the functions only in the class
+		if (strpos(self::$patches_to_apply[$function], '::') === false)
+		{
+			if (self::$patches_to_apply[$function] !== $class)
+			{
+				return false;
+			}
+			return true;
+		}
+		//Patches the functions only in the class method
+		else
+		{
+			if (self::$patches_to_apply[$function] !== $class.'::'.$method)
+			{
+				return false;
+			}
+			return true;
+		}
+	}
+
 	public static function __callStatic($function, array $arguments)
 	{
+		$function = strtolower($function);
+
 		self::logInvocation($function, $arguments);
 		self::$invocations[$function][] = $arguments;
 
+		if (isset(self::$patches_to_apply[$function]))
+		{
+			if (! self::checkCalledMethod($function))
+			{
+				MonkeyPatchManager::log(
+					'invoke_func: ' . $function . '() not patched (out of scope)'
+				);
+				self::checkPassedByReference($function);
+				return call_user_func_array($function, $arguments);
+			}
+		}
+
 		if (isset(self::$patches[$function]))
 		{
+			MonkeyPatchManager::log('invoke_func: ' . $function . '() patched');
+
 			if (is_callable(self::$patches[$function]))
 			{
 				$callable = self::$patches[$function];
@@ -123,6 +172,9 @@ class Proxy
 			return self::$patches[$function];
 		}
 
+		MonkeyPatchManager::log(
+			'invoke_func: ' . $function . '() not patched (no patch)'
+		);
 		self::checkPassedByReference($function);
 		return call_user_func_array($function, $arguments);
 	}

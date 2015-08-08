@@ -661,15 +661,17 @@ So by default we can replace only a dozen pre-defined functions in [FunctionPatc
 ~~~php
 	public function test_index()
 	{
-		MonkeyPatch::patchFunction('mt_rand', 100);
+		MonkeyPatch::patchFunction('mt_rand', 100, 'Welcome::index');
 		$output = $this->request('GET', 'welcome/index');
 		$this->assertContains('100', $output);
 	}
 ~~~
 
-[MonkeyPatch::patchFunction()](FunctionAndClassReference.md#monkeypatchpatchfunctionfunction-return_value) replaces PHP native function `mt_rand()`, and it will return `100` in the test method.
+[MonkeyPatch::patchFunction()](FunctionAndClassReference.md#monkeypatchpatchfunctionfunction-return_value-class_method) replaces PHP native function `mt_rand()` in `Welcome::index` method, and it will return `100` in the test method.
 
-**Note:** If you replace a function, all the functions (located in `exclude_paths`) called in the test method will be replaced. So, for example, a function in CodeIgniter code might be replaced and it results in unexpected outcome. You could change return value of patched function using PHP closure. See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Patching_on_function_test.php#L50-L70).
+You could change return value of patched function using PHP closure. See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Patching_on_function_test.php#L50-L70).
+
+**Note:** If you call `MonkeyPatch::patchFunction()` without 3rd argument, all the functions (located in `include_paths` and not in `exclude_paths`) called in the test method will be replaced. So, for example, a function in CodeIgniter code might be replaced and it results in unexpected outcome. 
 
 If you want to patch other functions, you can add them to [functions_to_patch](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/Bootstrap.php#L318) in `MonkeyPatchManager::init()`.
 

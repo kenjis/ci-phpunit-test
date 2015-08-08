@@ -28,7 +28,7 @@ version: **master** |
 	- [`TestCase::warningOff()`](#testcasewarningoff)
 	- [`TestCase::warningOn()`](#testcasewarningon)
 - [*class* MonkeyPatch](#class-monkeypatch)
-	- [`MonkeyPatch::patchFunction($function, $return_value)`](#monkeypatchpatchfunctionfunction-return_value)
+	- [`MonkeyPatch::patchFunction($function, $return_value, $class_method)`](#monkeypatchpatchfunctionfunction-return_value-class_method)
 	- [`MonkeyPatch::resetFunctions()`](#monkeypatchresetfunctions)
 	- [`MonkeyPatch::patchMethod($classname, $params)`](#monkeypatchpatchmethodclassname-params)
 	- [`MonkeyPatch::resetMethods()`](#monkeypatchresetmethods)
@@ -377,18 +377,19 @@ Restore error reporting.
 
 To use this class, you have to enable monkey patching. See [How to Write Tests](HowToWriteTests.md#monkey-patching).
 
-#### `MonkeyPatch::patchFunction($function, $return_value)`
+#### `MonkeyPatch::patchFunction($function, $return_value, $class_method)`
 
-| param         | type   | description             |
-|---------------|--------|-------------------------|
-|`$function`    | string | function name to patch  |
-|`$return_value`| mixed  | return value / callback |
+| param         | type   | description                                    |
+|---------------|--------|------------------------------------------------|
+|`$function`    | string | function name to patch                         |
+|`$return_value`| mixed  | return value / callback                        |
+|`$class_method`| string | class::method or classname to apply this patch |
 
 Replace function on the fly.
 
-This can't replace functions which has parameters passed by reference.
+If `$class_method` is present, the patch is applied to the functions only in the class method or in the class.
 
-And it can't and doesn't replace some functions. See [FunctionPatcher::$blacklist](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/_ci_phpunit_test/patcher/Patcher/FunctionPatcher.php#L33) for details.
+There are some known limitations. See [How to Write Tests](HowToWriteTests.md#patching-functions) for details.
 
 #### `MonkeyPatch::resetFunctions()`
 
