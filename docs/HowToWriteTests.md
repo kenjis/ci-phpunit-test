@@ -652,7 +652,7 @@ See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/m
 
 #### Patching Functions
 
-This patcher allows replacement of functions that can't be mocked by PHPUnit.
+This patcher allows replacement of global functions that can't be mocked by PHPUnit.
 
 But it has some limitations. Some functions can't be replaced and it might cause errors.
 
