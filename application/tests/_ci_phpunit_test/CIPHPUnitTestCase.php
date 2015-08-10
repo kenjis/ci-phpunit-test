@@ -62,7 +62,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 		$this->CI =& get_instance();
 	}
 
-	public function tearDown()
+	protected function tearDown()
 	{
 		if (class_exists('MonkeyPatch', false))
 		{
