@@ -147,6 +147,22 @@ function is_cli($return = null)
 
 function show_error($message, $status_code = 500, $heading = 'An Error Was Encountered')
 {
+	$status_code = abs($status_code);
+	if ($status_code < 100)
+	{
+		$exit_status = $status_code + 9; // 9 is EXIT__AUTO_MIN
+		if ($exit_status > 125) // 125 is EXIT__AUTO_MAX
+		{
+			$exit_status = 1; // EXIT_ERROR
+		}
+
+		$status_code = 500;
+	}
+	else
+	{
+		$exit_status = 1; // EXIT_ERROR
+	}
+
 	while (ob_get_level() > 1)
 	{
 		ob_end_clean();
@@ -167,6 +183,11 @@ function show_404($page = '', $log_error = TRUE)
 
 function set_status_header($code = 200, $text = '')
 {
+//	if (is_cli())
+//	{
+//		return;
+//	}
+
 	if (empty($code) OR ! is_numeric($code))
 	{
 		show_error('Status codes must be numeric', 500);
@@ -176,6 +197,9 @@ function set_status_header($code = 200, $text = '')
 	{
 		is_int($code) OR $code = (int) $code;
 		$stati = array(
+			100	=> 'Continue',
+			101	=> 'Switching Protocols',
+
 			200	=> 'OK',
 			201	=> 'Created',
 			202	=> 'Accepted',
@@ -194,6 +218,7 @@ function set_status_header($code = 200, $text = '')
 
 			400	=> 'Bad Request',
 			401	=> 'Unauthorized',
+			402	=> 'Payment Required',
 			403	=> 'Forbidden',
 			404	=> 'Not Found',
 			405	=> 'Method Not Allowed',
@@ -230,6 +255,7 @@ function set_status_header($code = 200, $text = '')
 	}
 
 	// Save status code in Output object
+	// added by ci-phpunit-test
 	$CI =& get_instance();
 	$output = $CI->output;
 	$output->_status = [
@@ -238,6 +264,8 @@ function set_status_header($code = 200, $text = '')
 		'redirect' => null,
 	];
 
+	// Everything is done, so return
+	// moved by ci-phpunit-test
 	if (is_cli())
 	{
 		return;

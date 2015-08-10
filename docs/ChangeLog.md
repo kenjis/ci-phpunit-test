@@ -16,6 +16,10 @@
 
 * `TestCase::$enable_patcher` (Introduced in v0.5.0)
 
+### Others
+
+* Compatible with CodeIgniter 3.0.1
+
 ## v0.5.0 (2015/07/27)
 
 ### Changed
