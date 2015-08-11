@@ -10,6 +10,7 @@ An easier way to use PHPUnit with [CodeIgniter](https://github.com/bcit-ci/CodeI
 
 * You don't have to modify CodeIgniter core files at all.
 * You can write controller tests easily.
+* Nothing is untestable, maybe.
 * Well documented.
 
 ![Screenshot: Running tests on NetBeans](http://forum.codeigniter.com/attachment.php?aid=210)
@@ -18,7 +19,7 @@ An easier way to use PHPUnit with [CodeIgniter](https://github.com/bcit-ci/CodeI
 
 * PHP 5.4.0 or later
 * CodeIgniter 3.0.*
-* PHPUnit (version 4.7 is recommended)
+* PHPUnit (version 4.7 or later is recommended)
 
 ## Change Log
 
@@ -87,15 +88,13 @@ You have to install PHPUnit before running tests.
 $ cd /path/to/codeigniter/
 $ cd application/tests/
 $ phpunit
-PHPUnit 4.6.10 by Sebastian Bergmann and contributors.
-
-Configuration read from /.../codeigniter/application/tests/phpunit.xml
+PHPUnit 4.7.7 by Sebastian Bergmann and contributors.
 
 ...
 
-Time: 635 ms, Memory: 4.50Mb
+Time: 341 ms, Memory: 5.50Mb
 
-OK (3 tests, 4 assertions)
+OK (3 tests, 3 assertions)
 
 Generating code coverage report in Clover XML format ... done
 
