@@ -1,15 +1,15 @@
 # Change Log for CI PHPUnit Test
 
-## v0.6.0 (2015/08/12)
+## v0.6.1 (2015/08/12)
 
 ### Changed
 
-* How to enable Monkey Patching has been changed. `TestCase::$enable_patcher` was removed. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/v0.6.0/docs/HowToWriteTests.md#monkey-patching).
+* How to enable Monkey Patching has been changed. `TestCase::$enable_patcher` was removed. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/v0.6.1/docs/HowToWriteTests.md#monkey-patching).
 
 ### Added
 
-* Monkey Patching on functions. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/v0.6.0/docs/HowToWriteTests.md#patching-functions).
-* Monkey Patching on methods in user-defined classes. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/v0.6.0/docs/HowToWriteTests.md#patching-methods-in-user-defined-classes).
+* Monkey Patching on functions. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/v0.6.1/docs/HowToWriteTests.md#patching-functions).
+* Monkey Patching on methods in user-defined classes. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/v0.6.1/docs/HowToWriteTests.md#patching-methods-in-user-defined-classes).
 * `$this->resetInstance()` for better model testing. See [#40](https://github.com/kenjis/ci-phpunit-test/pull/40).
 
 ### Removed
