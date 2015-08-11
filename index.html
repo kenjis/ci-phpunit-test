@@ -45,6 +45,7 @@
 <ul>
 <li>You don't have to modify CodeIgniter core files at all.</li>
 <li>You can write controller tests easily.</li>
+<li>Nothing is untestable, maybe.</li>
 <li>Well documented.</li>
 </ul>
 
@@ -56,7 +57,7 @@
 <ul>
 <li>PHP 5.4.0 or later</li>
 <li>CodeIgniter 3.0.*</li>
-<li>PHPUnit (version 4.7 is recommended)</li>
+<li>PHPUnit 4.3 or later (version 4.7 or later is recommended)</li>
 </ul>
 
 <h2>
@@ -128,15 +129,13 @@ $ php vendor/kenjis/ci-phpunit-test/update.php
 <pre><code>$ cd /path/to/codeigniter/
 $ cd application/tests/
 $ phpunit
-PHPUnit 4.6.10 by Sebastian Bergmann and contributors.
-
-Configuration read from /.../codeigniter/application/tests/phpunit.xml
+PHPUnit 4.7.7 by Sebastian Bergmann and contributors.
 
 ...
 
-Time: 635 ms, Memory: 4.50Mb
+Time: 341 ms, Memory: 5.50Mb
 
-OK (3 tests, 4 assertions)
+OK (3 tests, 3 assertions)
 
 Generating code coverage report in Clover XML format ... done
 
@@ -148,7 +147,7 @@ Generating code coverage report in HTML format ... done
 <h2>
 <a id="how-to-write-tests" class="anchor" href="#how-to-write-tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to Write Tests</h2>
 
-<p>As an example, a test case class for Inventory_model would be as follows:</p>
+<p>As an example, a test case class for <code>Inventory_model</code> would be as follows:</p>
 
 <div class="highlight highlight-php"><pre><span class="pl-pse">&lt;?php</span><span class="pl-s1"></span>
 <span class="pl-s1"></span>
@@ -156,7 +155,7 @@ Generating code coverage report in HTML format ... done
 <span class="pl-s1">{</span>
 <span class="pl-s1">    <span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">setUp</span>()</span>
 <span class="pl-s1">    {</span>
-<span class="pl-s1">        <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">CI</span> <span class="pl-k">=</span><span class="pl-k">&amp;</span> get_instance();</span>
+<span class="pl-s1">        <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span>resetInstance();</span>
 <span class="pl-s1">        <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">CI</span><span class="pl-k">-&gt;</span><span class="pl-smi">load</span><span class="pl-k">-&gt;</span>model(<span class="pl-s"><span class="pl-pds">'</span>Inventory_model<span class="pl-pds">'</span></span>);</span>
 <span class="pl-s1">        <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">obj</span> <span class="pl-k">=</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">CI</span><span class="pl-k">-&gt;</span><span class="pl-smi">Inventory_model</span>;</span>
 <span class="pl-s1">    }</span>
