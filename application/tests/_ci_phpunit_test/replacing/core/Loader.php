@@ -316,10 +316,10 @@ class CI_Loader {
 				throw new RuntimeException('Unable to locate the model you have specified: '.$model);
 			}
 		}
-		elseif ( ! is_subclass_of($model, 'CI_Model'))
-		{
-			throw new RuntimeException("Class ".$model." already exists and doesn't extend CI_Model");
-		}
+//		elseif ( ! is_subclass_of($model, 'CI_Model'))
+//		{
+//			throw new RuntimeException("Class ".$model." already exists and doesn't extend CI_Model");
+//		}
 
 		$this->_ci_models[] = $name;
 		$CI->$name = new $model();
