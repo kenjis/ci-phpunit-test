@@ -669,7 +669,34 @@ So by default we can replace only a dozen pre-defined functions in [FunctionPatc
 
 [MonkeyPatch::patchFunction()](FunctionAndClassReference.md#monkeypatchpatchfunctionfunction-return_value-class_method) replaces PHP native function `mt_rand()` in `Welcome::index` method, and it will return `100` in the test method.
 
-You could change return value of patched function using PHP closure. See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v0.6.1/application/tests/controllers/Patching_on_function_test.php#L50-L70).
+You could change return value of patched function using PHP closure:
+
+~~~php
+		MonkeyPatch::patchFunction(
+			'function_exists',
+			function ($function) {
+				if ($function === 'random_bytes')
+				{
+					return true;
+				}
+				elseif ($function === 'openssl_random_pseudo_bytes')
+				{
+					return false;
+				}
+				elseif ($function === 'mcrypt_create_iv')
+				{
+					return false;
+				}
+				else
+				{
+					return __GO_TO_ORIG__;
+				}
+			},
+			'Patching_on_function'
+		);
+~~~
+
+See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v0.6.1/application/tests/controllers/Patching_on_function_test.php#L59-L80).
 
 **Note:** If you call `MonkeyPatch::patchFunction()` without 3rd argument, all the functions (located in `include_paths` and not in `exclude_paths`) called in the test method will be replaced. So, for example, a function in CodeIgniter code might be replaced and it results in unexpected outcome. 
 
