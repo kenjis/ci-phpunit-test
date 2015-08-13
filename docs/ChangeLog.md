@@ -1,5 +1,11 @@
 # Change Log for CI PHPUnit Test
 
+## v0.6.2 (2015/08/13)
+
+### Fixed
+
+* Fix bug that can't test model classes (classes in `application/models` folder) which do not extend `CI_Model` more than once.
+
 ## v0.6.1 (2015/08/12)
 
 ### Changed
