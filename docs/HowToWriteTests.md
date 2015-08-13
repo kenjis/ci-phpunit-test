@@ -733,5 +733,5 @@ See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v
 
 Want to see more tests?
 
-* https://github.com/kenjis/ci-app-for-ci-phpunit-test/tree/master/application/tests
+* https://github.com/kenjis/ci-app-for-ci-phpunit-test/tree/v0.6.2/application/tests
 * https://github.com/kenjis/codeigniter-tettei-apps/tree/develop/application/tests
