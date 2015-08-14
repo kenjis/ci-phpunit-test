@@ -654,7 +654,7 @@ See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v
 
 This patcher allows replacement of global functions that can't be mocked by PHPUnit.
 
-But it has some limitations. Some functions can't be replaced and it might cause errors.
+But it has a few limitations. Some functions can't be replaced and it might cause errors.
 
 So by default we can replace only a dozen pre-defined functions in [FunctionPatcher](https://github.com/kenjis/ci-phpunit-test/blob/v0.6.2/application/tests/_ci_phpunit_test/patcher/Patcher/FunctionPatcher.php#L35).
 
@@ -708,7 +708,7 @@ See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v
 
 If you want to patch other functions, you can add them to [functions_to_patch](https://github.com/kenjis/ci-phpunit-test/blob/v0.6.2/application/tests/Bootstrap.php#L318) in `MonkeyPatchManager::init()`.
 
-But there are some known limitations:
+But there are a few known limitations:
 
 * Patched functions which have parameters called by reference don't work.
 * You may see visibility errors if you pass non-public callbacks to patched functions. For example, you pass `[$this, 'method']` to `array_map()` and the `method()` method in the class is not public.
