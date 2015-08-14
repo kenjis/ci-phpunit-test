@@ -669,6 +669,12 @@ So by default we can replace only a dozen pre-defined functions in [FunctionPatc
 
 [MonkeyPatch::patchFunction()](FunctionAndClassReference.md#monkeypatchpatchfunctionfunction-return_value-class_method) replaces PHP native function `mt_rand()` in `Welcome::index` method, and it will return `100` in the test method.
 
+See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v0.6.2/application/tests/controllers/Patching_on_function_test.php).
+
+**Note:** If you call `MonkeyPatch::patchFunction()` without 3rd argument, all the functions (located in `include_paths` and not in `exclude_paths`) called in the test method will be replaced. So, for example, a function in CodeIgniter code might be replaced and it results in unexpected outcome.
+
+** Change Return Value**
+
 You could change return value of patched function using PHP closure:
 
 ~~~php
@@ -698,7 +704,7 @@ You could change return value of patched function using PHP closure:
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v0.6.2/application/tests/controllers/Patching_on_function_test.php#L59-L80).
 
-**Note:** If you call `MonkeyPatch::patchFunction()` without 3rd argument, all the functions (located in `include_paths` and not in `exclude_paths`) called in the test method will be replaced. So, for example, a function in CodeIgniter code might be replaced and it results in unexpected outcome. 
+**Patch on Other Functions**
 
 If you want to patch other functions, you can add them to [functions_to_patch](https://github.com/kenjis/ci-phpunit-test/blob/v0.6.2/application/tests/Bootstrap.php#L318) in `MonkeyPatchManager::init()`.
 
@@ -706,8 +712,6 @@ But there are some known limitations:
 
 * Patched functions which have parameters called by reference don't work.
 * You may see visibility errors if you pass non-public callbacks to patched functions. For example, you pass `[$this, 'method']` to `array_map()` and the `method()` method in the class is not public.
-
-See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v0.6.2/application/tests/controllers/Patching_on_function_test.php).
 
 #### Patching Methods in User-defined Classes
 
