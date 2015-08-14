@@ -673,7 +673,7 @@ See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v
 
 **Note:** If you call `MonkeyPatch::patchFunction()` without 3rd argument, all the functions (located in `include_paths` and not in `exclude_paths`) called in the test method will be replaced. So, for example, a function in CodeIgniter code might be replaced and it results in unexpected outcome.
 
-** Change Return Value**
+**Change Return Value**
 
 You could change return value of patched function using PHP closure:
 
