@@ -39,12 +39,12 @@ class CIPHPUnitTestReflection
 	public static function setPrivateProperty($class, $property, $value)
 	{
 		$ref_property = self::getAccessibleRefProperty($class, $property);
-		$ref_property->setValue($value);
+		$ref_property->setValue($class, $value);
 	}
 
 	public static function getPrivateProperty($class, $property)
 	{
 		$ref_property = self::getAccessibleRefProperty($class, $property);
-		return $ref_property->getValue();
+		return $ref_property->getValue($class);
 	}
 }
