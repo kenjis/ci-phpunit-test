@@ -12,7 +12,7 @@ class CIPHPUnitTestReflection
 {
 	public static function getPrivateMethodInvoker($class, $method)
 	{
-		$ref_method = new \ReflectionMethod($class, $method);
+		$ref_method = new ReflectionMethod($class, $method);
 		$ref_method->setAccessible(true);
 		$obj = (gettype($class) === 'object') ? $class : null;
 
@@ -22,20 +22,7 @@ class CIPHPUnitTestReflection
 		};
 	}
 
-	public static function setPrivateProperty($class, $property, $value)
-	{
-		if (is_object($class)) {
-			$ref_class = new \ReflectionObject($class);
-		} else {
-			$ref_class = new \ReflectionClass($class);
-		}
-
-		$ref_property = $ref_class->getProperty($property);
-		$ref_property->setAccessible(true);
-		$ref_property->setValue($value);
-	}
-
-	public static function getPrivateProperty($class, $property)
+	protected static function getAccessibleRefProperty($class, $property)
 	{
 		if (is_object($class)) {
 			$ref_class = new ReflectionObject($class);
@@ -46,6 +33,18 @@ class CIPHPUnitTestReflection
 		$ref_property = $ref_class->getProperty($property);
 		$ref_property->setAccessible(true);
 
+		return $ref_property;
+	}
+
+	public static function setPrivateProperty($class, $property, $value)
+	{
+		$ref_property = self::getAccessibleRefProperty($class, $property);
+		$ref_property->setValue($value);
+	}
+
+	public static function getPrivateProperty($class, $property)
+	{
+		$ref_property = self::getAccessibleRefProperty($class, $property);
 		return $ref_property->getValue();
 	}
 }
