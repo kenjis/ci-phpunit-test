@@ -273,7 +273,8 @@ class MonkeyPatchManager
 		foreach (self::$patcher_list as $classname)
 		{
 			$classname = 'Kenjis\MonkeyPatch\Patcher\\' . $classname;
-			list($source, $patched_this) = $classname::patch($source);
+			$patcher = new $classname;
+			list($source, $patched_this) = $patcher->patch($source);
 			$patched = $patched || $patched_this;
 		}
 

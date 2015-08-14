@@ -10,22 +10,19 @@
 
 namespace Kenjis\MonkeyPatch\Patcher;
 
-if (! class_exists('PhpParser\Autoloader'))
+if (! class_exists('PhpParser\Autoloader', false))
 {
 	require __DIR__ . '/../third_party/PHP-Parser/lib/bootstrap.php';
+	require __DIR__ . '/AbstractPatcher.php';
 }
 require __DIR__ . '/FunctionPatcher/NodeVisitor.php';
 require __DIR__ . '/FunctionPatcher/Proxy.php';
 
 use LogicException;
 
-use PhpParser\Parser;
-use PhpParser\Lexer;
-use PhpParser\NodeTraverser;
-
 use Kenjis\MonkeyPatch\Patcher\FunctionPatcher\NodeVisitor;
 
-class FunctionPatcher
+class FunctionPatcher extends AbstractPatcher
 {
 	private static $lock_function_list = false;
 	
@@ -84,6 +81,11 @@ class FunctionPatcher
 	];
 
 	public static $replacement;
+
+	public function __construct()
+	{
+		$this->node_visitor = new NodeVisitor();
+	}
 
 	protected static function checkLock($error_msg)
 	{
@@ -157,36 +159,6 @@ class FunctionPatcher
 		}
 
 		return false;
-	}
-
-	public static function patch($source)
-	{
-		$patched = false;
-		self::$replacement = [];
-
-		$parser = new Parser(new Lexer(
-			['usedAttributes' => ['startTokenPos', 'endTokenPos']]
-		));
-		$traverser = new NodeTraverser;
-		$traverser->addVisitor(new NodeVisitor());
-
-		$ast_orig = $parser->parse($source);
-		$traverser->traverse($ast_orig);
-
-		if (self::$replacement !== [])
-		{
-			$patched = true;
-			$new_source = self::generateNewSource($source);
-		}
-		else
-		{
-			$new_source = $source;
-		}
-
-		return [
-			$new_source,
-			$patched,
-		];
 	}
 
 	protected static function generateNewSource($source)
