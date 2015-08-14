@@ -698,7 +698,7 @@ You could change return value of patched function using PHP closure:
 					return __GO_TO_ORIG__;
 				}
 			},
-			'Patching_on_function'
+			'Welcome'
 		);
 ~~~
 
