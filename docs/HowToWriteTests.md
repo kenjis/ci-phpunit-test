@@ -110,13 +110,13 @@ And *CI PHPUnit Test* has special [show_error() and show_404()](#show_error-and-
 
 **`redirect()`**
 
-*CI PHPUnit Test* replaces `redirect()` function in URL helper. Using it, you can easily test controllers that contain `redirect()`. See [`redirect()`](#redirect) for details.
+*CI PHPUnit Test* replaces `redirect()` function in URL helper. Using it, you can easily test controllers that contain `redirect()`. See [redirect()](#redirect) for details.
 
 #### Reset CodeIgniter object
 
 CodeIgniter has a function `get_instance()` to get the CodeIgniter object (CodeIgniter instance or CodeIgniter super object).
 
-*CI PHPUnit Test* has a new function `reset_instance()` which reset the current CodeIgniter object. After resetting, you can (and must) create a new your Controller instance with new state.
+*CI PHPUnit Test* has a new function [reset_instance()](FunctionAndClassReference.md#function-reset_instance) which reset the current CodeIgniter object. After resetting, you can (and must) create a new your Controller instance with new state.
 
 #### Hooks
 
