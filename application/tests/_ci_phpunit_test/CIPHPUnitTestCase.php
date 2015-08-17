@@ -28,26 +28,12 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 		'reflection' => 'CIPHPUnitTestReflection',
 	];
 
-	/**
-	 * Constructs a test case with the given name.
-	 *
-	 * @param string $name
-	 * @param array  $data
-	 * @param string $dataName
-	 */
-	public function __construct($name = null, array $data = array(), $dataName = '')
-	{
-		parent::__construct($name, $data, $dataName);
-
-		$this->request = new CIPHPUnitTestRequest();
-		$this->double = new CIPHPUnitTestDouble($this);
-	}
-
 	public function __get($name)
 	{
 		if (isset($this->class_map[$name]))
 		{
-			return new $this->class_map[$name];
+			$this->$name = new $this->class_map[$name]($this);
+			return $this->$name;
 		}
 
 		throw new LogicException('No such property: ' . $name);
