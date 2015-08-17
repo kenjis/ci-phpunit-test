@@ -8,24 +8,25 @@
  * @link       https://github.com/kenjis/ci-phpunit-test
  */
 
+/**
+ * @property CIPHPUnitTestRequest    $request
+ * @property CIPHPUnitTestDouble     $double
+ * @property CIPHPUnitTestReflection $reflection
+ */
 class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 {
 	protected $_error_reporting = -1;
 	
 	/**
-	 * @var CIPHPUnitTestRequest
-	 */
-	protected $request;
-	
-	/**
-	 * @var CIPHPUnitTestDouble
-	 */
-	protected $double;
-
-	/**
 	 * @var CI_Controller CodeIgniter instance
 	 */
 	protected $CI;
+	
+	protected $class_map = [
+		'request'    => 'CIPHPUnitTestRequest',
+		'double'     => 'CIPHPUnitTestDouble',
+		'reflection' => 'CIPHPUnitTestReflection',
+	];
 
 	/**
 	 * Constructs a test case with the given name.
@@ -40,6 +41,16 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 
 		$this->request = new CIPHPUnitTestRequest();
 		$this->double = new CIPHPUnitTestDouble($this);
+	}
+
+	public function __get($name)
+	{
+		if (isset($this->class_map[$name]))
+		{
+			return new $this->class_map[$name];
+		}
+
+		throw new LogicException('No such property: ' . $name);
 	}
 
 	public static function setUpBeforeClass()

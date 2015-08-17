@@ -10,24 +10,29 @@
 
 class CIPHPUnitTestReflection
 {
-	public static function getPrivateMethodInvoker($class, $method)
+	/**
+	 * @param object|string $obj    object or class name
+	 * @param string        $method method name
+	 * @return closure
+	 */
+	public static function getPrivateMethodInvoker($obj, $method)
 	{
-		$ref_method = new ReflectionMethod($class, $method);
+		$ref_method = new ReflectionMethod($obj, $method);
 		$ref_method->setAccessible(true);
-		$obj = (gettype($class) === 'object') ? $class : null;
+		$obj = (gettype($obj) === 'object') ? $obj : null;
 
-		return function () use ($class, $ref_method, $obj) {
+		return function () use ($obj, $ref_method, $obj) {
 			$args = func_get_args();
 			return $ref_method->invokeArgs($obj, $args);
 		};
 	}
 
-	protected static function getAccessibleRefProperty($class, $property)
+	protected static function getAccessibleRefProperty($obj, $property)
 	{
-		if (is_object($class)) {
-			$ref_class = new ReflectionObject($class);
+		if (is_object($obj)) {
+			$ref_class = new ReflectionObject($obj);
 		} else {
-			$ref_class = new ReflectionClass($class);
+			$ref_class = new ReflectionClass($obj);
 		}
 
 		$ref_property = $ref_class->getProperty($property);
@@ -36,15 +41,25 @@ class CIPHPUnitTestReflection
 		return $ref_property;
 	}
 
-	public static function setPrivateProperty($class, $property, $value)
+	/**
+	 * @param object|string $obj      object or class name
+	 * @param string        $property property name
+	 * @param mixed         $value    value
+	 */
+	public static function setPrivateProperty($obj, $property, $value)
 	{
-		$ref_property = self::getAccessibleRefProperty($class, $property);
-		$ref_property->setValue($class, $value);
+		$ref_property = self::getAccessibleRefProperty($obj, $property);
+		$ref_property->setValue($obj, $value);
 	}
 
-	public static function getPrivateProperty($class, $property)
+	/**
+	 * @param object|string $obj      object or class name
+	 * @param string        $property property name
+	 * @return mixed value
+	 */
+	public static function getPrivateProperty($obj, $property)
 	{
-		$ref_property = self::getAccessibleRefProperty($class, $property);
-		return $ref_property->getValue($class);
+		$ref_property = self::getAccessibleRefProperty($obj, $property);
+		return $ref_property->getValue($obj);
 	}
 }
