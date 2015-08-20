@@ -1,5 +1,11 @@
 # Change Log for CI PHPUnit Test
 
+## v0.7.0 (Not Released)
+
+### Added
+
+* Autoloading for libraries
+
 ## v0.6.2 (2015/08/13)
 
 ### Fixed

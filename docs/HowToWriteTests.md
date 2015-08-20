@@ -20,6 +20,7 @@ version: **master** |
 	- [Using Database](#using-database)
 	- [Database Seeding](#database-seeding)
 	- [Using PHPUnit Mock Objects](#using-phpunit-mock-objects)
+- [Libraries](#libraries)
 - [Controllers](#controllers)
 	- [Request to Controller](#request-to-controller)
 	- [Request to URI string](#request-to-uri-string)
@@ -261,6 +262,30 @@ If you don't know well about PHPUnit Mock Objects, see [Test Doubles](https://ph
 ~~~
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v0.6.2/application/tests/models/Category_model_mocking_db_test.php).
+
+### Libraries
+
+If your library depends on CodeIgniter functionality, I recommend to use `setUp()` method like this:
+
+~~~php
+	public function setUp()
+	{
+		$this->resetInstance();
+		$this->CI->load->library('Someclass');
+		$this->obj = $this->CI->someclass;
+	}
+~~~
+
+If your library is decoupled from CodeIgniter functionality, you can use `setUp()` method like this:
+
+~~~php
+	public function setUp()
+	{
+		$this->obj = new Someclass();
+	}
+~~~
+
+In this case, *CI PHPUnit Test* autoloads your libraries in `application/libraries` folder.
 
 ### Controllers
 
