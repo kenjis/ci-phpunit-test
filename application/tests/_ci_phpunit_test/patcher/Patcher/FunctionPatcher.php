@@ -95,7 +95,7 @@ class FunctionPatcher extends AbstractPatcher
 		}
 	}
 
-	public static function addWhitelists($function_list)
+	public static function addWhitelists(array $function_list)
 	{
 		self::checkLock("You can't add to whitelist after initialization");
 
