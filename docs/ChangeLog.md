@@ -8,7 +8,7 @@
 
 ### Removed
 
-* 4th param `$callable` of `$this->request()` and `$this->ajaxRequest()` (deprecated since pre v0.3.0)
+* 4th param `$callable` of `$this->request()` and `$this->ajaxRequest()` (deprecated since v0.3.0)
 
 ## v0.6.2 (2015/08/13)
 
