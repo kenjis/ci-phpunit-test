@@ -74,9 +74,9 @@ class Cache
 
 	/**
 	 * @param string $path original source file path
-	 * @return boolean
+	 * @return string|false
 	 */
-	public static function hasValidSrcCache($path)
+	public static function getValidSrcCachePath($path)
 	{
 		$cache_file = self::getSrcCacheFilePath($path);
 
@@ -84,7 +84,7 @@ class Cache
 			is_readable($cache_file) && filemtime($cache_file) > filemtime($path)
 		)
 		{
-			return true;
+			return $cache_file;
 		}
 
 		return false;

@@ -219,23 +219,17 @@ class MonkeyPatchManager
 	 */
 	public static function patch($path)
 	{
-		if (Cache::getCacheDir() === null)
-		{
-			throw new LogicException("You have to set 'cache_dir'");
-		}
-
 		if (! is_readable($path))
 		{
 			throw new LogicException("Can't read '$path'");
 		}
 
 		// Check cache file
-		if (Cache::hasValidSrcCache($path))
+		if ($cache_file = Cache::getValidSrcCachePath($path))
 		{
 			self::log('cache_hit: ' . $path);
-			return fopen(Cache::getSrcCacheFilePath($path), 'r');
+			return fopen($cache_file, 'r');
 		}
-
 
 		self::log('cache_miss: ' . $path);
 		$source = file_get_contents($path);
