@@ -95,11 +95,10 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	 * @param string       $http_method HTTP method
 	 * @param array|string $argv        array of controller,method,arg|uri
 	 * @param array        $params      POST parameters/Query string
-	 * @param callable     $callable    [deprecated] function to run after controller instantiation. Use $this->request->setCallable() method instead
 	 */
-	public function request($http_method, $argv, $params = [], $callable = null)
+	public function request($http_method, $argv, $params = [])
 	{
-		return $this->request->request($http_method, $argv, $params, $callable);
+		return $this->request->request($http_method, $argv, $params);
 	}
 
 	/**
@@ -108,12 +107,11 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	 * @param string       $http_method HTTP method
 	 * @param array|string $argv        array of controller,method,arg|uri
 	 * @param array        $params      POST parameters/Query string
-	 * @param callable     $callable    [deprecated] function to run after controller instantiation. Use $this->request->setCallable() method instead
 	 */
-	public function ajaxRequest($http_method, $argv, $params = [], $callable = null)
+	public function ajaxRequest($http_method, $argv, $params = [])
 	{
 		$_SERVER['HTTP_X_REQUESTED_WITH'] = 'xmlhttprequest';
-		return $this->request($http_method, $argv, $params, $callable);
+		return $this->request($http_method, $argv, $params);
 	}
 
 	/**

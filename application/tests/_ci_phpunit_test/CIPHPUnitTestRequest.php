@@ -73,9 +73,8 @@ class CIPHPUnitTestRequest
 	 * @param string       $http_method HTTP method
 	 * @param array|string $argv        array of controller,method,arg|uri
 	 * @param array        $params      POST parameters/Query string
-	 * @param callable     $callable    [deprecated] function to run after controller instantiation. Use setCallable() method instead
 	 */
-	public function request($http_method, $argv, $params = [], $callable = null)
+	public function request($http_method, $argv, $params = [])
 	{
 		// We need this because if 404 route, no controller is created.
 		// But we need $this->CI->output->_status
@@ -85,12 +84,12 @@ class CIPHPUnitTestRequest
 			if (is_array($argv))
 			{
 				return $this->callControllerMethod(
-					$http_method, $argv, $params, $callable
+					$http_method, $argv, $params
 				);
 			}
 			else
 			{
-				return $this->requestUri($http_method, $argv, $params, $callable);
+				return $this->requestUri($http_method, $argv, $params);
 			}
 		}
 		// redirect()
@@ -137,9 +136,8 @@ class CIPHPUnitTestRequest
 	 * @param string   $http_method    HTTP method
 	 * @param array    $argv           controller, method [, arg1, ...]
 	 * @param array    $request_params POST parameters/Query string
-	 * @param callable $callable       [deprecated] function to run after controller instantiation. Use setCallable() method instead
 	 */
-	protected function callControllerMethod($http_method, $argv, $request_params, $callable = null)
+	protected function callControllerMethod($http_method, $argv, $request_params)
 	{
 		$_SERVER['REQUEST_METHOD'] = $http_method;
 		$_SERVER['argv'] = array_merge(['index.php'], $argv);
@@ -181,12 +179,6 @@ class CIPHPUnitTestRequest
 
 		$params = $argv;
 
-		// @deprecated
-		if (is_callable($callable))
-		{
-			$this->callable = $callable;
-		}
-
 		return $this->createAndCallController($class, $method, $params);
 	}
 
@@ -196,9 +188,8 @@ class CIPHPUnitTestRequest
 	 * @param string   $http_method    HTTP method
 	 * @param string   $uri            URI string
 	 * @param array    $request_params POST parameters/Query string
-	 * @param callable $callable       [deprecated] function to run after controller instantiation. Use setCallable() method instead
 	 */
-	protected function requestUri($http_method, $uri, $request_params, $callable = null)
+	protected function requestUri($http_method, $uri, $request_params)
 	{
 		$_SERVER['REQUEST_METHOD'] = $http_method;
 		$_SERVER['argv'] = ['index.php', $uri];
@@ -236,12 +227,6 @@ class CIPHPUnitTestRequest
 //			'$_POST' => $_POST,
 //		];
 //		var_dump($request, $_SERVER['argv']);
-
-		// @deprecated
-		if (is_callable($callable))
-		{
-			$this->callable = $callable;
-		}
 
 		return $this->createAndCallController($class, $method, $params);
 	}
