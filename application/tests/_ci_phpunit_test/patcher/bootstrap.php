@@ -24,6 +24,9 @@ class_alias('Kenjis\MonkeyPatch\MonkeyPatchManager', 'MonkeyPatchManager');
 
 // And you have to configure for your application
 //MonkeyPatchManager::init([
+//	// Project root directory
+//	'root_dir' => APPPATH . '../',
+//	// Cache directory
 //	'cache_dir' => APPPATH . 'tests/_ci_phpunit_test/tmp/cache',
 //	// Directories to patch on source files
 //	'include_paths' => [

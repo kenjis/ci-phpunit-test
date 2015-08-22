@@ -17,6 +17,7 @@ use RecursiveDirectoryIterator;
 
 class Cache
 {
+	private static $project_root;
 	private static $cache_dir;
 	private static $src_cache_dir;
 	private static $tmp_function_blacklist_file;
@@ -25,10 +26,25 @@ class Cache
 	private static $tmp_include_paths_file;
 	private static $tmp_exclude_paths_file;
 
+	public static function setProjectRootDir($dir)
+	{
+		self::$project_root = realpath($dir);
+		if (self::$project_root === false)
+		{
+			throw new LogicException("No such directory: $dir");
+		}
+	}
+
 	public static function setCacheDir($dir)
 	{
 		self::createDir($dir);
 		self::$cache_dir = realpath($dir);
+		
+		if (self::$cache_dir === false)
+		{
+			throw new LogicException("No such directory: $dir");
+		}
+		
 		self::$src_cache_dir = self::$cache_dir . '/src';
 		self::$tmp_function_whitelist_file = 
 			self::$cache_dir . '/conf/func_whiltelist.php';
@@ -49,8 +65,7 @@ class Cache
 
 	public static function getSrcCacheFilePath($path)
 	{
-		$root = realpath(APPPATH . '../');	// @TODO depends on APPPATH
-		$len = strlen($root);
+		$len = strlen(self::$project_root);
 		$relative_path = substr($path, $len);
 
 		if ($relative_path === false)

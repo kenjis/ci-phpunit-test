@@ -65,6 +65,16 @@ class MonkeyPatchManager
 			self::$log_file = __DIR__ . '/debug.log';
 		}
 
+		if (isset($config['root_dir']))
+		{
+			Cache::setProjectRootDir($config['root_dir']);
+		}
+		else
+		{
+			// APPPATH is constant in CodeIgniter
+			Cache::setProjectRootDir(APPPATH . '../');
+		}
+
 		if (! isset($config['cache_dir']))
 		{
 			throw new LogicException('You have to set "cache_dir"');
