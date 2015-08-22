@@ -11,28 +11,20 @@
 // Autoloader for testing
 spl_autoload_register(function ($class)
 {
-	// Load libraries
-	foreach (glob(APPPATH.'libraries/'.$class.'.php') as $library)
-	{
-		require_once $library;
-		return;
-	}
-	foreach (glob(APPPATH.'libraries/*/'.$class.'.php') as $library)
-	{
-		require_once $library;
-		return;
-	}
+	$dirs = [APPPATH.'libraries', APPPATH.'controllers'];
 
-	// Load controllers
-	foreach (glob(APPPATH.'controllers/'.$class.'.php') as $controller)
+	foreach ($dirs as $dir)
 	{
-		require_once $controller;
-		return;
-	}
-	foreach (glob(APPPATH.'controllers/*/'.$class.'.php') as $controller)
-	{
-		require_once $controller;
-		return;
+		foreach (glob($dir.'/'.$class.'.php') as $class_file)
+		{
+			require_once $class_file;
+			return;
+		}
+		foreach (glob($dir.'/*/'.$class.'.php') as $class_file)
+		{
+			require_once $class_file;
+			return;
+		}
 	}
 });
 
