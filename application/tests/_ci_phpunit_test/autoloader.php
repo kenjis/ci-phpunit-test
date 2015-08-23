@@ -8,25 +8,14 @@
  * @link       https://github.com/kenjis/ci-phpunit-test
  */
 
-// Autoloader for testing
-spl_autoload_register(function ($class)
-{
-	$dirs = [APPPATH.'libraries', APPPATH.'controllers'];
-
-	foreach ($dirs as $dir)
-	{
-		foreach (glob($dir.'/'.$class.'.php') as $class_file)
-		{
-			require_once $class_file;
-			return;
-		}
-		foreach (glob($dir.'/*/'.$class.'.php') as $class_file)
-		{
-			require_once $class_file;
-			return;
-		}
-	}
-});
+// Autoloader for ci-phpunit-test
+require __DIR__ . '/CIPHPUnitTestAutoloader.php';
+require __DIR__ . '/CIPHPUnitTestFileCache.php';
+$cache = new CIPHPUnitTestFileCache(
+	__DIR__ . '/tmp/cache/autoload.php'
+);
+$autoloader = new CIPHPUnitTestAutoloader($cache);
+spl_autoload_register([$autoloader, 'load']);
 
 // Register CodeIgniter's tests/mocks/autoloader.php
 define('SYSTEM_PATH', BASEPATH);

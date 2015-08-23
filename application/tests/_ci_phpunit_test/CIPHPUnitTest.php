@@ -22,7 +22,10 @@ class CIPHPUnitTest
 		];
 		$_SERVER['argc'] = 2;
 
-		self::loadCIPHPUnitTestClasses();
+		// Load autoloader for ci-phpunit-test
+		require __DIR__ . '/autoloader.php';
+
+		require APPPATH . '/tests/TestCase.php';
 
 		// Replace a few Common functions
 		require __DIR__ . '/replacing/core/Common.php';
@@ -37,9 +40,6 @@ class CIPHPUnitTest
 
 		self::replaceLoader();
 		self::replaceHelpers();
-
-		// Load autoloader for CIPHPUnitTest
-		require __DIR__ . '/autoloader.php';
 
 		// Change current directroy
 		chdir(FCPATH);
@@ -87,19 +87,6 @@ class CIPHPUnitTest
 			require $my_helper_file;
 		}
 		require __DIR__ . '/replacing/helpers/url_helper.php';
-	}
-
-	protected static function loadCIPHPUnitTestClasses()
-	{
-		require __DIR__ . '/CIPHPUnitTestCase.php';
-		require __DIR__ . '/CIPHPUnitTestRequest.php';
-		require __DIR__ . '/CIPHPUnitTestDouble.php';
-		require __DIR__ . '/CIPHPUnitTestReflection.php';
-		require __DIR__ . '/exceptions/CIPHPUnitTestRedirectException.php';
-		require __DIR__ . '/exceptions/CIPHPUnitTestShow404Exception.php';
-		require __DIR__ . '/exceptions/CIPHPUnitTestShowErrorException.php';
-		require __DIR__ . '/exceptions/CIPHPUnitTestExitException.php';
-		require APPPATH . '/tests/TestCase.php';
 	}
 
 	public static function setPatcherCacheDir($dir = null)
