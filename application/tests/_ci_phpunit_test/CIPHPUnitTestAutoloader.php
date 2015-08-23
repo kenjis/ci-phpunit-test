@@ -71,12 +71,18 @@ class CIPHPUnitTestAutoloader
 
 		foreach ($dirs as $dir)
 		{
-			if ($this->loadApplicationClassFile($class, $dir.'/'.$class.'.php'))
+			if (
+				$this->loadApplicationClassFile($class, $dir.'/'.$class.'.php')
+			)
 			{
 				return;
 			}
-			
-			$this->loadApplicationClassFile($class, $dir.'/*/'.$class.'.php');
+			elseif (
+				$this->loadApplicationClassFile($class, $dir.'/*/'.$class.'.php')
+			)
+			{
+				return;
+			}
 		}
 	}
 
