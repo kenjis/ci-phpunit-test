@@ -10,7 +10,12 @@
 
 class CIPHPUnitTestAutoloader
 {
-	public function __construct($cache = null)
+	/**
+	 * @var CIPHPUnitTestFileCache
+	 */
+	private $cache;
+
+	public function __construct(CIPHPUnitTestFileCache $cache = null)
 	{
 		$this->cache = $cache;
 	}
@@ -66,25 +71,28 @@ class CIPHPUnitTestAutoloader
 
 		foreach ($dirs as $dir)
 		{
-			foreach (glob($dir.'/'.$class.'.php') as $class_file)
+			if ($this->loadApplicationClassFile($class, $dir.'/'.$class.'.php'))
 			{
-				require $class_file;
-				if ($this->cache)
-				{
-					$this->cache[$class] = $class_file;
-				}
 				return;
 			}
-			foreach (glob($dir.'/*/'.$class.'.php') as $class_file)
-			{
-				require $class_file;
-				if ($this->cache)
-				{
-					$this->cache[$class] = $class_file;
-				}
-				return;
-			}
+			
+			$this->loadApplicationClassFile($class, $dir.'/*/'.$class.'.php');
 		}
+	}
+
+	protected function loadApplicationClassFile($class, $path)
+	{
+		foreach (glob($path) as $class_file)
+		{
+			require $class_file;
+			if ($this->cache)
+			{
+				$this->cache[$class] = $class_file;
+			}
+			return true;
+		}
+		
+		return false;
 	}
 
 	protected function loadFromCache($class)

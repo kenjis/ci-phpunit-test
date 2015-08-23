@@ -16,13 +16,14 @@ class CIPHPUnitTestFileCache implements ArrayAccess
 	public function __construct($file)
 	{
 		$this->file = $file;
-		
+
 		if (file_exists($file))
 		{
 			$this->map = unserialize(file_get_contents($file));
 		}
-		
-		if (! is_dir(dirname($file)))
+
+		$dir = dirname($file);
+		if (! is_dir($dir))
 		{
 			if (! @mkdir($dir, 0777, true))
 			{
