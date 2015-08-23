@@ -576,7 +576,7 @@ This is how to replace Email library with `Mock_Libraries_Email` class.
 ~~~php
 	public function setUp()
 	{
-		$this->CI =& get_instance();
+		$this->resetInstance();
 		$this->CI->load->model('Mail_model');
 		$this->obj = $this->CI->Mail_model;
 		$this->CI->email = new Mock_Libraries_Email();
