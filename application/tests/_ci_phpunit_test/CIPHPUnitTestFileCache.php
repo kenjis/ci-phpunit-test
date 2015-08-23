@@ -45,6 +45,18 @@ class CIPHPUnitTestFileCache implements ArrayAccess
 		file_put_contents($this->file, serialize($this->map));
 	}
 
+	/**
+	 * Dump cache data (sorted by key)
+	 * 
+	 * @return array
+	 */
+	public function dump()
+	{
+		$map = $this->map;
+		ksort($map);
+		return $map;
+	}
+
 	public function offsetSet($key, $value)
 	{
 		$this->map[$key] = $value;
