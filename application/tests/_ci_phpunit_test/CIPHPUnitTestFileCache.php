@@ -17,18 +17,26 @@ class CIPHPUnitTestFileCache implements ArrayAccess
 	{
 		$this->file = $file;
 
-		if (file_exists($file))
+		if (file_exists($this->file))
 		{
-			$this->map = unserialize(file_get_contents($file));
+			$this->map = unserialize(file_get_contents($this->file));
+			return;
 		}
 
-		$dir = dirname($file);
+		$dir = dirname($this->file);
 		if (! is_dir($dir))
 		{
-			if (! @mkdir($dir, 0777, true))
+			if (@mkdir($dir, 0777, true) === false)
 			{
 				throw new RuntimeException('Failed to create folder: ' . $dir);
 			}
+		}
+
+		if (file_put_contents($this->file, '') === false)
+		{
+			throw new RuntimeException(
+				'Failed to write to cache file: ' . $this->file
+			);
 		}
 	}
 
