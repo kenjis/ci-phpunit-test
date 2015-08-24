@@ -121,7 +121,6 @@ In contrast, if you use `$this->resetInstance()`, it resets CodeIgniter instance
 |`$method`  | string       | HTTP method                                    |
 |`$argv`    | array/string | controller, method [, arg1, ...] / URI string  |
 |`$params`  | array        | POST parameters / Query string                 |
-|`$callable`| callable     | **[Deprecated]** function to run after controller instantiation |
 
 `returns` (string) output strings (view)
 
@@ -139,19 +138,6 @@ $output = $this->request('GET', 'products/shoes/show/123');
 
 Set function to run after controller instantiation.
 
-4th param `$callable` of `$this->request()` method is deprecated. Use `$this->request->setCallable()` method instead.
-
-*before:*
-~~~php
-$load_agent = function ($CI) {
-	$CI->load->library('user_agent');
-};
-$output = $this->request('GET', ['Bbs', 'index'], [], $load_agent);
-~~~
-
-↓
-
-*after:*
 ~~~php
 $this->request->setCallable(
 	function ($CI) {
@@ -194,7 +180,6 @@ $output = $this->request('GET', 'products/shoes/show/123');
 |`$method`  | string       | HTTP method                                    |
 |`$argv`    | array/string | controller, method [, arg1, ...] / URI string  |
 |`$params`  | array        | POST parameters / Query string                 |
-|`$callable`| callable     | **[Deprecated]** function to run after controller instantiation |
 
 `returns` (string) output strings
 
