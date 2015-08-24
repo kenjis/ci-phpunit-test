@@ -682,7 +682,7 @@ This patcher allows replacement of global functions that can't be mocked by PHPU
 
 But it has a few limitations. Some functions can't be replaced and it might cause errors.
 
-So by default we can replace only a dozen pre-defined functions in [FunctionPatcher](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/_ci_phpunit_test/patcher/Patcher/FunctionPatcher.php#L35).
+So by default we can replace only a dozen pre-defined functions in [FunctionPatcher](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/_ci_phpunit_test/patcher/Patcher/FunctionPatcher.php#L32).
 
 ~~~php
 	public function test_index()
