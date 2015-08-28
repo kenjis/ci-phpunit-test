@@ -317,7 +317,7 @@ In this case, *CI PHPUnit Test* autoloads your libraries in `application/librari
 
 #### Request to Controller
 
-You can use [$this->request()](FunctionAndClassReference.md#testcaserequestmethod-argv-params---callable--null) method in *CI PHPUnit Test*.
+You can use [$this->request()](FunctionAndClassReference.md#testcaserequestmethod-argv-params--) method in *CI PHPUnit Test*.
 
 *tests/controllers/Welcome_test.php*
 ~~~php
@@ -427,7 +427,7 @@ See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/m
 
 #### Ajax Request
 
-You can use [$this->ajaxRequest()](FunctionAndClassReference.md#testcaseajaxrequestmethod-argv-params---callable--null) method in *CI PHPUnit Test*.
+You can use [$this->ajaxRequest()](FunctionAndClassReference.md#testcaseajaxrequestmethod-argv-params--) method in *CI PHPUnit Test*.
 
 ~~~php
 	public function test_index_ajax_call()
