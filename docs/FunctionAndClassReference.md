@@ -14,11 +14,11 @@ version: **master** |
 - [*function* `load_class_instance($classname, $instance)`](#function-load_class_instanceclassname-instance)
 - [*class* TestCase](#class-testcase)
 	- [`TestCase::resetInstance()`](#testcaseresetinstance)
-	- [`TestCase::request($method, $argv, $params = [], $callable = null)`](#testcaserequestmethod-argv-params---callable--null)
+	- [`TestCase::request($method, $argv, $params = [])`](#testcaserequestmethod-argv-params--)
 		- [`request->setCallable()`](#request-setcallable)
 		- [`request->setCallablePreConstructor()`](#request-setcallablepreconstructor)
 		- [`request->enableHooks()`](#request-enablehooks)
-	- [`TestCase::ajaxRequest($method, $argv, $params = [], $callable = null)`](#testcaseajaxrequestmethod-argv-params---callable--null)
+	- [`TestCase::ajaxRequest($method, $argv, $params = [])`](#testcaseajaxrequestmethod-argv-params--)
 	- [`TestCase::assertResponseCode($code)`](#testcaseassertresponsecodecode)
 	- [`TestCase::assertRedirect($uri, $code = null)`](#testcaseassertredirecturi-code--null)
 	- [`TestCase::getDouble($classname, $params)`](#testcasegetdoubleclassname-params)
@@ -114,7 +114,7 @@ When you use the way, you use the same CodeIgniter instance and the same `Catego
 
 In contrast, if you use `$this->resetInstance()`, it resets CodeIgniter instance and `Category_model`. So you use new CodeIgniter instance and new `Category_model` instance in every test method.
 
-#### `TestCase::request($method, $argv, $params = [], $callable = null)`
+#### `TestCase::request($method, $argv, $params = [])`
 
 | param     | type         | description                                    |
 |-----------|--------------|------------------------------------------------|
@@ -173,7 +173,7 @@ $this->request->enableHooks();
 $output = $this->request('GET', 'products/shoes/show/123');
 ~~~
 
-#### `TestCase::ajaxRequest($method, $argv, $params = [], $callable = null)`
+#### `TestCase::ajaxRequest($method, $argv, $params = [])`
 
 | param     | type         | description                                    |
 |-----------|--------------|------------------------------------------------|
