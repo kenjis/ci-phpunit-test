@@ -126,9 +126,13 @@ In contrast, if you use `$this->resetInstance()`, it resets CodeIgniter instance
 
 Run a controller method or make a request to URI string after `reset_instance()`.
 
+If you want to specify controller and method name directly:
+
 ~~~php
 $output = $this->request('GET', ['Form', 'index']);
 ~~~
+
+If you want to specify URI string:
 
 ~~~php
 $output = $this->request('GET', 'products/shoes/show/123');
