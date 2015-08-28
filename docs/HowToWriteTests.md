@@ -137,13 +137,18 @@ See [Controller with Hooks](#controller-with-hooks) for details.
 2. `Class_test` inherits from [TestCase](FunctionAndClassReference.md#class-testcase) class in *CI PHPUnit Test*.
 3. The tests are public methods that are named `test_*`. (Or you can use the `@test` annotation in a method's docblock to mark it as a test method.)
 
+* Don't forget to write `parent::setUpBeforeClass();` if you override `setUpBeforeClass()` method.
+* Don't forget to write `parent::tearDown();` if you override `tearDown()` method.
+
 *tests/libraries/Foo_test.php*
 ~~~php
 class Foo_test extends TestCase
 {
 	public function setUp()
 	{
-		$this->obj = new Foo();
+		$this->resetInstance();
+		$this->CI->load->library('Foo');
+		$this->obj = $this->CI->foo;
 	}
 
 	public function test_doSomething()
@@ -155,8 +160,7 @@ class Foo_test extends TestCase
 }
 ~~~
 
-* Don't forget to write `parent::setUpBeforeClass();` if you override `setUpBeforeClass()` method.
-* Don't forget to write `parent::tearDown();` if you override `tearDown()` method.
+[$this->resetInstance()](FunctionAndClassReference.md#testcaseresetinstance) method in *CI PHPUnit Test* is a helper method to reset CodeIgniter instance and assign new CodeIgniter instance as `$this->CI`.
 
 ### Models
 
@@ -196,8 +200,6 @@ class Inventory_model_test extends TestCase
 	}
 }
 ~~~
-
-[$this->resetInstance()](FunctionAndClassReference.md#testcaseresetinstance) method in *CI PHPUnit Test* is a helper method to reset CodeIgniter instance and assign new CodeIgniter instance as `$this->CI`.
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/models/Category_model_test.php).
 
@@ -816,6 +818,10 @@ Want to see more tests?
 * https://github.com/kenjis/codeigniter-tettei-apps/tree/develop/application/tests
 
 ### Third Party Libraries
+
+*CI PHPUnit Test* has powerful functionality for testing. So normally you don't have to modify your application or library code.
+
+But there are still libraries which can't be tested without code modification.
 
 #### [CodeIgniter Rest Server](https://github.com/chriskacerguis/codeigniter-restserver/)
 
