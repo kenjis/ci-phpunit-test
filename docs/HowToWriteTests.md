@@ -16,6 +16,7 @@ version: **master** |
 	- [`exit()`](#exit)
 	- [Reset CodeIgniter object](#reset-codeigniter-object)
 	- [Hooks](#hooks)
+- [Basic Conventions](#basic-conventions)
 - [Models](#models)
 	- [Using Database](#using-database)
 	- [Database Seeding](#database-seeding)
@@ -811,3 +812,55 @@ Want to see more tests?
 
 * https://github.com/kenjis/ci-app-for-ci-phpunit-test/tree/master/application/tests
 * https://github.com/kenjis/codeigniter-tettei-apps/tree/develop/application/tests
+
+### Third Party Libraries
+
+#### [CodeIgniter Rest Server](https://github.com/chriskacerguis/codeigniter-restserver/)
+
+codeigniter-restserver calls `exit()`. So you have to enable [Monkey Patching](#monkey-patching) and at lease you have to use `ExitPatcher`.
+
+Additionally you have to apply patch on `application/libraries/REST_Controller.php`.
+
+This is patch for codeigniter-restserver 2.7.2:
+
+~~~diff
+--- a/application/libraries/REST_Controller.php
++++ b/application/libraries/REST_Controller.php
+@@ -653,6 +653,11 @@ abstract class REST_Controller extends CI_Controller {
+         {
+             call_user_func_array([$this, $controller_method], $arguments);
+         }
++        catch (CIPHPUnitTestExitException $ex)
++        {
++            // This block is for ci-phpunit-test
++            throw $ex;
++        }
+         catch (Exception $ex)
+         {
+             // If the method doesn't exist, then the error will be caught and an error response shown
+~~~
+
+Then, you can write test case class like this:
+
+*tests/controllers/api/Example_test.php*
+~~~php
+<?php
+
+class Example_test extends TestCase
+{
+	public function test_users_get()
+	{
+		try {
+			$output = $this->request('GET', 'api/example/users');
+		} catch (CIPHPUnitTestExitException $e) {
+			$output = ob_get_clean();
+		}
+
+		$this->assertEquals(
+			'[{"id":1,"name":"John","email":"john@example.com","fact":"Loves coding"},{"id":2,"name":"Jim","email":"jim@example.com","fact":"Developed on CodeIgniter"},{"id":3,"name":"Jane","email":"jane@example.com","fact":"Lives in the USA","0":{"hobbies":["guitar","cycling"]}}]',
+			$output
+		);
+		$this->assertResponseCode(200);
+	}
+}
+~~~
