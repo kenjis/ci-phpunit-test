@@ -24,6 +24,14 @@ function load_class_instance($classname, $instance)
  */
 function reset_instance()
 {
+	// Close db connection
+	$CI =& get_instance();
+	if (isset($CI->db))
+	{
+		$CI->db->close();
+		$CI->db = null;
+	}
+
 	// Reset loaded classes
 	load_class('', '', NULL, TRUE);
 	is_loaded('', TRUE);
