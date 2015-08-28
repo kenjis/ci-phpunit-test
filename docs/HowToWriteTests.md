@@ -819,7 +819,7 @@ Want to see more tests?
 
 #### [CodeIgniter Rest Server](https://github.com/chriskacerguis/codeigniter-restserver/)
 
-codeigniter-restserver calls `exit()`. So you have to enable [Monkey Patching](#monkey-patching) and at lease you have to use `ExitPatcher`.
+codeigniter-restserver calls `exit()`. So you have to enable [Monkey Patching](#monkey-patching) and at least you have to use `ExitPatcher`.
 
 Additionally you have to apply patch on `application/libraries/REST_Controller.php`.
 
