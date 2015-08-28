@@ -128,6 +128,33 @@ If you use `$this->request->enableHooks()` and `$this->request()`, hook `pre_con
 
 See [Controller with Hooks](#controller-with-hooks) for details.
 
+### Basic Conventions
+
+1. The tests for a class `Class` go into a class `Class_test`.
+2. `Class_test` inherits from [TestCase](FunctionAndClassReference.md#class-testcase) class in *CI PHPUnit Test*.
+3. The tests are public methods that are named `test_*`. (Or you can use the `@test` annotation in a method's docblock to mark it as a test method.)
+
+*tests/libraries/Foo_test.php*
+~~~php
+class Foo_test extends TestCase
+{
+	public function setUp()
+	{
+		$this->obj = new Foo();
+	}
+
+	public function test_doSomething()
+	{
+		$actual = $this->obj->doSomething();
+		$expected = 'something';
+		$this->assertEquals($expected, $actual);
+	}
+}
+~~~
+
+* Don't forget to write `parent::setUpBeforeClass();` if you override `setUpBeforeClass()` method.
+* Don't forget to write `parent::tearDown();` if you override `tearDown()` method.
+
 ### Models
 
 #### Using Database
@@ -166,12 +193,6 @@ class Inventory_model_test extends TestCase
 	}
 }
 ~~~
-
-Test case class extends [TestCase](FunctionAndClassReference.md#class-testcase) class.
-
-Don't forget to write `parent::setUpBeforeClass();` if you override `setUpBeforeClass()` method.
-
-Don't forget to write `parent::tearDown();` if you override `tearDown()` method.
 
 [$this->resetInstance()](FunctionAndClassReference.md#testcaseresetinstance) method in *CI PHPUnit Test* is a helper method to reset CodeIgniter instance and assign new CodeIgniter instance as `$this->CI`.
 
