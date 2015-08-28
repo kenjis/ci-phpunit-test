@@ -39,6 +39,8 @@ version: **master** |
 	- [Patching Functions](#patching-functions)
 	- [Patching Methods in User-defined Classes](#patching-methods-in-user-defined-classes)
 - [More Samples](#more-samples)
+- [Third Party Libraries](#third-party-libraries)
+	- [CodeIgniter Rest Server](#codeigniter-rest-server)
 
 ### Introduction
 
