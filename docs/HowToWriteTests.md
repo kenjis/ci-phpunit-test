@@ -372,6 +372,8 @@ In that case, You can use [$this->request->setCallablePreConstructor()](Function
 	}
 ~~~
 
+**Note:** If you make mock objects before loading the classes, they may not work. Please load them before getting mock objects.
+
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Auth_check_in_construct_test.php).
 
 #### Ajax Request
