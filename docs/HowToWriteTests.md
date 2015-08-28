@@ -347,11 +347,34 @@ You can use [$this->request->setCallable()](FunctionAndClassReference.md#request
 	}
 ~~~
 
+**Note:** When you have never loaded a class with CodeIgniter loader, if you make mock object for the class, your application code may not work correclty. If you have got error, please try to load it before getting mock object.
+
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Mock_phpunit_test.php).
 
 The function you set by `$this->request->setCallable()` runs after controller instantiation. So you can't inject mocks into controller constructor.
 
-In that case, You can use [$this->request->setCallablePreConstructor()](FunctionAndClassReference.md#request-setcallablepreconstructor) method and [load_class_instance()](FunctionAndClassReference.md#function-load_class_instanceclassname-instance) function in *CI PHPUnit Test*.
+For example, if you have a controller like this:
+
+~~~php
+class Auth extends CI_Controller
+{
+	public function __construct()
+	{
+		parent::__construct();
+
+		$this->load->library('ion_auth');
+		if ( ! $this->ion_auth->logged_in())
+		{
+			$this->load->helper('url');
+			redirect('auth/login');
+		}
+	}
+
+	...
+}
+~~~
+
+In this case, You can use [$this->request->setCallablePreConstructor()](FunctionAndClassReference.md#request-setcallablepreconstructor) method and [load_class_instance()](FunctionAndClassReference.md#function-load_class_instanceclassname-instance) function in *CI PHPUnit Test*.
 
 ~~~php
 	public function test_index_logged_in()
@@ -367,12 +390,12 @@ In that case, You can use [$this->request->setCallablePreConstructor()](Function
 			}
 		);
 
-		$output = $this->request('GET', 'auth_check_in_construct');
+		$output = $this->request('GET', 'auth/login');
 		$this->assertContains('You are logged in.', $output);
 	}
 ~~~
 
-**Note:** If you make mock objects before loading the classes, they may not work. Please load them before getting mock objects.
+**Note:** When you have never loaded a class with CodeIgniter loader, if you make mock object for the class, it may not work. If you have got error, please try to load it before getting mock object.
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Auth_check_in_construct_test.php).
 
