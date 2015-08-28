@@ -10,6 +10,10 @@
 
 * 4th param `$callable` of `$this->request()` and `$this->ajaxRequest()` (deprecated since v0.3.0)
 
+### Others
+
+* Add documentation for CodeIgniter Rest Server. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#codeigniter-rest-server).
+
 ## v0.6.2 (2015/08/13)
 
 ### Fixed
