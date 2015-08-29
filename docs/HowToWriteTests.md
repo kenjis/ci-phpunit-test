@@ -873,4 +873,22 @@ class Example_test extends TestCase
 }
 ~~~
 
+And if you copy sample api controllers, you must change `require` statement to `require_one`:
+
+~~~diff
+--- a/application/controllers/api/Example.php
++++ b/application/controllers/api/Example.php
+@@ -3,7 +3,7 @@
+ defined('BASEPATH') OR exit('No direct script access allowed');
+ 
+ // This can be removed if you use __autoload() in config.php OR use Modular Extensions
+-require APPPATH . '/libraries/REST_Controller.php';
++require_once APPPATH . '/libraries/REST_Controller.php';
+ 
+ /**
+  * This is an example of a few basic user interaction methods you could use
+~~~
+
+If you require `REST_Controller.php` more than once, you get `Fatal error: Cannot redeclare class REST_Controller`.
+
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/api/Example_test.php).
