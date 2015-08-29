@@ -95,7 +95,7 @@ public function setUp()
 }
 ~~~
 
-**Note:** When you call `$this->request()`, you don't have to use this method. Because `$this->request()` resets CodeIgniter instance internally.
+**Note:** When you call [$this->request()](#testcaserequestmethod-argv-params--), you don't have to use this method. Because `$this->request()` resets CodeIgniter instance internally.
 
 **Upgrade Note for v0.6.0**
 
