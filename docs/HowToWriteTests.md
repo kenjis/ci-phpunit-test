@@ -891,4 +891,4 @@ And if you copy sample api controllers, you must change `require` statement to `
 
 If you require `REST_Controller.php` more than once, you get `Fatal error: Cannot redeclare class REST_Controller`.
 
-See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/api/Example_test.php).
+See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/tree/master/application/tests/controllers/api).
