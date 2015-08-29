@@ -49,7 +49,16 @@ class PatchManager
 			$trace = debug_backtrace();
 			$file = $trace[0]['file'];
 			$line = $trace[0]['line'];
-			$called_method = isset($trace[2]['class']) ? $trace[2]['class'].'::'.$trace[2]['function'] : $trace[2]['function'];
+			
+			if (isset($trace[2]))
+			{
+				$called_method = 
+					isset($trace[2]['class']) ? $trace[2]['class'].'::'.$trace[2]['function'].'()' : $trace[2]['function'].'()';
+			}
+			else
+			{
+				$called_method = 'n/a';
+			}
 			
 			$log_args = function () use ($params) {
 				$output = '';
@@ -60,7 +69,7 @@ class PatchManager
 				return $output;
 			};
 			MonkeyPatchManager::log(
-				'invoke_method: ' . $class.'::'.$method . '(' . $log_args() . ') on line ' . $line . ' in ' . $file . ' by ' . $called_method . '()'
+				'invoke_method: ' . $class.'::'.$method . '(' . $log_args() . ') on line ' . $line . ' in ' . $file . ' by ' . $called_method
 			);
 //			var_dump($trace); exit;
 		}
