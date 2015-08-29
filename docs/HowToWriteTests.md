@@ -872,3 +872,5 @@ class Example_test extends TestCase
 	}
 }
 ~~~
+
+See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/api/Example_test.php).
