@@ -92,7 +92,7 @@ class MonkeyPatchManager
 			self::setExcludePaths($config['exclude_paths']);
 		}
 
-		Cache::createTmpListFiles();
+		Cache::createTmpListDir();
 
 		if (isset($config['patcher_list']))
 		{
