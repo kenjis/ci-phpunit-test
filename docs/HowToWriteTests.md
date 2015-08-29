@@ -25,8 +25,9 @@ version: **master** |
 - [Controllers](#controllers)
 	- [Request to Controller](#request-to-controller)
 	- [Request to URI string](#request-to-uri-string)
-	- [Request and Use Mocks](#request-and-use-mocks)
+	- [REST Request](#rest-request)
 	- [Ajax Request](#ajax-request)
+	- [Request and Use Mocks](#request-and-use-mocks)
 	- [Examine DOM in Controller Output](#examine-dom-in-controller-output)
 	- [Controller with Authentication](#controller-with-authentication)
 	- [`redirect()`](#redirect)
@@ -347,6 +348,37 @@ See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/m
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/sub/Sub_test.php).
 
+#### REST Request
+
+You can specify request method in 2nd argument of [$this->request()](FunctionAndClassReference.md#testcaserequestmethod-argv-params--) method and request body in 3rd argument of `$this->request()`.
+
+~~~php
+		$output = $this->request(
+			'PUT', 'api/user', json_encode(['name' => 'mike'])
+		);
+~~~
+
+~~~php
+		$output = $this->request(
+			'DELETE', 'api/key', 'key=12345678'
+		);
+~~~
+
+#### Ajax Request
+
+You can use [$this->ajaxRequest()](FunctionAndClassReference.md#testcaseajaxrequestmethod-argv-params--) method in *CI PHPUnit Test*.
+
+~~~php
+	public function test_index_ajax_call()
+	{
+		$output = $this->ajaxRequest('GET', ['Ajax', 'index']);
+		$expected = '{"name": "John Smith", "age": 33}';
+		$this->assertEquals($expected, $output);
+	}
+~~~
+
+See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Ajax_test.php).
+
 #### Request and Use Mocks
 
 You can use [$this->request->setCallable()](FunctionAndClassReference.md#request-setcallable) method in *CI PHPUnit Test*. [$this->getDouble()](FunctionAndClassReference.md#testcasegetdoubleclassname-params) is a helper method in *CI PHPUnit Test*.
@@ -424,21 +456,6 @@ In this case, You can use [$this->request->setCallablePreConstructor()](Function
 **Note:** When you have never loaded a class with CodeIgniter loader, if you make mock object for the class, it may not work. If you have got error, please try to load it before getting mock object.
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Auth_check_in_construct_test.php).
-
-#### Ajax Request
-
-You can use [$this->ajaxRequest()](FunctionAndClassReference.md#testcaseajaxrequestmethod-argv-params--) method in *CI PHPUnit Test*.
-
-~~~php
-	public function test_index_ajax_call()
-	{
-		$output = $this->ajaxRequest('GET', ['Ajax', 'index']);
-		$expected = '{"name": "John Smith", "age": 33}';
-		$this->assertEquals($expected, $output);
-	}
-~~~
-
-See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Ajax_test.php).
 
 #### Check Status Code
 

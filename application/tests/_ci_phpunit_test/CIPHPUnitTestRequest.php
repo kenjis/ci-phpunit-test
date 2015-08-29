@@ -72,13 +72,27 @@ class CIPHPUnitTestRequest
 	 *
 	 * @param string       $http_method HTTP method
 	 * @param array|string $argv        array of controller,method,arg|uri
-	 * @param array        $params      POST parameters/Query string
+	 * @param array|string $params      POST parameters/Query string|raw_input_stream
 	 */
 	public function request($http_method, $argv, $params = [])
 	{
 		// We need this because if 404 route, no controller is created.
 		// But we need $this->CI->output->_status
 		$this->CI =& get_instance();
+
+		$_SERVER['REQUEST_METHOD'] = $http_method;
+
+		if (is_array($params))
+		{
+			if ($http_method === 'POST')
+			{
+				$_POST = $params;
+			}
+			elseif ($http_method === 'GET')
+			{
+				$_GET = $params;
+			}
+		}
 
 		try {
 			if (is_array($argv))
@@ -133,23 +147,13 @@ class CIPHPUnitTestRequest
 	/**
 	 * Call Controller Method
 	 *
-	 * @param string   $http_method    HTTP method
-	 * @param array    $argv           controller, method [, arg1, ...]
-	 * @param array    $request_params POST parameters/Query string
+	 * @param string       $http_method    HTTP method
+	 * @param array        $argv           controller, method [, arg1, ...]
+	 * @param array|string $request_params POST parameters/Query string|raw_input_stream
 	 */
 	protected function callControllerMethod($http_method, $argv, $request_params)
 	{
-		$_SERVER['REQUEST_METHOD'] = $http_method;
 		$_SERVER['argv'] = array_merge(['index.php'], $argv);
-
-		if ($http_method === 'POST')
-		{
-			$_POST = $request_params;
-		}
-		elseif ($http_method === 'GET')
-		{
-			$_GET = $request_params;
-		}
 
 		$class  = ucfirst($argv[0]);
 		$method = $argv[1];
@@ -171,6 +175,8 @@ class CIPHPUnitTestRequest
 		// Reset CodeIgniter instance state
 		reset_instance();
 
+		$this->setRawInputStream($request_params);
+
 		// 404 checking
 		if (! class_exists($class) || ! method_exists($class, $method))
 		{
@@ -185,23 +191,13 @@ class CIPHPUnitTestRequest
 	/**
 	 * Request to URI
 	 *
-	 * @param string   $http_method    HTTP method
-	 * @param string   $uri            URI string
-	 * @param array    $request_params POST parameters/Query string
+	 * @param string       $http_method    HTTP method
+	 * @param string       $uri            URI string
+	 * @param array|string $request_params POST parameters/Query string|raw_input_stream
 	 */
 	protected function requestUri($http_method, $uri, $request_params)
 	{
-		$_SERVER['REQUEST_METHOD'] = $http_method;
 		$_SERVER['argv'] = ['index.php', $uri];
-
-		if ($http_method === 'POST')
-		{
-			$_POST = $request_params;
-		}
-		elseif ($http_method === 'GET')
-		{
-			$_GET = $request_params;
-		}
 
 		// Force cli mode because if not, it changes URI (and RTR) behavior
 		$cli = is_cli();
@@ -209,6 +205,8 @@ class CIPHPUnitTestRequest
 
 		// Reset CodeIgniter instance state
 		reset_instance();
+
+		$this->setRawInputStream($request_params);
 
 		// Get route
 		$RTR =& load_class('Router', 'core');
@@ -236,6 +234,19 @@ class CIPHPUnitTestRequest
 		if ($this->enableHooks)
 		{
 			$this->hooks->call_hook($hook);
+		}
+	}
+
+	protected function setRawInputStream($string)
+	{
+		if (is_string($string))
+		{
+			$INPUT =& load_class('Input', 'core');
+			CIPHPUnitTestReflection::setPrivateProperty(
+				$INPUT,
+				'_raw_input_stream',
+				$string
+			);
 		}
 	}
 

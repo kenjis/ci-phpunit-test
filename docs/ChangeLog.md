@@ -4,6 +4,7 @@
 
 ### Added
 
+* Now `$this->request()` can create REST request more easily. See [#47](https://github.com/kenjis/ci-phpunit-test/pull/47).
 * Autoloading for libraries
 
 ### Removed
