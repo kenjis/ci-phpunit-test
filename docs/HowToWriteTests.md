@@ -364,6 +364,28 @@ You can specify request method in 2nd argument of [$this->request()](FunctionAnd
 		);
 ~~~
 
+You can set request header with [$this->request->setHeader()](FunctionAndClassReference.md#request-setheader) method in *CI PHPUnit Test*. And you can confirm response header with [$this->assertResponseHeader()](FunctionAndClassReference.md#testcaseassertresponseheadername-value) method in *CI PHPUnit Test*.
+
+~~~php
+	public function test_users_get_id_with_http_accept_header()
+	{
+		$this->request->setHeader('Accept', 'application/csv');
+		$output = $this->request('GET', 'api/example/users/id/1');
+		$this->assertEquals(
+			'id,name,email,fact
+1,John,john@example.com,"Loves coding"
+',
+			$output
+		);
+		$this->assertResponseCode(200);
+		$this->assertResponseHeader(
+			'Content-Type', 'application/csv; charset=utf-8'
+		);
+	}
+~~~
+
+See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/api/Example_test.php).
+
 #### Ajax Request
 
 You can use [$this->ajaxRequest()](FunctionAndClassReference.md#testcaseajaxrequestmethod-argv-params--) method in *CI PHPUnit Test*.

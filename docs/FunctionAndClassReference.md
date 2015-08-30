@@ -15,12 +15,14 @@ version: **master** |
 - [*class* TestCase](#class-testcase)
 	- [`TestCase::resetInstance()`](#testcaseresetinstance)
 	- [`TestCase::request($method, $argv, $params = [])`](#testcaserequestmethod-argv-params--)
+		- [`request->setHeader()`](#request-setheader)
 		- [`request->setCallable()`](#request-setcallable)
 		- [`request->setCallablePreConstructor()`](#request-setcallablepreconstructor)
 		- [`request->enableHooks()`](#request-enablehooks)
 	- [`TestCase::ajaxRequest($method, $argv, $params = [])`](#testcaseajaxrequestmethod-argv-params--)
 	- [`TestCase::assertResponseCode($code)`](#testcaseassertresponsecodecode)
 	- [`TestCase::assertRedirect($uri, $code = null)`](#testcaseassertredirecturi-code--null)
+	- [`TestCase::assertResponseHeader($name, $value)`](#testcaseassertresponseheadername-value)
 	- [`TestCase::getDouble($classname, $params)`](#testcasegetdoubleclassname-params)
 	- [`TestCase::verifyInvoked($mock, $method, $params)`](#testcaseverifyinvokedmock-method-params)
 	- [`TestCase::verifyInvokedOnce($mock, $method, $params)`](#testcaseverifyinvokedoncemock-method-params)
@@ -138,6 +140,14 @@ If you want to specify URI string:
 $output = $this->request('GET', 'products/shoes/show/123');
 ~~~
 
+##### `request->setHeader()`
+
+Set HTTP request header.
+
+~~~php
+$this->request->setHeader('Accept', 'application/csv');
+~~~
+
 ##### `request->setCallable()`
 
 Set function to run after controller instantiation.
@@ -197,6 +207,10 @@ The same as `TestCase::request()`, but this makes an Ajax request. This adds onl
 
 Check for a specific response code on your controller tests.
 
+~~~php
+$this->assertResponseCode(200);
+~~~
+
 #### `TestCase::assertRedirect($uri, $code = null)`
 
 | param   | type   | description      |
@@ -205,6 +219,27 @@ Check for a specific response code on your controller tests.
 |`$code`  | int    | HTTP status code |
 
 Check if `redirect()` is called on your controller tests.
+
+~~~php
+$this->assertRedirect('auth/login');
+~~~
+
+#### `TestCase::assertResponseHeader($name, $value)`
+
+| param   | type   | description  |
+|---------|--------|--------------|
+|`$name`  | string | header name  |
+|`$value` | string | header value |
+
+Check for a specific response header on your controller tests.
+
+~~~php
+$this->assertResponseHeader(
+	'Content-Type', 'application/csv; charset=utf-8'
+);
+~~~
+
+**Note:** This method can only assert headers set by `$this->output->set_header()` method.
 
 #### `TestCase::getDouble($classname, $params)`
 
