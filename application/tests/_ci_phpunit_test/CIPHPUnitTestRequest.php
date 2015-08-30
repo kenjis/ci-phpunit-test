@@ -38,6 +38,31 @@ class CIPHPUnitTestRequest
 	protected $bc_mode_throw_PHPUnit_Framework_Exception = false;
 
 	/**
+	 * Set HTTP request header
+	 * 
+	 * @param string $name  header name
+	 * @param string $value value
+	 */
+	public function setHeader($name, $value)
+	{
+		$normalized_name = str_replace('-', '_', strtoupper($name));
+
+		if (
+			$normalized_name === 'CONTENT_LENGTH' 
+			|| $normalized_name === 'CONTENT_TYPE'
+		)
+		{
+			$key = $normalized_name;
+		}
+		else
+		{
+			$key = 'HTTP_' . $normalized_name;
+		}
+
+		$_SERVER[$key] = $value;
+	}
+
+	/**
 	 * Set callable
 	 * 
 	 * @param callable $callable function to run after controller instantiation
