@@ -890,7 +890,7 @@ class Example_test extends TestCase
 }
 ~~~
 
-And if you copy sample api controllers, you must change `require` statement to `require_one`:
+And if you copy sample api controllers, you must change `require` statement to `require_once`:
 
 ~~~diff
 --- a/application/controllers/api/Example.php

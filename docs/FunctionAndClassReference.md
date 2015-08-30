@@ -187,7 +187,7 @@ $output = $this->request('GET', 'products/shoes/show/123');
 
 `returns` (string) output strings
 
-The same as `TestCase::request()`, but this makes a Ajax request. This adds only `$_SERVER['HTTP_X_REQUESTED_WITH']`.
+The same as `TestCase::request()`, but this makes an Ajax request. This adds only `$_SERVER['HTTP_X_REQUESTED_WITH']`.
 
 #### `TestCase::assertResponseCode($code)`
 
@@ -357,11 +357,11 @@ $this->verifyNeverInvoked(
 
 #### `TestCase::warningOff()`
 
-Turn off WARNING in error reporting.
+Turn off WARNING in PHP error reporting.
 
 #### `TestCase::warningOn()`
 
-Restore error reporting.
+Restore PHP error reporting.
 
 ### *class* MonkeyPatch
 
