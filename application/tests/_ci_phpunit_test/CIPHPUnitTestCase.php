@@ -233,12 +233,33 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * Set Expected Redirect
+	 * Asserts HTTP response header
 	 * 
-	 * This method needs <https://github.com/kenjis/ci-phpunit-test/blob/master/application/helpers/MY_url_helper.php>.
+	 * @param string $name  header name
+	 * @param string $value header value
+	 */
+	public function assertResponseHeader($name, $value)
+	{
+		$CI =& get_instance();
+		$actual = $CI->output->get_header($name);
+
+		if ($actual === null)
+		{
+			$this->fail("The '$name' header is not set.\nNote that `assertResponseHeader()` can only assert headers set by `\$this->output->set_header()`");
+		}
+
+		$this->assertEquals(
+			$value,
+			$actual,
+			"The '$name' header is not '$value' but '$actual'."
+		);
+	}
+
+	/**
+	 * Asserts Redirect
 	 * 
 	 * @param string $uri  URI to redirect
-	 * @param int    $code Response Code
+	 * @param int    $code response code
 	 */
 	public function assertRedirect($uri, $code = null)
 	{

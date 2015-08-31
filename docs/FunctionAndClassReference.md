@@ -15,12 +15,14 @@ version: **master** |
 - [*class* TestCase](#class-testcase)
 	- [`TestCase::resetInstance()`](#testcaseresetinstance)
 	- [`TestCase::request($method, $argv, $params = [])`](#testcaserequestmethod-argv-params--)
+		- [`request->setHeader()`](#request-setheader)
 		- [`request->setCallable()`](#request-setcallable)
 		- [`request->setCallablePreConstructor()`](#request-setcallablepreconstructor)
 		- [`request->enableHooks()`](#request-enablehooks)
 	- [`TestCase::ajaxRequest($method, $argv, $params = [])`](#testcaseajaxrequestmethod-argv-params--)
 	- [`TestCase::assertResponseCode($code)`](#testcaseassertresponsecodecode)
 	- [`TestCase::assertRedirect($uri, $code = null)`](#testcaseassertredirecturi-code--null)
+	- [`TestCase::assertResponseHeader($name, $value)`](#testcaseassertresponseheadername-value)
 	- [`TestCase::getDouble($classname, $params)`](#testcasegetdoubleclassname-params)
 	- [`TestCase::verifyInvoked($mock, $method, $params)`](#testcaseverifyinvokedmock-method-params)
 	- [`TestCase::verifyInvokedOnce($mock, $method, $params)`](#testcaseverifyinvokedoncemock-method-params)
@@ -116,11 +118,11 @@ In contrast, if you use `$this->resetInstance()`, it resets CodeIgniter instance
 
 #### `TestCase::request($method, $argv, $params = [])`
 
-| param     | type         | description                                    |
-|-----------|--------------|------------------------------------------------|
-|`$method`  | string       | HTTP method                                    |
-|`$argv`    | array/string | controller, method [, arg1, ...] / URI string  |
-|`$params`  | array        | POST parameters / Query string                 |
+| param     | type         | description                                        |
+|-----------|--------------|----------------------------------------------------|
+|`$method`  | string       | HTTP method                                        |
+|`$argv`    | array/string | controller, method [, arg1, ...] / URI string      |
+|`$params`  | array/string | POST parameters or Query string / raw_input_stream |
 
 `returns` (string) output strings (view)
 
@@ -136,6 +138,14 @@ If you want to specify URI string:
 
 ~~~php
 $output = $this->request('GET', 'products/shoes/show/123');
+~~~
+
+##### `request->setHeader()`
+
+Set HTTP request header.
+
+~~~php
+$this->request->setHeader('Accept', 'application/csv');
 ~~~
 
 ##### `request->setCallable()`
@@ -179,15 +189,15 @@ $output = $this->request('GET', 'products/shoes/show/123');
 
 #### `TestCase::ajaxRequest($method, $argv, $params = [])`
 
-| param     | type         | description                                    |
-|-----------|--------------|------------------------------------------------|
-|`$method`  | string       | HTTP method                                    |
-|`$argv`    | array/string | controller, method [, arg1, ...] / URI string  |
-|`$params`  | array        | POST parameters / Query string                 |
+| param     | type         | description                                        |
+|-----------|--------------|----------------------------------------------------|
+|`$method`  | string       | HTTP method                                        |
+|`$argv`    | array/string | controller, method [, arg1, ...] / URI string      |
+|`$params`  | array/string | POST parameters or Query string / raw_input_stream |
 
 `returns` (string) output strings
 
-The same as `TestCase::request()`, but this makes a Ajax request. This adds only `$_SERVER['HTTP_X_REQUESTED_WITH']`.
+The same as `TestCase::request()`, but this makes an Ajax request. This adds only `$_SERVER['HTTP_X_REQUESTED_WITH']`.
 
 #### `TestCase::assertResponseCode($code)`
 
@@ -197,6 +207,10 @@ The same as `TestCase::request()`, but this makes a Ajax request. This adds only
 
 Check for a specific response code on your controller tests.
 
+~~~php
+$this->assertResponseCode(200);
+~~~
+
 #### `TestCase::assertRedirect($uri, $code = null)`
 
 | param   | type   | description      |
@@ -205,6 +219,27 @@ Check for a specific response code on your controller tests.
 |`$code`  | int    | HTTP status code |
 
 Check if `redirect()` is called on your controller tests.
+
+~~~php
+$this->assertRedirect('auth/login');
+~~~
+
+#### `TestCase::assertResponseHeader($name, $value)`
+
+| param   | type   | description  |
+|---------|--------|--------------|
+|`$name`  | string | header name  |
+|`$value` | string | header value |
+
+Check for a specific response header on your controller tests.
+
+~~~php
+$this->assertResponseHeader(
+	'Content-Type', 'application/csv; charset=utf-8'
+);
+~~~
+
+**Note:** This method can only assert headers set by `$this->output->set_header()` method.
 
 #### `TestCase::getDouble($classname, $params)`
 
@@ -357,11 +392,11 @@ $this->verifyNeverInvoked(
 
 #### `TestCase::warningOff()`
 
-Turn off WARNING in error reporting.
+Turn off WARNING in PHP error reporting.
 
 #### `TestCase::warningOn()`
 
-Restore error reporting.
+Restore PHP error reporting.
 
 ### *class* MonkeyPatch
 
