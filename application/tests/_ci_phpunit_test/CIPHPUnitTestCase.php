@@ -207,7 +207,9 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 
 	public function warningOff()
 	{
-		$this->_error_reporting = error_reporting(E_ALL & ~E_WARNING);
+		$this->_error_reporting = error_reporting(
+			E_ALL & ~E_WARNING & ~E_NOTICE
+		);
 	}
 
 	public function warningOn()

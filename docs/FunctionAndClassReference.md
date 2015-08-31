@@ -392,7 +392,7 @@ $this->verifyNeverInvoked(
 
 #### `TestCase::warningOff()`
 
-Turn off WARNING in PHP error reporting.
+Turn off WARNING and Notice in PHP error reporting.
 
 #### `TestCase::warningOn()`
 

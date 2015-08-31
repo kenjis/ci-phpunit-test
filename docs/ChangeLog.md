@@ -2,6 +2,10 @@
 
 ## v0.7.0 (Not Released)
 
+### Changed
+
+* Now `$this->warningOff()` turns off Notice, too.
+
 ### Added
 
 * Now `$this->request()` can create REST request more easily. See [#47](https://github.com/kenjis/ci-phpunit-test/pull/47).
