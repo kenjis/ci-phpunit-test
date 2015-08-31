@@ -148,11 +148,13 @@ class CIPHPUnitTestRequest
 		catch (CIPHPUnitTestShow404Exception $e)
 		{
 			$this->processError($e);
+			return $e->getMessage();
 		}
 		// show_error()
 		catch (CIPHPUnitTestShowErrorException $e)
 		{
 			$this->processError($e);
+			return $e->getMessage();
 		}
 	}
 

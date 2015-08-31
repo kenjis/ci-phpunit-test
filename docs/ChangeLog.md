@@ -9,6 +9,10 @@
 * `$this->assertResponseHeader()` to assert HTTP response header. See [#47](https://github.com/kenjis/ci-phpunit-test/pull/47).
 * Autoloading for libraries
 
+### Fixed
+
+* `$this->request()` returns not null but error message when `show_404()` or `show_error()` is called.
+
 ### Removed
 
 * 4th param `$callable` of `$this->request()` and `$this->ajaxRequest()` (deprecated since v0.3.0)
