@@ -71,24 +71,35 @@ class CIPHPUnitTestAutoloader
 
 		foreach ($dirs as $dir)
 		{
-			if (
-				$this->loadApplicationClassFile($class, $dir.'/'.$class.'.php')
-			)
+			if ($this->loadClassFile($dir, $class))
 			{
-				return;
+				return true;
 			}
-			elseif (
-				$this->loadApplicationClassFile($class, $dir.'/*/'.$class.'.php')
-			)
+
+			$iterator = new \RecursiveIteratorIterator(
+				new \RecursiveDirectoryIterator(
+					$dir, \RecursiveDirectoryIterator::SKIP_DOTS
+				),
+				\RecursiveIteratorIterator::SELF_FIRST
+			);
+
+			foreach ($iterator as $file)
 			{
-				return;
+				if ($file->isDir())
+				{
+					if ($this->loadClassFile($file, $class))
+					{
+						return true;
+					}
+				}
 			}
 		}
 	}
 
-	protected function loadApplicationClassFile($class, $path)
+	protected function loadClassFile($dir, $class)
 	{
-		foreach (glob($path) as $class_file)
+		$class_file = $dir . '/' . $class . '.php';
+		if (file_exists($class_file))
 		{
 			require $class_file;
 			if ($this->cache)
