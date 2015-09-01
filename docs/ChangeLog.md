@@ -11,14 +11,14 @@
 * Now `$this->request()` can create REST request more easily. See [#47](https://github.com/kenjis/ci-phpunit-test/pull/47).
 * `$this->request->setHeader()` to set HTTP request header. See [#47](https://github.com/kenjis/ci-phpunit-test/pull/47).
 * `$this->assertResponseHeader()` to assert HTTP response header. See [#47](https://github.com/kenjis/ci-phpunit-test/pull/47).
-* You can add query string in URI string of `$this->request()`.
+* You can add query string in URI string of `$this->request()`. See [#51](https://github.com/kenjis/ci-phpunit-test/pull/51).
 * Autoloading for libraries
 
 ### Fixed
 
 * `$this->request()` returns not null but error message when `show_404()` or `show_error()` is called.
-* `$this->CI` in `TestCase` class after calling `$this->request()` is still an old instance.
-* Autoloader only searches class files only in top level and sub folder for them.
+* `$this->CI` in `TestCase` class after calling `$this->request()` is still an old instance. [#50](https://github.com/kenjis/ci-phpunit-test/issues/50).
+* Autoloader only searches class files only in top level and sub folder for them. [#48](https://github.com/kenjis/ci-phpunit-test/issues/48).
 
 ### Removed
 
