@@ -395,7 +395,7 @@ You can use [$this->ajaxRequest()](FunctionAndClassReference.md#testcaseajaxrequ
 	public function test_index_ajax_call()
 	{
 		$output = $this->ajaxRequest('GET', ['Ajax', 'index']);
-		$expected = '{"name": "John Smith", "age": 33}';
+		$expected = '{"name":"John Smith","age":33}';
 		$this->assertEquals($expected, $output);
 	}
 ~~~
