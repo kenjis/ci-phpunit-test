@@ -16,6 +16,7 @@
 ### Fixed
 
 * `$this->request()` returns not null but error message when `show_404()` or `show_error()` is called.
+* `$this->CI` in `TestCase` class after calling `$this->request()` is still an old instance.
 
 ### Removed
 

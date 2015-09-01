@@ -28,6 +28,11 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 		'reflection' => 'CIPHPUnitTestReflection',
 	];
 
+	public function setCI(CI_Controller $CI)
+	{
+		$this->CI = $CI;
+	}
+
 	public function __get($name)
 	{
 		if (isset($this->class_map[$name]))

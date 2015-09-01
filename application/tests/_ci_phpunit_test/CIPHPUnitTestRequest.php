@@ -10,6 +10,8 @@
 
 class CIPHPUnitTestRequest
 {
+	protected $testCase;
+
 	/**
 	 * @var callable callable post controller constructor
 	 */
@@ -36,6 +38,11 @@ class CIPHPUnitTestRequest
 	 * @deprecated
 	 */
 	protected $bc_mode_throw_PHPUnit_Framework_Exception = false;
+
+	public function __construct(PHPUnit_Framework_TestCase $testCase)
+	{
+		$this->testCase = $testCase;
+	}
 
 	/**
 	 * Set HTTP request header
@@ -293,6 +300,10 @@ class CIPHPUnitTestRequest
 		// Create controller
 		$controller = new $class;
 		$this->CI =& get_instance();
+
+		// Set CodeIgniter instance to TestCase
+		$this->testCase->setCI($this->CI);
+
 		// Set default response code 200
 		set_status_header(200);
 		// Run callable
