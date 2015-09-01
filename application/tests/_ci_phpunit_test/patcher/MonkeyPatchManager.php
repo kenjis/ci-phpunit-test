@@ -40,7 +40,9 @@ class MonkeyPatchManager
 		}
 
 		$time = date('Y-m-d H:i:s');
-		$log = "[$time] $message\n";
+		list($usec, $sec) = explode(' ', microtime());
+		$usec = substr($usec, 1);
+		$log = "[$time $usec] $message\n";
 		file_put_contents(self::$log_file, $log, FILE_APPEND);
 	}
 
