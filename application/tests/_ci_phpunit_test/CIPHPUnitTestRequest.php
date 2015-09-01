@@ -104,7 +104,7 @@ class CIPHPUnitTestRequest
 	 *
 	 * @param string       $http_method HTTP method
 	 * @param array|string $argv        array of controller,method,arg|uri
-	 * @param array|string $params      POST parameters/Query string|raw_input_stream
+	 * @param array|string $params      POST params/GET params|raw_input_stream
 	 */
 	public function request($http_method, $argv, $params = [])
 	{
@@ -114,6 +114,21 @@ class CIPHPUnitTestRequest
 
 		$_SERVER['REQUEST_METHOD'] = $http_method;
 
+		if (is_string($argv))
+		{
+			$argv = ltrim($argv, '/');
+			
+			// Parse URI string and get query string
+			$query = parse_url('http://localhost/'.$argv, PHP_URL_QUERY);
+			if ($query !== null)
+			{
+				// Set $_GET if it has query string
+				parse_str($query, $_GET);
+				// Remove query string from URI string
+				$argv = substr($argv, 0, -strlen($query)-1);
+			}
+		}
+
 		if (is_array($params))
 		{
 			if ($http_method === 'POST')
@@ -122,8 +137,24 @@ class CIPHPUnitTestRequest
 			}
 			elseif ($http_method === 'GET')
 			{
-				$_GET = $params;
+				// if GET params are passed, overwrite $_GET
+				if ($params !== [])
+				{
+					$_GET = $params;
+				}
 			}
+		}
+
+		// Set $_SERVER['REQUEST_URI']
+		if ($_GET !== [] && is_string($argv))
+		{
+			$_SERVER['REQUEST_URI'] = 
+				'/' . $argv . '?'
+				. http_build_query($_GET);
+		}
+		elseif (is_string($argv))
+		{
+			$_SERVER['REQUEST_URI'] = '/' . $argv;
 		}
 
 		try {
@@ -183,7 +214,7 @@ class CIPHPUnitTestRequest
 	 *
 	 * @param string       $http_method    HTTP method
 	 * @param array        $argv           controller, method [, arg1, ...]
-	 * @param array|string $request_params POST parameters/Query string|raw_input_stream
+	 * @param array|string $request_params POST params/GET params|raw_input_stream
 	 */
 	protected function callControllerMethod($http_method, $argv, $request_params)
 	{
@@ -227,7 +258,7 @@ class CIPHPUnitTestRequest
 	 *
 	 * @param string       $http_method    HTTP method
 	 * @param string       $uri            URI string
-	 * @param array|string $request_params POST parameters/Query string|raw_input_stream
+	 * @param array|string $request_params POST params/GET params|raw_input_stream
 	 */
 	protected function requestUri($http_method, $uri, $request_params)
 	{

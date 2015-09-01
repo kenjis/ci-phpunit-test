@@ -118,11 +118,11 @@ In contrast, if you use `$this->resetInstance()`, it resets CodeIgniter instance
 
 #### `TestCase::request($method, $argv, $params = [])`
 
-| param     | type         | description                                        |
-|-----------|--------------|----------------------------------------------------|
-|`$method`  | string       | HTTP method                                        |
-|`$argv`    | array/string | controller, method [, arg1, ...] / URI string      |
-|`$params`  | array/string | POST parameters or Query string / raw_input_stream |
+| param     | type         | description                                   |
+|-----------|--------------|-----------------------------------------------|
+|`$method`  | string       | HTTP method                                   |
+|`$argv`    | array/string | controller, method [, arg1, ...] / URI string |
+|`$params`  | array/string | POST params or GET params / raw_input_stream  |
 
 `returns` (string) output strings (view)
 
@@ -138,6 +138,12 @@ If you want to specify URI string:
 
 ~~~php
 $output = $this->request('GET', 'products/shoes/show/123');
+~~~
+
+You could add query string in URI string:
+
+~~~php
+$output = $this->request('GET', 'users/detail?name=John+O%27Reilly');
 ~~~
 
 ##### `request->setHeader()`
@@ -189,11 +195,11 @@ $output = $this->request('GET', 'products/shoes/show/123');
 
 #### `TestCase::ajaxRequest($method, $argv, $params = [])`
 
-| param     | type         | description                                        |
-|-----------|--------------|----------------------------------------------------|
-|`$method`  | string       | HTTP method                                        |
-|`$argv`    | array/string | controller, method [, arg1, ...] / URI string      |
-|`$params`  | array/string | POST parameters or Query string / raw_input_stream |
+| param     | type         | description                                   |
+|-----------|--------------|-----------------------------------------------|
+|`$method`  | string       | HTTP method                                   |
+|`$argv`    | array/string | controller, method [, arg1, ...] / URI string |
+|`$params`  | array/string | POST params or GET params / raw_input_stream  |
 
 `returns` (string) output strings
 
