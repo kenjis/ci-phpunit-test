@@ -11,6 +11,7 @@
 * Now `$this->request()` can create REST request more easily. See [#47](https://github.com/kenjis/ci-phpunit-test/pull/47).
 * `$this->request->setHeader()` to set HTTP request header. See [#47](https://github.com/kenjis/ci-phpunit-test/pull/47).
 * `$this->assertResponseHeader()` to assert HTTP response header. See [#47](https://github.com/kenjis/ci-phpunit-test/pull/47).
+* You can add query string in URI string of `$this->request()`.
 * Autoloading for libraries
 
 ### Fixed
