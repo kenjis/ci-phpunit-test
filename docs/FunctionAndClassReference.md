@@ -134,6 +134,16 @@ If you want to specify controller and method name directly:
 $output = $this->request('GET', ['Form', 'index']);
 ~~~
 
+If you want to make POST request:
+
+~~~php
+$output = $this->request(
+	'POST',
+	['Form', 'index'],
+	['name' => 'John Smith', 'email' => 'john@example.com']
+);
+~~~
+
 If you want to specify URI string:
 
 ~~~php

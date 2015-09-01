@@ -28,6 +28,7 @@ version: **master** |
 	- [REST Request](#rest-request)
 	- [Ajax Request](#ajax-request)
 	- [Request and Use Mocks](#request-and-use-mocks)
+	- [Check Status Code](#check-status-code)
 	- [Examine DOM in Controller Output](#examine-dom-in-controller-output)
 	- [Controller with Authentication](#controller-with-authentication)
 	- [`redirect()`](#redirect)
