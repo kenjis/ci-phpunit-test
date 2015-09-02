@@ -28,7 +28,7 @@
 
 ### Removed
 
-* 4th param `$callable` of `$this->request()` and `$this->ajaxRequest()` (deprecated since v0.3.0)
+* 4th param `$callable` of `$this->request()` and `$this->ajaxRequest()` (deprecated since v0.3.0) Use `$this->request->setCallable()` method instead. See [Function/Class Reference](https://github.com/kenjis/ci-phpunit-test/blob/v0.3.0/docs/FunctionAndClassReference.md#testcaserequestmethod-argv-params---callable--null).
 
 ### Others
 
