@@ -13,6 +13,11 @@ class CIPHPUnitTestRequest
 	protected $testCase;
 
 	/**
+	 * @var CIPHPUnitTestSuperGlobal
+	 */
+	protected $superGlobal;
+
+	/**
 	 * @var callable callable post controller constructor
 	 */
 	protected $callable;
@@ -42,6 +47,7 @@ class CIPHPUnitTestRequest
 	public function __construct(PHPUnit_Framework_TestCase $testCase)
 	{
 		$this->testCase = $testCase;
+		$this->superGlobal = new CIPHPUnitTestSuperGlobal();
 	}
 
 	/**
@@ -52,21 +58,7 @@ class CIPHPUnitTestRequest
 	 */
 	public function setHeader($name, $value)
 	{
-		$normalized_name = str_replace('-', '_', strtoupper($name));
-
-		if (
-			$normalized_name === 'CONTENT_LENGTH' 
-			|| $normalized_name === 'CONTENT_TYPE'
-		)
-		{
-			$key = $normalized_name;
-		}
-		else
-		{
-			$key = 'HTTP_' . $normalized_name;
-		}
-
-		$_SERVER[$key] = $value;
+		$this->superGlobal->set_SERVER_HttpHeader($name, $value);
 	}
 
 	/**
@@ -97,58 +89,6 @@ class CIPHPUnitTestRequest
 	{
 		$this->enableHooks = true;
 		$this->hooks =& load_class('Hooks', 'core');
-	}
-
-	protected function set_POST($params)
-	{
-		if (is_array($params))
-		{
-			if ($_SERVER['REQUEST_METHOD'] === 'POST')
-			{
-				$_POST = $params;
-			}
-		}
-	}
-
-	protected function set_GET(&$argv, $params)
-	{
-		if (is_string($argv))
-		{
-			$query_string = $this->getQueryString($argv);
-			if ($query_string !== null)
-			{
-				// Set $_GET if URI string has query string
-				parse_str($query_string, $_GET);
-				// Remove query string from URI string
-				$argv = substr($argv, 0, -strlen($query_string)-1);
-			}
-		}
-
-		if (is_array($params))
-		{
-			if ($_SERVER['REQUEST_METHOD'] === 'GET')
-			{
-				// if GET params are passed, overwrite $_GET
-				if ($params !== [])
-				{
-					$_GET = $params;
-				}
-			}
-		}
-	}
-
-	protected function set_SERVER_REQUEST_URI($argv)
-	{
-		if ($_GET !== [] && is_string($argv))
-		{
-			$_SERVER['REQUEST_URI'] = 
-				'/' . $argv . '?'
-				. http_build_query($_GET);
-		}
-		elseif (is_string($argv))
-		{
-			$_SERVER['REQUEST_URI'] = '/' . $argv;
-		}
 	}
 
 	/**
@@ -190,9 +130,9 @@ class CIPHPUnitTestRequest
 
 		// Set super globals
 		$_SERVER['REQUEST_METHOD'] = $http_method;
-		$this->set_GET($argv, $params);
-		$this->set_POST($params);
-		$this->set_SERVER_REQUEST_URI($argv);
+		$this->superGlobal->set_GET($argv, $params);
+		$this->superGlobal->set_POST($params);
+		$this->superGlobal->set_SERVER_REQUEST_URI($argv);
 
 		try {
 			if (is_array($argv))
