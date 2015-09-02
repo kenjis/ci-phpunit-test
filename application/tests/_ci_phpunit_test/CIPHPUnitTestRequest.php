@@ -18,6 +18,11 @@ class CIPHPUnitTestRequest
 	protected $superGlobal;
 
 	/**
+	 * @var CIPHPUnitTestRouter
+	 */
+	protected $router;
+
+	/**
 	 * @var callable callable post controller constructor
 	 */
 	protected $callable;
@@ -48,6 +53,7 @@ class CIPHPUnitTestRequest
 	{
 		$this->testCase = $testCase;
 		$this->superGlobal = new CIPHPUnitTestSuperGlobal();
+		$this->router = new CIPHPUnitTestRouter();
 	}
 
 	/**
@@ -232,9 +238,7 @@ class CIPHPUnitTestRequest
 		$this->setRawInputStream($request_params);
 
 		// Get route
-		$RTR =& load_class('Router', 'core');
-		$URI =& load_class('URI', 'core');
-		list($class, $method, $params) = $this->getRoute($RTR, $URI);
+		list($class, $method, $params) = $this->router->getRoute();
 
 		// Restore cli mode
 		set_is_cli($cli);
@@ -316,61 +320,6 @@ class CIPHPUnitTestRequest
 		$this->callHook('post_controller');
 
 		return $output;
-	}
-
-	/**
-	 * Get Route including 404 check
-	 *
-	 * @see core/CodeIgniter.php
-	 *
-	 * @param CI_Route $RTR Router object
-	 * @param CI_URI   $URI URI object
-	 * @return array   [class, method, pararms]
-	 */
-	protected function getRoute($RTR, $URI)
-	{
-		$e404 = FALSE;
-		$class = ucfirst($RTR->class);
-		$method = $RTR->method;
-
-		if (empty($class) OR ! file_exists(APPPATH.'controllers/'.$RTR->directory.$class.'.php'))
-		{
-			$e404 = TRUE;
-		}
-		else
-		{
-			require_once(APPPATH.'controllers/'.$RTR->directory.$class.'.php');
-
-			if ( ! class_exists($class, FALSE) OR $method[0] === '_' OR method_exists('CI_Controller', $method))
-			{
-				$e404 = TRUE;
-			}
-			elseif (method_exists($class, '_remap'))
-			{
-				$params = array($method, array_slice($URI->rsegments, 2));
-				$method = '_remap';
-			}
-			// WARNING: It appears that there are issues with is_callable() even in PHP 5.2!
-			// Furthermore, there are bug reports and feature/change requests related to it
-			// that make it unreliable to use in this context. Please, DO NOT change this
-			// work-around until a better alternative is available.
-			elseif ( ! in_array(strtolower($method), array_map('strtolower', get_class_methods($class)), TRUE))
-			{
-				$e404 = TRUE;
-			}
-		}
-
-		if ($e404)
-		{
-			show_404($RTR->directory.$class.'/'.$method.' is not found');
-		}
-
-		if ($method !== '_remap')
-		{
-			$params = array_slice($URI->rsegments, 2);
-		}
-
-		return [$class, $method, $params];
 	}
 
 	/**
