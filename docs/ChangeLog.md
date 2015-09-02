@@ -16,8 +16,8 @@
 
 ### Fixed
 
-* `$this->request()` returns not null but error message when `show_404()` or `show_error()` is called.
-* `$this->CI` in `TestCase` class after calling `$this->request()` is still an old instance. [#50](https://github.com/kenjis/ci-phpunit-test/issues/50).
+* `$this->request()` returns null when `show_404()` or `show_error()` is called. Now it returns error message.
+* `$this->CI` in `TestCase` class after calling `$this->request()` is still the previous instance. [#50](https://github.com/kenjis/ci-phpunit-test/issues/50).
 * Autoloader only searches class files only in top level and sub folder for them. [#48](https://github.com/kenjis/ci-phpunit-test/issues/48).
 * `set_status_header()` calls `header()` if `is_cli()` returns false.
 
