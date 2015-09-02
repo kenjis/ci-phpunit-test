@@ -265,8 +265,8 @@ function set_status_header($code = 200, $text = '')
 	];
 
 	// Everything is done, so return
-	// moved by ci-phpunit-test
-	if (is_cli())
+	// added by ci-phpunit-test
+	if (ENVIRONMENT === 'testing')
 	{
 		return;
 	}
