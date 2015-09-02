@@ -2,6 +2,10 @@
 
 ## v0.7.0 (Not Released)
 
+### Upgrade Note
+
+* Please update `application/tests/phpunit.xml`. Replace it or apply [this patch](https://github.com/kenjis/ci-phpunit-test/commit/7af9e330251e2ab72a631f4d5f92a41c0ad37aca). See [#52](https://github.com/kenjis/ci-phpunit-test/pull/52).
+
 ### Changed
 
 * Now `$this->warningOff()` turns off Notice, too.
@@ -20,6 +24,7 @@
 * `$this->CI` in `TestCase` class after calling `$this->request()` is still the previous instance. [#50](https://github.com/kenjis/ci-phpunit-test/issues/50).
 * Autoloader only searches class files only in top level and sub folder for them. [#48](https://github.com/kenjis/ci-phpunit-test/issues/48).
 * `set_status_header()` calls `header()` if `is_cli()` returns false.
+* Fix `phpunit.xml`. See [#52](https://github.com/kenjis/ci-phpunit-test/pull/52).
 
 ### Removed
 
