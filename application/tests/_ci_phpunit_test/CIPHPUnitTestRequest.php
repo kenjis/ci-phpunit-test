@@ -92,25 +92,6 @@ class CIPHPUnitTestRequest
 	}
 
 	/**
-	 * Parse URI string and get query string
-	 * 
-	 * @param string $uri
-	 * @return string|null
-	 * @throws LogicException
-	 */
-	protected function getQueryString($uri)
-	{
-		$query_string = parse_url('http://localhost/'.$uri, PHP_URL_QUERY);
-
-		if ($query_string === false)
-		{
-			throw new LogicException('Bad URI string: ' . $uri);
-		}
-
-		return $query_string;
-	}
-
-	/**
 	 * Request to Controller
 	 *
 	 * @param string       $http_method HTTP method
