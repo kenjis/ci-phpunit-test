@@ -99,6 +99,77 @@ class CIPHPUnitTestRequest
 		$this->hooks =& load_class('Hooks', 'core');
 	}
 
+	protected function set_POST($params)
+	{
+		if (is_array($params))
+		{
+			if ($_SERVER['REQUEST_METHOD'] === 'POST')
+			{
+				$_POST = $params;
+			}
+		}
+	}
+
+	protected function set_GET(&$argv, $params)
+	{
+		if (is_string($argv))
+		{
+			$query_string = $this->getQueryString($argv);
+			if ($query_string !== null)
+			{
+				// Set $_GET if URI string has query string
+				parse_str($query_string, $_GET);
+				// Remove query string from URI string
+				$argv = substr($argv, 0, -strlen($query_string)-1);
+			}
+		}
+
+		if (is_array($params))
+		{
+			if ($_SERVER['REQUEST_METHOD'] === 'GET')
+			{
+				// if GET params are passed, overwrite $_GET
+				if ($params !== [])
+				{
+					$_GET = $params;
+				}
+			}
+		}
+	}
+
+	protected function set_SERVER_REQUEST_URI($argv)
+	{
+		if ($_GET !== [] && is_string($argv))
+		{
+			$_SERVER['REQUEST_URI'] = 
+				'/' . $argv . '?'
+				. http_build_query($_GET);
+		}
+		elseif (is_string($argv))
+		{
+			$_SERVER['REQUEST_URI'] = '/' . $argv;
+		}
+	}
+
+	/**
+	 * Parse URI string and get query string
+	 * 
+	 * @param string $uri
+	 * @return string|null
+	 * @throws LogicException
+	 */
+	protected function getQueryString($uri)
+	{
+		$query_string = parse_url('http://localhost/'.$uri, PHP_URL_QUERY);
+
+		if ($query_string === false)
+		{
+			throw new LogicException('Bad URI string: ' . $uri);
+		}
+
+		return $query_string;
+	}
+
 	/**
 	 * Request to Controller
 	 *
@@ -112,50 +183,16 @@ class CIPHPUnitTestRequest
 		// But we need $this->CI->output->_status
 		$this->CI =& get_instance();
 
-		$_SERVER['REQUEST_METHOD'] = $http_method;
-
 		if (is_string($argv))
 		{
 			$argv = ltrim($argv, '/');
-			
-			// Parse URI string and get query string
-			$query = parse_url('http://localhost/'.$argv, PHP_URL_QUERY);
-			if ($query !== null)
-			{
-				// Set $_GET if it has query string
-				parse_str($query, $_GET);
-				// Remove query string from URI string
-				$argv = substr($argv, 0, -strlen($query)-1);
-			}
 		}
 
-		if (is_array($params))
-		{
-			if ($http_method === 'POST')
-			{
-				$_POST = $params;
-			}
-			elseif ($http_method === 'GET')
-			{
-				// if GET params are passed, overwrite $_GET
-				if ($params !== [])
-				{
-					$_GET = $params;
-				}
-			}
-		}
-
-		// Set $_SERVER['REQUEST_URI']
-		if ($_GET !== [] && is_string($argv))
-		{
-			$_SERVER['REQUEST_URI'] = 
-				'/' . $argv . '?'
-				. http_build_query($_GET);
-		}
-		elseif (is_string($argv))
-		{
-			$_SERVER['REQUEST_URI'] = '/' . $argv;
-		}
+		// Set super globals
+		$_SERVER['REQUEST_METHOD'] = $http_method;
+		$this->set_GET($argv, $params);
+		$this->set_POST($params);
+		$this->set_SERVER_REQUEST_URI($argv);
 
 		try {
 			if (is_array($argv))
