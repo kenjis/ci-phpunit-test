@@ -624,11 +624,11 @@ If you don't want to update your tests, set property `$bc_mode_throw_PHPUnit_Fra
 
 If you run CodeIgniter via CLI, CodeIgniter's Session class does not call `session_start()`. So normally you don't see warning like "session_start(): Cannot send session cookie - headers already sent by ...".
 
-But if libraries which you use have logic only runs only when not in CLI mode, you have to use `set_is_cli(FALSE)` for testing. (Don't forget call `set_is_cli(TRUE)` after running the code.)
+But if libraries which you use have logic runs only when not in CLI mode, you have to use `set_is_cli(FALSE)` for testing. (Don't forget calling `set_is_cli(TRUE)` after running the code.)
 
 In that case, Session class calls `session_start()` and you will see "Cannot send session cookie" warning.
 
-To test that code, you can add `$this->warningOff()` to your test code (don't forget call `$this->warningOn()` after running the code), or you can use *MY_Session* class like this: [application/libraries/Session/MY_Session.php](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/libraries/Session/MY_Session.php).
+To test that code, you can add `$this->warningOff()` to your test code (don't forget calling `$this->warningOn()` after running the code), or you can use *MY_Session* class like this: [application/libraries/Session/MY_Session.php](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/libraries/Session/MY_Session.php).
 
 #### Controller with Hooks
 
