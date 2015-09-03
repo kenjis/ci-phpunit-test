@@ -628,7 +628,7 @@ But if libraries which you use have logic runs only when not in CLI mode, you ha
 
 In that case, Session class calls `session_start()` and you will see "Cannot send session cookie" warning.
 
-To test that code, you can add `$this->warningOff()` to your test code (don't forget calling `$this->warningOn()` after running the code), or you can use *MY_Session* class like this: [application/libraries/Session/MY_Session.php](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/libraries/Session/MY_Session.php).
+To test that code, you can add `$this->warningOff()` to your test code (don't forget calling `$this->warningOn()` after running the code), or you can use *MY_Session* class like this: [application/libraries/Session/MY_Session.php](https://github.com/kenjis/ci-phpunit-test/blob/master/application/libraries/Session/MY_Session.php).
 
 #### Controller with Hooks
 
