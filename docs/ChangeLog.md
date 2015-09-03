@@ -17,6 +17,7 @@
 * `$this->assertResponseHeader()` to assert HTTP response header. See [#47](https://github.com/kenjis/ci-phpunit-test/pull/47).
 * You can add query string in URI string of `$this->request()`. See [#51](https://github.com/kenjis/ci-phpunit-test/pull/51).
 * Autoloading for libraries
+* Add `application/libraries/Session/MY_Session.php` as a sample
 
 ### Fixed
 
@@ -28,7 +29,8 @@
 
 ### Removed
 
-* 4th param `$callable` of `$this->request()` and `$this->ajaxRequest()` (deprecated since v0.3.0) Use `$this->request->setCallable()` method instead. See [Function/Class Reference](https://github.com/kenjis/ci-phpunit-test/blob/v0.3.0/docs/FunctionAndClassReference.md#testcaserequestmethod-argv-params---callable--null).
+* 4th param `$callable` of `$this->request()` and `$this->ajaxRequest()` (deprecated since v0.3.0)  
+  Use `$this->request->setCallable()` method instead. See [Function/Class Reference](https://github.com/kenjis/ci-phpunit-test/blob/v0.3.0/docs/FunctionAndClassReference.md#testcaserequestmethod-argv-params---callable--null).
 
 ### Others
 
