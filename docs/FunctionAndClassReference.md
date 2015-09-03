@@ -30,6 +30,10 @@ version: **master** |
 	- [`TestCase::verifyNeverInvoked($mock, $method, $params)`](#testcaseverifyneverinvokedmock-method-params)
 	- [`TestCase::warningOff()`](#testcasewarningoff)
 	- [`TestCase::warningOn()`](#testcasewarningon)
+- [*class* ReflectionHelper](#class-reflectionhelper)
+	- [`ReflectionHelper::getPrivateProperty($obj, $property)`](#reflectionhelpergetprivatepropertyobj-property)
+	- [`ReflectionHelper::setPrivateProperty($obj, $property, $value)`](#reflectionhelpersetprivatepropertyobj-property-value)
+	- [`ReflectionHelper::getPrivateMethodInvoker($obj, $method)`](#reflectionhelpergetprivatemethodinvokerobj-method)
 - [*class* MonkeyPatch](#class-monkeypatch)
 	- [`MonkeyPatch::patchFunction($function, $return_value, $class_method)`](#monkeypatchpatchfunctionfunction-return_value-class_method)
 	- [`MonkeyPatch::resetFunctions()`](#monkeypatchresetfunctions)
@@ -413,6 +417,59 @@ Turn off WARNING and Notice in PHP error reporting.
 #### `TestCase::warningOn()`
 
 Restore PHP error reporting.
+
+### *class* ReflectionHelper
+
+#### ReflectionHelper::getPrivateProperty($obj, $property)
+
+| param     | type          | description         |
+|-----------|---------------|---------------------|
+|`$obj`     | object/string | object / class name |
+|`$property`| string        | property name       |
+
+`returns` (mixed) property value
+
+Get private or protected property value.
+
+#### ReflectionHelper::setPrivateProperty($obj, $property, $value)
+
+| param     | type          | description         |
+|-----------|---------------|---------------------|
+|`$obj`     | object/string | object / class name |
+|`$property`| string        | property name       |
+|`$value`   | mixed         | value               |
+
+Set private or protected property value.
+
+~~~php
+$obj = new SomeClass();
+ReflectionHelper::setPrivateProperty(
+	$obj,
+	'private_propery',
+	'new value'
+);
+~~~
+
+#### ReflectionHelper::getPrivateMethodInvoker($obj, $method)
+
+| param   | type          | description         |
+|---------|---------------|---------------------|
+|`$obj`   | object/string | object / class name |
+|`$method`| string        | method name         |
+
+`returns` (closure) method invoker
+
+Get private or protected method invoker.
+
+~~~php
+$obj = new SomeClass();
+$method = ReflectionHelper::getPrivateMethodInvoker(
+	$obj, 'privateMethod'
+);
+$this->assertEquals(
+	'return value of the privateMethod() method', $method()
+);
+~~~
 
 ### *class* MonkeyPatch
 

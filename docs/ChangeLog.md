@@ -18,6 +18,7 @@
 * You can add query string in URI string of `$this->request()`. See [#51](https://github.com/kenjis/ci-phpunit-test/pull/51).
 * Autoloading for libraries
 * Add `application/libraries/Session/MY_Session.php` as a sample
+* `ReflectionHelper` class to access non-public method or property. See [Function/Class Reference](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/FunctionAndClassReference.md#class-reflectionhelper).
 
 ### Fixed
 
