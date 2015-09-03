@@ -10,6 +10,11 @@
 
 class CIPHPUnitTestAutoloader
 {
+	private $alias = [
+		'MonkeyPatch',
+		'ReflectionHelper',
+	];
+
 	/**
 	 * @var CIPHPUnitTestFileCache
 	 */
@@ -30,8 +35,18 @@ class CIPHPUnitTestAutoloader
 			}
 		}
 
+		$this->loadCIPHPUnitTestAliasClass($class);
 		$this->loadCIPHPUnitTestClass($class);
 		$this->loadApplicationClass($class);
+	}
+
+	protected function loadCIPHPUnitTestAliasClass($class)
+	{
+		if (in_array($class, $this->alias))
+		{
+			$dir = __DIR__ . '/alias';
+			$this->loadClassFile($dir, $class);
+		}
 	}
 
 	protected function loadCIPHPUnitTestClass($class)
@@ -43,21 +58,13 @@ class CIPHPUnitTestAutoloader
 
 		if (substr($class, -9) !== 'Exception')
 		{
-			$class_file = __DIR__ . '/' . $class . '.php';
-			require $class_file;
-			if ($this->cache)
-			{
-				$this->cache[$class] = $class_file;
-			}
+			$dir = __DIR__;
+			$this->loadClassFile($dir, $class);
 		}
 		else
 		{
-			$class_file = __DIR__ . '/exceptions/' . $class . '.php';
-			require $class_file;
-			if ($this->cache)
-			{
-				$this->cache[$class] = $class_file;
-			}
+			$dir = __DIR__ . '/exceptions';
+			$this->loadClassFile($dir, $class);
 		}
 	}
 

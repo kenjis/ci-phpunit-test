@@ -19,7 +19,6 @@ require __DIR__ . '/functions/exit__.php';
 
 const __GO_TO_ORIG__ = '__GO_TO_ORIG__';
 
-class_alias('Kenjis\MonkeyPatch\MonkeyPatch', 'MonkeyPatch');
 class_alias('Kenjis\MonkeyPatch\MonkeyPatchManager', 'MonkeyPatchManager');
 
 // And you have to configure for your application
