@@ -21,7 +21,7 @@ class CIPHPUnitTestReflection
 		$ref_method->setAccessible(true);
 		$obj = (gettype($obj) === 'object') ? $obj : null;
 
-		return function () use ($obj, $ref_method, $obj) {
+		return function () use ($obj, $ref_method) {
 			$args = func_get_args();
 			return $ref_method->invokeArgs($obj, $args);
 		};
