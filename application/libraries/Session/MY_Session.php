@@ -21,6 +21,6 @@ class MY_Session extends CI_Session
 			return;
 		}
 
-		parent::sess_destroy($params);
+		parent::sess_destroy();
 	}
 }
