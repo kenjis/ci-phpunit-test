@@ -28,6 +28,7 @@ version: **master** |
 	- [REST Request](#rest-request)
 	- [Ajax Request](#ajax-request)
 	- [Request and Use Mocks](#request-and-use-mocks)
+	- [Request and Use Monkey Patching](#request-and-use-monkey-patching)
 	- [Check Status Code](#check-status-code)
 	- [Examine DOM in Controller Output](#examine-dom-in-controller-output)
 	- [Controller with Authentication](#controller-with-authentication)
@@ -480,6 +481,24 @@ In this case, You can use [$this->request->setCallablePreConstructor()](Function
 **Note:** When you have never loaded a class with CodeIgniter loader, if you make mock object for the class, it may not work. If you have got error, please try to load it before getting mock object.
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Auth_check_in_construct_test.php).
+
+**Note:** If you can't create mocks or it is too hard to create mocks, it may be better to use Monkey Patching.
+
+#### Request and Use Monkey Patching
+
+To use Monkey Patching, you have to enable it. See [Monkey Patching](#monkey-patching).
+
+~~~php
+	public function test_index_logged_in()
+	{
+		MonkeyPatch::patchMethod('Ion_auth', ['logged_in' => TRUE]);
+
+		$output = $this->request('GET', 'auth/login');
+		$this->assertContains('You are logged in.', $output);
+	}
+~~~
+
+See also [Patching Methods in User-defined Classes](#patching-methods-in-user-defined-classes).
 
 #### Check Status Code
 

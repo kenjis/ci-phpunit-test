@@ -219,6 +219,10 @@ $output = $this->request('GET', 'products/shoes/show/123');
 
 The same as `TestCase::request()`, but this makes an Ajax request. This adds only `$_SERVER['HTTP_X_REQUESTED_WITH']`.
 
+~~~php
+$output = $this->ajaxRequest('GET', 'api/books');
+~~~
+
 #### `TestCase::assertResponseCode($code)`
 
 | param   | type | description      |
@@ -414,11 +418,25 @@ $this->verifyNeverInvoked(
 
 Turn off WARNING and Notice in PHP error reporting.
 
+~~~php
+$this->warningOff();
+$output = $this->request('GET', 'api/example/users');
+$this->warningOn();
+~~~
+
 #### `TestCase::warningOn()`
 
 Restore PHP error reporting.
 
+~~~php
+$this->warningOn();
+~~~
+
 ### *class* ReflectionHelper
+
+This class provides helper methods to access private or protected properties and methods.
+
+But generally it is not recommended to test non-public properties or methods, so think twice before you use methods in this class.
 
 #### ReflectionHelper::getPrivateProperty($obj, $property)
 
@@ -430,6 +448,14 @@ Restore PHP error reporting.
 `returns` (mixed) property value
 
 Get private or protected property value.
+
+~~~php
+$obj = new SomeClass();
+$private_propery = ReflectionHelper::getPrivateProperty(
+	$obj,
+	'private_propery',
+);
+~~~
 
 #### ReflectionHelper::setPrivateProperty($obj, $property, $value)
 
