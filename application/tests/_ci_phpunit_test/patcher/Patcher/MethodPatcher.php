@@ -10,11 +10,6 @@
 
 namespace Kenjis\MonkeyPatch\Patcher;
 
-if (! class_exists('PhpParser\Autoloader', false))
-{
-	require __DIR__ . '/../third_party/PHP-Parser/lib/bootstrap.php';
-	require __DIR__ . '/AbstractPatcher.php';
-}
 require __DIR__ . '/MethodPatcher/NodeVisitor.php';
 require __DIR__ . '/MethodPatcher/PatchManager.php';
 

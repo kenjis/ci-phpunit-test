@@ -8,6 +8,11 @@
  * @link       https://github.com/kenjis/ci-phpunit-test
  */
 
+// Autoloader for PHP-Parser
+// Don't use `require`, because we must require it in CIPHPUnitTest::init()
+// for providing autoloading when we don't use Monkey Patching
+require_once __DIR__ . '/third_party/PHP-Parser/lib/bootstrap.php';
+
 require __DIR__ . '/IncludeStream.php';
 require __DIR__ . '/PathChecker.php';
 require __DIR__ . '/MonkeyPatchManager.php';

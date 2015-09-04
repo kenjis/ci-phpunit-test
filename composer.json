@@ -21,6 +21,9 @@
     "require": {
         "php": ">=5.4.0"
     },
+    "replace": {
+        "nikic/php-parser": "1.4.0"
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.x-dev"
