@@ -36,6 +36,7 @@
 ### Others
 
 * Add documentation for CodeIgniter Rest Server. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#codeigniter-rest-server).
+* Compatible with PsySH v0.5.2
 
 ## v0.6.2 (2015/08/13)
 
