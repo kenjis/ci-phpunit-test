@@ -46,7 +46,7 @@ version: **master** |
 
 ### *function* `reset_instance()`
 
-Reset CodeIgniter instance. You must create new controller instance after calling this function.
+Resets CodeIgniter instance. You must create new controller instance after calling this function.
 
 ~~~php
 reset_instance();
@@ -62,7 +62,7 @@ Normally, you don't have to use this function. Use [`TestCase::resetInstance()`]
 |---------|------|---------------------|
 |`$return`| bool | return value to set |
 
-Set return value of `is_cli()` function.
+Sets return value of `is_cli()` function.
 
 ~~~php
 set_is_cli(FALSE);
@@ -75,7 +75,7 @@ set_is_cli(FALSE);
 |`$classname`| string | class name      |
 |`$instance` | object | object instance |
 
-Inject an instance directly into `load_class()` function.
+Injects an instance directly into `load_class()` function.
 
 ~~~php
 $email = $this->getMockBuilder('CI_Email')
@@ -90,7 +90,7 @@ load_class_instance('email', $email);
 
 #### `TestCase::resetInstance()`
 
-Reset CodeIgniter instance and assign new CodeIgniter instance as `$this->CI`.
+Resets CodeIgniter instance and assign new CodeIgniter instance as `$this->CI`.
 
 ~~~php
 public function setUp()
@@ -130,7 +130,7 @@ In contrast, if you use `$this->resetInstance()`, it resets CodeIgniter instance
 
 `returns` (string) output strings (view)
 
-Run a controller method or make a request to URI string after `reset_instance()`.
+Runs a controller method or make a request to URI string after `reset_instance()`.
 
 If you want to specify controller and method name directly:
 
@@ -162,7 +162,7 @@ $output = $this->request('GET', 'users/detail?name=John+O%27Reilly');
 
 ##### `request->setHeader()`
 
-Set HTTP request header.
+Sets HTTP request header.
 
 ~~~php
 $this->request->setHeader('Accept', 'application/csv');
@@ -170,7 +170,7 @@ $this->request->setHeader('Accept', 'application/csv');
 
 ##### `request->setCallable()`
 
-Set function to run after controller instantiation.
+Sets function to run after controller instantiation.
 
 ~~~php
 $this->request->setCallable(
@@ -183,7 +183,7 @@ $output = $this->request('GET', ['Bbs', 'index']);
 
 ##### `request->setCallablePreConstructor()`
 
-Set function to run before controller instantiation.
+Sets function to run before controller instantiation.
 
 ~~~php
 $this->request->setCallablePreConstructor(
@@ -229,7 +229,7 @@ $output = $this->ajaxRequest('GET', 'api/books');
 |---------|------|------------------|
 |`$code`  | int  | HTTP status code |
 
-Check for a specific response code on your controller tests.
+Checks for a specific response code on your controller tests.
 
 ~~~php
 $this->assertResponseCode(200);
@@ -242,7 +242,7 @@ $this->assertResponseCode(200);
 |`$uri`   | string | URI to redirect  |
 |`$code`  | int    | HTTP status code |
 
-Check if `redirect()` is called on your controller tests.
+Checks if `redirect()` is called on your controller tests.
 
 ~~~php
 $this->assertRedirect('auth/login');
@@ -255,7 +255,7 @@ $this->assertRedirect('auth/login');
 |`$name`  | string | header name  |
 |`$value` | string | header value |
 
-Check for a specific response header on your controller tests.
+Checks for a specific response header on your controller tests.
 
 ~~~php
 $this->assertResponseHeader(
@@ -274,7 +274,7 @@ $this->assertResponseHeader(
 
 `returns` (object) PHPUnit mock object
 
-Get PHPUnit mock object.
+Gets PHPUnit mock object.
 
 ~~~php
 $email = $this->getMockBuilder('CI_Email')
@@ -416,7 +416,7 @@ $this->verifyNeverInvoked(
 
 #### `TestCase::warningOff()`
 
-Turn off WARNING and Notice in PHP error reporting.
+Turns off WARNING and Notice in PHP error reporting.
 
 ~~~php
 $this->warningOff();
@@ -426,7 +426,7 @@ $this->warningOn();
 
 #### `TestCase::warningOn()`
 
-Restore PHP error reporting.
+Restores PHP error reporting.
 
 ~~~php
 $this->warningOn();
@@ -447,7 +447,7 @@ But generally it is not recommended to test non-public properties or methods, so
 
 `returns` (mixed) property value
 
-Get private or protected property value.
+Gets private or protected property value.
 
 ~~~php
 $obj = new SomeClass();
@@ -465,7 +465,7 @@ $private_propery = ReflectionHelper::getPrivateProperty(
 |`$property`| string        | property name       |
 |`$value`   | mixed         | value               |
 
-Set private or protected property value.
+Sets private or protected property value.
 
 ~~~php
 $obj = new SomeClass();
@@ -485,7 +485,7 @@ ReflectionHelper::setPrivateProperty(
 
 `returns` (closure) method invoker
 
-Get private or protected method invoker.
+Gets private or protected method invoker.
 
 ~~~php
 $obj = new SomeClass();
@@ -509,15 +509,19 @@ To use this class, you have to enable monkey patching. See [How to Write Tests](
 |`$return_value`| mixed  | return value / callback                        |
 |`$class_method`| string | class::method or classname to apply this patch |
 
-Replace function on the fly.
+Replaces function on the fly.
 
 If `$class_method` is present, the patch is applied to the functions only in the class method or in the class.
 
 There are some known limitations. See [How to Write Tests](HowToWriteTests.md#patching-functions) for details.
 
+~~~php
+MonkeyPatch::patchFunction('mt_rand', 100, 'Welcome::index');
+~~~
+
 #### `MonkeyPatch::resetFunctions()`
 
-Reset all patched functions.
+Resets all patched functions.
 
 This method is called on `TestCase::tearDown()` by default. So you don't have to call it normally.
 
@@ -528,11 +532,18 @@ This method is called on `TestCase::tearDown()` by default. So you don't have to
 |`$classname` | string | class name to patch           |
 |`$params`    | array  | [method_name => return_value] |
 
-Replace method in user-defined class on the fly.
+Replaces method in user-defined class on the fly.
+
+~~~php
+MonkeyPatch::patchMethod(
+	'Category_model',
+	['get_category_list' => [(object) ['name' => 'Nothing']]]
+);
+~~~
 
 #### `MonkeyPatch::resetMethods()`
 
-Reset all patched class methods.
+Resets all patched class methods.
 
 This method is called on `TestCase::tearDown()` by default. So you don't have to call it normally.
 
