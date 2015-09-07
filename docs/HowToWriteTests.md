@@ -105,7 +105,7 @@ When a test exercises code that contains `exit()` or `die()` statement, the exec
 
 For example, if you write `exit()` in your controller code, your testing ends with it.
 
-I recommend you not to use `exit()` or `die()` in your code.
+I recommend you not using `exit()` or `die()` in your code.
 
 **Monkey Patching on `exit()`**
 
@@ -295,7 +295,7 @@ See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/m
 
 ### Libraries
 
-If your library depends on CodeIgniter functionality, I recommend to use `setUp()` method like this:
+If your library depends on CodeIgniter functionality, I recommend using `setUp()` method like this:
 
 ~~~php
 	public function setUp()
@@ -511,7 +511,7 @@ You can use [$this->assertResponseCode()](FunctionAndClassReference.md#testcasea
 
 #### Examine DOM in Controller Output
 
-I recommend to use [symfony/dom-crawler](http://symfony.com/doc/current/components/dom_crawler.html).
+I recommend using [symfony/dom-crawler](http://symfony.com/doc/current/components/dom_crawler.html).
 
 ~~~php
 		$output = $this->request('GET', ['Welcome', 'index']);
@@ -524,7 +524,7 @@ See [working sample](https://github.com/kenjis/codeigniter-tettei-apps/blob/deve
 
 #### Controller with Authentication
 
-I recommend to use PHPUnit mock objects. [$this->getDouble()](FunctionAndClassReference.md#testcasegetdoubleclassname-params) is a helper method in *CI PHPUnit Test*.
+I recommend using PHPUnit mock objects. [$this->getDouble()](FunctionAndClassReference.md#testcasegetdoubleclassname-params) is a helper method in *CI PHPUnit Test*.
 
 ~~~php
 	public function test_index_logged_in()
