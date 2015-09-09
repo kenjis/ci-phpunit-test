@@ -1,6 +1,6 @@
 # Change Log for CI PHPUnit Test
 
-## v0.7.0 (Not Released)
+## v0.7.0 (2015/09/09)
 
 ### Upgrade Note
 
@@ -18,7 +18,7 @@
 * You can add query string in URI string of `$this->request()`. See [#51](https://github.com/kenjis/ci-phpunit-test/pull/51).
 * Autoloading for libraries
 * Add `application/libraries/Session/MY_Session.php` as a sample
-* `ReflectionHelper` class to access non-public method or property. See [Function/Class Reference](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/FunctionAndClassReference.md#class-reflectionhelper).
+* `ReflectionHelper` class to access non-public method or property. See [Function/Class Reference](https://github.com/kenjis/ci-phpunit-test/blob/v0.7.0/docs/FunctionAndClassReference.md#class-reflectionhelper).
 
 ### Fixed
 
@@ -35,7 +35,7 @@
 
 ### Others
 
-* Add documentation for CodeIgniter Rest Server. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#codeigniter-rest-server).
+* Add documentation for CodeIgniter Rest Server. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/v0.7.0/docs/HowToWriteTests.md#codeigniter-rest-server).
 * Compatible with PsySH v0.5.2
 
 ## v0.6.2 (2015/08/13)
