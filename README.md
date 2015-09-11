@@ -19,7 +19,8 @@ An easier way to use PHPUnit with [CodeIgniter](https://github.com/bcit-ci/CodeI
 
 * PHP 5.4.0 or later
 * CodeIgniter 3.0.*
-* PHPUnit 4.3 or later (4.7 or later is recommended; If you use NetBeans 8.0.2, please use 4.7. 4.8 is not compatible yet)
+* PHPUnit 4.3 or later (4.7 or later is recommended)
+  * If you use NetBeans 8.0.2, please use 4.7. 4.8 is not compatible yet. You can download old version of `phpunit.phar` from <https://phar.phpunit.de/>.
 
 ## Change Log
 

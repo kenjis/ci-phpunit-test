@@ -1,6 +1,6 @@
 # CI PHPUnit Test for CodeIgniter 3.0
 
-version: **0.7.0** | 
+version: **v0.7.0** | 
 [v0.6.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.6.2/docs/HowToWriteTests.md) | 
 [v0.5.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.5.0/docs/HowToWriteTests.md) | 
 [v0.4.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.4.0/docs/HowToWriteTests.md) | 
