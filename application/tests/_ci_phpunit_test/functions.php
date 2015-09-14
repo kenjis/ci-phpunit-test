@@ -24,17 +24,29 @@ function load_class_instance($classname, $instance)
  */
 function reset_instance()
 {
+	// Reset loaded classes
+	load_class('', '', NULL, TRUE);
+	is_loaded('', TRUE);
+
 	// Close db connection
 	$CI =& get_instance();
 	if (isset($CI->db))
 	{
-		$CI->db->close();
-		$CI->db = null;
+		if (
+			$CI->db->dsn !== 'sqlite::memory:'
+			&& $CI->db->database !== ':memory:'
+		)
+		{
+			$CI->db->close();
+			$CI->db = null;
+		}
+		else
+		{
+			// Don't close if SQLite in-memory database
+			// If we close it, all tables and stored data will be gone
+			load_class_instance('db', $CI->db);
+		}
 	}
-
-	// Reset loaded classes
-	load_class('', '', NULL, TRUE);
-	is_loaded('', TRUE);
 
 	// Load core classes
 	load_class('Benchmark', 'core');
