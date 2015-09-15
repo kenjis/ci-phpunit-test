@@ -40,15 +40,6 @@ class CIPHPUnitTestRequest
 	 */
 	protected $hooks;
 
-	/**
-	 * @var bool whether throwing PHPUnit_Framework_Exception or not
-	 * 
-	 * If true, throws PHPUnit_Framework_Exception when show_404() and show_error() are called. This behavior is compatible to v0.3.0 and before.
-	 * 
-	 * @deprecated
-	 */
-	protected $bc_mode_throw_PHPUnit_Framework_Exception = false;
-
 	public function __construct(PHPUnit_Framework_TestCase $testCase)
 	{
 		$this->testCase = $testCase;
@@ -163,14 +154,6 @@ class CIPHPUnitTestRequest
 	protected function processError(Exception $e)
 	{
 		set_status_header($e->getCode());
-
-		// @deprecated
-		if ($this->bc_mode_throw_PHPUnit_Framework_Exception)
-		{
-			throw new PHPUnit_Framework_Exception(
-				$e->getMessage(), $e->getCode()
-			);
-		}
 	}
 
 	/**
