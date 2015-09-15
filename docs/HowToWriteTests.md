@@ -1,6 +1,7 @@
 # CI PHPUnit Test for CodeIgniter 3.0
 
-version: **v0.7.0** | 
+version: **master** | 
+[v0.7.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.7.0/docs/HowToWriteTests.md) | 
 [v0.6.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.6.2/docs/HowToWriteTests.md) | 
 [v0.5.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.5.0/docs/HowToWriteTests.md) | 
 [v0.4.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.4.0/docs/HowToWriteTests.md) | 
@@ -636,8 +637,6 @@ v0.4.0 has changed how to test `show_error()` and `show_404()`. You must update 
 		$this->assertResponseCode(404);
 	}
 ~~~
-
-If you don't want to update your tests, set property `$bc_mode_throw_PHPUnit_Framework_Exception` `true` in [CIPHPUnitTestRequest](../application/tests/_ci_phpunit_test/CIPHPUnitTestRequest.php) class. But `$bc_mode_throw_PHPUnit_Framework_Exception` is deprecated.
 
 #### Session
 
