@@ -6,6 +6,10 @@
 
 * Better support for SQLite in-memory database. Now `reset_instance()` does not close SQLite in-memory database connection.
 
+### Fixed
+
+* Fix bug that `$this->getDouble()` can't create mocks which have methods named method.
+
 ### Removed
 
 * Property `$bc_mode_throw_PHPUnit_Framework_Exception` in `CIPHPUnitTestRequest` class (deprecated since v0.4.0). See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/v0.4.0/docs/HowToWriteTests.md#show_error-and-show_404).
