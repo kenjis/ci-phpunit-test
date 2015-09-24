@@ -37,12 +37,13 @@ class CIPHPUnitTestDouble
 	{
 		$methods = array_keys($params);
 
-		$mock = $this->testCase->getMockBuilder($classname)->setMethods($methods)
-			->getMock();
+		$mock = $this->testCase->getMockBuilder($classname)
+			->setMethods($methods)->getMock();
 
 		foreach ($params as $method => $return)
 		{
-			$mock->method($method)->willReturn($return);
+			$mock->expects($this->testCase->any())->method($method)
+				->willReturn($return);
 		}
 
 		return $mock;
