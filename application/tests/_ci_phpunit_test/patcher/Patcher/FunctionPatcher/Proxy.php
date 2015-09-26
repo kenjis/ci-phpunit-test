@@ -153,7 +153,7 @@ class Proxy
 			}
 		}
 
-		if (isset(self::$patches[$function]))
+		if (array_key_exists($function, self::$patches))
 		{
 			MonkeyPatchManager::log('invoke_func: ' . $function . '() patched');
 

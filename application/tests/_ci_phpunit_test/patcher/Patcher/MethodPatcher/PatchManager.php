@@ -76,9 +76,14 @@ class PatchManager
 
 		self::$invocations[$class.'::'.$method][] = $params;
 
-		$patch = isset(self::$patches[$class][$method]) ? self::$patches[$class][$method] : null;
-
-		if ($patch === null)
+		if (
+			isset(self::$patches[$class])
+			&& array_key_exists($method, self::$patches[$class])
+		)
+		{
+			$patch = self::$patches[$class][$method];
+		}
+		else
 		{
 			return __GO_TO_ORIG__;
 		}
