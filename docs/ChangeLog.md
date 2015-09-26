@@ -9,6 +9,7 @@
 ### Fixed
 
 * Fix bug that `$this->getDouble()` can't create mocks which have methods named method.
+* Fix bug that monkey patching which returns `null` does not work.
 
 ### Removed
 
