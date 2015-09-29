@@ -1,5 +1,11 @@
 # Change Log for CI PHPUnit Test
 
+## v0.8.1 (Not Released)
+
+### Fixed
+
+* Fix bug that `$route['404_override']` controller/method is called in Bootstrap. See [#63](https://github.com/kenjis/ci-phpunit-test/pull/63).
+
 ## v0.8.0 (2015/09/28)
 
 ### Changed

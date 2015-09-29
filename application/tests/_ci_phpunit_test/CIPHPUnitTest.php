@@ -56,17 +56,8 @@ class CIPHPUnitTest
 		 *
 		 * And away we go...
 		 */
-		try {
-			// Request to 404 route
-			// This is needed for not to call Welcome::index()
-			// If controller Welcome is called in bootstrap, we can't test
-			// the same name sub controller Welcome even when we use
-			// `@runInSeparateProcess` and `@preserveGlobalState disabled`
-			require_once BASEPATH . 'core/CodeIgniter.php';
-		} catch (CIPHPUnitTestShow404Exception $e) {
-			// Catch 404 exception
-			new CI_Controller();
-		}
+		require __DIR__ . '/replacing/core/CodeIgniter.php';
+		new CI_Controller();
 
 		// Restore $_SERVER
 		$_SERVER = $_server_backup;
