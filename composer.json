@@ -12,7 +12,7 @@
     "authors": [
         {
             "name": "Kenji Suzuki",
-            "homepage": "https://github.com/kenjis/ci-phpunit-test"
+            "homepage": "https://github.com/kenjis"
         }
     ],
     "support": {
@@ -22,7 +22,7 @@
         "php": ">=5.4.0"
     },
     "replace": {
-        "nikic/php-parser": "1.4.0"
+        "nikic/php-parser": "1.4.1"
     },
     "extra": {
         "branch-alias": {
