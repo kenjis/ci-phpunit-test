@@ -1,5 +1,11 @@
 # Change Log for CI PHPUnit Test
 
+## v0.8.2 (Not Released)
+
+### Others
+
+* Update nikic/PHP-Parser to v1.4.1
+
 ## v0.8.1 (2015/10/01)
 
 ### Fixed
