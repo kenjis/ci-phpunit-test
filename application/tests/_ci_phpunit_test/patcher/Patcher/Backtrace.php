@@ -27,6 +27,15 @@ class Backtrace
 		}
 		$offset = self::$map[$patcher];
 
+		// Supports PHP7 optimization
+		if (version_compare(PHP_VERSION, '6.0.0', '>'))
+		{
+			if ($backtrace[$offset]['function'] === '__callStatic')
+			{
+				$offset--;
+			}
+		}
+
 		$file = isset($backtrace[$offset]['file'])
 				? $backtrace[$offset]['file'] : null;
 		$line = isset($backtrace[$offset]['line'])
