@@ -17,6 +17,7 @@ use ReflectionFunction;
 use ReflectionException;
 
 use Kenjis\MonkeyPatch\Patcher\FunctionPatcher;
+use Kenjis\MonkeyPatch\Patcher\Backtrace;
 use Kenjis\MonkeyPatch\MonkeyPatchManager;
 use Kenjis\MonkeyPatch\Cache;
 use Kenjis\MonkeyPatch\InvocationVerifier;
@@ -90,10 +91,12 @@ class Proxy
 		if (MonkeyPatchManager::$debug)
 		{
 			$trace = debug_backtrace();
-			$file = $trace[1]['file'];
-			$line = $trace[1]['line'];
-			$method = isset($trace[3]['class']) ? $trace[3]['class'].'::'.$trace[3]['function'] : $trace[3]['function'];
-			
+			$info = Backtrace::getInfo('FunctionPatcher', $trace);
+
+			$file = $info['file'];
+			$line = $info['line'];
+			$method = isset($info['class_method']) ? $info['class_method'] : $info['function'];
+
 			$log_args = function () use ($arguments) {
 				$output = '';
 				foreach ($arguments as $arg) {
@@ -110,9 +113,11 @@ class Proxy
 
 	protected static function checkCalledMethod($function)
 	{
-		$trace  = debug_backtrace();
-		$class  = isset($trace[3]['class']) ? strtolower($trace[3]['class']) : null;
-		$method = strtolower($trace[3]['function']);
+		$trace = debug_backtrace();
+		$info = Backtrace::getInfo('FunctionPatcher', $trace);
+		
+		$class = strtolower($info['class']);
+		$class_method = strtolower($info['class_method']);
 
 		// Patches the functions only in the class
 		if (strpos(self::$patches_to_apply[$function], '::') === false)
@@ -126,7 +131,7 @@ class Proxy
 		//Patches the functions only in the class method
 		else
 		{
-			if (self::$patches_to_apply[$function] !== $class.'::'.$method)
+			if (self::$patches_to_apply[$function] !== $class_method)
 			{
 				return false;
 			}
@@ -192,7 +197,8 @@ class Proxy
 
 				// Remove cache file
 				$backtrace = debug_backtrace();
-				$orig_file = $backtrace[1]['file'];
+				$info = Backtrace::getInfo('FunctionPatcher', $backtrace);
+				$orig_file = $info['file'];
 				$cache = Cache::removeSrcCacheFile($orig_file);
 
 				$pr_msg = '';

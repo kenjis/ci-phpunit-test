@@ -4,6 +4,7 @@
 
 ### Others
 
+* Compatible with PHP 7.0.0-RC4
 * Update nikic/PHP-Parser to v1.4.1
 
 ## v0.8.1 (2015/10/01)
