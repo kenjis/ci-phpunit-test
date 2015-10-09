@@ -2,8 +2,13 @@
 
 ## v0.8.2 (Not Released)
 
+### Fixed
+
+* Fix bug that monkey patching changes original source code in some cases of heredoc/nowdoc strings.
+
 ### Others
 
+* Compatible with CodeIgniter 3.0.2
 * Compatible with PHP 7.0.0-RC4
 * Update nikic/PHP-Parser to v1.4.1
 
