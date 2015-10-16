@@ -59,6 +59,7 @@ class CIPHPUnitTest
 		require __DIR__ . '/replacing/core/CodeIgniter.php';
 		new CI_Controller();
 
+		// This code is here, not to cause errors with HMVC
 		self::replaceLoader();
 	}
 
