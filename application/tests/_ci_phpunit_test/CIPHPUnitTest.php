@@ -18,7 +18,7 @@ class CIPHPUnitTest
 		$_server_backup = $_SERVER;
 		$_SERVER['argv'] = [
 			'index.php',
-			'_dummy/_dummy'	// Force 404 route
+			'welcome'	// Dummy
 		];
 		$_SERVER['argc'] = 2;
 
@@ -63,7 +63,7 @@ class CIPHPUnitTest
 		// This code is here, not to cause errors with HMVC
 		self::replaceLoader();
 
-		// Restore $_SERVER
+		// Restore $_SERVER. We need this for NetBeans
 		$_SERVER = $_server_backup;
 	}
 
