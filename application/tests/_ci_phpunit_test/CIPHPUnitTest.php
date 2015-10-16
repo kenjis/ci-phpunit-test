@@ -42,8 +42,9 @@ class CIPHPUnitTest
 
 		// Load new functions of CIPHPUnitTest
 		require __DIR__ . '/functions.php';
+		// Load ci-phpunit-test CI_Loader
+		require __DIR__ . '/replacing/core/Loader.php';
 
-		self::replaceLoader();
 		self::replaceHelpers();
 
 		// Change current directroy
@@ -59,18 +60,24 @@ class CIPHPUnitTest
 		require __DIR__ . '/replacing/core/CodeIgniter.php';
 		new CI_Controller();
 
+		self::replaceLoader();
+
 		// Restore $_SERVER
 		$_SERVER = $_server_backup;
 	}
 
 	protected static function replaceLoader()
 	{
-		require __DIR__ . '/replacing/core/Loader.php';
-		$my_loader_file = APPPATH . 'core/' . config_item('subclass_prefix') . 'Loader.php';
+		$my_loader_file = 
+			APPPATH . 'core/' . config_item('subclass_prefix') . 'Loader.php';
+
 		if (file_exists($my_loader_file))
 		{
 			self::$loader_class = config_item('subclass_prefix') . 'Loader';
-			require $my_loader_file;
+			if ( ! class_exists(self::$loader_class))
+			{
+				require $my_loader_file;
+			}
 		}
 		self::loadLoader();
 	}
