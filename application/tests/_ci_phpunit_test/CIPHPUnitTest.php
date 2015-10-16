@@ -15,9 +15,10 @@ class CIPHPUnitTest
 	public static function init()
 	{
 		// Fix CLI args
+		$_server_backup = $_SERVER;
 		$_SERVER['argv'] = [
 			'index.php',
-			'welcome'	// dummy
+			'_dummy/_dummy'	// Force 404 route
 		];
 		$_SERVER['argc'] = 2;
 
@@ -61,6 +62,9 @@ class CIPHPUnitTest
 
 		// This code is here, not to cause errors with HMVC
 		self::replaceLoader();
+
+		// Restore $_SERVER
+		$_SERVER = $_server_backup;
 	}
 
 	protected static function replaceLoader()
