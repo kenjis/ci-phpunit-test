@@ -23,12 +23,12 @@ class CIPHPUnitTestRequest
 	protected $router;
 
 	/**
-	 * @var callable callable post controller constructor
+	 * @var callable[] callable called post controller constructor
 	 */
-	protected $callable;
+	protected $callables = [];
 	
 	/**
-	 * @var callable callable pre controller constructor
+	 * @var callable callable called pre controller constructor
 	 */
 	protected $callablePreConstructor;
 
@@ -59,13 +59,24 @@ class CIPHPUnitTestRequest
 	}
 
 	/**
-	 * Set callable
+	 * Set (and Reset) callable
 	 * 
 	 * @param callable $callable function to run after controller instantiation
 	 */
 	public function setCallable(callable $callable)
 	{
-		$this->callable = $callable;
+		$this->callables = [];
+		$this->callables[] = $callable;
+	}
+
+	/**
+	 * Add callable
+	 * 
+	 * @param callable $callable function to run after controller instantiation
+	 */
+	public function addCallable(callable $callable)
+	{
+		$this->callables[] = $callable;
 	}
 
 	/**
@@ -283,10 +294,12 @@ class CIPHPUnitTestRequest
 		// Set default response code 200
 		set_status_header(200);
 		// Run callable
-		if (is_callable($this->callable))
+		if ($this->callables !== [])
 		{
-			$callable = $this->callable;
-			$callable($this->CI);
+			foreach ($this->callables as $callable)
+			{
+				$callable($this->CI);
+			}
 		}
 
 		$this->callHook('post_controller_constructor');
