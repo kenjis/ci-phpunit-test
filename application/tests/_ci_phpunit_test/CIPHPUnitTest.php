@@ -15,10 +15,9 @@ class CIPHPUnitTest
 	public static function init()
 	{
 		// Fix CLI args
-		$_server_backup = $_SERVER;
 		$_SERVER['argv'] = [
 			'index.php',
-			'_dummy/_dummy'	// Force 404 route
+			'welcome'	// dummy
 		];
 		$_SERVER['argc'] = 2;
 
@@ -61,9 +60,6 @@ class CIPHPUnitTest
 		new CI_Controller();
 
 		self::replaceLoader();
-
-		// Restore $_SERVER
-		$_SERVER = $_server_backup;
 	}
 
 	protected static function replaceLoader()
