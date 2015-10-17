@@ -1,6 +1,7 @@
 # CI PHPUnit Test for CodeIgniter 3.0
 
-version: **0.8.2** | 
+version: **v0.9.0 (Not Released)** | 
+[v0.8.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.8.2/docs/FunctionAndClassReference.md) | 
 [v0.7.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.7.0/docs/FunctionAndClassReference.md) | 
 [v0.6.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.6.2/docs/FunctionAndClassReference.md) | 
 [v0.5.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.5.0/docs/FunctionAndClassReference.md) | 
@@ -18,6 +19,7 @@ version: **0.8.2** |
 	- [`TestCase::request($method, $argv, $params = [])`](#testcaserequestmethod-argv-params--)
 		- [`request->setHeader()`](#request-setheader)
 		- [`request->setCallable()`](#request-setcallable)
+		- [`request->addCallable()`](#request-addcallable)
 		- [`request->setCallablePreConstructor()`](#request-setcallablepreconstructor)
 		- [`request->enableHooks()`](#request-enablehooks)
 	- [`TestCase::ajaxRequest($method, $argv, $params = [])`](#testcaseajaxrequestmethod-argv-params--)
@@ -171,10 +173,25 @@ $this->request->setHeader('Accept', 'application/csv');
 
 ##### `request->setCallable()`
 
-Sets function to run after controller instantiation.
+Sets (and resets) a function (callable) to run after controller instantiation.
 
 ~~~php
 $this->request->setCallable(
+	function ($CI) {
+		$CI->load->library('user_agent');
+	};
+);
+$output = $this->request('GET', ['Bbs', 'index']);
+~~~
+
+You can set one callable with `$this->request->setCallable()`. If you want to add more than one callable, you can use `$this->request->addCallable()` below.
+
+##### `request->addCallable()`
+
+Adds a function (callable) to run after controller instantiation.
+
+~~~php
+$this->request->addCallable(
 	function ($CI) {
 		$CI->load->library('user_agent');
 	};
