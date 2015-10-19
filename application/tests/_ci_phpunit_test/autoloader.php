@@ -14,7 +14,8 @@ require __DIR__ . '/CIPHPUnitTestFileCache.php';
 $cache = new CIPHPUnitTestFileCache(
 	__DIR__ . '/tmp/cache/autoload.php'
 );
-$autoloader = new CIPHPUnitTestAutoloader($cache);
+$autoload_dirs = CIPHPUnitTest::getAutoloadDirs();
+$autoloader = new CIPHPUnitTestAutoloader($cache, $autoload_dirs);
 spl_autoload_register([$autoloader, 'load']);
 
 // Register CodeIgniter's tests/mocks/autoloader.php

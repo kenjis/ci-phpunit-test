@@ -16,13 +16,38 @@ class CIPHPUnitTestAutoloader
 	];
 
 	/**
+	 * @var directories to search file
+	 */
+	private $dirs = [];
+
+	/**
 	 * @var CIPHPUnitTestFileCache
 	 */
 	private $cache;
 
-	public function __construct(CIPHPUnitTestFileCache $cache = null)
+	/**
+	 * @param CIPHPUnitTestFileCache $cache
+	 * @param array $dirs directories to search file
+	 */
+	public function __construct(
+			CIPHPUnitTestFileCache $cache = null,
+			array $dirs = null
+	)
 	{
 		$this->cache = $cache;
+		if ($dirs === null)
+		{
+			$this->dirs = [
+				APPPATH.'libraries',
+				APPPATH.'controllers',
+				APPPATH.'models',
+				APPPATH.'modules',
+			];
+		}
+		else
+		{
+			$this->dirs = $dirs;
+		}
 	}
 
 	public function load($class)
@@ -70,14 +95,13 @@ class CIPHPUnitTestAutoloader
 
 	protected function loadApplicationClass($class)
 	{
-		$dirs = [
-			APPPATH.'libraries',
-			APPPATH.'controllers',
-			APPPATH.'models',
-		];
-
-		foreach ($dirs as $dir)
+		foreach ($this->dirs as $dir)
 		{
+			if ( ! is_dir($dir))
+			{
+				continue;
+			}
+
 			if ($this->loadClassFile($dir, $class))
 			{
 				return true;

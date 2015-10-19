@@ -5,6 +5,7 @@
 ### Added
 
 * `$this->request->addCallable()` to add callable. See [#68](https://github.com/kenjis/ci-phpunit-test/pull/68).
+* Autoloading classes in `application/modules` folder.
 
 ## v0.8.2 (2015/10/09)
 
