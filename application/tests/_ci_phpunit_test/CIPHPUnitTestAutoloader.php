@@ -30,8 +30,8 @@ class CIPHPUnitTestAutoloader
 	 * @param array $dirs directories to search file
 	 */
 	public function __construct(
-			CIPHPUnitTestFileCache $cache = null,
-			array $dirs = null
+		CIPHPUnitTestFileCache $cache = null,
+		array $dirs = null
 	)
 	{
 		$this->cache = $cache;
