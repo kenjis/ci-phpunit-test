@@ -329,3 +329,15 @@ MonkeyPatchManager::init([
  */
 require __DIR__ . '/_ci_phpunit_test/CIPHPUnitTest.php';
 CIPHPUnitTest::init();
+/*
+ * Or you can set directories for autoloading
+ */
+/*
+CIPHPUnitTest::init([
+	// Directories for autoloading
+	APPPATH.'libraries',
+	APPPATH.'controllers',
+	APPPATH.'models',
+	APPPATH.'modules',
+]);
+*/
