@@ -335,9 +335,9 @@ CIPHPUnitTest::init();
 /*
 CIPHPUnitTest::init([
 	// Directories for autoloading
+	APPPATH.'models',
 	APPPATH.'libraries',
 	APPPATH.'controllers',
-	APPPATH.'models',
 	APPPATH.'modules',
 ]);
 */

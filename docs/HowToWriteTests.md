@@ -1,6 +1,7 @@
 # CI PHPUnit Test for CodeIgniter 3.0
 
-version: **0.8.2** | 
+version: **v0.9.0** | 
+[v0.8.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.8.2/docs/HowToWriteTests.md) | 
 [v0.7.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.7.0/docs/HowToWriteTests.md) | 
 [v0.6.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.6.2/docs/HowToWriteTests.md) | 
 [v0.5.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.5.0/docs/HowToWriteTests.md) | 
@@ -17,6 +18,7 @@ version: **0.8.2** |
 	- [`exit()`](#exit)
 	- [Reset CodeIgniter object](#reset-codeigniter-object)
 	- [Hooks](#hooks)
+	- [Autoloader](#autoloader)
 - [Basic Conventions](#basic-conventions)
 - [Models](#models)
 	- [Using Database](#using-database)
@@ -139,6 +141,24 @@ If you enable CodeIgniter's hooks, hook `pre_system` is called once in PHPUnit b
 If you use `$this->request->enableHooks()` and `$this->request()`, hook `pre_controller`, `post_controller_constructor` and `post_controller` are called on every `$this->request()` to a controller.
 
 See [Controller with Hooks](#controller-with-hooks) for details.
+
+#### Autoloader
+
+*CI PHPUnit Test* has an autoloader for class files.
+
+To change the search paths, change the line [`CIPHPUnitTest::init();`](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/Bootstrap.php#L331) in `tests/Bootstrap.php` like below:
+
+~~~php
+CIPHPUnitTest::init([
+	// Directories for autoloading
+	APPPATH.'models',
+	APPPATH.'libraries',
+	APPPATH.'controllers',
+	APPPATH.'modules',
+]);
+~~~
+
+You should put all directories to search class files in the array.
 
 ### Basic Conventions
 

@@ -38,9 +38,9 @@ class CIPHPUnitTestAutoloader
 		if ($dirs === null)
 		{
 			$this->dirs = [
+				APPPATH.'models',
 				APPPATH.'libraries',
 				APPPATH.'controllers',
-				APPPATH.'models',
 				APPPATH.'modules',
 			];
 		}
