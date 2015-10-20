@@ -6,7 +6,7 @@
 
 * `$this->request->addCallable()` to add callable. See [#68](https://github.com/kenjis/ci-phpunit-test/pull/68).
 * Autoloading classes in `application/modules` folder.
-* You can configure search paths for autoloader.
+* You can configure search paths for autoloader. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#autoloader).
 
 ## v0.8.2 (2015/10/09)
 
