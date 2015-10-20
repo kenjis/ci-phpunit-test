@@ -36,6 +36,7 @@ codeigniter/
 │        ├── Bootstrap.php     ... bootstrap file for PHPUnit
 │        ├── TestCase.php      ... TestCase class
 │        ├── controllers/      ... put your controller tests
+│        ├── libraries/        ... put your library tests
 │        ├── mocks/
 │        │   └── libraries/    ... mock libraries
 │        ├── models/           ... put your model tests
