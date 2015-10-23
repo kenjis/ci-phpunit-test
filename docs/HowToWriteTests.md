@@ -158,7 +158,7 @@ CIPHPUnitTest::init([
 ]);
 ~~~
 
-You should put all directories to search class files in the array.
+You must put all directories to search class files in the array.
 
 ### Basic Conventions
 
