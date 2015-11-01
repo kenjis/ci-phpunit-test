@@ -8,6 +8,10 @@
 * Autoloading classes in `application/modules` folder.
 * You can configure search paths for autoloader. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#autoloader).
 
+### Others
+
+* Compatible with CodeIgniter 3.0.3
+
 ## v0.8.2 (2015/10/09)
 
 ### Fixed
