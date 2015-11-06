@@ -65,9 +65,10 @@ class CIPHPUnitTestSuperGlobal
 				'/' . $path . '?'
 				. http_build_query($_GET);
 		}
-
-		$_SERVER['REQUEST_URI'] = '/' . $path;
-
+		else
+		{
+			$_SERVER['REQUEST_URI'] = '/' . $path;
+		}
 	}
 
 	/**
