@@ -57,8 +57,10 @@ class CIPHPUnitTestSuperGlobal
 		}
 		elseif (is_array($argv))
 		{
+			// Generate URI path from array of controller, method, arg, ...
 			$path = implode('/', $argv);
 		}
+
 		if ($_GET !== [])
 		{
 			$_SERVER['REQUEST_URI'] =
