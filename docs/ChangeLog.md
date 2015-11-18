@@ -1,12 +1,12 @@
 # Change Log for CI PHPUnit Test
 
-## v0.9.0 (Not Released)
+## v0.9.0 (2015/11/18)
 
 ### Added
 
 * `$this->request->addCallable()` to add callable. See [#68](https://github.com/kenjis/ci-phpunit-test/pull/68).
 * Autoloading classes in `application/modules` folder.
-* You can configure search paths for autoloader. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#autoloader).
+* You can configure search paths for autoloader. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/v0.9.0/docs/HowToWriteTests.md#autoloader).
 
 ### Others
 
