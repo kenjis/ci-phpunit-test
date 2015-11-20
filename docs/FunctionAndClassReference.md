@@ -49,7 +49,7 @@ version: **v0.9.0** |
 
 ### *function* `reset_instance()`
 
-Resets CodeIgniter instance. You must create new controller instance after calling this function.
+Resets CodeIgniter instance. You must create a new controller instance after calling this function.
 
 ~~~php
 reset_instance();
@@ -58,6 +58,8 @@ $this->CI =& get_instance();
 ~~~
 
 Normally, you don't have to use this function. Use [`TestCase::resetInstance()`](#testcaseresetinstance) method instead.
+
+**Note:** To be accurate, `reset_instance()` only resets the status of `load_class()` and `is_loaded()`. So before you create a new controller, the current CodeIgniter instance does not change. For example, if you call `$this->load->library()`, before you create a new controller, it may cause `Unable to locate the specified class` error.
 
 ### *function* `set_is_cli($return)`
 
