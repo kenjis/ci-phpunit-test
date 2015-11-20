@@ -38,6 +38,7 @@ class CIPHPUnitTestDouble
 		$methods = array_keys($params);
 
 		$mock = $this->testCase->getMockBuilder($classname)
+			->disableOriginalConstructor()
 			->setMethods($methods)->getMock();
 
 		foreach ($params as $method => $return)
