@@ -96,12 +96,9 @@ function &load_class(
 		set_status_header(503);
 		echo 'Unable to locate the specified class: '.$class.'.php';
 
-		// Print backtrace
-		// added by ci-phpunit-test
-		echo PHP_EOL, PHP_EOL;
-		debug_print_backtrace(0, 11);
-
-		exit(5); // EXIT_UNK_CLASS
+		// changed by ci-phpunit-test
+//		exit(5); // EXIT_UNK_CLASS
+		throw new CIPHPUnitTestExitException(5);
 	}
 
 	// Keep track of what we just loaded
