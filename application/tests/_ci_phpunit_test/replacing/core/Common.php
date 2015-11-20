@@ -94,11 +94,11 @@ function &load_class(
 		// Note: We use exit() rather then show_error() in order to avoid a
 		// self-referencing loop with the Exceptions class
 		set_status_header(503);
-		echo 'Unable to locate the specified class: '.$class.'.php';
 
 		// changed by ci-phpunit-test
+		$msg = 'Unable to locate the specified class: '.$class.'.php';
 //		exit(5); // EXIT_UNK_CLASS
-		throw new CIPHPUnitTestExitException(5);
+		throw new CIPHPUnitTestExitException($msg);
 	}
 
 	// Keep track of what we just loaded
