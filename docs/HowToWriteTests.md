@@ -484,6 +484,8 @@ class Auth extends CI_Controller
 
 In this case, You can use [$this->request->setCallablePreConstructor()](FunctionAndClassReference.md#request-setcallablepreconstructor) method and [load_class_instance()](FunctionAndClassReference.md#function-load_class_instanceclassname-instance) function in *CI PHPUnit Test*.
 
+**Note:** Unlike `$this->request->setCallable()`, this callback runs before the controller is created. So there is no CodeIgniter instance which you use at your testing yet. You can't use CodeIgniter functions basically.
+
 ~~~php
 	public function test_index_logged_in()
 	{
