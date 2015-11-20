@@ -37,6 +37,10 @@ class CIPHPUnitTestDouble
 	{
 		$methods = array_keys($params);
 
+		// Added `disableOriginalConstructor()`, because if we call
+		// construnctor, it may call `$this->load->...` or other CodeIgniter
+		// methods in it. But we can't use them in
+		// `$this->request->setCallablePreConstructor()`
 		$mock = $this->testCase->getMockBuilder($classname)
 			->disableOriginalConstructor()
 			->setMethods($methods)->getMock();
