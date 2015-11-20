@@ -503,7 +503,7 @@ In this case, You can use [$this->request->setCallablePreConstructor()](Function
 	}
 ~~~
 
-**Note:** Don't call CodeIgniter's loading methods like `$this->load->model()`, `$this->load->library()` or so in the callbacks. It may cause `Unable to locate the specified class` error. If you have to call CodeIgniter's loading methods in the callbacks, please try to load with CodeIgniter loader, before getting a mock object.
+**Note:** Don't call CodeIgniter's loading methods like `$this->load->model()`, `$this->load->library()` or so in the callbacks. It may cause `Unable to locate the specified class` error. If you have to call CodeIgniter's loading methods in the callbacks, please try to load with CodeIgniter loader before you create a mock object. It might be a workaround.
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v0.9.0/application/tests/controllers/Auth_check_in_construct_test.php).
 
