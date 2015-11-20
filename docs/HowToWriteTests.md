@@ -455,7 +455,7 @@ You can use [$this->request->setCallable()](FunctionAndClassReference.md#request
 	}
 ~~~
 
-**Note:** When you have never loaded a class with CodeIgniter loader, if you make mock object for the class, your application code may not work correclty. If you have got error, please try to load it before getting mock object.
+**Note:** When you have not loaded a class with CodeIgniter loader, if you make a mock object for the class, your application code may not work correclty. If you have got an error, please try to load it with CodeIgniter loader, before getting the mock object.
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v0.9.0/application/tests/controllers/Mock_phpunit_test.php).
 
@@ -503,7 +503,7 @@ In this case, You can use [$this->request->setCallablePreConstructor()](Function
 	}
 ~~~
 
-**Note:** When you have never loaded a class with CodeIgniter loader, if you make mock object for the class, it may not work. If you have got error, please try to load it before getting mock object.
+**Note:** Don't call CodeIgniter's loading methods like `$this->load->model()`, `$this->load->library()` or so in the callbacks. It may cause `Unable to locate the specified class` error. If you have to call CodeIgniter's loading methods in the callbacks, please try to load with CodeIgniter loader, before getting a mock object.
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v0.9.0/application/tests/controllers/Auth_check_in_construct_test.php).
 
