@@ -461,6 +461,8 @@ See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v
 
 The function you set by `$this->request->setCallable()` runs after controller instantiation. So you can't inject mocks into controller constructor.
 
+##### Inject Mocks into Controller Constructors
+
 For example, if you have a controller like this:
 
 ~~~php
