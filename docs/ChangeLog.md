@@ -1,11 +1,5 @@
 # Change Log for CI PHPUnit Test
 
-## v0.10.0 (Not Released)
-
-### Added
-
-* NetBeans test suite provider `application/tests/_ci_phpunit_test/TestSuiteProvider.php`. To use it, go to *Project Properties* > *Testing*, check *Use Custom Test Suite* checkbox, and select the file.
-
 ## v0.9.0 (2015/11/18)
 
 ### Added
