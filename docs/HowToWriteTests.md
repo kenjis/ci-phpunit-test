@@ -1,6 +1,6 @@
 # CI PHPUnit Test for CodeIgniter 3.0
 
-version: **v0.9.0** | 
+version: **v0.9.1** | 
 [v0.8.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.8.2/docs/HowToWriteTests.md) | 
 [v0.7.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.7.0/docs/HowToWriteTests.md) | 
 [v0.6.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.6.2/docs/HowToWriteTests.md) | 
@@ -146,7 +146,7 @@ See [Controller with Hooks](#controller-with-hooks) for details.
 
 *CI PHPUnit Test* has an autoloader for class files.
 
-To change the search paths, change the line [`CIPHPUnitTest::init();`](https://github.com/kenjis/ci-phpunit-test/blob/v0.9.0/application/tests/Bootstrap.php#L331) in `tests/Bootstrap.php` like below:
+To change the search paths, change the line [`CIPHPUnitTest::init();`](https://github.com/kenjis/ci-phpunit-test/blob/v0.9.1/application/tests/Bootstrap.php#L331) in `tests/Bootstrap.php` like below:
 
 ~~~php
 CIPHPUnitTest::init([
@@ -830,7 +830,7 @@ This patcher allows replacement of global functions that can't be mocked by PHPU
 
 But it has a few limitations. Some functions can't be replaced and it might cause errors.
 
-So by default we can replace only a dozen pre-defined functions in [FunctionPatcher](https://github.com/kenjis/ci-phpunit-test/blob/v0.9.0/application/tests/_ci_phpunit_test/patcher/Patcher/FunctionPatcher.php#L27).
+So by default we can replace only a dozen pre-defined functions in [FunctionPatcher](https://github.com/kenjis/ci-phpunit-test/blob/v0.9.1/application/tests/_ci_phpunit_test/patcher/Patcher/FunctionPatcher.php#L27).
 
 ~~~php
 	public function test_index()
@@ -880,7 +880,7 @@ See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v
 
 **Patch on Other Functions**
 
-If you want to patch other functions, you can add them to [functions_to_patch](https://github.com/kenjis/ci-phpunit-test/blob/v0.9.0/application/tests/Bootstrap.php#L319) in `MonkeyPatchManager::init()`.
+If you want to patch other functions, you can add them to [functions_to_patch](https://github.com/kenjis/ci-phpunit-test/blob/v0.9.1/application/tests/Bootstrap.php#L319) in `MonkeyPatchManager::init()`.
 
 But there are a few known limitations:
 

@@ -1,5 +1,15 @@
 # Change Log for CI PHPUnit Test
 
+## v0.9.1 (2015/11/22)
+
+### Fixed
+
+* Fix bug that `phpunit` dies when `Unable to locate the specified class` error.
+
+### Others
+
+* Improved documentation.
+
 ## v0.9.0 (2015/11/18)
 
 ### Added
