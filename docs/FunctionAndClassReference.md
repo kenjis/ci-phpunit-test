@@ -313,6 +313,22 @@ You could write code above like below:
 $email = $this->getDouble('CI_Email', ['send' => TRUE]);
 ~~~
 
+**Upgrade Note for v0.10.0**
+
+v0.10.0 has changed the default behavior of `$this->getDouble()` and disabled original constructor. If the change causes errors, update your test code like below:
+
+*before:*
+~~~php
+$validation = $this->getDouble('CI_Form_validation', ['run' => TRUE]);
+~~~
+
+↓
+
+*after:*
+~~~php
+$validation = $this->getDouble('CI_Form_validation', ['run' => TRUE], TRUE);
+~~~
+
 #### `TestCase::verifyInvoked($mock, $method, $params)`
 
 | param   | type   | description         |
