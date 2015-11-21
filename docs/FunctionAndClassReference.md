@@ -27,7 +27,7 @@ version: **v0.10.0** |
 	- [`TestCase::assertResponseCode($code)`](#testcaseassertresponsecodecode)
 	- [`TestCase::assertRedirect($uri, $code = null)`](#testcaseassertredirecturi-code--null)
 	- [`TestCase::assertResponseHeader($name, $value)`](#testcaseassertresponseheadername-value)
-	- [`TestCase::getDouble($classname, $params)`](#testcasegetdoubleclassname-params)
+	- [`TestCase::getDouble($classname, $params, $enable_constructor)`](#testcasegetdoubleclassname-params-enable_constructor)
 	- [`TestCase::verifyInvoked($mock, $method, $params)`](#testcaseverifyinvokedmock-method-params)
 	- [`TestCase::verifyInvokedOnce($mock, $method, $params)`](#testcaseverifyinvokedoncemock-method-params)
 	- [`TestCase::verifyInvokedMultipleTimes($mock, $method, $times, $params)`](#testcaseverifyinvokedmultipletimesmock-method-times-params)
@@ -286,12 +286,13 @@ $this->assertResponseHeader(
 
 **Note:** This method can only assert headers set by `$this->output->set_header()` method.
 
-#### `TestCase::getDouble($classname, $params)`
+#### `TestCase::getDouble($classname, $params, $enable_constructor)`
 
-| param      | type    | description                   |
-|------------|---------|-------------------------------|
-|`$classname`| string  | class name                    |
-|`$params`   | array   | [method_name => return_value] |
+| param               | type    | description                   |
+|---------------------|---------|-------------------------------|
+|`$classname`         | string  | class name                    |
+|`$params`            | array   | [method_name => return_value] |
+|`$enable_constructor`| bool    | enable constructor or not     |
 
 `returns` (object) PHPUnit mock object
 

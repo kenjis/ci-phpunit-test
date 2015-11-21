@@ -132,12 +132,13 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	 * $email = $this->getDouble('CI_Email', ['send' => TRUE]);
 	 *
 	 * @param  string $classname
-	 * @param  array  $params    [method_name => return_value]
+	 * @param  array  $params             [method_name => return_value]
+	 * @param  bool   $enable_constructor enable constructor or not
 	 * @return object PHPUnit mock object
 	 */
-	public function getDouble($classname, $params)
+	public function getDouble($classname, $params, $enable_constructor = false)
 	{
-		return $this->double->getDouble($classname, $params);
+		return $this->double->getDouble($classname, $params, $enable_constructor);
 	}
 
 	/**
