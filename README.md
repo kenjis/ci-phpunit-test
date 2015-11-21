@@ -13,7 +13,7 @@ An easier way to use PHPUnit with [CodeIgniter](https://github.com/bcit-ci/CodeI
 * Nothing is untestable, maybe.
 * Well documented.
 
-![Screenshot: Running tests on NetBeans](http://forum.codeigniter.com/attachment.php?aid=210)
+![Screenshot: Running tests on NetBeans 8.1](https://pbs.twimg.com/media/CUUmhxWVAAAwx3b.png)
 
 ## Requirements
 
