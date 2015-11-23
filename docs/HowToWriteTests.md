@@ -1,6 +1,7 @@
 # CI PHPUnit Test for CodeIgniter 3.0
 
-version: **v0.9.1** | 
+version: **v0.10.0 (Not Released)** | 
+[v0.9.1](https://github.com/kenjis/ci-phpunit-test/blob/v0.9.1/docs/HowToWriteTests.md) | 
 [v0.8.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.8.2/docs/HowToWriteTests.md) | 
 [v0.7.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.7.0/docs/HowToWriteTests.md) | 
 [v0.6.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.6.2/docs/HowToWriteTests.md) | 
@@ -486,7 +487,7 @@ class Auth extends CI_Controller
 
 In this case, You can use [$this->request->setCallablePreConstructor()](FunctionAndClassReference.md#request-setcallablepreconstructor) method and [load_class_instance()](FunctionAndClassReference.md#function-load_class_instanceclassname-instance) function in *CI PHPUnit Test*.
 
-**Note:** Unlike `$this->request->setCallable()`, this callback runs before the controller is created. So there is no CodeIgniter instance which you use at your testing yet. You can't use CodeIgniter functions basically.
+**Note:** Unlike `$this->request->setCallable()`, this callback runs before the controller is created. So there is no CodeIgniter instance yet. You can't use CodeIgniter objects.
 
 ~~~php
 	public function test_index_logged_in()
@@ -506,8 +507,6 @@ In this case, You can use [$this->request->setCallablePreConstructor()](Function
 		$this->assertContains('You are logged in.', $output);
 	}
 ~~~
-
-**Note:** Don't call CodeIgniter's loading methods like `$this->load->model()`, `$this->load->library()` or so in the callbacks. It may cause `Unable to locate the specified class` error. If you have to call CodeIgniter's loading methods in the callbacks, please try to load with CodeIgniter loader before you create a mock object. It might be a workaround.
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v0.9.0/application/tests/controllers/Auth_check_in_construct_test.php).
 

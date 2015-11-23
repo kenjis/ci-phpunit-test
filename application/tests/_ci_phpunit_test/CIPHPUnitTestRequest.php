@@ -33,7 +33,6 @@ class CIPHPUnitTestRequest
 	protected $callablePreConstructor;
 
 	protected $enableHooks = false;
-	protected $CI;
 	
 	/**
 	 * @var CI_Hooks
@@ -108,10 +107,6 @@ class CIPHPUnitTestRequest
 	 */
 	public function request($http_method, $argv, $params = [])
 	{
-		// We need this because if 404 route, no controller is created.
-		// But we need $this->CI->output->_status
-		$this->CI =& get_instance();
-
 		if (is_string($argv))
 		{
 			$argv = ltrim($argv, '/');
@@ -146,7 +141,8 @@ class CIPHPUnitTestRequest
 			{
 				set_status_header($e->getCode());
 			}
-			$this->CI->output->_status['redirect'] = $e->getMessage();
+			$CI =& get_instance();
+			$CI->output->_status['redirect'] = $e->getMessage();
 		}
 		// show_404()
 		catch (CIPHPUnitTestShow404Exception $e)
@@ -203,6 +199,14 @@ class CIPHPUnitTestRequest
 		// 404 checking
 		if (! class_exists($class) || ! method_exists($class, $method))
 		{
+			// If 404, CodeIgniter instance is not created yet. So create it here
+			// Because we need CI->output->_status to store info
+			$CI =& get_instance();
+			if ($CI instanceof CIPHPUnitTestNullCodeIgniter)
+			{
+				new CI_Controller();
+			}
+
 			show_404($class.'::'.$method . '() is not found');
 		}
 
@@ -286,10 +290,10 @@ class CIPHPUnitTestRequest
 
 		// Create controller
 		$controller = new $class;
-		$this->CI =& get_instance();
+		$CI =& get_instance();
 
 		// Set CodeIgniter instance to TestCase
-		$this->testCase->setCI($this->CI);
+		$this->testCase->setCI($CI);
 
 		// Set default response code 200
 		set_status_header(200);
@@ -298,7 +302,7 @@ class CIPHPUnitTestRequest
 		{
 			foreach ($this->callables as $callable)
 			{
-				$callable($this->CI);
+				$callable($CI);
 			}
 		}
 
@@ -310,7 +314,7 @@ class CIPHPUnitTestRequest
 
 		if ($output == '')
 		{
-			$output = $this->CI->output->get_output();
+			$output = $CI->output->get_output();
 		}
 
 		$this->callHook('post_controller');
@@ -326,11 +330,12 @@ class CIPHPUnitTestRequest
 	 */
 	public function getStatus()
 	{
-		if (! isset($this->CI->output->_status))
+		$CI =& get_instance();
+		if (! isset($CI->output->_status))
 		{
 			throw new LogicException('Status code is not set. You must call $this->request() first');
 		}
 
-		return $this->CI->output->_status;
+		return $CI->output->_status;
 	}
 }

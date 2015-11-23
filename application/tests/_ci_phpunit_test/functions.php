@@ -61,6 +61,9 @@ function reset_instance()
 	load_class('Lang', 'core');
 	
 	CIPHPUnitTest::loadLoader();
+
+	// Remove CodeIgniter instance
+	$CI = new CIPHPUnitTestNullCodeIgniter();
 }
 
 /**

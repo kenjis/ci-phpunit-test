@@ -1,6 +1,7 @@
 # CI PHPUnit Test for CodeIgniter 3.0
 
-version: **v0.9.1** | 
+version: **v0.10.0 (Not Released)** | 
+[v0.9.1](https://github.com/kenjis/ci-phpunit-test/blob/v0.9.1/docs/FunctionAndClassReference.md) | 
 [v0.8.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.8.2/docs/FunctionAndClassReference.md) | 
 [v0.7.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.7.0/docs/FunctionAndClassReference.md) | 
 [v0.6.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.6.2/docs/FunctionAndClassReference.md) | 
@@ -26,7 +27,7 @@ version: **v0.9.1** |
 	- [`TestCase::assertResponseCode($code)`](#testcaseassertresponsecodecode)
 	- [`TestCase::assertRedirect($uri, $code = null)`](#testcaseassertredirecturi-code--null)
 	- [`TestCase::assertResponseHeader($name, $value)`](#testcaseassertresponseheadername-value)
-	- [`TestCase::getDouble($classname, $params)`](#testcasegetdoubleclassname-params)
+	- [`TestCase::getDouble($classname, $params, $enable_constructor = false)`](#testcasegetdoubleclassname-params-enable_constructor--false)
 	- [`TestCase::verifyInvoked($mock, $method, $params)`](#testcaseverifyinvokedmock-method-params)
 	- [`TestCase::verifyInvokedOnce($mock, $method, $params)`](#testcaseverifyinvokedoncemock-method-params)
 	- [`TestCase::verifyInvokedMultipleTimes($mock, $method, $times, $params)`](#testcaseverifyinvokedmultipletimesmock-method-times-params)
@@ -59,7 +60,7 @@ $this->CI =& get_instance();
 
 Normally, you don't have to use this function. Use [`TestCase::resetInstance()`](#testcaseresetinstance) method instead.
 
-**Note:** To be accurate, `reset_instance()` only resets the status of `load_class()` and `is_loaded()`. So before you create a new controller, the current CodeIgniter instance does not change. For example, if you call `$this->load->library()`, before you create a new controller, it may cause `Unable to locate the specified class` error.
+**Note:** Before you create a new controller instance, `get_instance()` returns `CIPHPUnitTestNullCodeIgniter` object.
 
 ### *function* `set_is_cli($return)`
 
@@ -285,12 +286,13 @@ $this->assertResponseHeader(
 
 **Note:** This method can only assert headers set by `$this->output->set_header()` method.
 
-#### `TestCase::getDouble($classname, $params)`
+#### `TestCase::getDouble($classname, $params, $enable_constructor = false)`
 
-| param      | type    | description                   |
-|------------|---------|-------------------------------|
-|`$classname`| string  | class name                    |
-|`$params`   | array   | [method_name => return_value] |
+| param               | type    | description                   |
+|---------------------|---------|-------------------------------|
+|`$classname`         | string  | class name                    |
+|`$params`            | array   | [method_name => return_value] |
+|`$enable_constructor`| bool    | enable constructor or not     |
 
 `returns` (object) PHPUnit mock object
 
@@ -298,6 +300,7 @@ Gets PHPUnit mock object.
 
 ~~~php
 $email = $this->getMockBuilder('CI_Email')
+	->disableOriginalConstructor()
 	->setMethods(['send'])
 	->getMock();
 $email->method('send')
@@ -308,6 +311,22 @@ You could write code above like below:
 
 ~~~php
 $email = $this->getDouble('CI_Email', ['send' => TRUE]);
+~~~
+
+**Upgrade Note for v0.10.0**
+
+v0.10.0 has changed the default behavior of `$this->getDouble()` and disabled original constructor. If the change causes errors, update your test code like below:
+
+*before:*
+~~~php
+$validation = $this->getDouble('CI_Form_validation', ['run' => TRUE]);
+~~~
+
+↓
+
+*after:*
+~~~php
+$validation = $this->getDouble('CI_Form_validation', ['run' => TRUE], TRUE);
 ~~~
 
 #### `TestCase::verifyInvoked($mock, $method, $params)`

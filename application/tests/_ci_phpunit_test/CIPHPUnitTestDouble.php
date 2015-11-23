@@ -21,6 +21,7 @@ class CIPHPUnitTestDouble
 	 * Get Mock Object
 	 *
 	 * $email = $this->getMockBuilder('CI_Email')
+	 *	->disableOriginalConstructor()
 	 *	->setMethods(['send'])
 	 *	->getMock();
 	 * $email->method('send')->willReturn(TRUE);
@@ -30,15 +31,24 @@ class CIPHPUnitTestDouble
 	 * $email = $this->getDouble('CI_Email', ['send' => TRUE]);
 	 *
 	 * @param  string $classname
-	 * @param  array  $params    [method_name => return_value]
+	 * @param  array  $params             [method_name => return_value]
+	 * @param  bool   $enable_constructor enable constructor or not
 	 * @return object PHPUnit mock object
 	 */
-	public function getDouble($classname, $params)
+	public function getDouble($classname, $params, $enable_constructor = false)
 	{
 		$methods = array_keys($params);
 
-		$mock = $this->testCase->getMockBuilder($classname)
-			->setMethods($methods)->getMock();
+		// `disableOriginalConstructor()` is the default, because if we call
+		// construnctor, it may call `$this->load->...` or other CodeIgniter
+		// methods in it. But we can't use them in
+		// `$this->request->setCallablePreConstructor()`
+		$mock = $this->testCase->getMockBuilder($classname);
+		if (! $enable_constructor)
+		{
+			$mock->disableOriginalConstructor();
+		}
+		$mock = $mock->setMethods($methods)->getMock();
 
 		foreach ($params as $method => $return)
 		{

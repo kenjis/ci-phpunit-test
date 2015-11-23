@@ -2,6 +2,15 @@
 
 ## v0.10.0 (Not Released)
 
+### Fixed
+
+* Fix wrong implementation of resetting CodeIgniter instance. Now `reset_instance()` remove the existing *CodeIgniter instance*. See [#74](https://github.com/kenjis/ci-phpunit-test/pull/74).
+
+### Changed
+
+* Now `$this->getDouble()` does not call the original constructor by default. See [Function/Class Reference](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/FunctionAndClassReference.md#testcasegetdoubleclassname-params-enable_constructor--false).
+* Now `reset_instance()` remove the existing *CodeIgniter instance*. See [#74](https://github.com/kenjis/ci-phpunit-test/pull/74).
+
 ### Added
 
 * NetBeans test suite provider `application/tests/_ci_phpunit_test/TestSuiteProvider.php`. To use it, go to *Project Properties* > *Testing*, check *Use Custom Test Suite* checkbox, and select the file.
