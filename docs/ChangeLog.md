@@ -4,12 +4,12 @@
 
 ### Fixed
 
-* Fix wrong implementation of resetting CodeIgniter instance. Now `reset_instance()` sets `null` to *CodeIgniter instance*. See [#74](https://github.com/kenjis/ci-phpunit-test/pull/74).
+* Fix wrong implementation of resetting CodeIgniter instance. Now `reset_instance()` remove the existing *CodeIgniter instance*. See [#74](https://github.com/kenjis/ci-phpunit-test/pull/74).
 
 ### Changed
 
 * Now `$this->getDouble()` does not call the original constructor by default. See [Function/Class Reference](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/FunctionAndClassReference.md#testcasegetdoubleclassname-params-enable_constructor--false).
-* Now `reset_instance()` sets `null` to *CodeIgniter instance*. See [#74](https://github.com/kenjis/ci-phpunit-test/pull/74).
+* Now `reset_instance()` remove the existing *CodeIgniter instance*. See [#74](https://github.com/kenjis/ci-phpunit-test/pull/74).
 
 ### Added
 

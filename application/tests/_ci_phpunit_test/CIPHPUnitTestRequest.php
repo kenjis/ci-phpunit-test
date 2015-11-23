@@ -202,7 +202,7 @@ class CIPHPUnitTestRequest
 			// If 404, CodeIgniter instance is not created yet. So create it here
 			// Because we need CI->output->_status to store info
 			$CI =& get_instance();
-			if ($CI === null)
+			if ($CI instanceof CIPHPUnitTestNullCodeIgniter)
 			{
 				new CI_Controller();
 			}

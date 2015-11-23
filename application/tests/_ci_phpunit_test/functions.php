@@ -63,7 +63,7 @@ function reset_instance()
 	CIPHPUnitTest::loadLoader();
 
 	// Remove CodeIgniter instance
-	$CI = null;
+	$CI = new CIPHPUnitTestNullCodeIgniter();
 }
 
 /**

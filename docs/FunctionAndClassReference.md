@@ -60,7 +60,7 @@ $this->CI =& get_instance();
 
 Normally, you don't have to use this function. Use [`TestCase::resetInstance()`](#testcaseresetinstance) method instead.
 
-**Note:** Before you create a new controller instance, `get_instance()` returns `null`.
+**Note:** Before you create a new controller instance, `get_instance()` returns `CIPHPUnitTestNullCodeIgniter` object.
 
 ### *function* `set_is_cli($return)`
 
