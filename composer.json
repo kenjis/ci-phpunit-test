@@ -5,7 +5,8 @@
         "phpunit",
         "unit testing",
         "test",
-        "codeigniter"
+        "codeigniter",
+        "monkey patch"
     ],
     "homepage": "http://kenjis.github.io/ci-phpunit-test/",
     "license": "MIT",
