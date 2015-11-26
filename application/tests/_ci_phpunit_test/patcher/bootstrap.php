@@ -28,6 +28,8 @@ class_alias('Kenjis\MonkeyPatch\MonkeyPatchManager', 'MonkeyPatchManager');
 
 // And you have to configure for your application
 //MonkeyPatchManager::init([
+//	// PHP Parser: PREFER_PHP7, PREFER_PHP5, ONLY_PHP7, ONLY_PHP5
+//	'php_parser' => 'PREFER_PHP5',
 //	// Project root directory
 //	'root_dir' => APPPATH . '../',
 //	// Cache directory

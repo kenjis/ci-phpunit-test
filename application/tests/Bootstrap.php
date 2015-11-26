@@ -298,6 +298,8 @@ switch (ENVIRONMENT)
 /*
 require __DIR__ . '/_ci_phpunit_test/patcher/bootstrap.php';
 MonkeyPatchManager::init([
+	// PHP Parser: PREFER_PHP7, PREFER_PHP5, ONLY_PHP7, ONLY_PHP5
+	'php_parser' => 'PREFER_PHP5',
 	'cache_dir' => APPPATH . 'tests/_ci_phpunit_test/tmp/cache',
 	// Directories to patch on source files
 	'include_paths' => [

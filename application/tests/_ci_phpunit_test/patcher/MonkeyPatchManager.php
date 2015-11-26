@@ -12,12 +12,14 @@ namespace Kenjis\MonkeyPatch;
 
 use LogicException;
 use RuntimeException;
-
+use PhpParser\ParserFactory;
 use Kenjis\MonkeyPatch\Patcher\FunctionPatcher;
 
 class MonkeyPatchManager
 {
 	public static $debug = false;
+
+	private static $php_parser = ParserFactory::PREFER_PHP5;
 
 	private static $log_file;
 	private static $load_patchers = false;
@@ -56,6 +58,11 @@ class MonkeyPatchManager
 		return self::$exit_exception_classname;
 	}
 
+	public static function getPhpParser()
+	{
+		return self::$php_parser;
+	}
+
 	public static function init(array $config)
 	{
 		if (isset($config['debug']))
@@ -65,6 +72,11 @@ class MonkeyPatchManager
 		if (self::$debug)
 		{
 			self::$log_file = __DIR__ . '/debug.log';
+		}
+
+		if (isset($config['php_parser']))
+		{
+			self::$php_parser = constant('PhpParser\ParserFactory::'.$config['php_parser']);
 		}
 
 		if (isset($config['root_dir']))

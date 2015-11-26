@@ -10,9 +10,10 @@
 
 namespace Kenjis\MonkeyPatch\Patcher;
 
-use PhpParser\Parser;
+use PhpParser\ParserFactory;
 use PhpParser\Lexer;
 use PhpParser\NodeTraverser;
+use Kenjis\MonkeyPatch\MonkeyPatchManager;
 
 abstract class AbstractPatcher
 {
@@ -25,9 +26,13 @@ abstract class AbstractPatcher
 		$patched = false;
 		static::$replacement = [];
 
-		$parser = new Parser(new Lexer(
-			['usedAttributes' => ['startTokenPos', 'endTokenPos']]
-		));
+		$parser = (new ParserFactory)
+			->create(
+				MonkeyPatchManager::getPhpParser(),
+				new Lexer(
+					['usedAttributes' => ['startTokenPos', 'endTokenPos']]
+				)
+			);
 		$traverser = new NodeTraverser;
 		$traverser->addVisitor($this->node_visitor);
 
