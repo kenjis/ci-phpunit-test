@@ -356,19 +356,19 @@ class Standard extends PrettyPrinterAbstract
     // Function calls and similar constructs
 
     public function pExpr_FuncCall(Expr\FuncCall $node) {
-        return $this->p($node->name) . '(' . $this->pCommaSeparated($node->args) . ')';
+        return $this->pCallLhs($node->name)
+             . '(' . $this->pCommaSeparated($node->args) . ')';
     }
 
     public function pExpr_MethodCall(Expr\MethodCall $node) {
-        return $this->pVarOrNewExpr($node->var) . '->' . $this->pObjectProperty($node->name)
+        return $this->pDereferenceLhs($node->var) . '->' . $this->pObjectProperty($node->name)
              . '(' . $this->pCommaSeparated($node->args) . ')';
     }
 
     public function pExpr_StaticCall(Expr\StaticCall $node) {
-        return $this->p($node->class) . '::'
+        return $this->pDereferenceLhs($node->class) . '::'
              . ($node->name instanceof Expr
                 ? ($node->name instanceof Expr\Variable
-                   || $node->name instanceof Expr\ArrayDimFetch
                    ? $this->p($node->name)
                    : '{' . $this->p($node->name) . '}')
                 : $node->name)
@@ -422,7 +422,11 @@ class Standard extends PrettyPrinterAbstract
     }
 
     public function pExpr_Array(Expr\Array_ $node) {
-        return 'array(' . $this->pCommaSeparated($node->items) . ')';
+        if ($this->options['shortArraySyntax']) {
+            return '[' . $this->pCommaSeparated($node->items) . ']';
+        } else {
+            return 'array(' . $this->pCommaSeparated($node->items) . ')';
+        }
     }
 
     public function pExpr_ArrayItem(Expr\ArrayItem $node) {
@@ -431,7 +435,7 @@ class Standard extends PrettyPrinterAbstract
     }
 
     public function pExpr_ArrayDimFetch(Expr\ArrayDimFetch $node) {
-        return $this->pVarOrNewExpr($node->var)
+        return $this->pDereferenceLhs($node->var)
              . '[' . (null !== $node->dim ? $this->p($node->dim) : '') . ']';
     }
 
@@ -444,11 +448,11 @@ class Standard extends PrettyPrinterAbstract
     }
 
     public function pExpr_PropertyFetch(Expr\PropertyFetch $node) {
-        return $this->pVarOrNewExpr($node->var) . '->' . $this->pObjectProperty($node->name);
+        return $this->pDereferenceLhs($node->var) . '->' . $this->pObjectProperty($node->name);
     }
 
     public function pExpr_StaticPropertyFetch(Expr\StaticPropertyFetch $node) {
-        return $this->p($node->class) . '::$' . $this->pObjectProperty($node->name);
+        return $this->pDereferenceLhs($node->class) . '::$' . $this->pObjectProperty($node->name);
     }
 
     public function pExpr_ShellExec(Expr\ShellExec $node) {
@@ -516,15 +520,23 @@ class Standard extends PrettyPrinterAbstract
     }
 
     public function pStmt_Use(Stmt\Use_ $node) {
-        return 'use '
-             . ($node->type === Stmt\Use_::TYPE_FUNCTION ? 'function ' : '')
-             . ($node->type === Stmt\Use_::TYPE_CONSTANT ? 'const ' : '')
+        return 'use ' . $this->pUseType($node->type)
              . $this->pCommaSeparated($node->uses) . ';';
     }
 
+    public function pStmt_GroupUse(Stmt\GroupUse $node) {
+        return 'use ' . $this->pUseType($node->type) . $this->pName($node->prefix)
+             . '\{' . $this->pCommaSeparated($node->uses) . '};';
+    }
+
     public function pStmt_UseUse(Stmt\UseUse $node) {
-        return $this->p($node->name)
+        return $this->pUseType($node->type) . $this->p($node->name)
              . ($node->name->getLast() !== $node->alias ? ' as ' . $node->alias : '');
+    }
+
+    private function pUseType($type) {
+        return $type === Stmt\Use_::TYPE_FUNCTION ? 'function '
+            : ($type === Stmt\Use_::TYPE_CONSTANT ? 'const ' : '');
     }
 
     public function pStmt_Interface(Stmt\Interface_ $node) {
@@ -740,8 +752,7 @@ class Standard extends PrettyPrinterAbstract
         . "\n" . '{' . $this->pStmts($node->stmts) . "\n" . '}';
     }
 
-    /** @internal */
-    public function pObjectProperty($node) {
+    protected function pObjectProperty($node) {
         if ($node instanceof Expr) {
             return '{' . $this->p($node) . '}';
         } else {
@@ -749,8 +760,7 @@ class Standard extends PrettyPrinterAbstract
         }
     }
 
-    /** @internal */
-    public function pModifiers($modifiers) {
+    protected function pModifiers($modifiers) {
         return ($modifiers & Stmt\Class_::MODIFIER_PUBLIC    ? 'public '    : '')
              . ($modifiers & Stmt\Class_::MODIFIER_PROTECTED ? 'protected ' : '')
              . ($modifiers & Stmt\Class_::MODIFIER_PRIVATE   ? 'private '   : '')
@@ -759,8 +769,7 @@ class Standard extends PrettyPrinterAbstract
              . ($modifiers & Stmt\Class_::MODIFIER_FINAL     ? 'final '     : '');
     }
 
-    /** @internal */
-    public function pEncapsList(array $encapsList, $quote) {
+    protected function pEncapsList(array $encapsList, $quote) {
         $return = '';
         foreach ($encapsList as $element) {
             if (is_string($element)) {
@@ -773,12 +782,38 @@ class Standard extends PrettyPrinterAbstract
         return $return;
     }
 
-    /** @internal */
-    public function pVarOrNewExpr(Node $node) {
-        if ($node instanceof Expr\New_) {
-            return '(' . $this->p($node) . ')';
-        } else {
+    protected function pDereferenceLhs(Node $node) {
+        if ($node instanceof Expr\Variable
+            || $node instanceof Name
+            || $node instanceof Expr\ArrayDimFetch
+            || $node instanceof Expr\PropertyFetch
+            || $node instanceof Expr\StaticPropertyFetch
+            || $node instanceof Expr\FuncCall
+            || $node instanceof Expr\MethodCall
+            || $node instanceof Expr\StaticCall
+            || $node instanceof Expr\Array_
+            || $node instanceof Scalar\String_
+            || $node instanceof Expr\ConstFetch
+            || $node instanceof Expr\ClassConstFetch
+        ) {
             return $this->p($node);
+        } else  {
+            return '(' . $this->p($node) . ')';
+        }
+    }
+
+    protected function pCallLhs(Node $node) {
+        if ($node instanceof Name
+            || $node instanceof Expr\Variable
+            || $node instanceof Expr\ArrayDimFetch
+            || $node instanceof Expr\FuncCall
+            || $node instanceof Expr\MethodCall
+            || $node instanceof Expr\StaticCall
+            || $node instanceof Expr\Array_
+        ) {
+            return $this->p($node);
+        } else  {
+            return '(' . $this->p($node) . ')';
         }
     }
 }
