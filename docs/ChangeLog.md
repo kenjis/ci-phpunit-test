@@ -1,6 +1,6 @@
 # Change Log for CI PHPUnit Test
 
-## v0.10.0 (Not Released)
+## v0.10.0 (2015/11/27)
 
 ### Fixed
 
@@ -8,7 +8,7 @@
 
 ### Changed
 
-* Now `$this->getDouble()` does not call the original constructor by default. See [Function/Class Reference](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/FunctionAndClassReference.md#testcasegetdoubleclassname-params-enable_constructor--false).
+* Now `$this->getDouble()` does not call the original constructor by default. See [Function/Class Reference](https://github.com/kenjis/ci-phpunit-test/blob/v0.10.0/docs/FunctionAndClassReference.md#testcasegetdoubleclassname-params-enable_constructor--false).
 * Now `reset_instance()` remove the existing *CodeIgniter instance*. See [#74](https://github.com/kenjis/ci-phpunit-test/pull/74).
 
 ### Added
