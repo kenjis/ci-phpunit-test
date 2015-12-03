@@ -66,6 +66,8 @@ class CIPHPUnitTest
 		 * And away we go...
 		 */
 		require __DIR__ . '/replacing/core/CodeIgniter.php';
+
+		// Create CodeIgniter instance
 		new CI_Controller();
 
 		// This code is here, not to cause errors with HMVC

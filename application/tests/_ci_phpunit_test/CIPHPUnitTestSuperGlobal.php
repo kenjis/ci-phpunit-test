@@ -10,6 +10,11 @@
 
 class CIPHPUnitTestSuperGlobal
 {
+	public static function set_Global($name, $value)
+	{
+		$GLOBALS[$name] = $value;
+	}
+
 	public function set_POST($params)
 	{
 		if (is_array($params))

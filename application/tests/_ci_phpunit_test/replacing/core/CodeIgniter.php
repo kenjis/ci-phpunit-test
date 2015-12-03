@@ -186,6 +186,7 @@ if ( ! is_php('5.4'))
  * ------------------------------------------------------
  */
 	$BM =& load_class('Benchmark', 'core');
+	CIPHPUnitTestSuperGlobal::set_Global('BM', $BM);
 	$BM->mark('total_execution_time_start');
 	$BM->mark('loading_time:_base_classes_start');
 
@@ -195,6 +196,7 @@ if ( ! is_php('5.4'))
  * ------------------------------------------------------
  */
 	$EXT =& load_class('Hooks', 'core');
+	CIPHPUnitTestSuperGlobal::set_Global('EXT', $EXT);
 
 /*
  * ------------------------------------------------------
@@ -214,6 +216,7 @@ if ( ! is_php('5.4'))
  *
  */
 	$CFG =& load_class('Config', 'core');
+	CIPHPUnitTestSuperGlobal::set_Global('CFG', $CFG);
 
 	// Do we have any manually set config items in the index.php file?
 	if (isset($assign_to_config) && is_array($assign_to_config))
@@ -292,6 +295,7 @@ if ( ! is_php('5.4'))
  * ------------------------------------------------------
  */
 	$UNI =& load_class('Utf8', 'core');
+	CIPHPUnitTestSuperGlobal::set_Global('UNI', $UNI);
 
 /*
  * ------------------------------------------------------
@@ -299,6 +303,7 @@ if ( ! is_php('5.4'))
  * ------------------------------------------------------
  */
 	$URI =& load_class('URI', 'core');
+	CIPHPUnitTestSuperGlobal::set_Global('URI', $URI);
 
 /*
  * ------------------------------------------------------
@@ -306,6 +311,7 @@ if ( ! is_php('5.4'))
  * ------------------------------------------------------
  */
 	$RTR =& load_class('Router', 'core', isset($routing) ? $routing : NULL);
+	CIPHPUnitTestSuperGlobal::set_Global('RTR', $RTR);
 
 /*
  * ------------------------------------------------------
@@ -313,6 +319,7 @@ if ( ! is_php('5.4'))
  * ------------------------------------------------------
  */
 	$OUT =& load_class('Output', 'core');
+	CIPHPUnitTestSuperGlobal::set_Global('OUT', $OUT);
 
 /*
  * ------------------------------------------------------
@@ -330,6 +337,7 @@ if ( ! is_php('5.4'))
  * -----------------------------------------------------
  */
 	$SEC =& load_class('Security', 'core');
+	CIPHPUnitTestSuperGlobal::set_Global('SEC', $SEC);
 
 /*
  * ------------------------------------------------------
@@ -337,6 +345,7 @@ if ( ! is_php('5.4'))
  * ------------------------------------------------------
  */
 	$IN	=& load_class('Input', 'core');
+	CIPHPUnitTestSuperGlobal::set_Global('IN', $IN);
 
 /*
  * ------------------------------------------------------
@@ -344,6 +353,7 @@ if ( ! is_php('5.4'))
  * ------------------------------------------------------
  */
 	$LANG =& load_class('Lang', 'core');
+	CIPHPUnitTestSuperGlobal::set_Global('LANG', $LANG);
 
 /*
  * ------------------------------------------------------
