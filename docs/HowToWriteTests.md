@@ -59,6 +59,8 @@ Here is my advice:
 
 And PHPUnit has great documentation. You should read [Writing Tests for PHPUnit](https://phpunit.de/manual/current/en/writing-tests-for-phpunit.html).
 
+If you are not familiar with *testing*, I recommend you read my book, *[CodeIgniter Testing Guide](https://leanpub.com/codeigniter-testing-guide)*. It is a beginners' guide to automated testing in PHP.
+
 ### Testing Environment
 
 Tests always run on `testing` environment.
