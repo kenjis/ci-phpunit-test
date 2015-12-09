@@ -5,6 +5,7 @@
 ### Fixed
 
 * Fix bug that global variables for core classes are null. See [#75](https://github.com/kenjis/ci-phpunit-test/issues/75).
+* Fix bug that can't use constant in `config.php`. See [#78](https://github.com/kenjis/ci-phpunit-test/issues/78).
 
 ## v0.10.0 (2015/11/27)
 
