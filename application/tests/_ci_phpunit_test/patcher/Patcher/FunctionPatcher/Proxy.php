@@ -263,18 +263,18 @@ class Proxy
 			$crypto_strong = true;
 		}
 
-		if (array_key_exists('openssl_random_pseudo_bytes', self::$patches))
+		if (array_key_exists($function, self::$patches))
 		{
-			if (is_callable(self::$patches['openssl_random_pseudo_bytes']))
+			if (is_callable(self::$patches[$function]))
 			{
-				$callable = self::$patches['openssl_random_pseudo_bytes'];
+				$callable = self::$patches[$function];
 				return call_user_func_array(
 					$callable,
 					[$length, &$crypto_strong]
 				);
 			}
 
-			return self::$patches['openssl_random_pseudo_bytes'];
+			return self::$patches[$function];
 		}
 
 		return openssl_random_pseudo_bytes($length, $crypto_strong);
