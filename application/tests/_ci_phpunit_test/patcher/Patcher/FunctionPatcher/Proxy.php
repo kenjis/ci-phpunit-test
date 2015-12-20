@@ -263,7 +263,7 @@ class Proxy
 			$crypto_strong = true;
 		}
 
-		if (isset(self::$patches['openssl_random_pseudo_bytes']))
+		if (array_key_exists('openssl_random_pseudo_bytes', self::$patches))
 		{
 			if (is_callable(self::$patches['openssl_random_pseudo_bytes']))
 			{
