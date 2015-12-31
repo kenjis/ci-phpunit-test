@@ -1,12 +1,13 @@
 # Change Log for CI PHPUnit Test
 
-## v0.10.1 (Not Released)
+## v0.10.1 (2015/12/31)
 
 ### Fixed
 
 * Fix bug that global variables for core classes are null. See [#75](https://github.com/kenjis/ci-phpunit-test/issues/75).
 * Fix bug that can't use constant in `config.php`. See [#78](https://github.com/kenjis/ci-phpunit-test/issues/78).
 * Fix bug that can't autoload library with alternative library name. See [#79](https://github.com/kenjis/ci-phpunit-test/pull/79).
+* Fix bug that *Function Patcher* on `openssl_random_pseudo_bytes()` which returns `null` does not work.
 
 ## v0.10.0 (2015/11/27)
 
