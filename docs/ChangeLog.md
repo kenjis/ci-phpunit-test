@@ -4,7 +4,7 @@
 
 ### Added
 
-* `$this->request->addCallable()` to add callable. 
+* `$this->request->addCallablePreConstructor()` to add callable.
 
 ## v0.10.1 (2015/12/31)
 
