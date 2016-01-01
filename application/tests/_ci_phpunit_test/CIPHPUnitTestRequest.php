@@ -28,9 +28,9 @@ class CIPHPUnitTestRequest
 	protected $callables = [];
 	
 	/**
-	 * @var callable callable called pre controller constructor
+	 * @var callable[] callable called pre controller constructor
 	 */
-	protected $callablePreConstructor;
+	protected $callablePreConstructors = [];
 
 	protected $enableHooks = false;
 	
@@ -79,13 +79,24 @@ class CIPHPUnitTestRequest
 	}
 
 	/**
-	 * Set callable pre constructor
+	 * Set (and Reset) callable pre constructor
 	 * 
 	 * @param callable $callable function to run before controller instantiation
 	 */
 	public function setCallablePreConstructor(callable $callable)
 	{
-		$this->callablePreConstructor = $callable;
+		$this->callablePreConstructors = [];
+		$this->callablePreConstructors[] = $callable;
+	}
+
+	/**
+	 * Add callable pre constructor
+	 * 
+	 * @param callable $callable function to run before controller instantiation
+	 */
+	public function addCallablePreConstructor(callable $callable)
+	{
+		$this->callablePreConstructors[] = $callable;
 	}
 
 	/**
@@ -282,10 +293,12 @@ class CIPHPUnitTestRequest
 		$this->callHook('pre_controller');
 
 		// Run callablePreConstructor
-		if (is_callable($this->callablePreConstructor))
+		if ($this->callablePreConstructors !== [])
 		{
-			$callable = $this->callablePreConstructor;
-			$callable();
+			foreach ($this->callablePreConstructors as $callable)
+			{
+				$callable();
+			}
 		}
 
 		// Create controller

@@ -1,5 +1,11 @@
 # Change Log for CI PHPUnit Test
 
+## v0.11.0 (Not Released)
+
+### Added
+
+* `$this->request->addCallable()` to add callable. 
+
 ## v0.10.1 (2015/12/31)
 
 ### Fixed

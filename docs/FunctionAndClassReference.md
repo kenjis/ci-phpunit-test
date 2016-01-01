@@ -1,6 +1,7 @@
 # CI PHPUnit Test for CodeIgniter 3.0
 
-version: **v0.10.1** | 
+version: **v0.11.0** | 
+[v0.10.1](https://github.com/kenjis/ci-phpunit-test/blob/v0.10.1/docs/FunctionAndClassReference.md) | 
 [v0.9.1](https://github.com/kenjis/ci-phpunit-test/blob/v0.9.1/docs/FunctionAndClassReference.md) | 
 [v0.8.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.8.2/docs/FunctionAndClassReference.md) | 
 [v0.7.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.7.0/docs/FunctionAndClassReference.md) | 
@@ -22,6 +23,7 @@ version: **v0.10.1** |
 		- [`request->setCallable()`](#request-setcallable)
 		- [`request->addCallable()`](#request-addcallable)
 		- [`request->setCallablePreConstructor()`](#request-setcallablepreconstructor)
+		- [`request->addCallablePreConstructor()`](#request-addcallablepreconstructor)
 		- [`request->enableHooks()`](#request-enablehooks)
 	- [`TestCase::ajaxRequest($method, $argv, $params = [])`](#testcaseajaxrequestmethod-argv-params--)
 	- [`TestCase::assertResponseCode($code)`](#testcaseassertresponsecodecode)
@@ -204,10 +206,27 @@ $output = $this->request('GET', ['Bbs', 'index']);
 
 ##### `request->setCallablePreConstructor()`
 
-Sets function to run before controller instantiation.
+Sets (and resets) a function to run before controller instantiation.
 
 ~~~php
 $this->request->setCallablePreConstructor(
+	function () {
+		// Get mock object
+		$auth = $this->getDouble(
+			'Ion_auth', ['logged_in' => TRUE]
+		);
+		// Inject mock object
+		load_class_instance('ion_auth', $auth);
+	}
+);
+~~~
+
+##### `request->addCallablePreConstructor()`
+
+Adds a function (callable) to run before controller instantiation.
+
+~~~php
+$this->request->addCallablePreConstructor(
 	function () {
 		// Get mock object
 		$auth = $this->getDouble(
