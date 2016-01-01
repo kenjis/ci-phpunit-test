@@ -5,6 +5,11 @@
 ### Added
 
 * `$this->request->addCallablePreConstructor()` to add callable.
+* Now *Moneky Patching* can patch code with PHP 7 new syntax.
+
+### Others
+
+* Update nikic/PHP-Parser to v2.0.0
 
 ## v0.10.1 (2015/12/31)
 

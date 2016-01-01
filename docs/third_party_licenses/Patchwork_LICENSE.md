@@ -1,3 +1,7 @@
+<https://github.com/antecedent/patchwork/blob/1.3.4/src/Preprocessor/Stream.php>
+
+---
+
 The MIT License
 
 Copyright (c) 2010-2014 Ignas Rudaitis

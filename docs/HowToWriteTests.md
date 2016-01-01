@@ -751,6 +751,8 @@ To enable monkey patching, uncomment below code in `tests/Bootstrap.php` and con
 /*
 require __DIR__ . '/_ci_phpunit_test/patcher/bootstrap.php';
 MonkeyPatchManager::init([
+	// PHP Parser: PREFER_PHP7, PREFER_PHP5, ONLY_PHP7, ONLY_PHP5
+	'php_parser' => 'PREFER_PHP5',
 	'cache_dir' => APPPATH . 'tests/_ci_phpunit_test/tmp/cache',
 	// Directories to patch on source files
 	'include_paths' => [
@@ -774,6 +776,15 @@ MonkeyPatchManager::init([
 	'exit_exception_classname' => 'CIPHPUnitTestExitException',
 ]);
 */
+~~~
+
+**Upgrade Note for v0.11.0**
+
+You can add the parser preference with `php_parser`. The default is `PREFER_PHP5`. Change the config if you need.
+
+~~~php
+	// PHP Parser: PREFER_PHP7, PREFER_PHP5, ONLY_PHP7, ONLY_PHP5
+	'php_parser' => 'PREFER_PHP5',
 ~~~
 
 **Upgrade Note for v0.6.0**
