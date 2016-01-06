@@ -323,6 +323,11 @@ class CIPHPUnitTestRequest
 
 		// Call controller method
 		call_user_func_array([$controller, $method], $params);
+		if ($this->callHook('display_override') !== true)
+		{
+			$CI->output->_display();
+		}
+
 		$output = ob_get_clean();
 
 		if ($output == '')
