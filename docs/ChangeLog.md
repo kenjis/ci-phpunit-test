@@ -6,6 +6,11 @@
 
 * `$this->request->addCallablePreConstructor()` to add callable.
 * Now *Moneky Patching* can patch code with PHP 7 new syntax.
+* `header()` and `setcookie()` are added to *Function Patcher*'s white list.
+
+### Fixed
+
+* `_output()` method in controllers does not work in controller testing.
 
 ### Others
 
