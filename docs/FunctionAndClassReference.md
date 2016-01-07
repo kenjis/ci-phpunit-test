@@ -240,7 +240,7 @@ $this->request->addCallablePreConstructor(
 
 ##### `request->enableHooks()`
 
-If you want to enable hooks, call `$this->request->enableHooks()` method. It enables only `pre_controller`, `post_controller_constructor`, `post_controller` hooks.
+If you want to enable hooks, call `$this->request->enableHooks()` method. It enables only `pre_controller`, `post_controller_constructor`, `post_controller` and `display_override` hooks.
 
 ~~~php
 $this->request->enableHooks();
