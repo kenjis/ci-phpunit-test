@@ -17,6 +17,7 @@ version: **v0.11.0** |
 - [Testing Environment](#testing-environment)
 - [Can and Can't](#can-and-cant)
 	- [MY_Loader](#my_loader)
+	- [MY_Input](#my_input)
 	- [`exit()`](#exit)
 	- [Reset CodeIgniter object](#reset-codeigniter-object)
 	- [Hooks](#hooks)
@@ -83,6 +84,7 @@ The core functions and a class which are modified:
 * function `show_404()`
 * function `set_status_header()`
 * class `CI_Loader`
+* class `CI_Input`
 
 and a helper which is modified:
 
@@ -90,9 +92,10 @@ and a helper which is modified:
 
 All of them are in `tests/_ci_phpunit_test/replacing` folder.
 
-And *CI PHPUnit Test* adds a property dynamically:
+And *CI PHPUnit Test* adds properties dynamically:
 
 * property `CI_Output::_status`
+* property `CI_Output::_cookies`
 
 And *CI PHPUnit Test* has a modified bootstrap file:
 
@@ -109,6 +112,16 @@ And *CI PHPUnit Test* has a modified bootstrap file:
 But if you place MY_Loader, your MY_Loader extends the loader of *CI PHPUnit Test*.
 
 If your MY_Loader overrides the above methods, probably *CI PHPUnit Test* does not work correctly.
+
+#### MY_Input
+
+*CI PHPUnit Test* replaces `CI_Input` and modifies below method:
+
+* `CI_Input::set_cookie()`
+
+But if you place MY_Input, your MY_Input extends the CI_Input of *CI PHPUnit Test*.
+
+If your MY_Input overrides the above method, probably *CI PHPUnit Test* does not work correctly.
 
 #### `exit()`
 
@@ -758,6 +771,7 @@ MonkeyPatchManager::init([
 	'include_paths' => [
 		APPPATH,
 		BASEPATH,
+		APPPATH . 'tests/_ci_phpunit_test/replacing/',
 	],
 	// Excluding directories to patch
 	'exclude_paths' => [
@@ -779,6 +793,12 @@ MonkeyPatchManager::init([
 ~~~
 
 **Upgrade Note for v0.11.0**
+
+Add the below line in `include_paths`.
+
+~~~php
+		APPPATH . 'tests/_ci_phpunit_test/replacing/',
+~~~
 
 You can add the parser preference with `php_parser`. The default is `PREFER_PHP5`. Change the config if you need.
 

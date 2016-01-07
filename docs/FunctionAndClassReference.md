@@ -29,6 +29,7 @@ version: **v0.11.0** |
 	- [`TestCase::assertResponseCode($code)`](#testcaseassertresponsecodecode)
 	- [`TestCase::assertRedirect($uri, $code = null)`](#testcaseassertredirecturi-code--null)
 	- [`TestCase::assertResponseHeader($name, $value)`](#testcaseassertresponseheadername-value)
+	- [`TestCase::assertResponseCookie($name, $value, $allow_duplicate = false)`](#testcaseassertresponsecookiename-value-allow_duplicate--false)
 	- [`TestCase::getDouble($classname, $params, $enable_constructor = false)`](#testcasegetdoubleclassname-params-enable_constructor--false)
 	- [`TestCase::verifyInvoked($mock, $method, $params)`](#testcaseverifyinvokedmock-method-params)
 	- [`TestCase::verifyInvokedOnce($mock, $method, $params)`](#testcaseverifyinvokedoncemock-method-params)
@@ -269,7 +270,7 @@ $output = $this->ajaxRequest('GET', 'api/books');
 |---------|------|------------------|
 |`$code`  | int  | HTTP status code |
 
-Checks for a specific response code on your controller tests.
+Checks for a specific response code in your controller tests.
 
 ~~~php
 $this->assertResponseCode(200);
@@ -282,7 +283,7 @@ $this->assertResponseCode(200);
 |`$uri`   | string | URI to redirect  |
 |`$code`  | int    | HTTP status code |
 
-Checks if `redirect()` is called on your controller tests.
+Checks if `redirect()` is called in your controller tests.
 
 ~~~php
 $this->assertRedirect('auth/login');
@@ -295,7 +296,7 @@ $this->assertRedirect('auth/login');
 |`$name`  | string | header name  |
 |`$value` | string | header value |
 
-Checks for a specific response header on your controller tests.
+Checks for a specific response header in your controller tests.
 
 ~~~php
 $this->assertResponseHeader(
@@ -304,6 +305,37 @@ $this->assertResponseHeader(
 ~~~
 
 **Note:** This method can only assert headers set by `$this->output->set_header()` method.
+
+#### `TestCase::assertResponseCookie($name, $value, $allow_duplicate = false)`
+
+| param             | type         | description                           |
+|-------------------|--------------|---------------------------------------|
+|`$name`            | string       | cookie name                           |
+|`$value`           | string/array | cookie value / array of cookie params |
+|`$allow_duplicate` | bool         | whether to allow duplicated cookies   |
+
+Checks for a specific response cookie in your controller tests.
+
+~~~php
+$this->assertResponseCookie('cookie-name', 'cookie value');
+~~~
+
+You can also check cookie params.
+
+~~~php
+$this->assertResponseCookie(
+	'cookie-name',
+	[
+		'value'  => 'cookie value',
+		'domain' => '.example.com',
+		'path'   => '/',
+		'secure' => TRUE,
+		'httponly' => TRUE,
+	]
+);
+~~~
+
+**Note:** This method can only assert cookies set by `$this->input->set_cooke()` method.
 
 #### `TestCase::getDouble($classname, $params, $enable_constructor = false)`
 

@@ -305,6 +305,7 @@ MonkeyPatchManager::init([
 	'include_paths' => [
 		APPPATH,
 		BASEPATH,
+		APPPATH . 'tests/_ci_phpunit_test/replacing/',
 	],
 	// Excluding directories to patch
 	'exclude_paths' => [
