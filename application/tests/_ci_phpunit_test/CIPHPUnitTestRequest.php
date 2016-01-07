@@ -304,6 +304,10 @@ class CIPHPUnitTestRequest
 		}
 
 		// Create controller
+		if (CIPHPUnitTest::wiredesignzHmvcInstalled())
+		{
+			new CI();
+		}
 		$controller = new $class;
 		$CI =& get_instance();
 

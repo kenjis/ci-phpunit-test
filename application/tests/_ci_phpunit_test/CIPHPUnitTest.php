@@ -68,13 +68,30 @@ class CIPHPUnitTest
 		self::replaceHelpers();
 
 		// Create CodeIgniter instance
-		new CI_Controller();
+		if (! self::wiredesignzHmvcInstalled())
+		{
+			new CI_Controller();
+		}
+		else
+		{
+			new MX_Controller();
+		}
 
 		// This code is here, not to cause errors with HMVC
 		self::replaceLoader();
 
 		// Restore $_SERVER. We need this for NetBeans
 		$_SERVER = $_server_backup;
+	}
+
+	public static function wiredesignzHmvcInstalled()
+	{
+		if (file_exists(APPPATH.'third_party/MX'))
+		{
+			return true;
+		}
+		
+		return false;
 	}
 
 	public static function getAutoloadDirs()
