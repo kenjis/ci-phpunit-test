@@ -142,7 +142,7 @@ CodeIgniter has a function `get_instance()` to get the CodeIgniter object (CodeI
 
 If you enable CodeIgniter's hooks, hook `pre_system` is called once in PHPUnit bootstrap.
 
-If you use `$this->request->enableHooks()` and `$this->request()`, hook `pre_controller`, `post_controller_constructor` and `post_controller` are called on every `$this->request()` to a controller.
+If you use `$this->request->enableHooks()` and `$this->request()`, hook `pre_controller`, `post_controller_constructor`, `post_controller` and `display_override` are called on every `$this->request()` to a controller.
 
 See [Controller with Hooks](#controller-with-hooks) for details.
 
@@ -680,7 +680,7 @@ To test that code, you can add `$this->warningOff()` to your test code (don't fo
 
 #### Controller with Hooks
 
-If you want to enable hooks, call [$this->request->enableHooks()](FunctionAndClassReference.md#request-enablehooks) method. It enables `pre_controller`, `post_controller_constructor`, `post_controller` hooks.
+If you want to enable hooks, call [$this->request->enableHooks()](FunctionAndClassReference.md#request-enablehooks) method. It enables `pre_controller`, `post_controller_constructor`, `post_controller` and `display_override` hooks.
 
 ~~~php
 		$this->request->enableHooks();

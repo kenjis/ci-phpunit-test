@@ -269,8 +269,10 @@ class CIPHPUnitTestRequest
 	{
 		if ($this->enableHooks)
 		{
-			$this->hooks->call_hook($hook);
+			return $this->hooks->call_hook($hook);
 		}
+
+		return false;
 	}
 
 	protected function setRawInputStream($string)
@@ -323,7 +325,10 @@ class CIPHPUnitTestRequest
 
 		// Call controller method
 		call_user_func_array([$controller, $method], $params);
-		if ($this->callHook('display_override') !== true)
+
+		$this->callHook('post_controller');
+
+		if ($this->callHook('display_override') === false)
 		{
 			$CI->output->_display();
 		}
@@ -334,8 +339,6 @@ class CIPHPUnitTestRequest
 		{
 			$output = $CI->output->get_output();
 		}
-
-		$this->callHook('post_controller');
 
 		return $output;
 	}
