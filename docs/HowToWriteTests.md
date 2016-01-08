@@ -610,7 +610,7 @@ If you use `redirect()` in *CI PHPUnit Test*, you can write tests like this:
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v0.10.0/application/tests/controllers/Redirect_test.php).
 
-**Upgrade Note for v0.4.0**
+##### Upgrade Note for v0.4.0
 
 v0.4.0 has new `MY_url_helper.php`. If you use it, you must update your tests.
 
@@ -654,7 +654,7 @@ See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v
 
 If you don't call `$this->request()` in your tests, `show_error()` throws `CIPHPUnitTestShowErrorException` and `show_404()` throws `CIPHPUnitTestShow404Exception`. So you must expect the exceptions. You can use `@expectedException` annotation in PHPUnit.
 
-**Upgrade Note for v0.4.0**
+##### Upgrade Note for v0.4.0
 
 v0.4.0 has changed how to test `show_error()` and `show_404()`. You must update your tests.
 
@@ -793,7 +793,7 @@ MonkeyPatchManager::init([
 */
 ~~~
 
-**Upgrade Note for v0.11.0**
+##### Upgrade Note for v0.11.0
 
 Add the below line in `include_paths`.
 
@@ -814,7 +814,7 @@ You can add the parser preference with `php_parser`. The default is `PREFER_PHP5
 	'php_parser' => 'PREFER_PHP5',
 ~~~
 
-**Upgrade Note for v0.6.0**
+##### Upgrade Note for v0.6.0
 
 Add the above code (`require` and `MonkeyPatchManager::init()`) before
 
