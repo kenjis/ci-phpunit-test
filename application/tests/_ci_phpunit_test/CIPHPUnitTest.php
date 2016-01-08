@@ -86,6 +86,19 @@ class CIPHPUnitTest
 		$_SERVER = $_server_backup;
 	}
 
+	public static function createCodeIgniterInstance()
+	{
+		if (! self::wiredesignzHmvcInstalled())
+		{
+			new CI_Controller();
+		}
+		else
+		{
+			new CI();
+			new MX_Controller();
+		}
+	}
+
 	public static function wiredesignzHmvcInstalled()
 	{
 		if (file_exists(APPPATH.'third_party/MX'))

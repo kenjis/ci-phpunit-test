@@ -60,15 +60,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	public function resetInstance()
 	{
 		reset_instance();
-		if (! CIPHPUnitTest::wiredesignzHmvcInstalled())
-		{
-			new CI_Controller();
-		}
-		else
-		{
-			new CI();
-			new MX_Controller();
-		}
+		CIPHPUnitTest::createCodeIgniterInstance();
 		$this->CI =& get_instance();
 	}
 

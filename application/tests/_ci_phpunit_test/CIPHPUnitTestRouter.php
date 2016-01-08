@@ -60,15 +60,7 @@ class CIPHPUnitTestRouter
 			$CI =& get_instance();
 			if ($CI instanceof CIPHPUnitTestNullCodeIgniter)
 			{
-				if (! CIPHPUnitTest::wiredesignzHmvcInstalled())
-				{
-					new CI_Controller();
-				}
-				else
-				{
-					new CI();
-					new MX_Controller();
-				}
+				CIPHPUnitTest::createCodeIgniterInstance();
 			}
 
 			show_404($RTR->directory.$class.'/'.$method.' is not found');
