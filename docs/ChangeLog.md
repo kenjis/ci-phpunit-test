@@ -2,6 +2,10 @@
 
 ## v0.11.0 (Not Released)
 
+### Upgrade Note
+
+* If you use *Monkey Patching*, please update `tests/Bootstrap.php`. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#upgrade-note-for-v0110).
+
 ### Added
 
 * `$this->request->addCallablePreConstructor()` to add callable.
