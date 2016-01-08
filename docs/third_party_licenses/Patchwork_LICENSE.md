@@ -1,4 +1,4 @@
-<https://github.com/antecedent/patchwork/blob/1.3.4/src/Preprocessor/Stream.php>
+<https://github.com/antecedent/patchwork/blob/1.3.5/src/Preprocessor/Stream.php>
 
 ---
 

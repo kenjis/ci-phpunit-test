@@ -16,7 +16,7 @@
  * @license    http://www.opensource.org/licenses/mit-license.html
  * @link       http://antecedent.github.com/patchwork
  * 
- * @see        https://github.com/antecedent/patchwork/blob/1.3.4/src/Preprocessor/Stream.php
+ * @see        https://github.com/antecedent/patchwork/blob/1.3.5/src/Preprocessor/Stream.php
  */
 
 namespace Kenjis\MonkeyPatch;
@@ -24,6 +24,8 @@ namespace Kenjis\MonkeyPatch;
 class IncludeStream
 {
 	const STREAM_OPEN_FOR_INCLUDE = 128;
+	const STAT_MTIME_NUMERIC_OFFSET = 9;
+	const STAT_MTIME_ASSOC_OFFSET = 'mtime';
 
 	protected static $protocols = array('file', 'phar');
 
@@ -103,7 +105,12 @@ class IncludeStream
 
 	public function stream_stat()
 	{
-		return fstat($this->resource);
+		$result = fstat($this->resource);
+		if ($result) {
+			$result[self::STAT_MTIME_ASSOC_OFFSET]++;
+			$result[self::STAT_MTIME_NUMERIC_OFFSET]++;
+		}
+		return $result;
 	}
 
 	public function stream_tell()
@@ -122,6 +129,10 @@ class IncludeStream
 			restore_error_handler();
 		}
 		$this->wrap();
+		if ($result) {
+			$result[self::STAT_MTIME_ASSOC_OFFSET]++;
+			$result[self::STAT_MTIME_NUMERIC_OFFSET]++;
+		}
 		return $result;
 	}
 
