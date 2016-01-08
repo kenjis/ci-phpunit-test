@@ -25,8 +25,16 @@ class PathChecker
 	protected static function normalizePaths(array $paths)
 	{
 		$new_paths = [];
+		$excluded = false;
 		foreach ($paths as $path)
 		{
+			// Path starting with '-' has special meaning (excluding it)
+			if (substr($path, 0, 1) === '-')
+			{
+				$excluded = true;
+				$path = ltrim($path, '-');
+			}
+
 			$real_path = realpath($path);
 			if ($real_path === FALSE)
 			{
@@ -36,7 +44,7 @@ class PathChecker
 			{
 				$real_path = $real_path . '/';
 			}
-			$new_paths[] = $real_path;
+			$new_paths[] = $excluded ? '-'.$real_path : $real_path;
 		}
 		array_unique($new_paths, SORT_STRING);
 		sort($new_paths, SORT_STRING);
@@ -81,6 +89,18 @@ class PathChecker
 
 		// Then blacklist
 		foreach (self::$exclude_paths as $black_dir) {
+			// Check excluded path that starts with '-'.
+			// '-' is smaller than '/', so this checking always comes first.
+			if (substr($black_dir, 0, 1) === '-')
+			{
+				$black_dir = ltrim($black_dir, '-');
+				$len = strlen($black_dir);
+				if (substr($path, 0, $len) === $black_dir)
+				{
+					return true;
+				}
+			}
+
 			$len = strlen($black_dir);
 			if (substr($path, 0, $len) === $black_dir)
 			{
