@@ -7,6 +7,8 @@
 * `$this->request->addCallablePreConstructor()` to add callable.
 * Now *Moneky Patching* can patch code with PHP 7 new syntax.
 * `header()` and `setcookie()` are added to *Function Patcher*'s white list.
+* Now `$this->request->enableHooks()` calls hook `display_override`.
+* `$this->assertResponseCookie()` to assert HTTP response cookies. See [#88](https://github.com/kenjis/ci-phpunit-test/pull/88).
 
 ### Fixed
 

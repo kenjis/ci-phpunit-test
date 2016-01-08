@@ -272,6 +272,58 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	}
 
 	/**
+	 * Asserts HTTP response cookie
+	 * 
+	 * @param string       $name            cookie name
+	 * @param string|array $value           cookie value|array of cookie params
+	 * @param bool         $allow_duplicate whether to allow duplicated cookies
+	 */
+	public function assertResponseCookie($name, $value, $allow_duplicate = false)
+	{
+		$CI =& get_instance();
+		$cookies = isset($CI->output->_cookies[$name])
+			? $CI->output->_cookies[$name] : null;
+
+		if ($cookies === null)
+		{
+			$this->fail("The cookie '$name' is not set.\nNote that `assertResponseCookie()` can only assert cookies set by `\$this->input->set_cookie()`");
+		}
+
+		$count = count($cookies);
+		if ($count > 1 && ! $allow_duplicate)
+		{
+			$values = [];
+			foreach ($cookies as $key => $val)
+			{
+				$values[] = "'{$val['value']}'";
+			}
+			$values = implode(' and ', $values);
+			$this->fail("You have more than one cookie '$name'. The values are $values.\nIf it is okay, please set `true` as the 3rd argument of `assertResponseCookie()`");
+		}
+
+		// Get the last cookie
+		$cookie = $cookies[$count - 1];
+		if (is_string($value))
+		{
+			$this->assertEquals(
+				$value,
+				$cookie['value'],
+				"The cookie '$name' value is not '$value' but '{$cookie['value']}'."
+			);
+			return;
+		}
+
+		foreach ($value as $key => $val)
+		{
+			$this->assertEquals(
+				$value[$key],
+				$cookie[$key],
+				"The cookie '$name' $key is not '{$value[$key]}' but '{$cookie[$key]}'."
+			);
+		}
+	}
+
+	/**
 	 * Asserts Redirect
 	 * 
 	 * @param string $uri  URI to redirect

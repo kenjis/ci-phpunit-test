@@ -301,14 +301,17 @@ MonkeyPatchManager::init([
 	// PHP Parser: PREFER_PHP7, PREFER_PHP5, ONLY_PHP7, ONLY_PHP5
 	'php_parser' => 'PREFER_PHP5',
 	'cache_dir' => APPPATH . 'tests/_ci_phpunit_test/tmp/cache',
-	// Directories to patch on source files
+	// Directories to patch source files
 	'include_paths' => [
 		APPPATH,
 		BASEPATH,
+		APPPATH . 'tests/_ci_phpunit_test/replacing/',
 	],
 	// Excluding directories to patch
+	// If you want to patch files inside paths below, you must add the directory starting with '-'
 	'exclude_paths' => [
 		APPPATH . 'tests/',
+		'-' . APPPATH . 'tests/_ci_phpunit_test/replacing/',
 	],
 	// All patchers you use.
 	'patcher_list' => [

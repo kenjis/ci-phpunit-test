@@ -52,6 +52,8 @@ class CIPHPUnitTest
 		require __DIR__ . '/functions.php';
 		// Load ci-phpunit-test CI_Loader
 		require __DIR__ . '/replacing/core/Loader.php';
+		// Load ci-phpunit-test CI_Input
+		require __DIR__ . '/replacing/core/Input.php';
 
 		// Change current directroy
 		chdir(FCPATH);
