@@ -370,10 +370,19 @@ if ( ! is_php('5.4'))
 	 * Returns current CI instance object
 	 *
 	 * @return object
+	 * 
+	 * modified by ci-phpunit-test
 	 */
 	function &get_instance()
 	{
-		return CI_Controller::get_instance();
+		if (! CIPHPUnitTest::wiredesignzHmvcInstalled())
+		{
+			return CI_Controller::get_instance();
+		}
+		else
+		{
+			return CI::$APP;
+		}
 	}
 
 	if (file_exists(APPPATH.'core/'.$CFG->config['subclass_prefix'].'Controller.php'))
