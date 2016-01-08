@@ -63,7 +63,7 @@ class MonkeyPatchManager
 		return self::$php_parser;
 	}
 
-	public static function init(array $config)
+	protected static function setDebug(array $config)
 	{
 		if (isset($config['debug']))
 		{
@@ -73,12 +73,10 @@ class MonkeyPatchManager
 		{
 			self::$log_file = __DIR__ . '/debug.log';
 		}
+	}
 
-		if (isset($config['php_parser']))
-		{
-			self::$php_parser = constant('PhpParser\ParserFactory::'.$config['php_parser']);
-		}
-
+	protected static function setDir(array $config)
+	{
 		if (isset($config['root_dir']))
 		{
 			Cache::setProjectRootDir($config['root_dir']);
@@ -94,7 +92,10 @@ class MonkeyPatchManager
 			throw new LogicException('You have to set "cache_dir"');
 		}
 		self::setCacheDir($config['cache_dir']);
+	}
 
+	protected static function setPaths(array $config)
+	{
 		if (! isset($config['include_paths']))
 		{
 			throw new LogicException('You have to set "include_paths"');
@@ -105,6 +106,19 @@ class MonkeyPatchManager
 		{
 			self::setExcludePaths($config['exclude_paths']);
 		}
+	}
+
+	public static function init(array $config)
+	{
+		self::setDebug($config);
+
+		if (isset($config['php_parser']))
+		{
+			self::$php_parser = constant('PhpParser\ParserFactory::'.$config['php_parser']);
+		}
+
+		self::setDir($config);
+		self::setPaths($config);
 
 		Cache::createTmpListDir();
 
