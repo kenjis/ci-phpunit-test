@@ -77,6 +77,7 @@ In fact, it uses a modified class and a few functions. But I try to modify as li
 
 The core functions and a class which are modified:
 
+* function `get_instance()`
 * function `load_class()`
 * function `is_loaded()`
 * function `is_cli()`
