@@ -111,7 +111,7 @@ And *CI PHPUnit Test* has a modified bootstrap file:
 
 But if you place MY_Loader, your MY_Loader extends the loader of *CI PHPUnit Test*.
 
-If your MY_Loader overrides the above methods, probably *CI PHPUnit Test* does not work correctly.
+If your MY_Loader overrides the above methods, you have to take care of changes in the loader of *CI PHPUnit Test*.
 
 #### MY_Input
 
@@ -121,7 +121,7 @@ If your MY_Loader overrides the above methods, probably *CI PHPUnit Test* does n
 
 But if you place MY_Input, your MY_Input extends the CI_Input of *CI PHPUnit Test*.
 
-If your MY_Input overrides the above method, probably *CI PHPUnit Test* does not work correctly.
+If your MY_Input overrides the above method, you have to take care of changes in the CI_Input of *CI PHPUnit Test*.
 
 #### `exit()`
 
