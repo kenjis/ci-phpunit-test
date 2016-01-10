@@ -5,14 +5,15 @@
 ### Upgrade Note
 
 * If you use *Monkey Patching*, please update `tests/Bootstrap.php`. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#upgrade-note-for-v0110).
+* If you use PsySH v0.5, please update to v0.6.
 
 ### Added
 
+* `$this->assertResponseCookie()` to assert HTTP response cookies. See [#88](https://github.com/kenjis/ci-phpunit-test/pull/88).
+* Now `$this->request->enableHooks()` calls hook `display_override`.
 * `$this->request->addCallablePreConstructor()` to add callable.
 * Now *Moneky Patching* can patch code with PHP 7 new syntax.
 * `header()` and `setcookie()` are added to *Function Patcher*'s white list.
-* Now `$this->request->enableHooks()` calls hook `display_override`.
-* `$this->assertResponseCookie()` to assert HTTP response cookies. See [#88](https://github.com/kenjis/ci-phpunit-test/pull/88).
 
 ### Fixed
 
