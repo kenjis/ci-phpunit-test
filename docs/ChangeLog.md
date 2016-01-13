@@ -4,6 +4,7 @@
 
 ### Upgrade Note
 
+* Now ci-phpunit-test replaces `CI_Input`. If you use MY_Input, see [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#my_input).
 * If you use *Monkey Patching*, please update `tests/Bootstrap.php`. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#upgrade-note-for-v0110).
 * If you use PsySH v0.5, please update to v0.6.
 
