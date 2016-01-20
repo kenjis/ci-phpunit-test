@@ -164,7 +164,7 @@ See [Controller with Hooks](#controller-with-hooks) for details.
 
 *CI PHPUnit Test* has an autoloader for class files.
 
-To change the search paths, change the line [`CIPHPUnitTest::init();`](https://github.com/kenjis/ci-phpunit-test/blob/v0.11.0/application/tests/Bootstrap.php#L331) in `tests/Bootstrap.php` like below:
+To change the search paths, change the line [`CIPHPUnitTest::init();`](https://github.com/kenjis/ci-phpunit-test/blob/v0.11.0/application/tests/Bootstrap.php#L336) in `tests/Bootstrap.php` like below:
 
 ~~~php
 CIPHPUnitTest::init([
@@ -921,7 +921,7 @@ See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v
 
 **Patch on Other Functions**
 
-If you want to patch other functions, you can add them to [functions_to_patch](https://github.com/kenjis/ci-phpunit-test/blob/v0.11.0/application/tests/Bootstrap.php#L319) in `MonkeyPatchManager::init()`.
+If you want to patch other functions, you can add them to [functions_to_patch](https://github.com/kenjis/ci-phpunit-test/blob/v0.11.0/application/tests/Bootstrap.php#L323) in `MonkeyPatchManager::init()`.
 
 But there are a few known limitations:
 
@@ -952,7 +952,7 @@ See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v
 
 Want to see more tests?
 
-* https://github.com/kenjis/ci-app-for-ci-phpunit-test/tree/v0.10.0/application/tests
+* https://github.com/kenjis/ci-app-for-ci-phpunit-test/tree/v0.11.0/application/tests
 * https://github.com/kenjis/codeigniter-tettei-apps/tree/develop/application/tests
 
 ### Third Party Libraries
@@ -1029,4 +1029,4 @@ And if you copy sample api controllers, you must change `require` statement to `
 
 If you require `REST_Controller.php` more than once, you get `Fatal error: Cannot redeclare class REST_Controller`.
 
-See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/tree/v0.10.0/application/tests/controllers/api).
+See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/tree/v0.11.0/application/tests/controllers/api).
