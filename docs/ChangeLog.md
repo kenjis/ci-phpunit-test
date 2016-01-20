@@ -1,11 +1,11 @@
 # Change Log for CI PHPUnit Test
 
-## v0.11.0 (Not Released)
+## v0.11.0 (2016/01/20)
 
 ### Upgrade Note
 
-* Now ci-phpunit-test replaces `CI_Input`. If you use MY_Input, see [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#my_input).
-* If you use *Monkey Patching*, please update `tests/Bootstrap.php`. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#upgrade-note-for-v0110).
+* Now ci-phpunit-test replaces `CI_Input`. If you use MY_Input, see [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/v0.11.0/docs/HowToWriteTests.md#my_input).
+* If you use *Monkey Patching*, please update `tests/Bootstrap.php`. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/v0.11.0/docs/HowToWriteTests.md#upgrade-note-for-v0110).
 * If you use PsySH v0.5, please update to v0.6.
 
 ### Added
