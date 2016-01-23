@@ -119,6 +119,7 @@ If your MY_Loader overrides the above methods, you have to take care of changes 
 *CI PHPUnit Test* replaces `CI_Input` and modifies below method:
 
 * `CI_Input::set_cookie()`
+* `CI_Input::get_request_header()`
 
 But if you place MY_Input, your MY_Input extends the CI_Input of *CI PHPUnit Test*.
 

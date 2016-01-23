@@ -811,10 +811,12 @@ class CI_Input {
 	 * @param	string		$index		Header name
 	 * @param	bool		$xss_clean	Whether to apply XSS filtering
 	 * @return	string|null	The requested header on success or NULL on failure
+	 * 
+	 * modified by ci-phpunit-test
 	 */
 	public function get_request_header($index, $xss_clean = FALSE)
 	{
-		static $headers;
+//		static $headers;
 
 		if ( ! isset($headers))
 		{
