@@ -31,6 +31,7 @@ version: **v0.11.0** |
 - [Controllers](#controllers)
 	- [Request to Controller](#request-to-controller)
 	- [Request to URI string](#request-to-uri-string)
+	- [Request to Controller or URI string with _remap](#request-to-controller-or-uri-string-with-_remap)
 	- [REST Request](#rest-request)
 	- [Ajax Request](#ajax-request)
 	- [Request and Use Mocks](#request-and-use-mocks)
@@ -392,8 +393,32 @@ See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v
 		$this->assertContains('<title>Page Title</title>', $output);
 	}
 ~~~
-
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v0.11.0/application/tests/controllers/sub/Sub_test.php).
+
+#### Request to Controller or URI string With _remap
+
+*tests/controllers/Remap_test.php*
+~~~php
+<?php
+
+class Remap_test extends TestCase
+{
+	public function test_index()
+	{
+		$output = $this->request('GET', ['Remap', '_remap', 'abc']);
+		$expected = 'index';
+		$this->assertEquals($expected, $output);
+	}
+	
+	public function test_uri_remap_abc()
+	{
+		$output = $this->request('GET', 'remap/abc');
+		$expected = 'index';
+		$this->assertEquals($expected, $output);
+	}
+}
+~~~
+See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v0.11.0/application/tests/controllers/Remap_test.php).
 
 #### REST Request
 
