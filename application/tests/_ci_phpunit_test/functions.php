@@ -28,6 +28,9 @@ function reset_instance()
 	load_class('', '', NULL, TRUE);
 	is_loaded('', TRUE);
 
+	// Reset config functions
+	reset_config();
+
 	// Close db connection
 	$CI =& get_instance();
 	if (isset($CI->db))
@@ -84,4 +87,13 @@ function reset_instance()
 function set_is_cli($return)
 {
 	is_cli($return);
+}
+
+/**
+ * Reset config functions
+ */
+function reset_config()
+{
+	get_config([], TRUE);
+	config_item(NULL, TRUE);
 }

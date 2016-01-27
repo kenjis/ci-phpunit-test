@@ -14,11 +14,13 @@
  * Class registry
  * 
  * @staticvar array $_classes
+ * 
  * @param string $class
  * @param string $directory
- * @param array $param
- * @param bool $reset
+ * @param array  $param
+ * @param bool   $reset
  * @param object $obj
+ * 
  * @return object
  */
 function &load_class(
@@ -114,8 +116,10 @@ function &load_class(
  * Keeps track of which libraries have been loaded.
  * 
  * @staticvar array $_is_loaded
+ * 
  * @param string $class
- * @param bool $reset
+ * @param bool   $reset
+ * 
  * @return array
  */
 function &is_loaded($class = '', $reset = FALSE)
@@ -283,4 +287,97 @@ function set_status_header($code = 200, $text = '')
 		$server_protocol = isset($_SERVER['SERVER_PROTOCOL']) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.1';
 		header($server_protocol.' '.$code.' '.$text, TRUE, $code);
 	}
+}
+
+/**
+ * Loads the main config.php file
+ * 
+ * @staticvar array $config
+ * 
+ * @param array $replace
+ * @param bool  $reset
+ * 
+ * @return array
+ */
+function &get_config(Array $replace = array(), $reset = FALSE)
+{
+	static $config;
+
+	// Reset static variable
+	// added by ci-phpunit-test
+	if ($reset)
+	{
+		$config = null;
+		return $config;
+	}
+
+	if (empty($config))
+	{
+		$file_path = APPPATH.'config/config.php';
+		$found = FALSE;
+		if (file_exists($file_path))
+		{
+			$found = TRUE;
+			require($file_path);
+		}
+
+		// Is the config file in the environment folder?
+		if (file_exists($file_path = APPPATH.'config/'.ENVIRONMENT.'/config.php'))
+		{
+			require($file_path);
+		}
+		elseif ( ! $found)
+		{
+			set_status_header(503);
+			echo 'The configuration file does not exist.';
+			exit(3); // EXIT_CONFIG
+		}
+
+		// Does the $config array exist in the file?
+		if ( ! isset($config) OR ! is_array($config))
+		{
+			set_status_header(503);
+			echo 'Your config file does not appear to be formatted correctly.';
+			exit(3); // EXIT_CONFIG
+		}
+	}
+
+	// Are any values being dynamically added or replaced?
+	foreach ($replace as $key => $val)
+	{
+		$config[$key] = $val;
+	}
+
+	return $config;
+}
+
+/**
+ * Returns the specified config item
+ * 
+ * @staticvar array $_config
+ * 
+ * @param string $item
+ * @param bool   $reset
+ * 
+ * @return type
+ */
+function config_item($item, $reset = FALSE)
+{
+	static $_config;
+
+	// Reset static variable
+	// added by ci-phpunit-test
+	if ($reset)
+	{
+		$config = null;
+		return;
+	}
+
+	if (empty($_config))
+	{
+		// references cannot be directly assigned to static variables, so we use an array
+		$_config[0] =& get_config();
+	}
+
+	return isset($_config[0][$item]) ? $_config[0][$item] : NULL;
 }

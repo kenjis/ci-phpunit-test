@@ -80,6 +80,8 @@ The core functions and a class which are modified:
 * function `get_instance()`
 * function `load_class()`
 * function `is_loaded()`
+* function `get_config()`
+* function `config_item()`
 * function `is_cli()`
 * function `show_error()`
 * function `show_404()`
