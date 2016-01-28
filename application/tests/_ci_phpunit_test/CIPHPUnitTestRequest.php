@@ -223,7 +223,7 @@ class CIPHPUnitTestRequest
 
 		$params = $argv;
 
-		return $this->createAndCallController($class, $method, $params);
+		return $this->createAndCallController($class, $method, $params, false);
 	}
 
 	/**
@@ -288,7 +288,7 @@ class CIPHPUnitTestRequest
 		}
 	}
 
-	protected function createAndCallController($class, $method, $params)
+	protected function createAndCallController($class, $method, $params, $call_display = true)
 	{
 		ob_start();
 
@@ -332,7 +332,7 @@ class CIPHPUnitTestRequest
 
 		$this->callHook('post_controller');
 
-		if ($this->callHook('display_override') === false)
+		if ($call_display && $this->callHook('display_override') === false)
 		{
 			$CI->output->_display();
 		}
