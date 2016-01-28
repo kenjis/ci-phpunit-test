@@ -1,6 +1,6 @@
 # CI PHPUnit Test for CodeIgniter 3.0
 
-version: **v0.11.0** | 
+version: **v0.11.1** | 
 [v0.10.1](https://github.com/kenjis/ci-phpunit-test/blob/v0.10.1/docs/HowToWriteTests.md) | 
 [v0.9.1](https://github.com/kenjis/ci-phpunit-test/blob/v0.9.1/docs/HowToWriteTests.md) | 
 [v0.8.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.8.2/docs/HowToWriteTests.md) | 
@@ -30,7 +30,6 @@ version: **v0.11.0** |
 - [Libraries](#libraries)
 - [Controllers](#controllers)
 	- [Request to Controller](#request-to-controller)
-	- [Request to URI string](#request-to-uri-string)
 	- [REST Request](#rest-request)
 	- [Ajax Request](#ajax-request)
 	- [Request and Use Mocks](#request-and-use-mocks)
@@ -369,6 +368,20 @@ In this case, *CI PHPUnit Test* autoloads your libraries in `application/librari
 
 You can use [$this->request()](FunctionAndClassReference.md#testcaserequestmethod-argv-params--) method in *CI PHPUnit Test*.
 
+~~~php
+	public function test_uri_sub_sub_index()
+	{
+		$output = $this->request('GET', 'sub/sub/index');
+		$this->assertContains('<title>Page Title</title>', $output);
+	}
+~~~
+
+**Note:** If you pass URI string to the 2nd argument of `$this->request()`, it invokes the routing. If the resolved controller has `_remap()` and/or `_output()` methods, they will be invoked, too.
+
+See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v0.11.0/application/tests/controllers/sub/Sub_test.php).
+
+If you want to call a controller method directly, you can pass an array to the 2nd argument of `$this->request()`.
+
 *tests/controllers/Welcome_test.php*
 ~~~php
 <?php
@@ -383,19 +396,9 @@ class Welcome_test extends TestCase
 }
 ~~~
 
+**Note:** If you pass an array to the 2nd argument of `$this->request()`, it does not invokes the routing. The `_remap()` and/or `_output()` methods in a controller are not invoked, too.
+
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v0.11.0/application/tests/controllers/Welcome_test.php).
-
-#### Request to URI string
-
-~~~php
-	public function test_uri_sub_sub_index()
-	{
-		$output = $this->request('GET', 'sub/sub/index');
-		$this->assertContains('<title>Page Title</title>', $output);
-	}
-~~~
-
-See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v0.11.0/application/tests/controllers/sub/Sub_test.php).
 
 #### REST Request
 
