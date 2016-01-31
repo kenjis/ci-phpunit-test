@@ -1,6 +1,6 @@
 # CI PHPUnit Test for CodeIgniter 3.0
 
-version: **v0.11.0** | 
+version: **v0.11.1** | 
 [v0.10.1](https://github.com/kenjis/ci-phpunit-test/blob/v0.10.1/docs/FunctionAndClassReference.md) | 
 [v0.9.1](https://github.com/kenjis/ci-phpunit-test/blob/v0.9.1/docs/FunctionAndClassReference.md) | 
 [v0.8.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.8.2/docs/FunctionAndClassReference.md) | 
@@ -139,25 +139,9 @@ In contrast, if you use `$this->resetInstance()`, it resets CodeIgniter instance
 
 `returns` (string) output strings (view)
 
-Runs a controller method or make a request to URI string after `reset_instance()`.
+Runs a controller method or make a request to URI string, after `reset_instance()`.
 
-If you want to specify controller and method name directly:
-
-~~~php
-$output = $this->request('GET', ['Form', 'index']);
-~~~
-
-If you want to make POST request:
-
-~~~php
-$output = $this->request(
-	'POST',
-	['Form', 'index'],
-	['name' => 'John Smith', 'email' => 'john@example.com']
-);
-~~~
-
-If you want to specify URI string:
+If you want to invoke routing, specify URI string:
 
 ~~~php
 $output = $this->request('GET', 'products/shoes/show/123');
@@ -168,6 +152,24 @@ You could add query string in URI string:
 ~~~php
 $output = $this->request('GET', 'users/detail?name=John+O%27Reilly');
 ~~~
+
+If you want to make POST request:
+
+~~~php
+$output = $this->request(
+	'POST',
+	['form/index'],
+	['name' => 'John Smith', 'email' => 'john@example.com']
+);
+~~~
+
+If you want to call a controller method directly:
+
+~~~php
+$output = $this->request('GET', ['Form', 'index']);
+~~~
+
+**Note:** If you pass an array to the 2nd argument, it does not invoke routing, `_remap()` and `_output()` methods.
 
 ##### `request->setHeader()`
 
