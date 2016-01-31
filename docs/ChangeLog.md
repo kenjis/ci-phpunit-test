@@ -6,7 +6,7 @@
 
 * Fix bug that `$this->input->get_request_header()` returns the first header value for all tests. See [#92](https://github.com/kenjis/ci-phpunit-test/issues/92).
 * Fix bug that config values are not reset between tests. See [#94](https://github.com/kenjis/ci-phpunit-test/issues/94).
-*  Fix bug that `CI_Output::_display()` is called even if you call a controller method directly.
+*  Fix bug that `CI_Output::_display()` is called even if you call a controller method directly (when you pass an array to the 2nd argument of `$this->request()`).
 
 ### Others
 
