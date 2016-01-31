@@ -1,5 +1,17 @@
 # Change Log for CI PHPUnit Test
 
+## v0.11.1 (Not Released)
+
+### Fixed
+
+* Fix bug that `$this->input->get_request_header()` returns the first header value for all tests. See [#92](https://github.com/kenjis/ci-phpunit-test/issues/92).
+* Fix bug that config values are not reset between tests. See [#94](https://github.com/kenjis/ci-phpunit-test/issues/94).
+*  Fix bug that `CI_Output::_display()` is called even if you call a controller method directly.
+
+### Others
+
+* Improved documentation for `$this->request()`.
+
 ## v0.11.0 (2016/01/20)
 
 ### Upgrade Note
