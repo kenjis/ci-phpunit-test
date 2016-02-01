@@ -22,6 +22,11 @@ An easier way to use PHPUnit with [CodeIgniter](https://github.com/bcit-ci/CodeI
 * PHPUnit 4.3 or later (4.7 or later is recommended)
   * If you use NetBeans 8.0.2, please use 4.7. 4.8 is not compatible yet. You can download old version of `phpunit.phar` from <https://phar.phpunit.de/>.
 
+## Optional
+
+* NetBeans
+  * Go to *Project Properties > Testing*, check *Use Custom Test Suite* checkbox, and select `application/tests/_ci_phpunit_test/TestSuiteProvider.php`.
+
 ## Change Log
 
 See [Change Log](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/ChangeLog.md).
