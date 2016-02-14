@@ -20,6 +20,10 @@ This is request list for CodeIgniter 3.x.
 
 If so, we can test the status code.
 
+## Output class has cookie data
+
+If so, we can test the cookie data.
+
 ## Way to reset CodeIgniter object
 
 To test singleton, we need a method to reset it.
