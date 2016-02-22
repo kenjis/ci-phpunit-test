@@ -1040,7 +1040,7 @@ See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/tree/v
 
 #### [Modular Extensions - HMVC](https://bitbucket.org/wiredesignz/codeigniter-modular-extensions-hmvc)
 
-It seems some users try to work ci-phpunit-test with the HMVC, and they works mostly. But the HMVC is a very complex system, and is against CodeIgniter's basic design. It brings complexity to CodeIgniter.
+It seems some users try to work ci-phpunit-test with the HMVC, and they work mostly. But the HMVC is a very complex system, and is against CodeIgniter's basic design. It brings complexity to CodeIgniter.
 
 There is a known limitation:
 See <https://github.com/kenjis/ci-hmvc-ci-phpunit-test#note-to-use>.
