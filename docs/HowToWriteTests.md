@@ -50,6 +50,7 @@ version: **v0.11.1** |
 - [More Samples](#more-samples)
 - [Third Party Libraries](#third-party-libraries)
 	- [CodeIgniter Rest Server](#codeigniter-rest-server)
+	- [Modular Extensions - HMVC](#modular-extensions---hmvc)
 
 ### Introduction
 
