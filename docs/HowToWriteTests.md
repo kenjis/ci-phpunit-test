@@ -1036,3 +1036,14 @@ And if you copy sample api controllers, you must change `require` statement to `
 If you require `REST_Controller.php` more than once, you get `Fatal error: Cannot redeclare class REST_Controller`.
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/tree/v0.11.0/application/tests/controllers/api).
+
+#### [Modular Extensions - HMVC](https://bitbucket.org/wiredesignz/codeigniter-modular-extensions-hmvc)
+
+It seems some users try to work ci-phpunit-test with the HMVC, and they works mostly. But the HMVC is a very complex system, and is against CodeIgniter's basic design. It brings complexity to CodeIgniter.
+
+There is a known limitation:
+See <https://github.com/kenjis/ci-hmvc-ci-phpunit-test#note-to-use>.
+
+And if you have an issue, please report it to: <https://github.com/kenjis/ci-phpunit-test/issues/34>
+
+See [working sample](https://github.com/kenjis/ci-hmvc-ci-phpunit-test).
