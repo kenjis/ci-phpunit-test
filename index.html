@@ -32,7 +32,7 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
         <h1>
-<a id="ci-phpunit-test-for-codeigniter-30" class="anchor" href="#ci-phpunit-test-for-codeigniter-30" aria-hidden="true"><span class="octicon octicon-link"></span></a>CI PHPUnit Test for CodeIgniter 3.0</h1>
+<a id="ci-phpunit-test-for-codeigniter-30" class="anchor" href="#ci-phpunit-test-for-codeigniter-30" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>CI PHPUnit Test for CodeIgniter 3.0</h1>
 
 <p><a href="https://packagist.org/packages/kenjis/ci-phpunit-test"><img src="https://poser.pugx.org/kenjis/ci-phpunit-test/v/stable" alt="Latest Stable Version"></a> <a href="https://packagist.org/packages/kenjis/ci-phpunit-test"><img src="https://poser.pugx.org/kenjis/ci-phpunit-test/downloads" alt="Total Downloads"></a> <a href="https://packagist.org/packages/kenjis/ci-phpunit-test"><img src="https://poser.pugx.org/kenjis/ci-phpunit-test/v/unstable" alt="Latest Unstable Version"></a> <a href="https://packagist.org/packages/kenjis/ci-phpunit-test"><img src="https://poser.pugx.org/kenjis/ci-phpunit-test/license" alt="License"></a></p>
 
@@ -52,7 +52,7 @@
 <p><img src="https://pbs.twimg.com/media/CUUmhxWVAAAwx3b.png" alt="Screenshot: Running tests on NetBeans 8.1"></p>
 
 <h2>
-<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requirements</h2>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Requirements</h2>
 
 <ul>
 <li>PHP 5.4.0 or later</li>
@@ -66,12 +66,24 @@
 </ul>
 
 <h2>
-<a id="change-log" class="anchor" href="#change-log" aria-hidden="true"><span class="octicon octicon-link"></span></a>Change Log</h2>
+<a id="optional" class="anchor" href="#optional" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Optional</h2>
+
+<ul>
+<li>NetBeans
+
+<ul>
+<li>Go to <em>Project Properties &gt; Testing</em>, check <em>Use Custom Test Suite</em> checkbox, and select <code>application/tests/_ci_phpunit_test/TestSuiteProvider.php</code>.</li>
+</ul>
+</li>
+</ul>
+
+<h2>
+<a id="change-log" class="anchor" href="#change-log" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Change Log</h2>
 
 <p>See <a href="https://github.com/kenjis/ci-phpunit-test/blob/master/docs/ChangeLog.md">Change Log</a>.</p>
 
 <h2>
-<a id="folder-structure" class="anchor" href="#folder-structure" aria-hidden="true"><span class="octicon octicon-link"></span></a>Folder Structure</h2>
+<a id="folder-structure" class="anchor" href="#folder-structure" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Folder Structure</h2>
 
 <pre><code>codeigniter/
 ├── application/
@@ -89,7 +101,7 @@
 </code></pre>
 
 <h2>
-<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
 
 <p>Download latest <code>ci-phpunit-test</code>: <a href="https://github.com/kenjis/ci-phpunit-test/releases">https://github.com/kenjis/ci-phpunit-test/releases</a></p>
 
@@ -112,7 +124,7 @@ $ composer require kenjis/ci-phpunit-test --dev
 </ul>
 
 <h2>
-<a id="upgrading" class="anchor" href="#upgrading" aria-hidden="true"><span class="octicon octicon-link"></span></a>Upgrading</h2>
+<a id="upgrading" class="anchor" href="#upgrading" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Upgrading</h2>
 
 <p>Download latest <code>ci-phpunit-test</code>: <a href="https://github.com/kenjis/ci-phpunit-test/releases">https://github.com/kenjis/ci-phpunit-test/releases</a></p>
 
@@ -126,7 +138,7 @@ $ php vendor/kenjis/ci-phpunit-test/update.php
 </code></pre>
 
 <h2>
-<a id="how-to-run-tests" class="anchor" href="#how-to-run-tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to Run Tests</h2>
+<a id="how-to-run-tests" class="anchor" href="#how-to-run-tests" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to Run Tests</h2>
 
 <p>You have to install PHPUnit before running tests.</p>
 
@@ -150,8 +162,13 @@ Generating code coverage report in HTML format ... done
 
 <p>To generate coverage report, Xdebug is needed.</p>
 
+<p>If you want to run a single test case file:</p>
+
+<pre><code>$ phpunit models/Category_model_test.php
+</code></pre>
+
 <h2>
-<a id="how-to-write-tests" class="anchor" href="#how-to-write-tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to Write Tests</h2>
+<a id="how-to-write-tests" class="anchor" href="#how-to-write-tests" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to Write Tests</h2>
 
 <p>As an example, a test case class for <code>Inventory_model</code> would be as follows:</p>
 
@@ -205,12 +222,12 @@ Generating code coverage report in HTML format ... done
 <p>See <a href="https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md">How to Write Tests</a> for details.</p>
 
 <h2>
-<a id="functionclass-reference" class="anchor" href="#functionclass-reference" aria-hidden="true"><span class="octicon octicon-link"></span></a>Function/Class Reference</h2>
+<a id="functionclass-reference" class="anchor" href="#functionclass-reference" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Function/Class Reference</h2>
 
 <p>See <a href="https://github.com/kenjis/ci-phpunit-test/blob/master/docs/FunctionAndClassReference.md">Function and Class Reference</a>.</p>
 
 <h2>
-<a id="related-projects-for-codeigniter-30" class="anchor" href="#related-projects-for-codeigniter-30" aria-hidden="true"><span class="octicon octicon-link"></span></a>Related Projects for CodeIgniter 3.0</h2>
+<a id="related-projects-for-codeigniter-30" class="anchor" href="#related-projects-for-codeigniter-30" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Related Projects for CodeIgniter 3.0</h2>
 
 <ul>
 <li><a href="https://github.com/kenjis/codeigniter-composer-installer">CodeIgniter Composer Installer</a></li>
