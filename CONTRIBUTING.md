@@ -1,8 +1,8 @@
-# Contributing to CI PHPUnit Test
+# Contributing to ci-phpunit-test
 
 ## Testing
 
-There are tests for *CI PHPUnit Test*: https://github.com/kenjis/ci-app-for-ci-phpunit-test/tree/master/application/tests
+There are tests for ci-phpunit-test: https://github.com/kenjis/ci-app-for-ci-phpunit-test/tree/master/application/tests
 
 Please write tests for your code and send Pull Request to it, if you could.
 

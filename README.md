@@ -1,4 +1,4 @@
-# CI PHPUnit Test for CodeIgniter 3.0
+# ci-phpunit-test for CodeIgniter 3.0
 
 [![Latest Stable Version](https://poser.pugx.org/kenjis/ci-phpunit-test/v/stable)](https://packagist.org/packages/kenjis/ci-phpunit-test) [![Total Downloads](https://poser.pugx.org/kenjis/ci-phpunit-test/downloads)](https://packagist.org/packages/kenjis/ci-phpunit-test) [![Latest Unstable Version](https://poser.pugx.org/kenjis/ci-phpunit-test/v/unstable)](https://packagist.org/packages/kenjis/ci-phpunit-test) [![License](https://poser.pugx.org/kenjis/ci-phpunit-test/license)](https://packagist.org/packages/kenjis/ci-phpunit-test)
 
@@ -37,7 +37,7 @@ See [Change Log](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/Chan
 codeigniter/
 ├── application/
 │   └── tests/
-│        ├── _ci_phpunit_test/ ... don't touch! files CI PHPUnit Test uses
+│        ├── _ci_phpunit_test/ ... don't touch! files ci-phpunit-test uses
 │        ├── Bootstrap.php     ... bootstrap file for PHPUnit
 │        ├── TestCase.php      ... TestCase class
 │        ├── controllers/      ... put your controller tests

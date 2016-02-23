@@ -1,4 +1,4 @@
-# Change Log for CI PHPUnit Test
+# Change Log for ci-phpunit-test
 
 ## v0.11.1 (2016/02/22)
 
@@ -184,11 +184,11 @@
 
 ### Changed
 
-* Now *CI PHPUnit Test* replaces `redirect()` function by default. See [#33](https://github.com/kenjis/ci-phpunit-test/pull/33).
+* Now ci-phpunit-test replaces `redirect()` function by default. See [#33](https://github.com/kenjis/ci-phpunit-test/pull/33).
 
 ### Added
 
-* Monkey Patching on `exit()`. *CI PHPUnit Test* could convert `exit()` in your code to Exception on the fly. See [#32](https://github.com/kenjis/ci-phpunit-test/pull/32).
+* Monkey Patching on `exit()`. ci-phpunit-test could convert `exit()` in your code to Exception on the fly. See [#32](https://github.com/kenjis/ci-phpunit-test/pull/32).
 * `$this->request->setCallablePreConstructor()` to inject mocks into your controller constructors. See [#29](https://github.com/kenjis/ci-phpunit-test/pull/29).
 
 ### Fixed

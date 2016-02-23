@@ -329,7 +329,7 @@ MonkeyPatchManager::init([
 
 /*
  * -------------------------------------------------------------------
- *  Added for CI PHPUnit Test
+ *  Added for ci-phpunit-test
  * -------------------------------------------------------------------
  */
 require __DIR__ . '/_ci_phpunit_test/CIPHPUnitTest.php';

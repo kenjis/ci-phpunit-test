@@ -38,7 +38,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Loader Class (Modified by CI PHPUnit Test)
+ * Loader Class (Modified by ci-phpunit-test)
  *
  * Loads framework components.
  *
@@ -231,7 +231,7 @@ class CI_Loader {
 	 * @param	bool	$db_conn	An optional database connection configuration to initialize
 	 * @return	object
 	 * 
-	 * modified by CI PHPUnit Test
+	 * modified by ci-phpunit-test
 	 */
 	public function model($model, $name = '', $db_conn = FALSE)
 	{
@@ -961,7 +961,7 @@ class CI_Loader {
 	 * @param	string	$object_name	Optional object name to assign to
 	 * @return	void
 	 * 
-	 * modified by CI PHPUnit Test
+	 * modified by ci-phpunit-test
 	 */
 	protected function _ci_load_library($class, $params = NULL, $object_name = NULL)
 	{
@@ -1057,7 +1057,7 @@ class CI_Loader {
 	 * @param	string	$object_name	Optional object name to assign to
 	 * @return	void
 	 * 
-	 * modified by CI PHPUnit Test
+	 * modified by ci-phpunit-test
 	 */
 	protected function _ci_load_stock_library($library_name, $file_path, $params, $object_name)
 	{
