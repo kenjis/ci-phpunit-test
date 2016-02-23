@@ -110,6 +110,12 @@ Generating code coverage report in HTML format ... done
 
 To generate coverage report, Xdebug is needed.
 
+If you want to run a single test case file:
+
+~~~
+$ phpunit models/Category_model_test.php
+~~~
+
 ## How to Write Tests
 
 As an example, a test case class for `Inventory_model` would be as follows:
