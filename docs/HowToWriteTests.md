@@ -456,7 +456,7 @@ See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v
 
 #### Request and Use Mocks
 
-You can use [$this->request->setCallable()](FunctionAndClassReference.md#request-setcallable) method in ci-phpunit-test. [$this->getDouble()](FunctionAndClassReference.md#testcasegetdoubleclassname-params) is a helper method in ci-phpunit-test.
+You can use [$this->request->setCallable()](FunctionAndClassReference.md#request-setcallable) method in ci-phpunit-test. [$this->getDouble()](FunctionAndClassReference.md#testcasegetdoubleclassname-params-enable_constructor--false) is a helper method in ci-phpunit-test.
 
 ~~~php
 	public function test_send_okay()
@@ -576,7 +576,7 @@ See [working sample](https://github.com/kenjis/codeigniter-tettei-apps/blob/deve
 
 #### Controller with Authentication
 
-I recommend using PHPUnit mock objects. [$this->getDouble()](FunctionAndClassReference.md#testcasegetdoubleclassname-params) is a helper method in ci-phpunit-test.
+I recommend using PHPUnit mock objects. [$this->getDouble()](FunctionAndClassReference.md#testcasegetdoubleclassname-params-enable_constructor--false) is a helper method in ci-phpunit-test.
 
 ~~~php
 	public function test_index_logged_in()
