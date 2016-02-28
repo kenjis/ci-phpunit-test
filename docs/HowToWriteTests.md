@@ -71,11 +71,11 @@ If you don't know well about config files and environments, see [CodeIgniter Use
 
 ### Can and Can't
 
-ci-phpunit-test does not want to modify CodeIgniter files. The more you modify them, the more you get difficulities when you update CodeIgniter.
+ci-phpunit-test does not want to modify CodeIgniter files. The more you modify them, the more you get difficulties when you update CodeIgniter.
 
-In fact, it uses a modified class and a few functions. But I try to modify as little as possible.
+In fact, it uses modified classes and some functions. But I try to modify as little as possible.
 
-The core functions and a class which are modified:
+The core functions and classes which are modified:
 
 * function `get_instance()`
 * function `load_class()`
@@ -93,7 +93,7 @@ and a helper which is modified:
 
 * function `redirect()` in URL helper
 
-All of them are in `tests/_ci_phpunit_test/replacing` folder.
+All of them are placed in `tests/_ci_phpunit_test/replacing` folder.
 
 And ci-phpunit-test adds properties dynamically:
 
