@@ -1,5 +1,11 @@
 # Change Log for ci-phpunit-test
 
+## v0.11.2 (Not Released)
+
+### Others
+
+* Compatible with CodeIgniter 3.0.5
+
 ## v0.11.1 (2016/02/22)
 
 ### Fixed
