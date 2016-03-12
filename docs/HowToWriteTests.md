@@ -104,6 +104,8 @@ And ci-phpunit-test has a modified bootstrap file:
 
 * `core/CodeIgniter.php`
 
+**Note to Maintainer:** If you modify another CodeIgniter file, update `bin/check-diff.sh` and `check-ci-diff`, too.
+
 #### MY_Loader
 
 ci-phpunit-test replaces `CI_Loader` and modifies below methods:
