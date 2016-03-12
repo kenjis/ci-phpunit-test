@@ -25,10 +25,13 @@ rm -rf "$v1/user_guide"
 rm -rf "$v2/user_guide"
 diff -uwbrN "$v1" "$v2" > "$v1-$v2.diff"
 
+# Please add files which you modify.
 list="
 index.php
 system/core/Loader.php
+system/core/Input.php
 system/core/Common.php
+system/core/CodeIgniter.php
 system/helpers/url_helper.php
 "
 
