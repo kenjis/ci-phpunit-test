@@ -185,3 +185,4 @@ See [Function and Class Reference](https://github.com/kenjis/ci-phpunit-test/blo
 * [CodeIgniter Doctrine](https://github.com/kenjis/codeigniter-doctrine)
 * [CodeIgniter Deployer](https://github.com/kenjis/codeigniter-deployer)
 * [CodeIgniter3 Filename Checker](https://github.com/kenjis/codeigniter3-filename-checker)
+* [CodeIgniter Widget (View Partial) Sample](https://github.com/kenjis/codeigniter-widgets)
