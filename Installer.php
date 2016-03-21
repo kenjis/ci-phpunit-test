@@ -43,12 +43,26 @@ class Installer
         
         if (! file_exists('index.php')) {
             if (file_exists('public/index.php')) {
+                // CodeIgniter 3.0.6 and after
+                $contents = str_replace(
+                    "define('FCPATH', realpath(dirname(__FILE__).'/../..').DIRECTORY_SEPARATOR);",
+                    "define('FCPATH', realpath(dirname(__FILE__).'/../../public').DIRECTORY_SEPARATOR);",
+                    $contents
+                );
+                // CodeIgniter 3.0.5 and before
                 $contents = str_replace(
                     "define('FCPATH', realpath(dirname(__FILE__).'/../..').'/');",
                     "define('FCPATH', realpath(dirname(__FILE__).'/../../public').'/');",
                     $contents
                 );
             } elseif (file_exists($app . '/public/index.php')) {
+                // CodeIgniter 3.0.6 and after
+                $contents = str_replace(
+                    "define('FCPATH', realpath(dirname(__FILE__).'/../..').DIRECTORY_SEPARATOR);",
+                    "define('FCPATH', realpath(dirname(__FILE__).'/../public').DIRECTORY_SEPARATOR);",
+                    $contents
+                );
+                // CodeIgniter 3.0.5 and before
                 $contents = str_replace(
                     "define('FCPATH', realpath(dirname(__FILE__).'/../..').'/');",
                     "define('FCPATH', realpath(dirname(__FILE__).'/../public').'/');",
