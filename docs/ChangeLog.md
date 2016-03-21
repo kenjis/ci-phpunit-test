@@ -1,5 +1,12 @@
 # Change Log for ci-phpunit-test
 
+## v0.11.3 (Not Released)
+
+### Others
+
+* Compatible with CodeIgniter 3.0.6
+* Improved installer. See [#103](https://github.com/kenjis/ci-phpunit-test/pull/103).
+
 ## v0.11.2 (2016/03/17)
 
 ### Others
