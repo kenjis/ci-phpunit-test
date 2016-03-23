@@ -2,6 +2,10 @@
 
 ## v0.11.3 (Not Released)
 
+### Fixed
+
+* `assertRedirect()` does not work with external redirects. See [104](https://github.com/kenjis/ci-phpunit-test/pull/104).
+
 ### Others
 
 * Compatible with CodeIgniter 3.0.6
