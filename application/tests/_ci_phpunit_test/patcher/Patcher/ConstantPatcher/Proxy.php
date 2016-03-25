@@ -26,15 +26,13 @@ class Proxy
 {
 	private static $patches = [];
 	private static $patches_to_apply = [];
-	private static $expected_invocations = [];
-	private static $invocations = [];
 
 	/**
 	 * Set a constant patch
 	 * 
-	 * @param string $constant	 constant name
-	 * @param mixed  $value		value
-	 * @param string $class_name   class::method to apply this patch
+	 * @param string $constant      constant name
+	 * @param mixed  $value         value
+	 * @param string $class_method  class::method to apply this patch
 	 * 
 	 * @throws LogicException
 	 */
@@ -107,7 +105,6 @@ class Proxy
 	public static function get($constant)
 	{
 		self::logInvocation($constant);
-		self::$invocations[$constant][] = null;
 
 		if (isset(self::$patches_to_apply[$constant]))
 		{
