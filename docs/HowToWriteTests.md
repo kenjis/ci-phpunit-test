@@ -767,6 +767,7 @@ ci-phpunit-test has three monkey patchers.
 * `ExitPatcher`: Converting `exit()` to Exception
 * `FunctionPatcher`: Patching Functions
 * `MethodPatcher`: Patching Methods in User-defined Classes
+* `ConstantPatcher`: Changing Constant Values
 
 **Note:** This functionality has a negative impact on speed of tests.
 
