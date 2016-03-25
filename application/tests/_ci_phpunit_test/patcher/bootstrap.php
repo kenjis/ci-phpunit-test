@@ -48,6 +48,7 @@ class_alias('Kenjis\MonkeyPatch\MonkeyPatchManager', 'MonkeyPatchManager');
 //		'ExitPatcher',
 //		'FunctionPatcher',
 //		'MethodPatcher',
+//		'ConstantPatcher',
 //	],
 //	// Additional functions to patch
 //	'functions_to_patch' => [

@@ -32,6 +32,7 @@ class MonkeyPatchManager
 		'ExitPatcher',
 		'FunctionPatcher',
 		'MethodPatcher',
+		'ConstantPatcher',
 	];
 
 	public static function log($message)
