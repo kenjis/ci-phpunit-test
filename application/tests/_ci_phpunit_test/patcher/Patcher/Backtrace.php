@@ -17,6 +17,7 @@ class Backtrace
 	private static $map = [
 		'FunctionPatcher' => 1,
 		'MethodPatcher'   => 0,
+		'ConstantPatcher' => 0,
 	];
 
 	public static function getInfo($patcher, $backtrace)

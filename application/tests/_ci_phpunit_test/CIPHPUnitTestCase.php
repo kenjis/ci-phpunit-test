@@ -80,6 +80,11 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 				MonkeyPatch::resetFunctions();
 			}
 
+			if (MonkeyPatchManager::isEnabled('ConstantPatcher'))
+			{
+				MonkeyPatch::resetConstants();
+			}
+
 			if (MonkeyPatchManager::isEnabled('MethodPatcher'))
 			{
 				try {

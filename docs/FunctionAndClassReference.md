@@ -1,6 +1,7 @@
 # ci-phpunit-test for CodeIgniter 3.0
 
-version: **v0.11.3** | 
+version: **v0.12.0** | 
+[v0.11.3](https://github.com/kenjis/ci-phpunit-test/blob/v0.11.3/docs/FunctionAndClassReference.md) | 
 [v0.10.1](https://github.com/kenjis/ci-phpunit-test/blob/v0.10.1/docs/FunctionAndClassReference.md) | 
 [v0.9.1](https://github.com/kenjis/ci-phpunit-test/blob/v0.9.1/docs/FunctionAndClassReference.md) | 
 [v0.8.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.8.2/docs/FunctionAndClassReference.md) | 
@@ -46,6 +47,8 @@ version: **v0.11.3** |
 	- [`MonkeyPatch::resetFunctions()`](#monkeypatchresetfunctions)
 	- [`MonkeyPatch::patchMethod($classname, $params)`](#monkeypatchpatchmethodclassname-params)
 	- [`MonkeyPatch::resetMethods()`](#monkeypatchresetmethods)
+	- [`MonkeyPatch::patchConstant($constant, $value, $class_method)`](#monkeypatchpatchconstantconstant-value-class_method)
+	- [`MonkeyPatch::resetConstants()`](#monkeypatchresetconstants)
 	- [`MonkeyPatch::verifyInvoked($class_method, $params)`](#monkeypatchverifyinvokedclass_method-params)
 	- [`MonkeyPatch::verifyInvokedOnce($class_method, $params)`](#monkeypatchverifyinvokedonceclass_method-params)
 	- [`MonkeyPatch::verifyInvokedMultipleTimes($class_method, $times, $params)`](#monkeypatchverifyinvokedmultipletimesclass_method-times-params)
@@ -636,6 +639,30 @@ MonkeyPatch::patchMethod(
 #### `MonkeyPatch::resetMethods()`
 
 Resets all patched class methods.
+
+This method is called on `TestCase::tearDown()` by default. So you don't have to call it normally.
+
+#### `MonkeyPatch::patchConstant($constant, $value, $class_method)`
+
+| param         | type   | description                                    |
+|---------------|--------|------------------------------------------------|
+|`$constant`    | string | constant name to patch                         |
+|`$value`       | mixed  | value                                          |
+|`$class_method`| string | class::method or classname to apply this patch |
+
+Replaces constant value on the fly.
+
+If `$class_method` is present, the patch is applied to the constants only in the class method or in the class.
+
+There are some known limitations. See [How to Write Tests](HowToWriteTests.md#patching-constants) for details.
+
+~~~php
+MonkeyPatch::patchConstant('ENVIRONMENT', 'development', 'Welcome::index');
+~~~
+
+#### `MonkeyPatch::resetConstants()`
+
+Resets all patched constants.
 
 This method is called on `TestCase::tearDown()` by default. So you don't have to call it normally.
 

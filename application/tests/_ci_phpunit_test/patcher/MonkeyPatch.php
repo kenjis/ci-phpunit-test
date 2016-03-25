@@ -11,7 +11,7 @@
 namespace Kenjis\MonkeyPatch;
 
 use Kenjis\MonkeyPatch\Patcher\FunctionPatcher\Proxy;
-use Kenjis\MonkeyPatch\Patcher\FunctionPatcher;
+use Kenjis\MonkeyPatch\Patcher\ConstantPatcher\Proxy as ConstProxy;
 use Kenjis\MonkeyPatch\Patcher\MethodPatcher\PatchManager;
 
 class MonkeyPatch
@@ -34,6 +34,26 @@ class MonkeyPatch
 	public static function resetFunctions()
 	{
 		Proxy::reset__();
+	}
+
+	/**
+     * Patch on constant
+     * 
+     * @param type $constant
+     * @param type $value
+     * @param type $class_method
+     */
+	public static function patchConstant($constant, $value, $class_method = null)
+	{
+		ConstProxy::patch($constant, $value, $class_method);
+	}
+
+	/**
+	 * Reset all patched constants
+	 */
+	public static function resetConstants()
+	{
+		ConstProxy::reset();
 	}
 
 	/**
