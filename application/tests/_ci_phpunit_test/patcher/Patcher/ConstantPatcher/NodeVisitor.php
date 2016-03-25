@@ -57,16 +57,19 @@ class NodeVisitor extends NodeVisitorAbstract
 			return;
 		}
 
-		$replacement = new FullyQualified(array());
-		$replacement->set(
-			'\__ConstProxy__::get(\'' . (string) $node->name . '\')'
-		);
+		if (! ConstantPatcher::isBlacklisted((string) $node->name))
+		{
+			$replacement = new FullyQualified(array());
+			$replacement->set(
+				'\__ConstProxy__::get(\'' . (string) $node->name . '\')'
+			);
 
-		$pos = $node->getAttribute('startTokenPos');
-		ConstantPatcher::$replacement[$pos] = 
-			'\__ConstProxy__::get(\'' . (string) $node->name .'\')';
+			$pos = $node->getAttribute('startTokenPos');
+			ConstantPatcher::$replacement[$pos] = 
+				'\__ConstProxy__::get(\'' . (string) $node->name .'\')';
 
-		$node->name = $replacement;
+			$node->name = $replacement;
+		}
 	}
 
 	/**
