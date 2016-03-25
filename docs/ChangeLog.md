@@ -1,5 +1,11 @@
 # Change Log for ci-phpunit-test
 
+## v0.12.0 (Not Released)
+
+### Added
+
+* Monkey Patching on constants. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#patching-constants).
+
 ## v0.11.3 (2016/03/25)
 
 ### Fixed

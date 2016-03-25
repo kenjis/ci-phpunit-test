@@ -1,6 +1,7 @@
 # ci-phpunit-test for CodeIgniter 3.0
 
-version: **v0.11.3** | 
+version: **v0.12.0** | 
+[v0.11.3](https://github.com/kenjis/ci-phpunit-test/blob/v0.11.3/docs/HowToWriteTests.md) | 
 [v0.10.1](https://github.com/kenjis/ci-phpunit-test/blob/v0.10.1/docs/HowToWriteTests.md) | 
 [v0.9.1](https://github.com/kenjis/ci-phpunit-test/blob/v0.9.1/docs/HowToWriteTests.md) | 
 [v0.8.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.8.2/docs/HowToWriteTests.md) | 
@@ -47,6 +48,7 @@ version: **v0.11.3** |
 	- [Converting `exit()` to Exception](#converting-exit-to-exception)
 	- [Patching Functions](#patching-functions)
 	- [Patching Methods in User-defined Classes](#patching-methods-in-user-defined-classes)
+	- [Patching Constants](#patching-constants)
 - [More Samples](#more-samples)
 - [Third Party Libraries](#third-party-libraries)
 	- [CodeIgniter Rest Server](#codeigniter-rest-server)
@@ -793,6 +795,7 @@ MonkeyPatchManager::init([
 		'ExitPatcher',
 		'FunctionPatcher',
 		'MethodPatcher',
+		'ConstantPatcher',
 	],
 	// Additional functions to patch
 	'functions_to_patch' => [
@@ -956,6 +959,57 @@ This patcher allows replacement of methods in user-defined classes.
 [MonkeyPatch::patchMethod()](FunctionAndClassReference.md#monkeypatchpatchmethodclassname-params) replaces `get_category_list()` method in `Category_model`, and it will return `[(object) ['name' => 'Nothing']]` in the test method.
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v0.11.3/application/tests/controllers/Patching_on_method_test.php).
+
+#### Patching Constants
+
+This patcher allows replacement of constant value.
+
+~~~php
+	public function test_index()
+	{
+		MonkeyPatch::patchConstant('ENVIRONMENT', 'development', 'Welcome::index');
+		$output = $this->request('GET', 'welcome/index');
+		$this->assertContains('development', $output);
+	}
+~~~
+
+[MonkeyPatch::patchConstant()](FunctionAndClassReference.md#monkeypatchpatchconstantconstant-value-class_method) replaces the return value of the constant `ENVIRONMENT` in `Welcome::index` method.
+
+There are a few known limitations:
+
+* Cannot patch constants that are used as default values in function arguments.
+* Cannot patch constants that are used as default values in constant declarations.
+* Cannot patch constants that are used as default values in property declarations.
+* Cannot patch constants that are used as default values in static variable declarations.
+
+See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Patching_on_constant_test.php).
+
+##### Upgrade Note for v0.12.0
+
+If you want to use the constant patcher, please add `ConstantPatcher` in the `patcher_list` in [tests/Bootstrap.php](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/Bootstrap.php#L340).
+
+*before:*
+~~~php
+	// All patchers you use.
+	'patcher_list' => [
+		'ExitPatcher',
+		'FunctionPatcher',
+		'MethodPatcher',
+	],
+~~~
+
+↓
+
+*after:*
+~~~php
+	// All patchers you use.
+	'patcher_list' => [
+		'ExitPatcher',
+		'FunctionPatcher',
+		'MethodPatcher',
+		'ConstantPatcher',  // Add this
+	],
+~~~
 
 ### More Samples
 
