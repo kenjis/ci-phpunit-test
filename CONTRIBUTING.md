@@ -1,5 +1,8 @@
 # Contributing to ci-phpunit-test
 
+You must write commit logs and pull requests in English.
+Because most users could read English, but can't read another language.
+
 ## Testing
 
 There are tests for ci-phpunit-test: https://github.com/kenjis/ci-app-for-ci-phpunit-test/tree/master/application/tests
