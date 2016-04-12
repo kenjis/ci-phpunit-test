@@ -52,6 +52,9 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 			'index.php',
 		];
 		$_SERVER['argc'] = 1;
+		
+		// Reset current directroy
+		chdir(FCPATH);
 	}
 
 	/**

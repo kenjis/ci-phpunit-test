@@ -29,6 +29,8 @@ class CIPHPUnitTest
 		$_SERVER['argc'] = 2;
 
 		self::$autoload_dirs = $autoload_dirs;
+		
+		$cwd_backup = getcwd();
 
 		// Load autoloader for ci-phpunit-test
 		require __DIR__ . '/autoloader.php';
@@ -84,6 +86,9 @@ class CIPHPUnitTest
 
 		// Restore $_SERVER. We need this for NetBeans
 		$_SERVER = $_server_backup;
+		
+		// Restore cwd to use `Usage: phpunit [options] <directory>`
+		chdir($cwd_backup);
 	}
 
 	public static function createCodeIgniterInstance()
