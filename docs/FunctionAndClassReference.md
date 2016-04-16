@@ -161,7 +161,7 @@ If you want to make POST request:
 ~~~php
 $output = $this->request(
 	'POST',
-	['form/index'],
+	'form/index',
 	['name' => 'John Smith', 'email' => 'john@example.com']
 );
 ~~~
