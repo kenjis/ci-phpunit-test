@@ -6,6 +6,10 @@
 
 * Monkey Patching on constants. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#patching-constants).
 
+### Others
+
+* Update nikic/PHP-Parser to v2.0.1
+
 ## v0.11.3 (2016/03/25)
 
 ### Fixed
