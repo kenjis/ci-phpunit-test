@@ -21,6 +21,7 @@ reserved_non_modifiers:
     | T_FINALLY | T_THROW | T_USE | T_INSTEADOF | T_GLOBAL | T_VAR | T_UNSET | T_ISSET | T_EMPTY | T_CONTINUE | T_GOTO
     | T_FUNCTION | T_CONST | T_RETURN | T_PRINT | T_YIELD | T_LIST | T_SWITCH | T_ENDSWITCH | T_CASE | T_DEFAULT
     | T_BREAK | T_ARRAY | T_CALLABLE | T_EXTENDS | T_IMPLEMENTS | T_NAMESPACE | T_TRAIT | T_INTERFACE | T_CLASS
+    | T_CLASS_C | T_TRAIT_C | T_FUNC_C | T_METHOD_C | T_LINE | T_FILE | T_DIR | T_NS_C | T_HALT_COMPILER
 ;
 
 semi_reserved:
@@ -136,7 +137,7 @@ inner_statement:
           { throw new Error('__HALT_COMPILER() can only be used from the outermost scope', attributes()); }
 ;
 
-statement:
+non_empty_statement:
       '{' inner_statement_list '}'                          { $$ = $2; }
     | T_IF parentheses_expr statement elseif_list else_single
           { $$ = Stmt\If_[$2, ['stmts' => toArray($3), 'elseifs' => $4, 'else' => $5]]; }
@@ -165,13 +166,17 @@ statement:
     | T_FOREACH '(' expr T_AS variable T_DOUBLE_ARROW foreach_variable ')' foreach_statement
           { $$ = Stmt\Foreach_[$3, $7[0], ['keyVar' => $5, 'byRef' => $7[1], 'stmts' => $9]]; }
     | T_DECLARE '(' declare_list ')' declare_statement      { $$ = Stmt\Declare_[$3, $5]; }
-    | ';'                                                   { $$ = array(); /* means: no statement */ }
     | T_TRY '{' inner_statement_list '}' catches optional_finally
           { $$ = Stmt\TryCatch[$3, $5, $6]; }
     | T_THROW expr ';'                                      { $$ = Stmt\Throw_[$2]; }
     | T_GOTO T_STRING ';'                                   { $$ = Stmt\Goto_[$2]; }
     | T_STRING ':'                                          { $$ = Stmt\Label[$1]; }
     | error                                                 { $$ = array(); /* means: no statement */ }
+;
+
+statement:
+      non_empty_statement                                   { $$ = $1; }
+    | ';'                                                   { $$ = array(); /* means: no statement */ }
 ;
 
 catches:
@@ -255,7 +260,8 @@ foreach_statement:
 ;
 
 declare_statement:
-      statement                                             { $$ = toArray($1); }
+      non_empty_statement                                   { $$ = toArray($1); }
+    | ';'                                                   { $$ = null; }
     | ':' inner_statement_list T_ENDDECLARE ';'             { $$ = $2; }
 ;
 
