@@ -11,7 +11,7 @@
 require __DIR__ . '/Installer.php';
 
 $app = 'application';
-if ($argv && $argv[1] && is_dir($argv[1])) {
+if (isset($argv[1]) && is_dir($argv[1])) {
     $app = $argv[1];
 }
 $installer = new Installer();
