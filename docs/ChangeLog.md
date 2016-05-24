@@ -4,7 +4,8 @@
 
 ### Fixed
 
-* Fix bug that *Function Patcher* on `openssl_random_pseudo_bytes()` may cause the waring "Missing argument 2". See [#119](https://github.com/kenjis/ci-phpunit-test/issues/119).
+* Fix bug that *Function Patcher* on `openssl_random_pseudo_bytes()` may cause "Warning: Missing argument 2". See [#119](https://github.com/kenjis/ci-phpunit-test/issues/119).
+* Fix bug that installation/update script for Composer installation causes "Notice: Undefined offset: 1".
 
 ## v0.12.0 (2016/04/17)
 
