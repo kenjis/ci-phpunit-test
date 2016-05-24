@@ -1,5 +1,11 @@
 # Change Log for ci-phpunit-test
 
+## v0.12.0 (Not Released)
+
+### Fixed
+
+* Fix bug that *Function Patcher* on `openssl_random_pseudo_bytes()` may cause the waring "Missing argument 2". See [#119](https://github.com/kenjis/ci-phpunit-test/issues/119).
+
 ## v0.12.0 (2016/04/17)
 
 ### Added
