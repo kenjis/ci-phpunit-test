@@ -250,7 +250,7 @@ class Proxy
 	}
 
 	public static function openssl_random_pseudo_bytes(
-		$length, &$crypto_strong
+		$length, &$crypto_strong = null
 	)
 	{
 		$function = 'openssl_random_pseudo_bytes';
