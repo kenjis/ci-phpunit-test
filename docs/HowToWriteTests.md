@@ -171,7 +171,7 @@ See [Controller with Hooks](#controller-with-hooks) for details.
 
 ci-phpunit-test has an autoloader for class files.
 
-To change the search paths, change the line [`CIPHPUnitTest::init();`](https://github.com/kenjis/ci-phpunit-test/blob/v0.12.1/application/tests/Bootstrap.php#L336) in `tests/Bootstrap.php` like below:
+To change the search paths, change the line [`CIPHPUnitTest::init();`](https://github.com/kenjis/ci-phpunit-test/blob/v0.12.1/application/tests/Bootstrap.php#L366) in `tests/Bootstrap.php` like below:
 
 ~~~php
 CIPHPUnitTest::init([
@@ -934,7 +934,7 @@ See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v
 
 **Patch on Other Functions**
 
-If you want to patch other functions, you can add them to [functions_to_patch](https://github.com/kenjis/ci-phpunit-test/blob/v0.12.1/application/tests/Bootstrap.php#L323) in `MonkeyPatchManager::init()`.
+If you want to patch other functions, you can add them to [functions_to_patch](https://github.com/kenjis/ci-phpunit-test/blob/v0.12.1/application/tests/Bootstrap.php#L348) in `MonkeyPatchManager::init()`.
 
 But there are a few known limitations:
 
@@ -1016,7 +1016,7 @@ If you want to use the constant patcher, please add `ConstantPatcher` in the `pa
 
 Want to see more tests?
 
-* https://github.com/kenjis/ci-app-for-ci-phpunit-test/tree/v0.12.0/application/tests
+* https://github.com/kenjis/ci-app-for-ci-phpunit-test/tree/v0.12.1/application/tests
 * https://github.com/kenjis/codeigniter-tettei-apps/tree/develop/application/tests
 
 ### Third Party Libraries
