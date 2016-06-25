@@ -24,17 +24,26 @@ EOS;
 Test $a and $b->c test
 EOS;
 
-// comment to force line break before EOF
+b<<<EOS
+Binary
+EOS;
+
 -----
 array(
     0: Scalar_String(
         value:
+        comments: array(
+            0: // empty strings
+        )
     )
     1: Scalar_String(
         value:
     )
     2: Scalar_String(
         value: Test '" $a \n
+        comments: array(
+            0: // constant encapsed strings
+        )
     )
     3: Scalar_String(
         value: Test '" $a
@@ -48,6 +57,9 @@ array(
             1: Expr_Variable(
                 name: a
             )
+        )
+        comments: array(
+            0: // encapsed strings
         )
     )
     5: Scalar_Encapsed(
@@ -71,5 +83,8 @@ array(
                 value:  test
             )
         )
+    )
+    6: Scalar_String(
+        value: Binary
     )
 )

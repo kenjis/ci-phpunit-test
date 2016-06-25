@@ -11,6 +11,6 @@ echo 'Foo Bar';
 echo 'Bar Foo';
 -----
 <?php
-// avoid trim
+
 -----
 <?php

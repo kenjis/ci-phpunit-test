@@ -43,9 +43,12 @@ if (count($arguments) !== 2) {
 }
 
 $showProgress = true;
-if (count($options) > 0) {
-    if (count($options) === 1 && $options[0] === '--no-progress') {
+$verbose = false;
+foreach ($options as $option) {
+    if ($option === '--no-progress') {
         $showProgress = false;
+    } elseif ($option === '--verbose') {
+        $verbose = true;
     } else {
         showHelp('Invalid option passed!');
     }
@@ -85,6 +88,13 @@ switch ($testType) {
 # pretty print difference due to INF vs 1e1000
 | ext.standard.tests.general_functions.bug27678
 | tests.lang.bug24640
+# pretty print difference due to nop statements
+| ext.mbstring.tests.htmlent
+| ext.standard.tests.file.fread_basic
+# tests using __halt_compiler as semi reserved keyword
+| Zend.tests.grammar.semi_reserved_001
+| Zend.tests.grammar.semi_reserved_002
+| Zend.tests.grammar.semi_reserved_005
 )\.phpt$~x', $file)) {
                 return null;
             }
@@ -160,11 +170,17 @@ foreach (new RecursiveIteratorIterator(
 
             if (!$same) {
                 echo $file, ":\n    Result of initial parse and parse after pretty print differ\n";
+                if ($verbose) {
+                    echo "Pretty printer output:\n=====\n$code\n=====\n\n";
+                }
 
                 ++$compareFail;
             }
         } catch (PhpParser\Error $e) {
             echo $file, ":\n    Parse of pretty print failed with message: {$e->getMessage()}\n";
+            if ($verbose) {
+                echo "Pretty printer output:\n=====\n$code\n=====\n\n";
+            }
 
             ++$ppFail;
         }
@@ -176,8 +192,10 @@ foreach (new RecursiveIteratorIterator(
 }
 
 if (0 === $parseFail && 0 === $ppFail && 0 === $compareFail) {
+    $exit = 0;
     echo "\n\n", 'All tests passed.', "\n";
 } else {
+    $exit = 1;
     echo "\n\n", '==========', "\n\n", 'There were: ', "\n";
     if (0 !== $parseFail) {
         echo '    ', $parseFail,   ' parse failures.',        "\n";
@@ -201,3 +219,5 @@ echo "\n",
      "\n",
      'Total time:           ', microtime(true) - $totalStartTime, "\n",
      'Maximum memory usage: ', memory_get_peak_usage(true), "\n";
+
+exit($exit);

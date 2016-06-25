@@ -6,6 +6,10 @@
 
 * Fix bug that *Method Patcher* fails dealing with interfaces or abstract classes.
 
+### Others
+
+* Update nikic/PHP-Parser to v2.1.0
+
 ## v0.12.1 (2016/06/11)
 
 ### Fixed
