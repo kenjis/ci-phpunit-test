@@ -1,5 +1,11 @@
 # Change Log for ci-phpunit-test
 
+## v0.12.2 (Not Released)
+
+### Fixed
+
+* Fix bug that *Method Patcher* fails dealing with interfaces or abstract classes.
+
 ## v0.12.1 (2016/06/11)
 
 ### Fixed
