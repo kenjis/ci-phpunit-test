@@ -70,11 +70,6 @@ EOL;
 			}
 		}
 
-		if ($replacement !== false)
-		{
-			throw new LogicException('Replacement data still remain');
-		}
-
 		return $new_source;
 	}
 }
