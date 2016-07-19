@@ -181,7 +181,7 @@ class Proxy
 			'invoke_func: ' . $function . '() not patched (no patch)'
 		);
 		self::checkPassedByReference($function);
-		return call_user_func_array($function, $arguments);
+		return @call_user_func_array($function, $arguments);
 	}
 
 	protected static function checkPassedByReference($function)
