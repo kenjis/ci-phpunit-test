@@ -1,6 +1,6 @@
 # ci-phpunit-test for CodeIgniter 3.0
 
-version: **v0.12.1** | 
+version: **v0.12.2** | 
 [v0.11.3](https://github.com/kenjis/ci-phpunit-test/blob/v0.11.3/docs/FunctionAndClassReference.md) | 
 [v0.10.1](https://github.com/kenjis/ci-phpunit-test/blob/v0.10.1/docs/FunctionAndClassReference.md) | 
 [v0.9.1](https://github.com/kenjis/ci-phpunit-test/blob/v0.9.1/docs/FunctionAndClassReference.md) | 
