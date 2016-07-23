@@ -42,7 +42,8 @@ class PathChecker
 			}
 			if (is_dir($real_path))
 			{
-				$real_path = $real_path . '/';
+				// Must use DIRECTORY_SEPARATOR for Windows
+				$real_path = $real_path . DIRECTORY_SEPARATOR;
 			}
 			$new_paths[] = $excluded ? '-'.$real_path : $real_path;
 		}
