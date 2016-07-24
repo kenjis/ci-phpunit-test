@@ -4,7 +4,7 @@
 
 ### Added
 
-* Database test helpers. See [#103](https://github.com/kenjis/ci-phpunit-test/pull/103).
+* Database test helpers. See [#133](https://github.com/kenjis/ci-phpunit-test/pull/133).
 
 ## v0.12.2 (2016/07/24)
 
