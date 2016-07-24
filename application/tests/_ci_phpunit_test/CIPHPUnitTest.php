@@ -41,7 +41,12 @@ class CIPHPUnitTest
 		require_once __DIR__ . '/patcher/third_party/PHP-Parser/lib/bootstrap.php';
 
 		require APPPATH . '/tests/TestCase.php';
-		require APPPATH . '/tests/DbTestCase.php';
+
+		$db_test_case_file = APPPATH . '/tests/DbTestCase.php';
+		if (is_readable($db_test_case_file))
+		{
+			require $db_test_case_file;
+		}
 
 		// Replace a few Common functions
 		require __DIR__ . '/replacing/core/Common.php';
