@@ -1,6 +1,7 @@
 # ci-phpunit-test for CodeIgniter 3.0
 
-version: **v0.12.2** | 
+version: **v0.13.0** | 
+[v0.12.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.12.2/docs/FunctionAndClassReference.md) | 
 [v0.11.3](https://github.com/kenjis/ci-phpunit-test/blob/v0.11.3/docs/FunctionAndClassReference.md) | 
 [v0.10.1](https://github.com/kenjis/ci-phpunit-test/blob/v0.10.1/docs/FunctionAndClassReference.md) | 
 [v0.9.1](https://github.com/kenjis/ci-phpunit-test/blob/v0.9.1/docs/FunctionAndClassReference.md) | 
@@ -38,6 +39,12 @@ version: **v0.12.2** |
 	- [`TestCase::verifyNeverInvoked($mock, $method, $params)`](#testcaseverifyneverinvokedmock-method-params)
 	- [`TestCase::warningOff()`](#testcasewarningoff)
 	- [`TestCase::warningOn()`](#testcasewarningon)
+- [*class* DbTestCase](#class-dbtestcase)
+	- [`DbTestCase::seeInDatabase($table, $where)`](#dbtestcaseseeindatabasetable-where)
+	- [`DbTestCase::dontSeeInDatabase($table, $where)`](#dbtestcasedontseeindatabasetable-where)
+	- [`DbTestCase::seeNumRecords($expected, $table, $where = [])`](#dbtestcaseseenumrecordsexpected-table-where--)
+	- [`DbTestCase::hasInDatabase($table, $data)`](#dbtestcasehasindatabasetable-data)
+	- [`DbTestCase::grabFromDatabase($table, $column, $where)`](#dbtestcasegrabfromdatabasetable-column-where)
 - [*class* ReflectionHelper](#class-reflectionhelper)
 	- [`ReflectionHelper::getPrivateProperty($obj, $property)`](#reflectionhelpergetprivatepropertyobj-property)
 	- [`ReflectionHelper::setPrivateProperty($obj, $property, $value)`](#reflectionhelpersetprivatepropertyobj-property-value)
@@ -526,6 +533,55 @@ Restores PHP error reporting.
 ~~~php
 $this->warningOn();
 ~~~
+
+### *class* DbTestCase
+
+#### `DbTestCase::seeInDatabase($table, $where)`
+
+| param   | type   | description      |
+|---------|--------|------------------|
+|`$table` | string | table name       |
+|`$where` | array  | where conditions |
+
+Checks if records that match the conditions in `$where` exist in the database.
+
+#### `DbTestCase::dontSeeInDatabase($table, $where)`
+
+| param   | type   | description      |
+|---------|--------|------------------|
+|`$table` | string | table name       |
+|`$where` | array  | where conditions |
+
+Checks if records that match the conditions in `$where` do not exist in the database.
+
+#### `DbTestCase::seeNumRecords($expected, $table, $where = [])`
+
+| param      | type   | description      |
+|------------|--------|------------------|
+|`$expected` | int    | expected number  |
+|`$table`    | string | table name       |
+|`$where`    | array  | where conditions |
+
+Checks if the number of rows in the database that match `$where` is equal to `$expected`.
+
+#### `DbTestCase::hasInDatabase($table, $data)`
+
+| param      | type   | description      |
+|------------|--------|------------------|
+|`$table`    | string | table name       |
+|`$data`     | array  | data to insert   |
+
+Inserts a row into to the database. This row will be removed after the test has run.
+
+#### `DbTestCase::grabFromDatabase($table, $column, $where)`
+
+| param      | type   | description      |
+|------------|--------|------------------|
+|`$table`    | string | table name       |
+|`$column`   | string | column name      |
+|`$where`    | array  | where conditions |
+
+Fetches a single column from a database row with criteria matching `$where`.
 
 ### *class* ReflectionHelper
 

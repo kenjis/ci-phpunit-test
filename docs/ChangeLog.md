@@ -1,5 +1,11 @@
 # Change Log for ci-phpunit-test
 
+## v0.13.0 (Not Released)
+
+### Added
+
+* Database test helpers. See [#133](https://github.com/kenjis/ci-phpunit-test/pull/133).
+
 ## v0.12.2 (2016/07/24)
 
 ### Fixed
