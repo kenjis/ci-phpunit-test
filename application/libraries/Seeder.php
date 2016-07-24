@@ -13,6 +13,7 @@ class Seeder
 	private $CI;
 	protected $db;
 	protected $dbforge;
+	protected $seedPath;
 
 	public function __construct()
 	{
@@ -30,10 +31,26 @@ class Seeder
 	 */
 	public function call($seeder)
 	{
-		$file = APPPATH . 'database/seeds/' . $seeder . '.php';
+		if ($this->seedPath === null)
+		{
+			$this->seedPath = APPPATH . 'database/seeds/';
+		}
+
+		$file = $this->seedPath . $seeder . '.php';
 		require_once $file;
+
 		$obj = new $seeder;
 		$obj->run();
+	}
+
+	/**
+	 * Set path for seeder files
+	 * 
+	 * @param string $path
+	 */
+	public function setPath($path)
+	{
+		$this->seedPath = rtrim($path, '/').'/';
 	}
 
 	public function __get($property)
