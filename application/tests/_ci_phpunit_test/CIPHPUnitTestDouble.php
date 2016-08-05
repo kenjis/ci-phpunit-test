@@ -33,7 +33,7 @@ class CIPHPUnitTestDouble
 	 * @param  string $classname
 	 * @param  array  $params             [method_name => return_value]
 	 * @param  mixed  $constructor_args enable constructor and args or not
-	 * @
+	 * 
 	 * @return object PHPUnit mock object
 	 */
 	public function getDouble($classname, $params, $constructor_args = [])
