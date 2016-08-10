@@ -36,7 +36,7 @@ class CIPHPUnitTestDouble
 	 * 
 	 * @return object PHPUnit mock object
 	 */
-	public function getDouble($classname, $params, $constructor_args = [])
+	public function getDouble($classname, $params, $constructor_args = false)
 	{
 		$methods = array_keys($params);
 
@@ -45,7 +45,7 @@ class CIPHPUnitTestDouble
 		// methods in it. But we can't use them in
 		// `$this->request->setCallablePreConstructor()`
 		$mock = $this->testCase->getMockBuilder($classname);
-		if (! $constructor_args)
+		if ($constructor_args === false)
 		{
 			$mock->disableOriginalConstructor();
 		}
