@@ -1,4 +1,4 @@
-# ci-phpunit-test for CodeIgniter 3.0
+# ci-phpunit-test for CodeIgniter 3.x
 
 [![Latest Stable Version](https://poser.pugx.org/kenjis/ci-phpunit-test/v/stable)](https://packagist.org/packages/kenjis/ci-phpunit-test) [![Total Downloads](https://poser.pugx.org/kenjis/ci-phpunit-test/downloads)](https://packagist.org/packages/kenjis/ci-phpunit-test) [![Latest Unstable Version](https://poser.pugx.org/kenjis/ci-phpunit-test/v/unstable)](https://packagist.org/packages/kenjis/ci-phpunit-test) [![License](https://poser.pugx.org/kenjis/ci-phpunit-test/license)](https://packagist.org/packages/kenjis/ci-phpunit-test)
 
@@ -6,7 +6,7 @@
 [![Coverage Status](https://coveralls.io/repos/kenjis/ci-phpunit-test/badge.svg?branch=master)](https://coveralls.io/r/kenjis/ci-phpunit-test?branch=master)
 [![Build Status](https://travis-ci.org/kenjis/ci-phpunit-test.svg?branch=master)](https://travis-ci.org/kenjis/ci-phpunit-test)
 
-An easier way to use PHPUnit with [CodeIgniter](https://github.com/bcit-ci/CodeIgniter) 3.0.
+An easier way to use PHPUnit with [CodeIgniter](https://github.com/bcit-ci/CodeIgniter) 3.x.
 
 * You don't have to modify CodeIgniter core files at all.
 * You can write controller tests easily.
@@ -18,7 +18,7 @@ An easier way to use PHPUnit with [CodeIgniter](https://github.com/bcit-ci/CodeI
 ## Requirements
 
 * PHP 5.4.0 or later
-* CodeIgniter 3.0.*
+* CodeIgniter 3.x
 * PHPUnit 4.3 or later (4.7 or later is recommended)
   * If you use NetBeans 8.0.2, please use 4.7. 4.8 is not compatible yet. You can download old version of `phpunit.phar` from <https://phar.phpunit.de/>.
 
@@ -181,7 +181,7 @@ See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/d
 
 See [Function and Class Reference](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/FunctionAndClassReference.md).
 
-## Related Projects for CodeIgniter 3.0
+## Related Projects for CodeIgniter 3.x
 
 * [CodeIgniter Composer Installer](https://github.com/kenjis/codeigniter-composer-installer)
 * [Cli for CodeIgniter 3.0](https://github.com/kenjis/codeigniter-cli)

@@ -6,6 +6,10 @@
 
 * Database test helpers. See [#133](https://github.com/kenjis/ci-phpunit-test/pull/133).
 
+### Others
+
+* Compatible with CodeIgniter 3.1.0
+
 ## v0.12.2 (2016/07/24)
 
 ### Fixed
