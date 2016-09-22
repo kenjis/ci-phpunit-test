@@ -236,6 +236,7 @@ class CIPHPUnitTestRequest
 	protected function requestUri($http_method, $uri, $request_params)
 	{
 		$_SERVER['argv'] = ['index.php', $uri];
+		$_SERVER['PATH_INFO'] = '/'.$uri;
 
 		// Force cli mode because if not, it changes URI (and RTR) behavior
 		$cli = is_cli();
