@@ -42,6 +42,7 @@ class CIPHPUnitTestAutoloader
 				APPPATH.'libraries',
 				APPPATH.'controllers',
 				APPPATH.'modules',
+				APPPATH.'hooks',
 			];
 		}
 		else
