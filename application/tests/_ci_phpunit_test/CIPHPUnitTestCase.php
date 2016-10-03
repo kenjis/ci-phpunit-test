@@ -16,6 +16,7 @@
 class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 {
 	protected $_error_reporting = -1;
+	protected $backupGlobalsBlacklist = ['RTR'];
 	
 	/**
 	 * @var CI_Controller CodeIgniter instance
