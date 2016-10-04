@@ -2,6 +2,10 @@
 
 ## v0.13.0 (Not Released)
 
+### Fixed
+
+* Fix bug that routes with closure cause serialization errors. See [#139](https://github.com/kenjis/ci-phpunit-test/pull/139).
+
 ### Added
 
 * Database test helpers. See [#133](https://github.com/kenjis/ci-phpunit-test/pull/133).
