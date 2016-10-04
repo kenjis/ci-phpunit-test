@@ -16,8 +16,15 @@
 class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 {
 	protected $_error_reporting = -1;
+
+    /**
+     * If you have a route with closure, PHPUnit can't serialize global variables.
+     * You would see `Exception: Serialization of 'Closure' is not allowed`.
+     *
+     * @var array
+     */
 	protected $backupGlobalsBlacklist = ['RTR'];
-	
+
 	/**
 	 * @var CI_Controller CodeIgniter instance
 	 */
