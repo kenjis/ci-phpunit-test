@@ -302,7 +302,7 @@ if ( ! is_php('5.4'))
  *  Instantiate the URI class
  * ------------------------------------------------------
  */
-	$URI =& load_class('URI', 'core');
+	$URI =& load_class('URI', 'core', $CFG);
 	CIPHPUnitTestSuperGlobal::set_Global('URI', $URI);
 
 /*
