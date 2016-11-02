@@ -75,6 +75,20 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 		$this->CI =& get_instance();
 	}
 
+    /**
+     * Create a controller instance
+     *
+     * @param string $classname
+     * @return CI_Controller
+     */
+    public function newController($classname)
+    {
+        reset_instance();
+        $controller = new $classname;
+        $this->CI =& get_instance();
+        return $controller;
+    }
+
 	protected function tearDown()
 	{
 		if (class_exists('MonkeyPatch', false))
