@@ -2,14 +2,15 @@
 
 ## v0.13.0 (Not Released)
 
+### Added
+
+* Now you can return callable with `$this->getDouble()`. See [#146](https://github.com/kenjis/ci-phpunit-test/pull/146).
+* Database test helpers. See [#133](https://github.com/kenjis/ci-phpunit-test/pull/133).
+* Now you can set constructor params with `$this->getDouble()`. See [#130](https://github.com/kenjis/ci-phpunit-test/pull/130).
+
 ### Fixed
 
 * Fix bug that routes with closure cause serialization errors. See [#139](https://github.com/kenjis/ci-phpunit-test/pull/139).
-
-### Added
-
-* Database test helpers. See [#133](https://github.com/kenjis/ci-phpunit-test/pull/133).
-* Now you can set constructor params with `$this->getDouble()`. See [#130](https://github.com/kenjis/ci-phpunit-test/pull/130).
 
 ### Others
 
