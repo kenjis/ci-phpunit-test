@@ -32,7 +32,7 @@ version: **v0.13.0** |
 	- [`TestCase::assertRedirect($uri, $code = null)`](#testcaseassertredirecturi-code--null)
 	- [`TestCase::assertResponseHeader($name, $value)`](#testcaseassertresponseheadername-value)
 	- [`TestCase::assertResponseCookie($name, $value, $allow_duplicate = false)`](#testcaseassertresponsecookiename-value-allow_duplicate--false)
-	- [`TestCase::getDouble($classname, $params, $enable_constructor = false)`](#testcasegetdoubleclassname-params-enable_constructor--false)
+	- [`TestCase::getDouble($classname, $params, $constructor_params = false)`](#testcasegetdoubleclassname-params-constructor_params--false)
 	- [`TestCase::verifyInvoked($mock, $method, $params)`](#testcaseverifyinvokedmock-method-params)
 	- [`TestCase::verifyInvokedOnce($mock, $method, $params)`](#testcaseverifyinvokedoncemock-method-params)
 	- [`TestCase::verifyInvokedMultipleTimes($mock, $method, $times, $params)`](#testcaseverifyinvokedmultipletimesmock-method-times-params)
@@ -349,13 +349,13 @@ $this->assertResponseCookie(
 
 **Note:** This method can only assert cookies set by `$this->input->set_cooke()` method.
 
-#### `TestCase::getDouble($classname, $params, $enable_constructor = false)`
+#### `TestCase::getDouble($classname, $params, $constructor_params = false)`
 
-| param               | type    | description                   |
-|---------------------|---------|-------------------------------|
-|`$classname`         | string  | class name                    |
-|`$params`            | array   | [method_name => return_value] |
-|`$enable_constructor`| bool    | enable constructor or not     |
+| param               | type        | description                                            |
+|---------------------|-------------|--------------------------------------------------------|
+|`$classname`         | string      | class name                                             |
+|`$params`            | array       | [method_name => return_value]                          |
+|`$enable_constructor`| false/array | false: disable constructor / array: constructor params |
 
 `returns` (object) PHPUnit mock object
 
