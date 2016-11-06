@@ -9,6 +9,7 @@
 ### Added
 
 * Database test helpers. See [#133](https://github.com/kenjis/ci-phpunit-test/pull/133).
+* Now you can set constructor params with `$this->getDouble()`. See [130](https://github.com/kenjis/ci-phpunit-test/pull/130).
 
 ### Others
 
