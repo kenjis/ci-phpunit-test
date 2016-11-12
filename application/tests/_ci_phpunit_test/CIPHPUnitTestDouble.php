@@ -57,7 +57,7 @@ class CIPHPUnitTestDouble
 
 		foreach ($params as $method => $return)
 		{
-			if (is_callable($return)) {
+			if (is_object($return) && $return instanceof Closure) {
 				$mock->expects($this->testCase->any())->method($method)
 					->willReturnCallback($return);
 			} else {

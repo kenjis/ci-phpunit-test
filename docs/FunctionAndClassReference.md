@@ -376,7 +376,7 @@ You could write code above like below:
 $email = $this->getDouble('CI_Email', ['send' => TRUE]);
 ~~~
 
-You can set callable as the return value of the mocked method.
+You can set Closure as the return value of the mocked method.
 
 ~~~php
 $ret = function () {

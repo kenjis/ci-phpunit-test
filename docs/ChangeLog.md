@@ -5,7 +5,7 @@
 ### Added
 
 * `$this->newController()` for controller unit testing. See [#147](https://github.com/kenjis/ci-phpunit-test/pull/147).
-* Now you can return callable with `$this->getDouble()`. See [#146](https://github.com/kenjis/ci-phpunit-test/pull/146).
+* Now you can return Closure with `$this->getDouble()`.
 * Database test helpers. See [#133](https://github.com/kenjis/ci-phpunit-test/pull/133).
 * Now you can set constructor params with `$this->getDouble()`. See [#130](https://github.com/kenjis/ci-phpunit-test/pull/130).
 
