@@ -355,7 +355,7 @@ $this->assertResponseCookie(
 |---------------------|-------------|--------------------------------------------------------|
 |`$classname`         | string      | class name                                             |
 |`$params`            | array       | [method_name => return_value]                          |
-|`$enable_constructor`| false/array | false: disable constructor / array: constructor params |
+|`$constructor_params`| false/array | false: disable constructor / array: constructor params |
 
 `returns` (object) PHPUnit mock object
 
