@@ -57,8 +57,13 @@ class CIPHPUnitTestDouble
 
 		foreach ($params as $method => $return)
 		{
-			$mock->expects($this->testCase->any())->method($method)
-				->willReturn($return);
+			if (is_callable($return)) {
+				$mock->expects($this->testCase->any())->method($method)
+					->willReturnCallback($return);
+			} else {
+				$mock->expects($this->testCase->any())->method($method)
+					->willReturn($return);
+			}
 		}
 
 		return $mock;

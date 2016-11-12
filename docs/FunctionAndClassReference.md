@@ -376,6 +376,15 @@ You could write code above like below:
 $email = $this->getDouble('CI_Email', ['send' => TRUE]);
 ~~~
 
+You can set callable as the return value of the mocked method.
+
+~~~php
+$ret = function () {
+	throw new RuntimeException('Cannot send email!');
+};
+$mock = $this->getDouble('CI_Email', ['send' => $ret]);
+~~~
+
 **Upgrade Note for v0.10.0**
 
 v0.10.0 has changed the default behavior of `$this->getDouble()` and disabled original constructor. If the change causes errors, update your test code like below:
