@@ -167,6 +167,12 @@ class CIPHPUnitTestRequest
 			$this->processError($e);
 			return $e->getMessage();
 		}
+		// exit()
+		catch (CIPHPUnitTestExitException $e)
+		{
+			$output = ob_get_clean();
+			return $output;
+		}
 	}
 
 	protected function processError(Exception $e)
