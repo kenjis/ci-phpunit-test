@@ -146,6 +146,14 @@ if ( ! function_exists('force_download'))
 
 		if (ENVIRONMENT === 'testing')
 		{
+			$CI =& get_instance();
+			$CI->output->set_header('Content-Type: '.$mime);
+			$CI->output->set_header('Content-Disposition: attachment; filename="'.$filename.'"');
+			$CI->output->set_header('Expires: 0');
+			$CI->output->set_header('Content-Transfer-Encoding: binary');
+			$CI->output->set_header('Content-Length: '.$filesize);
+			$CI->output->set_header('Cache-Control: private, no-transform, no-store, must-revalidate');
+
 			while (ob_get_level() > 2)
 			{
 				ob_end_clean();
