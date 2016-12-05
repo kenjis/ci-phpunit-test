@@ -21,6 +21,7 @@ version: **v0.14.0** |
 - [*function* `load_class_instance($classname, $instance)`](#function-load_class_instanceclassname-instance)
 - [*class* TestCase](#class-testcase)
 	- [`TestCase::resetInstance()`](#testcaseresetinstance)
+	- [`TestCase::newInstance()`](#testcasenewinstance)
 	- [`TestCase::request($method, $argv, $params = [])`](#testcaserequestmethod-argv-params--)
 		- [`request->setHeader()`](#request-setheader)
 		- [`request->setCallable()`](#request-setcallable)
@@ -139,6 +140,15 @@ public function setUp()
 When you use the way, you use the same CodeIgniter instance and the same `Category_model` instance in every test method.
 
 In contrast, if you use `$this->resetInstance()`, it resets CodeIgniter instance and `Category_model`. So you use new CodeIgniter instance and new `Category_model` instance in every test method.
+
+#### `TestCase::newInstance()`
+
+Resets CodeIgniter instance and return new controller instance. This method is for controller unit testing.
+
+~~~php
+$controller = $this->newInstance('Some_controller');
+$actual = $controller->some_method();
+~~~
 
 #### `TestCase::request($method, $argv, $params = [])`
 
