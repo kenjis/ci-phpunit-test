@@ -765,7 +765,7 @@ Mock library class name must be `Mock_Libraries_*`, and it is autoloaded.
 
 ### Monkey Patching
 
-ci-phpunit-test has three monkey patchers.
+ci-phpunit-test has four monkey patchers.
 
 * `ExitPatcher`: Converting `exit()` to Exception
 * `FunctionPatcher`: Patching Functions
