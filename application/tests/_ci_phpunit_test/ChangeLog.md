@@ -5,6 +5,7 @@
 ### Added
 
 * download_helper for testing.
+* `$this->newModel()` for model unit testing.
 
 ## v0.13.0 (2016/11/20)
 
