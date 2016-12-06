@@ -29,7 +29,7 @@ An easier way to use PHPUnit with [CodeIgniter](https://github.com/bcit-ci/CodeI
 
 ## Change Log
 
-See [Change Log](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/ChangeLog.md).
+See [Change Log](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/_ci_phpunit_test/ChangeLog.md).
 
 ## Folder Structure
 
