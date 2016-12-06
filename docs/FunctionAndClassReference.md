@@ -562,6 +562,10 @@ $this->warningOn();
 
 ### *class* DbTestCase
 
+**Upgrade Note for v0.13.0**
+
+To use this test case, you must install `application/tests/DbTestCase.php` manually.
+
 #### `DbTestCase::seeInDatabase($table, $where)`
 
 | param   | type   | description      |
