@@ -5,6 +5,7 @@
 ### Added
 
 * download_helper for testing.
+* `$this->newModel()` for model unit testing. See [#156](https://github.com/kenjis/ci-phpunit-test/pull/156).
 
 ## v0.13.0 (2016/11/20)
 

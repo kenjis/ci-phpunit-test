@@ -21,6 +21,7 @@ version: **v0.14.0** |
 - [*function* `load_class_instance($classname, $instance)`](#function-load_class_instanceclassname-instance)
 - [*class* TestCase](#class-testcase)
 	- [`TestCase::resetInstance()`](#testcaseresetinstance)
+	- [`TestCase::newModel($model)`](#testcasenewmodelmodel)
 	- [`TestCase::newController($controller)`](#testcasenewcontrollercontroller)
 	- [`TestCase::request($method, $argv, $params = [])`](#testcaserequestmethod-argv-params--)
 		- [`request->setHeader()`](#request-setheader)
@@ -122,6 +123,8 @@ public function setUp()
 }
 ~~~
 
+If you want to create a model, you can use [$this->newModel()](#testcasenewmodelmodel).
+
 **Note:** When you call [$this->request()](#testcaserequestmethod-argv-params--), you don't have to use this method. Because `$this->request()` resets CodeIgniter instance internally.
 
 **Upgrade Note for v0.6.0**
@@ -140,6 +143,23 @@ public function setUp()
 When you use the way, you use the same CodeIgniter instance and the same `Category_model` instance in every test method.
 
 In contrast, if you use `$this->resetInstance()`, it resets CodeIgniter instance and `Category_model`. So you use new CodeIgniter instance and new `Category_model` instance in every test method.
+
+#### `TestCase::newModel($model)`
+
+| param   | type         | description                              |
+|---------|--------------|------------------------------------------|
+|`$model` | string       | model name                               |
+
+`returns` model object
+
+Resets CodeIgniter instance and return new model instance. This method is for model unit testing.
+
+~~~php
+public function setUp()
+{
+	$this->obj = $this->newModel('Category_model');
+}
+~~~
 
 #### `TestCase::newController($controller)`
 

@@ -89,6 +89,19 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 		return $controller;
 	}
 
+	/**
+	 * Create a model instance
+	 *
+	 * @param string $classname
+	 * @return CI_Model
+	 */
+	public function newModel($classname)
+	{
+		$this->resetInstance();
+		$this->CI->load->model($classname);
+		return $this->CI->$classname;
+	}
+
 	protected function tearDown()
 	{
 		if (class_exists('MonkeyPatch', false))
