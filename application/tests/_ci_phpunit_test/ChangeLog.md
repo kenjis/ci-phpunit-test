@@ -10,6 +10,10 @@
 
 ## v0.13.0 (2016/11/20)
 
+### Upgrade Note
+
+* If you use database test helpers, please install `tests/DbTestCase.php` manually.
+
 ### Added
 
 * Database test helpers. See [#133](https://github.com/kenjis/ci-phpunit-test/pull/133).
