@@ -26,6 +26,80 @@ class CIPHPUnitTestSuperGlobal
 		}
 	}
 
+	public function set_FILES(array $files)
+	{
+		if (count($files) > 1)
+		{
+			throw new LogicException('Invalid $_FILES: '.var_export($files, true));
+		}
+
+		$field = array_keys($files)[0];
+		$is_multiple = is_array($files[$field]['tmp_name']);
+
+		if ($is_multiple)
+		{
+			throw new LogicException('Cannot handle multiple file upload. $_FILES: '.var_export($files, true));
+		}
+
+		// Handle single file
+		$file =& $files[$field];
+
+		if (! file_exists($file['tmp_name']))
+		{
+			$file['error'] = UPLOAD_ERR_NO_FILE;
+			$file['type'] = '';
+			$file['size'] = 0;
+
+			$_FILES = $files;
+			return;
+		}
+
+		$file['size'] = filesize($file['tmp_name']);
+
+		$upload_max_filesize = $this->convertToBytes(ini_get('upload_max_filesize'));
+		if ($upload_max_filesize < $file['size'])
+		{
+			$file['error'] = UPLOAD_ERR_INI_SIZE;
+
+			$_FILES = $files;
+			return;
+		}
+
+		$file['error'] = UPLOAD_ERR_OK;
+
+		$_FILES = $files;
+		return;
+	}
+
+	private function convertToBytes($value)
+	{
+		if (is_numeric($value))
+		{
+			return $value;
+		}
+		else
+		{
+			$value_length = strlen($value);
+			$number = substr($value, 0, $value_length - 1);
+			$unit = strtolower(substr($value, $value_length - 1));
+
+			switch ($unit)
+			{
+				case 'k':
+					$number *= 1024;
+					break;
+				case 'm':
+					$number *= 1024 * 1024;
+					break;
+				case 'g':
+					$number *= 1024 * 1024 * 1024;
+					break;
+			}
+
+			return $number;
+		}
+	}
+
 	public function set_GET(&$argv, $params)
 	{
 		if (is_string($argv))

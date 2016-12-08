@@ -1046,6 +1046,12 @@ class CI_Loader {
 
 		$class = ucfirst($class);
 
+		// Replace library in ci-phpuni-test
+		if (file_exists(APPPATH.'tests/_ci_phpunit_test/replacing/libraries/'.$subdir.$class.'.php'))
+		{
+			return $this->_ci_load_stock_library($class, $subdir, $params, $object_name);
+		}
+
 		// Is this a stock library? There are a few special conditions if so ...
 		if (file_exists(BASEPATH.'libraries/'.$subdir.$class.'.php'))
 		{
@@ -1167,7 +1173,15 @@ class CI_Loader {
 			}
 		}
 
-		include_once(BASEPATH.'libraries/'.$file_path.$library_name.'.php');
+		// Replace library in ci-phpuni-test
+		if (file_exists(APPPATH.'tests/_ci_phpunit_test/replacing/libraries/'.$file_path.$library_name.'.php'))
+		{
+			include_once(APPPATH.'tests/_ci_phpunit_test/replacing/libraries/'.$file_path.$library_name.'.php');
+		}
+		else
+		{
+			include_once(BASEPATH.'libraries/'.$file_path.$library_name.'.php');
+		}
 
 		// Check for extensions
 		$subclass = config_item('subclass_prefix').$library_name;

@@ -25,6 +25,7 @@ version: **v0.14.0** |
 	- [`TestCase::newController($controller)`](#testcasenewcontrollercontroller)
 	- [`TestCase::request($method, $argv, $params = [])`](#testcaserequestmethod-argv-params--)
 		- [`request->setHeader()`](#request-setheader)
+		- [`request->setFiles($files)`](#request-setfilesfiles)
 		- [`request->setCallable()`](#request-setcallable)
 		- [`request->addCallable()`](#request-addcallable)
 		- [`request->setCallablePreConstructor()`](#request-setcallablepreconstructor)
@@ -224,6 +225,24 @@ Sets HTTP request header.
 
 ~~~php
 $this->request->setHeader('Accept', 'application/csv');
+~~~
+
+##### `request->setFiles($files)`
+
+Sets `$_FILES` superglobal variable.
+
+~~~php
+$filename = 'ci-phpuni-test-downloads-777.png';
+$filepath = APPPATH.'tests/fixtures/'.$filename;
+
+$files = [
+	'userfile' => [
+		'name'     => $filename,
+		'type'     => 'image/png',
+		'tmp_name' => $filepath,
+	],
+];
+$this->request->setFiles($files);
 ~~~
 
 ##### `request->setCallable()`

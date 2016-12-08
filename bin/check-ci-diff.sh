@@ -32,6 +32,7 @@ system/core/Loader.php
 system/core/Input.php
 system/core/Common.php
 system/core/CodeIgniter.php
+system/libraries/Upload.php
 system/helpers/url_helper.php
 system/helpers/download_helper.php
 "

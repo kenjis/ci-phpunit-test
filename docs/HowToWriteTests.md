@@ -93,6 +93,10 @@ The core functions and classes which are modified:
 * class `CI_Loader`
 * class `CI_Input`
 
+and a library which are modified:
+
+* class `CI_Upload`
+
 and helpers which are modified:
 
 * function `redirect()` in URL helper
@@ -100,12 +104,12 @@ and helpers which are modified:
 
 All of them are placed in `tests/_ci_phpunit_test/replacing` folder.
 
-And ci-phpunit-test adds properties dynamically:
+ci-phpunit-test adds properties dynamically:
 
 * property `CI_Output::_status`
 * property `CI_Output::_cookies`
 
-And ci-phpunit-test has a modified bootstrap file:
+ci-phpunit-test has a modified bootstrap file:
 
 * `core/CodeIgniter.php`
 
