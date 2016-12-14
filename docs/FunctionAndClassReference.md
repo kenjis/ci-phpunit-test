@@ -21,7 +21,7 @@ version: **v0.14.0** |
 - [*function* `load_class_instance($classname, $instance)`](#function-load_class_instanceclassname-instance)
 - [*class* TestCase](#class-testcase)
 	- [`TestCase::resetInstance()`](#testcaseresetinstance)
-	- [`TestCase::newModel($classname)`](#testcasenewmodeclassname)
+	- [`TestCase::newModel($classname)`](#testcasenewmodelclassname)
 	- [`TestCase::newLibrary($classname)`](#testcasenewlibraryclassname)
 	- [`TestCase::newController($classname)`](#testcasenewcontrollerclassname)
 	- [`TestCase::request($method, $argv, $params = [])`](#testcaserequestmethod-argv-params--)
