@@ -6,6 +6,7 @@
 
 * download_helper for testing.
 * `$this->newModel()` for model unit testing. See [#156](https://github.com/kenjis/ci-phpunit-test/pull/156).
+* `$this->newLibrary()` for library unit testing.
 * Now you can write test code for file uploading in controller testing. See [#157](https://github.com/kenjis/ci-phpunit-test/pull/157).
 
 ## v0.13.0 (2016/11/20)
