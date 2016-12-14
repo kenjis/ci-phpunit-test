@@ -99,6 +99,13 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	{
 		$this->resetInstance();
 		$this->CI->load->model($classname);
+
+		// Is the model in a sub-folder?
+		if (($last_slash = strrpos($classname, '/')) !== FALSE)
+		{
+			$classname = substr($classname, ++$last_slash);
+		}
+
 		return $this->CI->$classname;
 	}
 
@@ -110,10 +117,16 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	 */
 	public function newLibrary($classname)
 	{
-		$classname = strtolower($classname);
-		
 		$this->resetInstance();
 		$this->CI->load->library($classname);
+
+		// Is the library in a sub-folder?
+		if (($last_slash = strrpos($classname, '/')) !== FALSE)
+		{
+			$classname = substr($classname, ++$last_slash);
+		}
+		$classname = strtolower($classname);
+
 		return $this->CI->$classname;
 	}
 
