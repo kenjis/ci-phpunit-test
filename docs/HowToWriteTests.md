@@ -93,7 +93,7 @@ The core functions and classes which are modified:
 * class `CI_Loader`
 * class `CI_Input`
 
-and a library which are modified:
+and a library which is modified:
 
 * class `CI_Upload`
 
