@@ -102,6 +102,21 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 		return $this->CI->$classname;
 	}
 
+	/**
+	 * Create a library instance
+	 *
+	 * @param string $classname
+	 * @return object
+	 */
+	public function newLibrary($classname)
+	{
+		$classname = strtolower($classname);
+		
+		$this->resetInstance();
+		$this->CI->load->library($classname);
+		return $this->CI->$classname;
+	}
+
 	protected function tearDown()
 	{
 		if (class_exists('MonkeyPatch', false))
