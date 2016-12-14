@@ -134,6 +134,8 @@ class CI_Input {
 	 * and whether to allow the $_GET array.
 	 *
 	 * @return	void
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function __construct()
 	{
@@ -173,6 +175,8 @@ class CI_Input {
 	 * @param	mixed	$index		Index for item to be fetched from $array
 	 * @param	bool	$xss_clean	Whether to apply XSS filtering
 	 * @return	mixed
+	 *
+	 * @codeCoverageIgnore
 	 */
 	protected function _fetch_from_array(&$array, $index = NULL, $xss_clean = NULL)
 	{
@@ -236,6 +240,8 @@ class CI_Input {
 	 * @param	mixed	$index		Index for item to be fetched from $_GET
 	 * @param	bool	$xss_clean	Whether to apply XSS filtering
 	 * @return	mixed
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function get($index = NULL, $xss_clean = NULL)
 	{
@@ -250,6 +256,8 @@ class CI_Input {
 	 * @param	mixed	$index		Index for item to be fetched from $_POST
 	 * @param	bool	$xss_clean	Whether to apply XSS filtering
 	 * @return	mixed
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function post($index = NULL, $xss_clean = NULL)
 	{
@@ -264,6 +272,8 @@ class CI_Input {
 	 * @param	string	$index		Index for item to be fetched from $_POST or $_GET
 	 * @param	bool	$xss_clean	Whether to apply XSS filtering
 	 * @return	mixed
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function post_get($index, $xss_clean = NULL)
 	{
@@ -280,6 +290,8 @@ class CI_Input {
 	 * @param	string	$index		Index for item to be fetched from $_GET or $_POST
 	 * @param	bool	$xss_clean	Whether to apply XSS filtering
 	 * @return	mixed
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function get_post($index, $xss_clean = NULL)
 	{
@@ -296,6 +308,8 @@ class CI_Input {
 	 * @param	mixed	$index		Index for item to be fetched from $_COOKIE
 	 * @param	bool	$xss_clean	Whether to apply XSS filtering
 	 * @return	mixed
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function cookie($index = NULL, $xss_clean = NULL)
 	{
@@ -310,6 +324,8 @@ class CI_Input {
 	 * @param	mixed	$index		Index for item to be fetched from $_SERVER
 	 * @param	bool	$xss_clean	Whether to apply XSS filtering
 	 * @return	mixed
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function server($index, $xss_clean = NULL)
 	{
@@ -326,6 +342,8 @@ class CI_Input {
 	 * @param	string	$index		Index for item to be fetched
 	 * @param	bool	$xss_clean	Whether to apply XSS filtering
 	 * @return	mixed
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function input_stream($index = NULL, $xss_clean = NULL)
 	{
@@ -433,6 +451,8 @@ class CI_Input {
 	 * Determines and validates the visitor's IP address.
 	 *
 	 * @return	string	IP address
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function ip_address()
 	{
@@ -570,6 +590,8 @@ class CI_Input {
 	 * @param	string	$ip	IP address
 	 * @param	string	$which	IP protocol: 'ipv4' or 'ipv6'
 	 * @return	bool
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function valid_ip($ip, $which = '')
 	{
@@ -595,6 +617,8 @@ class CI_Input {
 	 * Fetch User Agent string
 	 *
 	 * @return	string|null	User Agent string or NULL if it doesn't exist
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function user_agent($xss_clean = NULL)
 	{
@@ -613,6 +637,8 @@ class CI_Input {
 	 * 	- Standardizes newline characters to PHP_EOL
 	 *
 	 * @return	void
+	 *
+	 * @codeCoverageIgnore
 	 */
 	protected function _sanitize_globals()
 	{
@@ -681,6 +707,8 @@ class CI_Input {
 	 *
 	 * @param	string|string[]	$str	Input string(s)
 	 * @return	string
+	 *
+	 * @codeCoverageIgnore
 	 */
 	protected function _clean_input_data($str)
 	{
@@ -736,6 +764,8 @@ class CI_Input {
 	 *				or to return FALSE if an invalid
 	 *				key is encountered
 	 * @return	string|bool
+	 *
+	 * @codeCoverageIgnore
 	 */
 	protected function _clean_input_keys($str, $fatal = TRUE)
 	{
@@ -769,6 +799,8 @@ class CI_Input {
 	 *
 	 * @param	bool	$xss_clean	Whether to apply XSS filtering
 	 * @return	array
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function request_headers($xss_clean = FALSE)
 	{
@@ -849,6 +881,8 @@ class CI_Input {
 	 * Test to see if a request contains the HTTP_X_REQUESTED_WITH header.
 	 *
 	 * @return 	bool
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function is_ajax_request()
 	{
@@ -864,6 +898,8 @@ class CI_Input {
 	 *
 	 * @deprecated	3.0.0	Use is_cli() instead
 	 * @return	bool
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function is_cli_request()
 	{
@@ -880,6 +916,8 @@ class CI_Input {
 	 * @param	bool	$upper	Whether to return in upper or lower case
 	 *				(default: FALSE)
 	 * @return 	string
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function method($upper = FALSE)
 	{
@@ -897,6 +935,8 @@ class CI_Input {
 	 *
 	 * @param	string	$name
 	 * @return	mixed
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function __get($name)
 	{

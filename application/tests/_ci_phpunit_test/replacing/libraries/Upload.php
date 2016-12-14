@@ -288,6 +288,8 @@ class CI_Upload {
 	 *
 	 * @param	array	$config
 	 * @return	void
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function __construct($config = array())
 	{
@@ -307,6 +309,8 @@ class CI_Upload {
 	 * @param	array	$config
 	 * @param	bool	$reset
 	 * @return	CI_Upload
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function initialize(array $config = array(), $reset = TRUE)
 	{
@@ -370,6 +374,8 @@ class CI_Upload {
 	 *
 	 * @param	string	$field
 	 * @return	bool
+	 *
+	 * modified by ci-phpunit-test
 	 */
 	public function do_upload($field = 'userfile')
 	{
@@ -593,6 +599,8 @@ class CI_Upload {
 	 *
 	 * @param	string	$index
 	 * @return	mixed
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function data($index = NULL)
 	{
@@ -648,6 +656,8 @@ class CI_Upload {
 	 * @param	string	$path
 	 * @param	string	$filename
 	 * @return	string
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function set_filename($path, $filename)
 	{
@@ -721,6 +731,8 @@ class CI_Upload {
 	 *
 	 * @param	int	$n
 	 * @return	CI_Upload
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function set_max_filename($n)
 	{
@@ -763,6 +775,8 @@ class CI_Upload {
 	 *
 	 * @param	int	$n
 	 * @return	CI_Upload
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function set_min_width($n)
 	{
@@ -777,6 +791,8 @@ class CI_Upload {
 	 *
 	 * @param	int	$n
 	 * @return	CI_Upload
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function set_min_height($n)
 	{
@@ -838,6 +854,8 @@ class CI_Upload {
 	 *
 	 * @param	bool	$flag
 	 * @return	CI_Upload
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function set_xss_clean($flag = FALSE)
 	{
@@ -851,6 +869,8 @@ class CI_Upload {
 	 * Validate the image
 	 *
 	 * @return	bool
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function is_image()
 	{
@@ -881,6 +901,8 @@ class CI_Upload {
 	 *
 	 * @param	bool	$ignore_mime
 	 * @return	bool
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function is_allowed_filetype($ignore_mime = FALSE)
 	{
@@ -929,6 +951,8 @@ class CI_Upload {
 	 * Verify that the file is within the allowed size
 	 *
 	 * @return	bool
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function is_allowed_filesize()
 	{
@@ -941,6 +965,8 @@ class CI_Upload {
 	 * Verify that the image is within the allowed width/height
 	 *
 	 * @return	bool
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function is_allowed_dimensions()
 	{
@@ -985,6 +1011,8 @@ class CI_Upload {
 	 * Verifies that it is a valid upload path with proper permissions.
 	 *
 	 * @return	bool
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function validate_upload_path()
 	{
@@ -1022,6 +1050,8 @@ class CI_Upload {
 	 *
 	 * @param	string	$filename
 	 * @return	string
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function get_extension($filename)
 	{
@@ -1044,6 +1074,8 @@ class CI_Upload {
 	 * @param	string	$filename
 	 * @param	int	$length
 	 * @return	string
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function limit_filename_length($filename, $length)
 	{
@@ -1073,6 +1105,8 @@ class CI_Upload {
 	 * but so far I haven't found that it causes trouble.
 	 *
 	 * @return	string
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function do_xss_clean()
 	{
@@ -1147,6 +1181,8 @@ class CI_Upload {
 	 *
 	 * @param	string	$msg
 	 * @return	CI_Upload
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function set_error($msg, $log_level = 'error')
 	{
@@ -1171,6 +1207,8 @@ class CI_Upload {
 	 * @param	string	$open
 	 * @param	string	$close
 	 * @return	string
+	 *
+	 * @codeCoverageIgnore
 	 */
 	public function display_errors($open = '<p>', $close = '</p>')
 	{
@@ -1189,6 +1227,8 @@ class CI_Upload {
 	 *
 	 * @param	string	$filename
 	 * @return	string
+	 *
+	 * @codeCoverageIgnore
 	 */
 	protected function _prep_filename($filename)
 	{
@@ -1212,6 +1252,8 @@ class CI_Upload {
 	 *
 	 * @param	array	$file
 	 * @return	void
+	 *
+	 * @codeCoverageIgnore
 	 */
 	protected function _file_mime_type($file)
 	{
