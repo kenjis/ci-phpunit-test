@@ -23,7 +23,7 @@
         "php": ">=5.4.0"
     },
     "replace": {
-        "nikic/php-parser": "2.1.0"
+        "nikic/php-parser": "2.1.1"
     },
     "extra": {
         "branch-alias": {

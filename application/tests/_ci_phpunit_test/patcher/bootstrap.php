@@ -11,7 +11,7 @@
 // Autoloader for PHP-Parser
 // Don't use `require`, because we must require it in CIPHPUnitTest::init()
 // for providing autoloading when we don't use Monkey Patching
-require_once __DIR__ . '/third_party/PHP-Parser/lib/bootstrap.php';
+require_once __DIR__ . '/third_party/PHP-Parser-2.1.1/lib/bootstrap.php';
 
 require __DIR__ . '/IncludeStream.php';
 require __DIR__ . '/PathChecker.php';
