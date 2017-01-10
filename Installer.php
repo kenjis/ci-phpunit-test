@@ -19,19 +19,19 @@ class Installer
         $this->silent = $silent;
     }
 
-    public static function install($app = 'application')
+    public function install($app = 'application')
     {
-        self::recursiveCopy(
+        $this->recursiveCopy(
             dirname(__FILE__) . '/application/tests',
             $app . '/' . static::TEST_FOLDER
         );
-        self::fixPath($app);
+        $this->fixPath($app);
     }
 
     /**
      * Fix paths in Bootstrap.php
      */
-    private static function fixPath($app = 'application')
+    private function fixPath($app = 'application')
     {
         $file = $app . '/' . static::TEST_FOLDER . '/Bootstrap.php';
         $contents = file_get_contents($file);
@@ -90,11 +90,11 @@ class Installer
         file_put_contents($file, $contents);
     }
 
-    public static function update($app = 'application')
+    public function update($app = 'application')
     {
         $target_dir = $app . '/' . static::TEST_FOLDER . '/_ci_phpunit_test';
-        self::recursiveUnlink($target_dir);
-        self::recursiveCopy(
+        $this->recursiveUnlink($target_dir);
+        $this->recursiveCopy(
             dirname(__FILE__) . '/application/tests/_ci_phpunit_test',
             $target_dir
         );
@@ -106,7 +106,7 @@ class Installer
      * @param string $src
      * @param string $dst
      */
-    private static function recursiveCopy($src, $dst)
+    private function recursiveCopy($src, $dst)
     {
         @mkdir($dst, 0755);
         
@@ -134,7 +134,7 @@ class Installer
      *
      * @param string $dir
      */
-    private static function recursiveUnlink($dir)
+    private function recursiveUnlink($dir)
     {
         $iterator = new \RecursiveIteratorIterator(
             new \RecursiveDirectoryIterator($dir, \RecursiveDirectoryIterator::SKIP_DOTS),
