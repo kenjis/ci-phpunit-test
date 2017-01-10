@@ -10,9 +10,23 @@
 
 require __DIR__ . '/Installer.php';
 
-$app = 'application';
-if (isset($argv[1]) && is_dir($argv[1])) {
-    $app = $argv[1];
+$silent = false;
+$app_dir = 'application';
+
+// php update.php -s
+if (isset($argv[1]) && $argv[1] === '-s') {
+    $silent = true;
+
+    // php update.php -s app
+    if (isset($argv[2]) && is_dir($argv[2])) {
+        $app_dir = $argv[2];
+    }
 }
-$installer = new Installer();
-$installer->update($app);
+
+// php update.php app
+if (isset($argv[1]) && is_dir($argv[1])) {
+    $app_dir = $argv[1];
+}
+
+$installer = new Installer($silent);
+$installer->update($app_dir);

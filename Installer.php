@@ -12,6 +12,13 @@ class Installer
 {
     const TEST_FOLDER = 'tests';
 
+    private $silent = false;
+
+    public function __construct($silent = false)
+    {
+        $this->silent = $silent;
+    }
+
     public static function install($app = 'application')
     {
         self::recursiveCopy(
@@ -114,7 +121,9 @@ class Installer
             } else {
                 $success = copy($file, $dst . '/' . $iterator->getSubPathName());
                 if ($success) {
-                    echo 'copied: ' . $dst . '/' . $iterator->getSubPathName() . PHP_EOL;
+                    if (! $this->silent) {
+                        echo 'copied: ' . $dst . '/' . $iterator->getSubPathName() . PHP_EOL;
+                    }
                 }
             }
         }
