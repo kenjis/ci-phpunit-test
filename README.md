@@ -39,6 +39,7 @@ codeigniter/
 │   └── tests/
 │        ├── _ci_phpunit_test/ ... don't touch! files ci-phpunit-test uses
 │        ├── Bootstrap.php     ... bootstrap file for PHPUnit
+│        ├── DbTestCase.php    ... DbTestCase class
 │        ├── TestCase.php      ... TestCase class
 │        ├── controllers/      ... put your controller tests
 │        ├── libraries/        ... put your library tests
@@ -99,7 +100,7 @@ You have to install PHPUnit before running tests.
 $ cd /path/to/codeigniter/
 $ cd application/tests/
 $ phpunit
-PHPUnit 4.7.7 by Sebastian Bergmann and contributors.
+PHPUnit 4.8.31 by Sebastian Bergmann and contributors.
 
 ...
 
