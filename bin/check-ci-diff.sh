@@ -38,7 +38,7 @@ system/helpers/download_helper.php
 "
 
 diff="$v1-$v2.ci-phpunit-test-only.diff"
-echo -n > "$diff"
+/bin/echo -n > "$diff"
 
 for i in $list
 do
