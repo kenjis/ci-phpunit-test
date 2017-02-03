@@ -1,4 +1,4 @@
-PHP-Parser 2.0.0 <https://github.com/nikic/PHP-Parser/releases>
+PHP-Parser 2.2.1 and 3.0.3 <https://github.com/nikic/PHP-Parser/releases>
 
 ---
 
