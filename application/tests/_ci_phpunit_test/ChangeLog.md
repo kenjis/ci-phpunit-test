@@ -8,11 +8,13 @@
 * `$this->newModel()` for model unit testing. See [#156](https://github.com/kenjis/ci-phpunit-test/pull/156).
 * `$this->newLibrary()` for library unit testing. See [#161](https://github.com/kenjis/ci-phpunit-test/pull/161).
 * Now you can write test code for file uploading in controller testing. See [#157](https://github.com/kenjis/ci-phpunit-test/pull/157).
+* Now *Monkey Patching* supports PHP 7.1 new syntax.
 
 ### Others
 
 * Compatible with CodeIgniter 3.1.3
 * Update nikic/PHP-Parser to v2.1.1
+* Add nikic/PHP-Parser to v3.0.2
 
 ## v0.13.0 (2016/11/20)
 
