@@ -39,7 +39,7 @@ class CIPHPUnitTest
 		// Don't use `require`, because we may have required already
 		// in `patcher/bootstrap.php`
 		if (version_compare(PHP_VERSION, '5.5.0', '>=')) {
-			require_once __DIR__ . '/patcher/third_party/PHP-Parser-3.0.2/lib/bootstrap.php';
+			require_once __DIR__ . '/patcher/third_party/PHP-Parser-3.0.3/lib/bootstrap.php';
 		} else {
 			require_once __DIR__ . '/patcher/third_party/PHP-Parser-2.1.1/lib/bootstrap.php';
 		}

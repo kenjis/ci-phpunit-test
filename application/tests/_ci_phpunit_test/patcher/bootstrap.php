@@ -12,7 +12,7 @@ if (version_compare(PHP_VERSION, '5.5.0', '>=')) {
 	// Autoloader for PHP-Parser
 	// Don't use `require`, because we must require it in CIPHPUnitTest::init()
 	// for providing autoloading when we don't use Monkey Patching
-	require_once __DIR__ . '/third_party/PHP-Parser-3.0.2/lib/bootstrap.php';
+	require_once __DIR__ . '/third_party/PHP-Parser-3.0.3/lib/bootstrap.php';
 
 	require __DIR__ . '/3.x/MonkeyPatchManager.php';
 } else {
