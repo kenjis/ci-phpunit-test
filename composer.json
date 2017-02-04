@@ -20,11 +20,8 @@
         "forum": "http://forum.codeigniter.com/thread-61725.html"
     },
     "require": {
-        "php": ">=5.4.0"
-    },
-    "replace": {
-        "nikic/php-parser": "3.0.2",
-        "nikic/php-parser": "2.1.1"
+        "php": ">=5.4.0",
+        "nikic/php-parser": "^2.1|^3.0"
     },
     "extra": {
         "branch-alias": {
