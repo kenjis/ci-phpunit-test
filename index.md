@@ -17,7 +17,7 @@ An easier way to use PHPUnit with [CodeIgniter](https://github.com/bcit-ci/CodeI
 
 ## Requirements
 
-* PHP 5.4.0 or later
+* PHP 5.4.0 or later (5.6 or later is recommended)
 * CodeIgniter 3.x
 * PHPUnit 4.3 or later (4.7 or later is recommended)
   * If you use NetBeans 8.0.2, please use 4.7. 4.8 is not compatible yet. You can download old version of `phpunit.phar` from <https://phar.phpunit.de/>.
@@ -36,24 +36,26 @@ See [Change Log](https://github.com/kenjis/ci-phpunit-test/blob/master/applicati
 ~~~
 codeigniter/
 ├── application/
-│   └── tests/
-│        ├── _ci_phpunit_test/ ... don't touch! files ci-phpunit-test uses
-│        ├── Bootstrap.php     ... bootstrap file for PHPUnit
-│        ├── TestCase.php      ... TestCase class
-│        ├── controllers/      ... put your controller tests
-│        ├── libraries/        ... put your library tests
-│        ├── mocks/
-│        │   └── libraries/    ... mock libraries
-│        ├── models/           ... put your model tests
-│        └── phpunit.xml       ... config file for PHPUnit
+│   └── tests/
+│        ├── _ci_phpunit_test/ ... don't touch! files ci-phpunit-test uses
+│        ├── Bootstrap.php     ... bootstrap file for PHPUnit
+│        ├── DbTestCase.php    ... DbTestCase class
+│        ├── TestCase.php      ... TestCase class
+│        ├── controllers/      ... put your controller tests
+│        ├── libraries/        ... put your library tests
+│        ├── mocks/
+│        │   └── libraries/    ... mock libraries
+│        ├── models/           ... put your model tests
+│        └── phpunit.xml       ... config file for PHPUnit
 └── vendor/
 ~~~
 
 ## Installation
 
-Download latest `ci-phpunit-test`: https://github.com/kenjis/ci-phpunit-test/releases
+1. Download latest `ci-phpunit-test`: https://github.com/kenjis/ci-phpunit-test/releases
+2. Unzip and copy `application/tests` folder into your `application` folder in CodeIgniter project.
 
-Unzip and copy `application/tests` folder into your `application` folder in CodeIgniter project. That's it.
+That's it.
 
 ### Installation via Composer
 
@@ -70,14 +72,14 @@ And run `install.php`:
 $ php vendor/kenjis/ci-phpunit-test/install.php
 ~~~
 
-* Above command always overwrites exisiting files.
+* The above command always overwrites exisiting files.
 * You must run it at CodeIgniter project root folder.
 
 ## Upgrading
 
-Download latest `ci-phpunit-test`: https://github.com/kenjis/ci-phpunit-test/releases
-
-Unzip and replace `application/tests/_ci_phpunit_test` folder.
+1. Download latest `ci-phpunit-test`: https://github.com/kenjis/ci-phpunit-test/releases
+2. Unzip and replace `application/tests/_ci_phpunit_test` folder.
+3. Read [Change Log](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/_ci_phpunit_test/ChangeLog.md).
 
 ### Upgrading via Composer
 
@@ -89,6 +91,8 @@ $ composer update kenjis/ci-phpunit-test
 $ php vendor/kenjis/ci-phpunit-test/update.php
 ~~~
 
+Read [Change Log](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/_ci_phpunit_test/ChangeLog.md).
+
 ## How to Run Tests
 
 You have to install PHPUnit before running tests.
@@ -99,7 +103,7 @@ You have to install PHPUnit before running tests.
 $ cd /path/to/codeigniter/
 $ cd application/tests/
 $ phpunit
-PHPUnit 4.7.7 by Sebastian Bergmann and contributors.
+PHPUnit 4.8.31 by Sebastian Bergmann and contributors.
 
 ...
 
