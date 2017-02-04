@@ -8,20 +8,27 @@
  * @link       https://github.com/kenjis/ci-phpunit-test
  */
 
-if (version_compare(PHP_VERSION, '5.5.0', '>=')) {
-	// Autoloader for PHP-Parser
-	// Don't use `require`, because we must require it in CIPHPUnitTest::init()
-	// for providing autoloading when we don't use Monkey Patching
-	require_once __DIR__ . '/third_party/PHP-Parser-3.0.3/lib/bootstrap.php';
-
-	require __DIR__ . '/3.x/MonkeyPatchManager.php';
-} else {
-	// Autoloader for PHP-Parser
-	// Don't use `require`, because we must require it in CIPHPUnitTest::init()
-	// for providing autoloading when we don't use Monkey Patching
-	require_once __DIR__ . '/third_party/PHP-Parser-2.1.1/lib/bootstrap.php';
-
-	require __DIR__ . '/2.x/MonkeyPatchManager.php';
+// If you use Composer
+if (class_exists('PhpParser\Autoloader')) {
+	if (method_exists('PhpParser\Node\Name','set')) {
+		// PHP-Parser 2.x
+		require __DIR__ . '/2.x/MonkeyPatchManager.php';
+	} else {
+		// PHP-Parser 3.x
+		require __DIR__ . '/3.x/MonkeyPatchManager.php';
+	}
+}
+// If you don't use Composer
+else {
+	if (version_compare(PHP_VERSION, '5.5.0', '>=')) {
+		// Use PHP-Parser 3.x
+		require __DIR__ . '/third_party/PHP-Parser-3.0.3/lib/bootstrap.php';
+		require __DIR__ . '/3.x/MonkeyPatchManager.php';
+	} else {
+		// Use PHP-Parser 2.x
+		require __DIR__ . '/third_party/PHP-Parser-2.1.1/lib/bootstrap.php';
+		require __DIR__ . '/2.x/MonkeyPatchManager.php';
+	}
 }
 
 require __DIR__ . '/IncludeStream.php';
