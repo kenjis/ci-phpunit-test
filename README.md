@@ -52,9 +52,8 @@ codeigniter/
 
 ## Installation
 
-Download latest `ci-phpunit-test`: https://github.com/kenjis/ci-phpunit-test/releases
-
-Unzip and copy `application/tests` folder into your `application` folder in CodeIgniter project. That's it.
+1. Download latest `ci-phpunit-test`: https://github.com/kenjis/ci-phpunit-test/releases
+2. Unzip and copy `application/tests` folder into your `application` folder in CodeIgniter project. That's it.
 
 ### Installation via Composer
 
@@ -76,11 +75,9 @@ $ php vendor/kenjis/ci-phpunit-test/install.php
 
 ## Upgrading
 
-Download latest `ci-phpunit-test`: https://github.com/kenjis/ci-phpunit-test/releases
-
-Unzip and replace `application/tests/_ci_phpunit_test` folder.
-
-Read [Change Log](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/_ci_phpunit_test/ChangeLog.md).
+1. Download latest `ci-phpunit-test`: https://github.com/kenjis/ci-phpunit-test/releases
+2. Unzip and replace `application/tests/_ci_phpunit_test` folder.
+3. Read [Change Log](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/_ci_phpunit_test/ChangeLog.md).
 
 ### Upgrading via Composer
 
