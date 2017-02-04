@@ -36,23 +36,23 @@ See [Change Log](https://github.com/kenjis/ci-phpunit-test/blob/master/applicati
 ~~~
 codeigniter/
 ├── application/
-│   └── tests/
-│        ├── _ci_phpunit_test/ ... don't touch! files ci-phpunit-test uses
-│        ├── Bootstrap.php     ... bootstrap file for PHPUnit
-│        ├── DbTestCase.php    ... DbTestCase class
-│        ├── TestCase.php      ... TestCase class
-│        ├── controllers/      ... put your controller tests
-│        ├── libraries/        ... put your library tests
-│        ├── mocks/
-│        │   └── libraries/    ... mock libraries
-│        ├── models/           ... put your model tests
-│        └── phpunit.xml       ... config file for PHPUnit
+│   └── tests/
+│        ├── _ci_phpunit_test/ ... don't touch! files ci-phpunit-test uses
+│        ├── Bootstrap.php     ... bootstrap file for PHPUnit
+│        ├── DbTestCase.php    ... DbTestCase class
+│        ├── TestCase.php      ... TestCase class
+│        ├── controllers/      ... put your controller tests
+│        ├── libraries/        ... put your library tests
+│        ├── mocks/
+│        │   └── libraries/    ... mock libraries
+│        ├── models/           ... put your model tests
+│        └── phpunit.xml       ... config file for PHPUnit
 └── vendor/
 ~~~
 
 ## Installation
 
-1. Download latest `ci-phpunit-test`: https://github.com/kenjis/ci-phpunit-test/releases
+1. Download latest `ci-phpunit-test` from <https://github.com/kenjis/ci-phpunit-test/releases>.
 2. Unzip and copy `application/tests` folder into your `application` folder in CodeIgniter project.
 
 That's it.
@@ -77,7 +77,7 @@ $ php vendor/kenjis/ci-phpunit-test/install.php
 
 ## Upgrading
 
-1. Download latest `ci-phpunit-test`: https://github.com/kenjis/ci-phpunit-test/releases
+1. Download latest `ci-phpunit-test` from <https://github.com/kenjis/ci-phpunit-test/releases>.
 2. Unzip and replace `application/tests/_ci_phpunit_test` folder.
 3. Read [Change Log](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/_ci_phpunit_test/ChangeLog.md).
 
