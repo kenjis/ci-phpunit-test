@@ -14,7 +14,7 @@
 
 * Compatible with CodeIgniter 3.1.3
 * Update nikic/PHP-Parser to v2.1.1
-* Add nikic/PHP-Parser v3.0.2
+* Add nikic/PHP-Parser v3.0.3
 
 ## v0.13.0 (2016/11/20)
 
