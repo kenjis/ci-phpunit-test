@@ -1,0 +1,8 @@
+title: ci-phpunit-test
+description: An easier way to use PHPUnit with CodeIgniter 3.x.
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-slate
+
+gems:
+  - jekyll-mentions
