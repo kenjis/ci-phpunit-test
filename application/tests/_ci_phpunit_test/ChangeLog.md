@@ -2,6 +2,10 @@
 
 ## v0.14.0 (Not Released)
 
+### Upgrade Note for PHPUnit 6.0 users
+
+* Please update `application/tests/phpunit.xml`. Replace it or apply [this patch](https://github.com/kenjis/ci-phpunit-test/commit/fad5df8f580239a117e71593b373ddbd6deac7af).
+
 ### Added
 
 * download_helper for testing.
