@@ -53,7 +53,9 @@ codeigniter/
 ## Installation
 
 1. Download latest `ci-phpunit-test`: https://github.com/kenjis/ci-phpunit-test/releases
-2. Unzip and copy `application/tests` folder into your `application` folder in CodeIgniter project. That's it.
+2. Unzip and copy `application/tests` folder into your `application` folder in CodeIgniter project.
+
+That's it.
 
 ### Installation via Composer
 
