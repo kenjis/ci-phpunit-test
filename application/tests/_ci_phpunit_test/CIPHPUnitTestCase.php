@@ -8,6 +8,12 @@
  * @link       https://github.com/kenjis/ci-phpunit-test
  */
 
+// Support PHPUnit 6.0
+if (! class_exists('PHPUnit_Framework_TestCase'))
+{
+	class_alias('PHPUnit\Framework\TestCase', 'PHPUnit_Framework_TestCase');
+}
+
 /**
  * @property CIPHPUnitTestRequest    $request
  * @property CIPHPUnitTestDouble     $double
