@@ -71,7 +71,7 @@ And run `install.php`:
 $ php vendor/kenjis/ci-phpunit-test/install.php
 ~~~
 
-* Above command always overwrites exisiting files.
+* The above command always overwrites exisiting files.
 * You must run it at CodeIgniter project root folder.
 
 ## Upgrading
@@ -79,6 +79,8 @@ $ php vendor/kenjis/ci-phpunit-test/install.php
 Download latest `ci-phpunit-test`: https://github.com/kenjis/ci-phpunit-test/releases
 
 Unzip and replace `application/tests/_ci_phpunit_test` folder.
+
+Read [Change Log](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/_ci_phpunit_test/ChangeLog.md).
 
 ### Upgrading via Composer
 
@@ -89,6 +91,8 @@ $ cd /path/to/codeigniter/
 $ composer update kenjis/ci-phpunit-test
 $ php vendor/kenjis/ci-phpunit-test/update.php
 ~~~
+
+Read [Change Log](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/_ci_phpunit_test/ChangeLog.md).
 
 ## How to Run Tests
 
