@@ -74,6 +74,11 @@ class PathChecker
 
 	public static function check($path)
 	{
+		// Windows
+		if (DIRECTORY_SEPARATOR === '\\') {
+			$path = str_replace('/', '\\', $path);
+		}
+
 		// Whitelist first
 		$is_white = false;
 		foreach (self::$include_paths as $white_dir) {
