@@ -14,6 +14,10 @@
 * Now you can write test code for file uploading in controller testing. See [#157](https://github.com/kenjis/ci-phpunit-test/pull/157).
 * Now *Monkey Patching* supports PHP 7.1 new syntax.
 
+### Fixed
+
+* Fix bug that `include_paths` and/or `exclude_paths` in *Monkey Patching* may not work correctly on Windows.
+
 ### Others
 
 * Compatible with CodeIgniter 3.1.3
