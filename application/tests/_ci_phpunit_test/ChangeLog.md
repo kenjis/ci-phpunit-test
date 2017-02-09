@@ -1,6 +1,6 @@
 # Change Log for ci-phpunit-test
 
-## v0.14.0 (Not Released)
+## v0.14.0 (2017/02/09)
 
 ### Upgrade Note for PHPUnit 6.0 users
 
