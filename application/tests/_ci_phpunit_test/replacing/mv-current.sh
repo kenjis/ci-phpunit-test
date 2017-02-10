@@ -1,7 +1,7 @@
 #!/bin/sh
 
 usage() {
-	echo "Move current files to <filename.version>"
+	echo "Move current files to \"old/<version-filename>\""
 	echo " usage: $0 <version>"
 	echo "    eg: $0 3.1.3"
 }
@@ -18,6 +18,6 @@ version="$1"
 for i in $list
 do
 	(cd `dirname $i`
-	mv -i "`basename $i`" "`basename $i`.$version"
-	echo "$i -> `basename $i`.$version")
+	mv -i "`basename $i`" "old/$version-`basename $i`"
+	echo "$i -> old/$version-`basename $i`")
 done
