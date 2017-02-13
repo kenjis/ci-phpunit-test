@@ -1,5 +1,11 @@
 # Change Log for ci-phpunit-test
 
+## v0.15.0 (Not Released)
+
+### Added
+
+* Now you can create a mock which has a stubbed method that returns the mock itself with using `$this->getDouble()`. See [#170](https://github.com/kenjis/ci-phpunit-test/pull/170).
+
 ## v0.14.0 (2017/02/09)
 
 ### Upgrade Note for PHPUnit 6.0 users
