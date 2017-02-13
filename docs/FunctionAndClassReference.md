@@ -460,7 +460,7 @@ $ret = function () {
 $mock = $this->getDouble('CI_Email', ['send' => $ret]);
 ~~~
 
-You can also set the mock itself as the return value of a mocked method.
+You can also set the mock itself as the return value of a mocked method with using `$this->returnSelf()`.
 
 ~~~php
 $mock = $this->getDouble('CI_Email', [
