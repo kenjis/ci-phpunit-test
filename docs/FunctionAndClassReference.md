@@ -451,7 +451,7 @@ You could write code above like below:
 $email = $this->getDouble('CI_Email', ['send' => TRUE]);
 ~~~
 
-You can set Closure as the return value of the mocked method.
+You can set Closure as the return value of a mocked method.
 
 ~~~php
 $ret = function () {
@@ -460,7 +460,7 @@ $ret = function () {
 $mock = $this->getDouble('CI_Email', ['send' => $ret]);
 ~~~
 
-You can set an object that implements `PHPUnit_Framework_MockObject_Stub` as the return value of the mocked method.
+You can also set the mock itself as the return value of a mocked method.
 
 ~~~php
 $mock = $this->getDouble('CI_Email', [
