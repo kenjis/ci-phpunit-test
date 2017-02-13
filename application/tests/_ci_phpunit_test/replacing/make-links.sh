@@ -18,6 +18,6 @@ version="$1"
 for i in $list
 do
 	(cd `dirname $i`
-	ln -sf "`basename $i`" "`basename $i`.$version"
-	echo "$i -> `basename $i`.$version")
+	ln -sf "../`basename $i`" "old/$version-`basename $i`"
+	echo "$i -> old/$version-`basename $i`")
 done

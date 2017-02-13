@@ -57,7 +57,10 @@ class CIPHPUnitTestDouble
 
 		foreach ($params as $method => $return)
 		{
-			if (is_object($return) && $return instanceof Closure) {
+			if (is_object($return) && $return instanceof PHPUnit_Framework_MockObject_Stub) {
+				$mock->expects($this->testCase->any())->method($method)
+					->will($return);
+			} elseif (is_object($return) && $return instanceof Closure) {
 				$mock->expects($this->testCase->any())->method($method)
 					->willReturnCallback($return);
 			} else {

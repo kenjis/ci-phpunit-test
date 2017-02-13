@@ -459,6 +459,17 @@ $ret = function () {
 $mock = $this->getDouble('CI_Email', ['send' => $ret]);
 ~~~
 
+You can set an object that implements `PHPUnit_Framework_MockObject_Stub` as the return value of the mocked method.
+
+~~~php
+$mock = $this->getDouble('CI_Email', [
+    'to'      => $this->returnSelf(),
+    'subject' => $this->returnSelf(),
+    'send'    => TRUE,
+]);
+~~~
+
+
 **Upgrade Note for v0.10.0**
 
 v0.10.0 has changed the default behavior of `$this->getDouble()` and disabled original constructor. If the change causes errors, update your test code like below:
