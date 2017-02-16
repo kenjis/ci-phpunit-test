@@ -184,6 +184,10 @@ See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/d
 
 See [Function and Class Reference](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/FunctionAndClassReference.md).
 
+## Tips
+
+See [Tips](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/Tips.md).
+
 ## Related Projects for CodeIgniter 3.x
 
 * [CodeIgniter Composer Installer](https://github.com/kenjis/codeigniter-composer-installer)
