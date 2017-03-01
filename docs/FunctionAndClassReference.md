@@ -192,7 +192,7 @@ public function setUp()
 Resets CodeIgniter instance and return new controller instance. This method is for controller unit testing.
 
 ~~~php
-$controller = $this->newInstance('Some_controller');
+$controller = $this->newController('Some_controller');
 $actual = $controller->some_method();
 ~~~
 
