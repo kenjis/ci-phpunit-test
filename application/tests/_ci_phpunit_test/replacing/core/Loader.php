@@ -1448,7 +1448,7 @@ class CI_Loader {
 		if ( ! is_array($vars))
 		{
 			$vars = is_object($vars)
-				? get_object_vars($object)
+				? get_object_vars($vars)
 				: array();
 		}
 
