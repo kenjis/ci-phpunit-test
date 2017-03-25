@@ -28,13 +28,13 @@ diff -uwbrN "$v1" "$v2" > "$v1-$v2.diff"
 # Please add files which you modify.
 list="
 index.php
-system/core/Loader.php
-system/core/Input.php
-system/core/Common.php
 system/core/CodeIgniter.php
-system/libraries/Upload.php
-system/helpers/url_helper.php
+system/core/Common.php
+system/core/Input.php
+system/core/Loader.php
 system/helpers/download_helper.php
+system/helpers/url_helper.php
+system/libraries/Upload.php
 "
 
 diff="$v1-$v2.ci-phpunit-test-only.diff"
