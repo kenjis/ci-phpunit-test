@@ -1,9 +1,9 @@
 #!/bin/sh
 
 list="
-core/Loader.php
-core/Input.php
-core/Common.php
 core/CodeIgniter.php
+core/Common.php
+core/Input.php
+core/Loader.php
 libraries/Upload.php
 "
