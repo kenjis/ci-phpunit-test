@@ -158,10 +158,6 @@ function show_error($message, $status_code = 500, $heading = 'An Error Was Encou
 	if ($status_code < 100)
 	{
 		$exit_status = $status_code + 9; // 9 is EXIT__AUTO_MIN
-		if ($exit_status > 125) // 125 is EXIT__AUTO_MAX
-		{
-			$exit_status = 1; // EXIT_ERROR
-		}
 
 		$status_code = 500;
 	}
@@ -287,12 +283,12 @@ function set_status_header($code = 200, $text = '')
 	if (strpos(PHP_SAPI, 'cgi') === 0)
 	{
 		header('Status: '.$code.' '.$text, TRUE);
+		return;
 	}
-	else
-	{
-		$server_protocol = isset($_SERVER['SERVER_PROTOCOL']) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.1';
-		header($server_protocol.' '.$code.' '.$text, TRUE, $code);
-	}
+
+	$server_protocol = (isset($_SERVER['SERVER_PROTOCOL']) && in_array($_SERVER['SERVER_PROTOCOL'], array('HTTP/1.0', 'HTTP/1.1', 'HTTP/2'), TRUE))
+		? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.1';
+	header($server_protocol.' '.$code.' '.$text, TRUE, $code);
 }
 
 /**

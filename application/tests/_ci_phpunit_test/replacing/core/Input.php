@@ -379,7 +379,7 @@ class CI_Input {
 	 * 
 	 * modified by ci-phpunit-test
 	 */
-	public function set_cookie($name, $value = '', $expire = '', $domain = '', $path = '/', $prefix = '', $secure = FALSE, $httponly = FALSE)
+	public function set_cookie($name, $value = '', $expire = '', $domain = '', $path = '/', $prefix = '', $secure = NULL, $httponly = NULL)
 	{
 		if (is_array($name))
 		{
@@ -408,15 +408,13 @@ class CI_Input {
 			$path = config_item('cookie_path');
 		}
 
-		if ($secure === FALSE && config_item('cookie_secure') === TRUE)
-		{
-			$secure = config_item('cookie_secure');
-		}
+		$secure = ($secure === NULL && config_item('cookie_secure') !== NULL)
+			? (bool) config_item('cookie_secure')
+			: (bool) $secure;
 
-		if ($httponly === FALSE && config_item('cookie_httponly') !== FALSE)
-		{
-			$httponly = config_item('cookie_httponly');
-		}
+		$httponly = ($httponly === NULL && config_item('cookie_httponly') !== NULL)
+			? (bool) config_item('cookie_httponly')
+			: (bool) $httponly;
 
 		if ( ! is_numeric($expire))
 		{
