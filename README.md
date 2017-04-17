@@ -66,6 +66,18 @@ If you like Composer:
 $ cd /path/to/codeigniter/
 $ composer require kenjis/ci-phpunit-test --dev
 ~~~
+Or update your _CodeIgniter_ `composer.json` file, to include this:
+~~~
+"require-dev": {
+    "kenjis/ci-phpunit-test": "0.7.*"
+}
+~~~
+
+Then:
+~~~
+$ cd /path/to/codeigniter/
+$ composer install
+~~~
 
 And run `install.php`:
 
