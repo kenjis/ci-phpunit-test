@@ -501,7 +501,7 @@ Verifies a method was invoked at least once.
 $loader->expects($this->atLeastOnce())
 	->method('view')
 	->with(
-		['shop_confirm', $this->anything(), TRUE]
+		'shop_confirm', $this->anything(), TRUE
 	);
 ~~~
 
@@ -512,7 +512,7 @@ $this->verifyInvoked(
 	$loader,
 	'view',
 	[
-		['shop_confirm', $this->anything(), TRUE]
+		'shop_confirm', $this->anything(), TRUE
 	]
 );
 ~~~
@@ -531,7 +531,7 @@ Verifies that method was invoked only once.
 $loader->expects($this->once())
 	->method('view')
 	->with(
-		['shop_confirm', $this->anything(), TRUE]
+		'shop_confirm', $this->anything(), TRUE
 	);
 ~~~
 
@@ -542,7 +542,7 @@ $this->verifyInvokedOnce(
 	$loader,
 	'view',
 	[
-		['shop_confirm', $this->anything(), TRUE]
+		'shop_confirm', $this->anything(), TRUE
 	]
 );
 ~~~
@@ -595,7 +595,7 @@ Verifies that method was not called.
 $loader->expects($this->never())
 	->method('view')
 	->with(
-		['shop_confirm', $this->anything(), TRUE]
+		'shop_confirm', $this->anything(), TRUE
 	);
 ~~~
 
@@ -606,7 +606,7 @@ $this->verifyNeverInvoked(
 	$loader,
 	'view',
 	[
-		['shop_confirm', $this->anything(), TRUE]
+		'shop_confirm', $this->anything(), TRUE
 	]
 );
 ~~~
