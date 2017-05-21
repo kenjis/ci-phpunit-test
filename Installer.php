@@ -37,7 +37,7 @@ class Installer
         $contents = file_get_contents($file);
         
         if (! file_exists('system')) {
-            if (file_exists('vendor/codeigniter/framework/system')) {
+            if (file_exists('vendor/codeigniter/framework/system') || file_exists('../../system')) {
                 $contents = str_replace(
                     '$system_path = \'../../system\';',
                     '$system_path = \'../../vendor/codeigniter/framework/system\';',
