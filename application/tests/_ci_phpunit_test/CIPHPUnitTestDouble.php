@@ -77,41 +77,7 @@ class CIPHPUnitTestDouble
 		$invocation = $mock->expects($expects)
 			->method($method);
 
-		$count = count($params);
-
-		switch ($count) {
-			case 0:
-				break;
-			case 1:
-				$invocation->$with(
-					$params[0]
-				);
-				break;
-			case 2:
-				$invocation->$with(
-					$params[0], $params[1]
-				);
-				break;
-			case 3:
-				$invocation->$with(
-					$params[0], $params[1], $params[2]
-				);
-				break;
-			case 4:
-				$invocation->$with(
-					$params[0], $params[1], $params[2], $params[3]
-				);
-				break;
-			case 5:
-				$invocation->$with(
-					$params[0], $params[1], $params[2], $params[3], $params[4]
-				);
-				break;
-			default:
-				throw new RuntimeException(
-					'Sorry, ' . $count . ' params not implemented yet'
-				);
-		}
+		call_user_func_array([$invocation, $with], $params);
 	}
 
 	/**
