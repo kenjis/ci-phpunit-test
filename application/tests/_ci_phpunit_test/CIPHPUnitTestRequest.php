@@ -331,8 +331,11 @@ class CIPHPUnitTestRequest
 		// Set CodeIgniter instance to TestCase
 		$this->testCase->setCI($CI);
 
-		// Set default response code 200
-		set_status_header(200);
+		if (!isset($CI->output->_status)) {  // prevent overwriting, if already set in the $class::__construct()
+			// Set default response code 200
+			set_status_header(200);
+		}
+		
 		// Run callable
 		if ($this->callables !== [])
 		{
