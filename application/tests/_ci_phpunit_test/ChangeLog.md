@@ -1,5 +1,15 @@
 # Change Log for ci-phpunit-test
 
+## v0.16.0 (Not Released)
+
+### Added
+
+* Now you can pass more than 5 arguments to `$this->verifyInvoked*()`. See [#192](https://github.com/kenjis/ci-phpunit-test/pull/192).
+
+### Fixed
+
+* Fix bug that `set_status_header()` in controller constructor gets overwritten. See [#194](https://github.com/kenjis/ci-phpunit-test/issues/194).
+
 ## v0.15.0 (2017/04/23)
 
 ### Added
