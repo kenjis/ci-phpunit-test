@@ -310,6 +310,7 @@ function &get_config(Array $replace = array(), $reset = FALSE)
 	if ($reset)
 	{
 		$config = null;
+		get_config();
 		return $config;
 	}
 
