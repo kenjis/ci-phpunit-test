@@ -12,15 +12,15 @@
 
 /**
  * Class registry
- * 
+ *
  * @staticvar array $_classes
- * 
+ *
  * @param string $class
  * @param string $directory
  * @param array  $param
  * @param bool   $reset
  * @param object $obj
- * 
+ *
  * @return object
  */
 function &load_class(
@@ -114,12 +114,12 @@ function &load_class(
 
 /**
  * Keeps track of which libraries have been loaded.
- * 
+ *
  * @staticvar array $_is_loaded
- * 
+ *
  * @param string $class
  * @param bool   $reset
- * 
+ *
  * @return array
  */
 function &is_loaded($class = '', $reset = FALSE)
@@ -293,12 +293,12 @@ function set_status_header($code = 200, $text = '')
 
 /**
  * Loads the main config.php file
- * 
+ *
  * @staticvar array $config
- * 
+ *
  * @param array $replace
  * @param bool  $reset
- * 
+ *
  * @return array
  */
 function &get_config(Array $replace = array(), $reset = FALSE)
@@ -355,12 +355,12 @@ function &get_config(Array $replace = array(), $reset = FALSE)
 
 /**
  * Returns the specified config item
- * 
+ *
  * @staticvar array $_config
- * 
+ *
  * @param string $item
  * @param bool   $reset
- * 
+ *
  * @return type
  */
 function config_item($item, $reset = FALSE)

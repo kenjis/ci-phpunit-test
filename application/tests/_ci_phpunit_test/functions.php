@@ -10,7 +10,7 @@
 
 /**
  * Inject instance to load_class() function
- * 
+ *
  * @param string $classname
  * @param object $instance
  */
@@ -81,7 +81,7 @@ function reset_instance()
 
 /**
  * Set return value of is_cli() function
- * 
+ *
  * @param bool $return
  */
 function set_is_cli($return)
