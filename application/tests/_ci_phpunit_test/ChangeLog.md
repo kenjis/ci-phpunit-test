@@ -9,6 +9,7 @@
 ### Fixed
 
 * Fix bug that `set_status_header()` in controller constructor gets overwritten. See [#194](https://github.com/kenjis/ci-phpunit-test/issues/194).
+* Fix bug that `MY_Config` is not loaded in `$this->request()`. See [#196](https://github.com/kenjis/ci-phpunit-test/issues/196).
 
 ## v0.15.0 (2017/04/23)
 
