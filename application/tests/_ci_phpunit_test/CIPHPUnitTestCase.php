@@ -382,6 +382,13 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 			return;
 		}
 
+		// We only want to check for cookie set, not the actual value
+		if ($value === null) 
+		{
+			$this->assertTrue(true);
+			return;
+		}
+
 		foreach ($value as $key => $val)
 		{
 			$this->assertEquals(
