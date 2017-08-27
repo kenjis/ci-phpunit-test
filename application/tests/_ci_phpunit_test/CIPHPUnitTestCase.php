@@ -382,6 +382,16 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 			return;
 		}
 
+		// In case of $this->anything()
+		if (
+			$value instanceof PHPUnit_Framework_Constraint_IsAnything
+			|| $value instanceof PHPUnit\Framework\Constraint\IsAnything
+		)
+		{
+			$this->assertTrue(true);
+			return;
+		}
+
 		foreach ($value as $key => $val)
 		{
 			$this->assertEquals(
