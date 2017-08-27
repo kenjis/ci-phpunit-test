@@ -5,6 +5,7 @@
 ### Added
 
 * Now you can pass more than 5 arguments to `$this->verifyInvoked*()`. See [#192](https://github.com/kenjis/ci-phpunit-test/pull/192).
+* Now you can assert whether a response cookie is just present or not. See [#205](https://github.com/kenjis/ci-phpunit-test/pull/205).
 
 ### Fixed
 

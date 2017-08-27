@@ -35,7 +35,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	 * @var CI_Controller CodeIgniter instance
 	 */
 	protected $CI;
-	
+
 	protected $class_map = [
 		'request'    => 'CIPHPUnitTestRequest',
 		'double'     => 'CIPHPUnitTestDouble',
@@ -66,7 +66,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 			'index.php',
 		];
 		$_SERVER['argc'] = 1;
-		
+
 		// Reset current directroy
 		chdir(FCPATH);
 	}
@@ -302,7 +302,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Asserts HTTP response code
-	 * 
+	 *
 	 * @param int $code
 	 */
 	public function assertResponseCode($code)
@@ -319,7 +319,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Asserts HTTP response header
-	 * 
+	 *
 	 * @param string $name  header name
 	 * @param string $value header value
 	 */
@@ -342,7 +342,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Asserts HTTP response cookie
-	 * 
+	 *
 	 * @param string       $name            cookie name
 	 * @param string|array $value           cookie value|array of cookie params
 	 * @param bool         $allow_duplicate whether to allow duplicated cookies
@@ -382,6 +382,16 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 			return;
 		}
 
+		// In case of $this->anything()
+		if (
+			$value instanceof PHPUnit_Framework_Constraint_IsAnything
+			|| $value instanceof PHPUnit\Framework\Constraint\IsAnything
+		)
+		{
+			$this->assertTrue(true);
+			return;
+		}
+
 		foreach ($value as $key => $val)
 		{
 			$this->assertEquals(
@@ -394,7 +404,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Asserts Redirect
-	 * 
+	 *
 	 * @param string $uri  URI to redirect
 	 * @param int    $code response code
 	 */
