@@ -58,7 +58,7 @@ class CIPHPUnitTest
 		// Load ci-phpunit-test CI_Input
 		require __DIR__ . '/replacing/core/Input.php';
 
-		// Change current directroy
+		// Change current directory
 		chdir(FCPATH);
 
 		/*
