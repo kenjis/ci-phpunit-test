@@ -15,9 +15,9 @@
  *
  * @staticvar array $_classes
  *
- * @param string $class
- * @param string $directory
- * @param array  $param
+ * @param string $class     the class name being requested
+ * @param string $directory the directory where the class should be found
+ * @param mixed  $param     an optional argument to pass to the class constructor
  * @param bool   $reset
  * @param object $obj
  *
