@@ -77,6 +77,10 @@ class CIPHPUnitTestDouble
 		$invocation = $mock->expects($expects)
 			->method($method);
 
+		if ($params === null) {
+			return;
+		}
+
 		call_user_func_array([$invocation, $with], $params);
 	}
 
