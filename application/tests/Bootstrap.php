@@ -232,6 +232,9 @@ switch (ENVIRONMENT)
 	// The name of THIS file
 	define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
 
+	// Path to the test directory containing all the test files.
+	define('TESTPATH', __dir__.DIRECTORY_SEPARATOR);  // Should be the folder this `Bootstrap.php` file is in.
+
 	// Path to the system directory
 	define('BASEPATH', $system_path);
 
@@ -334,7 +337,7 @@ MonkeyPatchManager::init([
 	// Excluding directories to patch
 	// If you want to patch files inside paths below, you must add the directory starting with '-'
 	'exclude_paths' => [
-		TESTPATH . '',
+		TESTPATH,
 		'-' . TESTPATH . '_ci_phpunit_test/replacing/',
 	],
 	// All patchers you use.

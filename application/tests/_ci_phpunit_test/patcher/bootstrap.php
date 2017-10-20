@@ -58,7 +58,7 @@ class_alias('Kenjis\MonkeyPatch\MonkeyPatchManager', 'MonkeyPatchManager');
 //	],
 //	// Excluding directories to patch
 //	'exclude_paths' => [
-//		TESTPATH . '',
+//		TESTPATH,
 //	],
 //	// All patchers you use
 //	'patcher_list' => [

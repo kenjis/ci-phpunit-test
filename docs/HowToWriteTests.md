@@ -788,7 +788,7 @@ MonkeyPatchManager::init([
 	],
 	// Excluding directories to patch
 	'exclude_paths' => [
-		TESTPATH . '',
+		TESTPATH,
 		'-' . TESTPATH . '_ci_phpunit_test/replacing/',
 	],
 	// All patchers you use.
