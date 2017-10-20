@@ -35,9 +35,9 @@ class CIPHPUnitTest
 		// Load autoloader for ci-phpunit-test
 		require __DIR__ . '/autoloader.php';
 
-		require APPPATH . '/tests/TestCase.php';
+		require TESTPATH . 'TestCase.php';
 
-		$db_test_case_file = APPPATH . '/tests/DbTestCase.php';
+		$db_test_case_file = TESTPATH . 'DbTestCase.php';
 		if (is_readable($db_test_case_file))
 		{
 			require $db_test_case_file;
@@ -158,7 +158,7 @@ class CIPHPUnitTest
 	{
 		if ($dir === null)
 		{
-			$dir = APPPATH . 'tests/_ci_phpunit_test/tmp/cache';
+			$dir = TESTPATH . '_ci_phpunit_test/tmp/cache';
 		}
 
 		MonkeyPatchManager::setCacheDir(

@@ -99,7 +99,7 @@ final class TestSuiteProvider
     {
         static::$file = isset(static::$file)
             ? static::$file
-            : APPPATH.'tests/phpunit.xml';
+            : TESTPATH.'phpunit.xml';
 
         return static::$file;
     }
