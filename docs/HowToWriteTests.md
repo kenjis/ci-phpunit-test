@@ -779,17 +779,17 @@ require __DIR__ . '/_ci_phpunit_test/patcher/bootstrap.php';
 MonkeyPatchManager::init([
 	// PHP Parser: PREFER_PHP7, PREFER_PHP5, ONLY_PHP7, ONLY_PHP5
 	'php_parser' => 'PREFER_PHP5',
-	'cache_dir' => APPPATH . 'tests/_ci_phpunit_test/tmp/cache',
+	'cache_dir' => TESTPATH . '_ci_phpunit_test/tmp/cache',
 	// Directories to patch on source files
 	'include_paths' => [
 		APPPATH,
 		BASEPATH,
-		APPPATH . 'tests/_ci_phpunit_test/replacing/',
+		TESTPATH . '_ci_phpunit_test/replacing/',
 	],
 	// Excluding directories to patch
 	'exclude_paths' => [
-		APPPATH . 'tests/',
-		'-' . APPPATH . 'tests/_ci_phpunit_test/replacing/',
+		TESTPATH,
+		'-' . TESTPATH . '_ci_phpunit_test/replacing/',
 	],
 	// All patchers you use.
 	'patcher_list' => [
@@ -812,13 +812,13 @@ MonkeyPatchManager::init([
 Add the below line in `include_paths`.
 
 ~~~php
-		APPPATH . 'tests/_ci_phpunit_test/replacing/',
+		TESTPATH . '_ci_phpunit_test/replacing/',
 ~~~
 
 And add the below line in `exclude_paths`.
 
 ~~~php
-		'-' . APPPATH . 'tests/_ci_phpunit_test/replacing/',
+		'-' . TESTPATH . '_ci_phpunit_test/replacing/',
 ~~~
 
 You can add the parser preference with `php_parser`. The default is `PREFER_PHP5`. Change the config if you need.

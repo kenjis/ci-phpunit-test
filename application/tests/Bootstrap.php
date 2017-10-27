@@ -232,6 +232,9 @@ switch (ENVIRONMENT)
 	// The name of THIS file
 	define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
 
+	// Path to the test directory containing all the test files.
+	define('TESTPATH', __dir__.DIRECTORY_SEPARATOR);  // Should be the folder this `Bootstrap.php` file is in.
+
 	// Path to the system directory
 	define('BASEPATH', $system_path);
 
@@ -324,18 +327,18 @@ require __DIR__ . '/_ci_phpunit_test/patcher/bootstrap.php';
 MonkeyPatchManager::init([
 	// PHP Parser: PREFER_PHP7, PREFER_PHP5, ONLY_PHP7, ONLY_PHP5
 	'php_parser' => 'PREFER_PHP5',
-	'cache_dir' => APPPATH . 'tests/_ci_phpunit_test/tmp/cache',
+	'cache_dir' => TESTPATH . '_ci_phpunit_test/tmp/cache',
 	// Directories to patch source files
 	'include_paths' => [
 		APPPATH,
 		BASEPATH,
-		APPPATH . 'tests/_ci_phpunit_test/replacing/',
+		TESTPATH . '_ci_phpunit_test/replacing/',
 	],
 	// Excluding directories to patch
 	// If you want to patch files inside paths below, you must add the directory starting with '-'
 	'exclude_paths' => [
-		APPPATH . 'tests/',
-		'-' . APPPATH . 'tests/_ci_phpunit_test/replacing/',
+		TESTPATH,
+		'-' . TESTPATH . '_ci_phpunit_test/replacing/',
 	],
 	// All patchers you use.
 	'patcher_list' => [

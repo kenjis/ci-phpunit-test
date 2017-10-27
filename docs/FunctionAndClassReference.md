@@ -252,7 +252,7 @@ Sets `$_FILES` superglobal variable.
 
 ~~~php
 $filename = 'ci-phpuni-test-downloads-777.png';
-$filepath = APPPATH.'tests/fixtures/'.$filename;
+$filepath = TESTPATH.'fixtures/'.$filename;
 
 $files = [
 	'userfile' => [

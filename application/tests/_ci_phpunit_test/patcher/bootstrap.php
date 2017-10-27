@@ -50,7 +50,7 @@ class_alias('Kenjis\MonkeyPatch\MonkeyPatchManager', 'MonkeyPatchManager');
 //	// Project root directory
 //	'root_dir' => APPPATH . '../',
 //	// Cache directory
-//	'cache_dir' => APPPATH . 'tests/_ci_phpunit_test/tmp/cache',
+//	'cache_dir' => TESTPATH . '_ci_phpunit_test/tmp/cache',
 //	// Directories to patch on source files
 //	'include_paths' => [
 //		APPPATH,
@@ -58,7 +58,7 @@ class_alias('Kenjis\MonkeyPatch\MonkeyPatchManager', 'MonkeyPatchManager');
 //	],
 //	// Excluding directories to patch
 //	'exclude_paths' => [
-//		APPPATH . 'tests/',
+//		TESTPATH,
 //	],
 //	// All patchers you use
 //	'patcher_list' => [
