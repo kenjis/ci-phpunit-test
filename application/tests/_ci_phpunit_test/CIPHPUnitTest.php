@@ -21,7 +21,7 @@ class CIPHPUnitTest
 	public static function init(array $autoload_dirs = null)
 	{
 		if (! defined('TESTPATH')) {
-			define('TESTPATH', APPPATH.DIRECTORY_SEPARATOR.'tests'.DIRECTORY_SEPARATOR);
+			define('TESTPATH', APPPATH.'tests'.DIRECTORY_SEPARATOR);
 		}
 
 		// Fix CLI args
