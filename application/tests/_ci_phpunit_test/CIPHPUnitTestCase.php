@@ -119,7 +119,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	 * Create a library instance
 	 *
 	 * @param string $classname
-	 * @param mixed  $args
+	 * @param array  $args
 	 * @return object
 	 */
 	public function newLibrary($classname, $args = null)
