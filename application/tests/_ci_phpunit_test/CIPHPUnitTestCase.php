@@ -119,12 +119,13 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	 * Create a library instance
 	 *
 	 * @param string $classname
+	 * @param array  $args
 	 * @return object
 	 */
-	public function newLibrary($classname)
+	public function newLibrary($classname, $args = null)
 	{
 		$this->resetInstance();
-		$this->CI->load->library($classname);
+		$this->CI->load->library($classname, $args);
 
 		// Is the library in a sub-folder?
 		if (($last_slash = strrpos($classname, '/')) !== FALSE)
