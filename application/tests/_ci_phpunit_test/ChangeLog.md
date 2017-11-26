@@ -15,7 +15,7 @@
 
 ### Others
 
-* Compatible with CodeIgniter 3.1.5
+* Compatible with CodeIgniter 3.1.6
 
 ## v0.15.0 (2017/04/23)
 
