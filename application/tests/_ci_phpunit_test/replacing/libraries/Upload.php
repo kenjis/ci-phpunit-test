@@ -1354,7 +1354,7 @@ class CI_Upload {
 			}
 		}
 
-        // Fall back to mime_content_type(), if available (still better than $_FILES[$field]['type'])
+		// Fall back to mime_content_type(), if available (still better than $_FILES[$field]['type'])
 		if (function_exists('mime_content_type'))
 		{
 			$this->file_type = @mime_content_type($file['tmp_name']);
