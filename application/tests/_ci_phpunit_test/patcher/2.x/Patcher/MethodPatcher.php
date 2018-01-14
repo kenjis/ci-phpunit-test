@@ -38,7 +38,13 @@ EOL;
 
 		ksort(self::$replacement);
 		reset(self::$replacement);
-		$replacement = each(self::$replacement);
+		$replacement['key'] = key(self::$replacement);
+		$replacement['value'] = current(self::$replacement);
+		next(self::$replacement);
+		if ($replacement['key'] === null)
+		{
+			$replacement = false;
+		}
 
 		$start_method = false;
 
@@ -57,7 +63,13 @@ EOL;
 				{
 					$new_source .= '{ ' . self::CODE;
 					$start_method = false;
-					$replacement = each(self::$replacement);
+					$replacement['key'] = key(self::$replacement);
+					$replacement['value'] = current(self::$replacement);
+					next(self::$replacement);
+					if ($replacement['key'] === null)
+					{
+						$replacement = false;
+					}
 				}
 				else
 				{

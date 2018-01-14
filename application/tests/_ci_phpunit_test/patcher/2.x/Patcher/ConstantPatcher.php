@@ -57,7 +57,13 @@ class ConstantPatcher extends AbstractPatcher
 
 		ksort(self::$replacement);
 		reset(self::$replacement);
-		$replacement = each(self::$replacement);
+		$replacement['key'] = key(self::$replacement);
+		$replacement['value'] = current(self::$replacement);
+		next(self::$replacement);
+		if ($replacement['key'] === null)
+		{
+			$replacement = false;
+		}
 
 		foreach ($tokens as $token)
 		{
@@ -70,7 +76,13 @@ class ConstantPatcher extends AbstractPatcher
 			elseif ($i == $replacement['key'])
 			{
 				$new_source .= $replacement['value'];
-				$replacement = each(self::$replacement);
+				$replacement['key'] = key(self::$replacement);
+				$replacement['value'] = current(self::$replacement);
+				next(self::$replacement);
+				if ($replacement['key'] === null)
+				{
+					$replacement = false;
+				}
 			}
 			else
 			{
