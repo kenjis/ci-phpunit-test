@@ -31,9 +31,15 @@ class CIPHPUnitTestDbTestCase extends CIPHPUnitTestCase
 	 */
 	protected $insertCache = [];
 
+	public function resetInstance()
+	{
+		parent::resetInstance();
+		$this->loadDependencies();
+	}
+
 	protected function loadDependencies()
 	{
-		if ($this->db === null)
+		if ($this->db === null || $this->db->conn_id === false)
 		{
 			$CI =& get_instance();
 			$CI->load->database();
