@@ -47,6 +47,12 @@ class CIPHPUnitTest
 			require $db_test_case_file;
 		}
 
+		$unit_test_case_file = TESTPATH . 'UnitTestCase.php';
+		if (is_readable($unit_test_case_file))
+		{
+			require $unit_test_case_file;
+		}
+
 		// Replace a few Common functions
 		require __DIR__ . '/replacing/core/Common.php';
 		require BASEPATH . 'core/Common.php';

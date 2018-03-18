@@ -2,6 +2,10 @@
 
 ## v0.16.0 (Not Released)
 
+### Upgrade Note
+
+* If you use `$this->newModel()`, `$this->newLibrary()`, `$this->newController()` in your test cases, please install `tests/UnitTestCase.php` manually, and change the base classname of the test cases to `UnitTestCase` class.
+
 ### Added
 
 * Now you can pass more than 5 arguments to `$this->verifyInvoked*()`. See [#192](https://github.com/kenjis/ci-phpunit-test/pull/192).

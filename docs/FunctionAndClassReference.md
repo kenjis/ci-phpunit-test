@@ -1,6 +1,7 @@
 # ci-phpunit-test for CodeIgniter 3.x
 
-version: **v0.15.0** | 
+version: **v0.16.0** | 
+[v0.15.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.15.0/docs/FunctionAndClassReference.md) | 
 [v0.14.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.14.0/docs/FunctionAndClassReference.md) | 
 [v0.13.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.13.0/docs/FunctionAndClassReference.md) | 
 [v0.12.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.12.2/docs/FunctionAndClassReference.md) | 
@@ -22,9 +23,6 @@ version: **v0.15.0** |
 - [*function* `load_class_instance($classname, $instance)`](#function-load_class_instanceclassname-instance)
 - [*class* TestCase](#class-testcase)
 	- [`TestCase::resetInstance()`](#testcaseresetinstance)
-	- [`TestCase::newModel($classname)`](#testcasenewmodelclassname)
-	- [`TestCase::newLibrary($classname)`](#testcasenewlibraryclassname)
-	- [`TestCase::newController($classname)`](#testcasenewcontrollerclassname)
 	- [`TestCase::request($method, $argv, $params = [])`](#testcaserequestmethod-argv-params--)
 		- [`request->setHeader()`](#request-setheader)
 		- [`request->setFiles($files)`](#request-setfilesfiles)
@@ -51,6 +49,10 @@ version: **v0.15.0** |
 	- [`DbTestCase::seeNumRecords($expected, $table, $where = [])`](#dbtestcaseseenumrecordsexpected-table-where--)
 	- [`DbTestCase::hasInDatabase($table, $data)`](#dbtestcasehasindatabasetable-data)
 	- [`DbTestCase::grabFromDatabase($table, $column, $where)`](#dbtestcasegrabfromdatabasetable-column-where)
+- [*class* UnitTestCase](#class-unittestcase)
+	- [`UnitTestCase::newModel($classname)`](#unittestcasenewmodelclassname)
+	- [`UnitTestCase::newLibrary($classname, $args)`](#unittestcasenewlibraryclassname-args)
+	- [`UnitTestCase::newController($classname)`](#unittestcasenewcontrollerclassname)
 - [*class* ReflectionHelper](#class-reflectionhelper)
 	- [`ReflectionHelper::getPrivateProperty($obj, $property)`](#reflectionhelpergetprivatepropertyobj-property)
 	- [`ReflectionHelper::setPrivateProperty($obj, $property, $value)`](#reflectionhelpersetprivatepropertyobj-property-value)
@@ -146,55 +148,6 @@ public function setUp()
 When you use the way, you use the same CodeIgniter instance and the same `Category_model` instance in every test method.
 
 In contrast, if you use `$this->resetInstance()`, it resets CodeIgniter instance and `Category_model`. So you use new CodeIgniter instance and new `Category_model` instance in every test method.
-
-#### `TestCase::newModel($classname)`
-
-| param       | type         | description                              |
-|-------------|--------------|------------------------------------------|
-|`$classname` | string       | model classname                          |
-
-`returns` model object
-
-Resets CodeIgniter instance and return new model instance. This method is for model unit testing.
-
-~~~php
-public function setUp()
-{
-	$this->obj = $this->newModel('Category_model');
-}
-~~~
-
-#### `TestCase::newLibrary($classname)`
-
-| param       | type         | description                              |
-|-------------|--------------|------------------------------------------|
-|`$classname` | string       | library classname                        |
-
-`returns` library object
-
-Resets CodeIgniter instance and return new library instance. This method is for library unit testing.
-
-~~~php
-public function setUp()
-{
-	$this->obj = $this->newLibrary('Foo_library');
-}
-~~~
-
-#### `TestCase::newController($classname)`
-
-| param       | type         | description                                   |
-|-------------|--------------|-----------------------------------------------|
-|`$classname` | string       | controller classname                          |
-
-`returns` controller object
-
-Resets CodeIgniter instance and return new controller instance. This method is for controller unit testing.
-
-~~~php
-$controller = $this->newController('Some_controller');
-$actual = $controller->some_method();
-~~~
 
 #### `TestCase::request($method, $argv, $params = [])`
 
@@ -470,7 +423,6 @@ $mock = $this->getDouble('CI_Email', [
 ]);
 ~~~
 
-
 **Upgrade Note for v0.10.0**
 
 v0.10.0 has changed the default behavior of `$this->getDouble()` and disabled original constructor. If the change causes errors, update your test code like below:
@@ -681,6 +633,62 @@ Inserts a row into to the database. This row will be removed after the test has 
 |`$where`    | array  | where conditions |
 
 Fetches a single column from a database row with criteria matching `$where`.
+
+### *class* UnitTestCase
+
+**Upgrade Note for v0.16.0**
+
+To use this test case, you must install `application/tests/UnitTestCase.php` manually.
+
+#### `UnitTestCase::newModel($classname)`
+
+| param       | type         | description                              |
+|-------------|--------------|------------------------------------------|
+|`$classname` | string       | model classname                          |
+
+`returns` model object
+
+Resets CodeIgniter instance and return new model instance. This method is for model unit testing.
+
+~~~php
+public function setUp()
+{
+	$this->obj = $this->newModel('Category_model');
+}
+~~~
+
+#### `UnitTestCase::newLibrary($classname, $args)`
+
+| param       | type         | description                              |
+|-------------|--------------|------------------------------------------|
+|`$classname` | string       | library classname                        |
+|`$args`      | array        | constructor argments                     |
+
+`returns` library object
+
+Resets CodeIgniter instance and return new library instance. This method is for library unit testing.
+
+~~~php
+public function setUp()
+{
+	$this->obj = $this->newLibrary('Foo_library');
+}
+~~~
+
+#### `UnitTestCase::newController($classname)`
+
+| param       | type         | description                                   |
+|-------------|--------------|-----------------------------------------------|
+|`$classname` | string       | controller classname                          |
+
+`returns` controller object
+
+Resets CodeIgniter instance and return new controller instance. This method is for controller unit testing.
+
+~~~php
+$controller = $this->newController('Some_controller');
+$actual = $controller->some_method();
+~~~
 
 ### *class* ReflectionHelper
 
