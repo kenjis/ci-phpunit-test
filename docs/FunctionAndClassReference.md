@@ -148,56 +148,6 @@ When you use the way, you use the same CodeIgniter instance and the same `Catego
 
 In contrast, if you use `$this->resetInstance()`, it resets CodeIgniter instance and `Category_model`. So you use new CodeIgniter instance and new `Category_model` instance in every test method.
 
-#### `TestCase::newModel($classname)`
-
-| param       | type         | description                              |
-|-------------|--------------|------------------------------------------|
-|`$classname` | string       | model classname                          |
-
-`returns` model object
-
-Resets CodeIgniter instance and return new model instance. This method is for model unit testing.
-
-~~~php
-public function setUp()
-{
-	$this->obj = $this->newModel('Category_model');
-}
-~~~
-
-#### `TestCase::newLibrary($classname, $args)`
-
-| param       | type         | description                              |
-|-------------|--------------|------------------------------------------|
-|`$classname` | string       | library classname                        |
-|`$args`      | array        | constructor argments                     |
-
-`returns` library object
-
-Resets CodeIgniter instance and return new library instance. This method is for library unit testing.
-
-~~~php
-public function setUp()
-{
-	$this->obj = $this->newLibrary('Foo_library');
-}
-~~~
-
-#### `TestCase::newController($classname)`
-
-| param       | type         | description                                   |
-|-------------|--------------|-----------------------------------------------|
-|`$classname` | string       | controller classname                          |
-
-`returns` controller object
-
-Resets CodeIgniter instance and return new controller instance. This method is for controller unit testing.
-
-~~~php
-$controller = $this->newController('Some_controller');
-$actual = $controller->some_method();
-~~~
-
 #### `TestCase::request($method, $argv, $params = [])`
 
 | param     | type         | description                                   |
@@ -472,7 +422,6 @@ $mock = $this->getDouble('CI_Email', [
 ]);
 ~~~
 
-
 **Upgrade Note for v0.10.0**
 
 v0.10.0 has changed the default behavior of `$this->getDouble()` and disabled original constructor. If the change causes errors, update your test code like below:
@@ -683,6 +632,58 @@ Inserts a row into to the database. This row will be removed after the test has 
 |`$where`    | array  | where conditions |
 
 Fetches a single column from a database row with criteria matching `$where`.
+
+### *class* UnitTestCase
+
+#### `UnitTestCase::newModel($classname)`
+
+| param       | type         | description                              |
+|-------------|--------------|------------------------------------------|
+|`$classname` | string       | model classname                          |
+
+`returns` model object
+
+Resets CodeIgniter instance and return new model instance. This method is for model unit testing.
+
+~~~php
+public function setUp()
+{
+	$this->obj = $this->newModel('Category_model');
+}
+~~~
+
+#### `UnitTestCase::newLibrary($classname, $args)`
+
+| param       | type         | description                              |
+|-------------|--------------|------------------------------------------|
+|`$classname` | string       | library classname                        |
+|`$args`      | array        | constructor argments                     |
+
+`returns` library object
+
+Resets CodeIgniter instance and return new library instance. This method is for library unit testing.
+
+~~~php
+public function setUp()
+{
+	$this->obj = $this->newLibrary('Foo_library');
+}
+~~~
+
+#### `UnitTestCase::newController($classname)`
+
+| param       | type         | description                                   |
+|-------------|--------------|-----------------------------------------------|
+|`$classname` | string       | controller classname                          |
+
+`returns` controller object
+
+Resets CodeIgniter instance and return new controller instance. This method is for controller unit testing.
+
+~~~php
+$controller = $this->newController('Some_controller');
+$actual = $controller->some_method();
+~~~
 
 ### *class* ReflectionHelper
 
