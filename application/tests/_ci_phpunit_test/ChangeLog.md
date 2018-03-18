@@ -20,7 +20,7 @@
 
 ### Others
 
-* Compatible with CodeIgniter 3.1.6
+* Compatible with CodeIgniter 3.1.7
 
 ## v0.15.0 (2017/04/23)
 
