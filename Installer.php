@@ -69,9 +69,9 @@ class Installer
     {
         $this->recursiveCopy(
             dirname(__FILE__) . '/application/tests',
-            $this->app . '/' . $this->test_dir
+            $this->app_dir . '/' . $this->test_dir
         );
-        $this->fixPath($this->app, $this->pub);
+        $this->fixPath($this->app_dir, $this->pub_dir);
     }
 
     /**
@@ -79,7 +79,7 @@ class Installer
      */
     private function fixPath()
     {
-        $file = $this->app . '/' . $this->test_dir . '/Bootstrap.php';
+        $file = $this->app_dir . '/' . $this->test_dir . '/Bootstrap.php';
         $contents = file_get_contents($file);
 
         if (! file_exists('system')) {
@@ -95,20 +95,20 @@ class Installer
         }
 
         if (! file_exists('index.php')) {
-            if (file_exists($pub . '/index.php')) {
+            if (file_exists($this->pub_dir . '/index.php')) {
                 // CodeIgniter 3.0.6 and after
                 $contents = str_replace(
                     "define('FCPATH', realpath(dirname(__FILE__).'/../..').DIRECTORY_SEPARATOR);",
-                    "define('FCPATH', realpath(dirname(__FILE__).'/../../'. $pub).DIRECTORY_SEPARATOR);",
+                    "define('FCPATH', realpath(dirname(__FILE__).'/../../'. $this->pub_dir).DIRECTORY_SEPARATOR);",
                     $contents
                 );
                 // CodeIgniter 3.0.5 and before
                 $contents = str_replace(
                     "define('FCPATH', realpath(dirname(__FILE__).'/../..').'/');",
-                    "define('FCPATH', realpath(dirname(__FILE__).'/../../' . $pub).'/');",
+                    "define('FCPATH', realpath(dirname(__FILE__).'/../../' . $this->pub_dir).'/');",
                     $contents
                 );
-            } elseif (file_exists($this->app . '/public/index.php')) {
+            } elseif (file_exists($this->app_dir . '/public/index.php')) {
                 // CodeIgniter 3.0.6 and after
                 $contents = str_replace(
                     "define('FCPATH', realpath(dirname(__FILE__).'/../..').DIRECTORY_SEPARATOR);",
@@ -121,10 +121,10 @@ class Installer
                     "define('FCPATH', realpath(dirname(__FILE__).'/../public').'/');",
                     $contents
                 );
-                if ($this->app != 'application') {
+                if ($this->app_dir != 'application') {
                     $contents = str_replace(
                         "\$application_folder = '../../application';",
-                        "\$application_folder = '../../{$this->app}';",
+                        "\$application_folder = '../../{$this->app_dir}';",
                         $contents
                     );
                 }
@@ -138,7 +138,7 @@ class Installer
 
     public function update()
     {
-        $target_dir = $this->app . '/' . $this->test_dir . '/_ci_phpunit_test';
+        $target_dir = $this->app_dir . '/' . $this->test_dir . '/_ci_phpunit_test';
         $this->recursiveUnlink($target_dir);
         $this->recursiveCopy(
             dirname(__FILE__) . '/application/tests/_ci_phpunit_test',
