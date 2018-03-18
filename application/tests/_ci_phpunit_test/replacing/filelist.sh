@@ -6,4 +6,6 @@ core/Common.php
 core/Input.php
 core/Loader.php
 libraries/Upload.php
+helpers/download_helper.php
+helpers/url_helper.php
 "
