@@ -75,7 +75,7 @@ $ php vendor/kenjis/ci-phpunit-test/install.php
 
 * The above command always overwrites exisiting files.
 * You must run it at CodeIgniter project root folder.
-* You can change your folder `application` and `public` with option arguments.
+* You can specify your `application` and `public` folder with option arguments, if you use custom folder paths.
 
 ~~~
 $ php vendor/kenjis/ci-phpunit-test/install.php -a <application_dir> -p <public_dir>
