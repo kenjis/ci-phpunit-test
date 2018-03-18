@@ -636,6 +636,10 @@ Fetches a single column from a database row with criteria matching `$where`.
 
 ### *class* UnitTestCase
 
+**Upgrade Note for v0.16.0**
+
+To use this test case, you must install `application/tests/UnitTestCase.php` manually.
+
 #### `UnitTestCase::newModel($classname)`
 
 | param       | type         | description                              |
