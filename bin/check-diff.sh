@@ -10,6 +10,7 @@ diff -u ../../codeigniter/framework/index.php application/tests/Bootstrap.php
 
 diff -u $system_dir/core/CodeIgniter.php $replacing_dir/core/CodeIgniter.php
 diff -u $system_dir/core/Input.php $replacing_dir/core/Input.php
+diff -u $system_dir/core/Output.php $replacing_dir/core/Output.php
 diff -u $system_dir/core/Loader.php $replacing_dir/core/Loader.php
 
 diff -u $system_dir/helpers/download_helper.php $replacing_dir/helpers/download_helper.php

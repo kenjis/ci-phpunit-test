@@ -93,6 +93,7 @@ The core functions and classes which are modified:
 * function `set_status_header()`
 * class `CI_Loader`
 * class `CI_Input`
+* class `CI_Output`
 
 and a library which is modified:
 
@@ -105,7 +106,7 @@ and helpers which are modified:
 
 All of them are placed in `tests/_ci_phpunit_test/replacing` folder.
 
-ci-phpunit-test adds properties dynamically:
+ci-phpunit-test adds properties:
 
 * property `CI_Output::_status`
 * property `CI_Output::_cookies`
@@ -114,7 +115,7 @@ ci-phpunit-test has a modified bootstrap file:
 
 * `core/CodeIgniter.php`
 
-**Note to Maintainer:** If you modify another CodeIgniter file, update `bin/check-diff.sh` and `bin/check-ci-diff.sh`, too.
+**Note to Maintainer:** If you modify another CodeIgniter file, update `bin/check-diff.sh`, `bin/check-ci-diff.sh` and `application/tests/_ci_phpunit_test/replacing/filelist.sh`, too.
 
 #### MY_Loader
 

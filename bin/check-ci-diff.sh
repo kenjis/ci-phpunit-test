@@ -31,6 +31,7 @@ index.php
 system/core/CodeIgniter.php
 system/core/Common.php
 system/core/Input.php
+system/core/Output.php
 system/core/Loader.php
 system/helpers/download_helper.php
 system/helpers/url_helper.php
