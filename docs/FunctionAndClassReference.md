@@ -1,6 +1,7 @@
 # ci-phpunit-test for CodeIgniter 3.x
 
-version: **v0.15.0** | 
+version: **v0.16.0** | 
+[v0.15.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.15.0/docs/FunctionAndClassReference.md) | 
 [v0.14.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.14.0/docs/FunctionAndClassReference.md) | 
 [v0.13.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.13.0/docs/FunctionAndClassReference.md) | 
 [v0.12.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.12.2/docs/FunctionAndClassReference.md) | 
@@ -23,7 +24,7 @@ version: **v0.15.0** |
 - [*class* TestCase](#class-testcase)
 	- [`TestCase::resetInstance()`](#testcaseresetinstance)
 	- [`TestCase::newModel($classname)`](#testcasenewmodelclassname)
-	- [`TestCase::newLibrary($classname)`](#testcasenewlibraryclassname)
+	- [`TestCase::newLibrary($classname, $args)`](#testcasenewlibraryclassname-args)
 	- [`TestCase::newController($classname)`](#testcasenewcontrollerclassname)
 	- [`TestCase::request($method, $argv, $params = [])`](#testcaserequestmethod-argv-params--)
 		- [`request->setHeader()`](#request-setheader)
@@ -164,11 +165,12 @@ public function setUp()
 }
 ~~~
 
-#### `TestCase::newLibrary($classname)`
+#### `TestCase::newLibrary($classname, $args)`
 
 | param       | type         | description                              |
 |-------------|--------------|------------------------------------------|
 |`$classname` | string       | library classname                        |
+|`$args`      | array        | constructor argments                     |
 
 `returns` library object
 
