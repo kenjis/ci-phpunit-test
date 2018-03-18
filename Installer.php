@@ -10,11 +10,10 @@
 
 class Installer
 {
-    const TEST_FOLDER = 'tests';
-
     private $silent = false;
     private $app_dir = 'application';
     private $pub_dir = 'public';
+    private $test_dir = 'tests';
 
     public function __construct($argv)
     {
@@ -70,7 +69,7 @@ class Installer
     {
         $this->recursiveCopy(
             dirname(__FILE__) . '/application/tests',
-            $this->app . '/' . static::TEST_FOLDER
+            $this->app . '/' . $this->test_dir
         );
         $this->fixPath($this->app, $this->pub);
     }
@@ -80,7 +79,7 @@ class Installer
      */
     private function fixPath()
     {
-        $file = $this->app . '/' . static::TEST_FOLDER . '/Bootstrap.php';
+        $file = $this->app . '/' . $this->test_dir . '/Bootstrap.php';
         $contents = file_get_contents($file);
 
         if (! file_exists('system')) {
@@ -139,7 +138,7 @@ class Installer
 
     public function update()
     {
-        $target_dir = $this->app . '/' . static::TEST_FOLDER . '/_ci_phpunit_test';
+        $target_dir = $this->app . '/' . $this->test_dir . '/_ci_phpunit_test';
         $this->recursiveUnlink($target_dir);
         $this->recursiveCopy(
             dirname(__FILE__) . '/application/tests/_ci_phpunit_test',
