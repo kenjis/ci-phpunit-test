@@ -208,7 +208,9 @@ class Foo_test extends TestCase
 {
 	public function setUp()
 	{
-		$this->obj = $this->newLibrary('Foo');
+		$this->resetInstance();
+		$this->CI->load->library('Foo');
+		$this->obj = $this->CI->foo;
 	}
 
 	public function test_doSomething()
@@ -220,7 +222,7 @@ class Foo_test extends TestCase
 }
 ~~~
 
-[$this->newLibrary()](FunctionAndClassReference.md#testcasenewlibraryclassname) method in ci-phpunit-test is a helper method to reset CodeIgniter instance and create new library instance.
+[$this->resetInstance()](FunctionAndClassReference.md#testcaseresetinstance) method in ci-phpunit-test is a helper method to reset CodeIgniter instance and assign new CodeIgniter instance as `$this->CI`.
 
 ### Models
 
@@ -234,7 +236,9 @@ class Inventory_model_test extends TestCase
 {
 	public function setUp()
 	{
-		$this->obj = $this->newModel('shop/Inventory_model');
+		$this->resetInstance();
+		$this->CI->load->model('shop/Inventory_model');
+		$this->obj = $this->CI->Inventory_model;
 	}
 
 	public function test_get_category_list()
@@ -258,8 +262,6 @@ class Inventory_model_test extends TestCase
 	}
 }
 ~~~
-
-[$this->newModel()](FunctionAndClassReference.md#testcasenewmodelclassname) method in ci-phpunit-test is a helper method to reset CodeIgniter instance and create new model instance.
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v0.15.0/application/tests/models/Category_model_test.php).
 
@@ -354,7 +356,9 @@ If your library depends on CodeIgniter functionality, I recommend using `setUp()
 ~~~php
 	public function setUp()
 	{
-		$this->obj = $this->newLibrary('Someclass');
+		$this->resetInstance();
+		$this->CI->load->library('Someclass');
+		$this->obj = $this->CI->someclass;
 	}
 ~~~
 
@@ -753,7 +757,9 @@ This is how to replace Email library with `Mock_Libraries_Email` class.
 ~~~php
 	public function setUp()
 	{
-		$this->obj = $this->newModel('Mail_model');
+		$this->resetInstance();
+		$this->CI->load->model('Mail_model');
+		$this->obj = $this->CI->Mail_model;
 		$this->CI->email = new Mock_Libraries_Email();
 	}
 ~~~
