@@ -7,7 +7,7 @@
 * Now you can pass more than 5 arguments to `$this->verifyInvoked*()`. See [#192](https://github.com/kenjis/ci-phpunit-test/pull/192).
 * Now you can assert whether a response cookie is just present or not. See [#205](https://github.com/kenjis/ci-phpunit-test/pull/205).
 * Now you can move tests folder if you define `TESTPATH` in `application/tests/Bootstrap.php`.
-* Now you can specify custom `application`  and `public` directory when you install. See [README](https://github.com/kenjis/ci-phpunit-test#installation-via-composer).
+* Now you can specify custom `application`  and `public` directory when you install via Composer. See [README](https://github.com/kenjis/ci-phpunit-test#installation-via-composer).
 
 ### Fixed
 
