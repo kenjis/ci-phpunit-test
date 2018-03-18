@@ -19,19 +19,19 @@ class Installer
         $this->silent = $silent;
     }
 
-    public function install($app = 'application')
+    public function install($app = 'application', $pub = 'public')
     {
         $this->recursiveCopy(
             dirname(__FILE__) . '/application/tests',
             $app . '/' . static::TEST_FOLDER
         );
-        $this->fixPath($app);
+        $this->fixPath($app, $pub);
     }
 
     /**
      * Fix paths in Bootstrap.php
      */
-    private function fixPath($app = 'application')
+    private function fixPath($app = 'application', $pub = 'public')
     {
         $file = $app . '/' . static::TEST_FOLDER . '/Bootstrap.php';
         $contents = file_get_contents($file);
@@ -49,17 +49,17 @@ class Installer
         }
         
         if (! file_exists('index.php')) {
-            if (file_exists('public/index.php')) {
+            if (file_exists($pub . '/index.php')) {
                 // CodeIgniter 3.0.6 and after
                 $contents = str_replace(
                     "define('FCPATH', realpath(dirname(__FILE__).'/../..').DIRECTORY_SEPARATOR);",
-                    "define('FCPATH', realpath(dirname(__FILE__).'/../../public').DIRECTORY_SEPARATOR);",
+                    "define('FCPATH', realpath(dirname(__FILE__).'/../../'. $pub).DIRECTORY_SEPARATOR);",
                     $contents
                 );
                 // CodeIgniter 3.0.5 and before
                 $contents = str_replace(
                     "define('FCPATH', realpath(dirname(__FILE__).'/../..').'/');",
-                    "define('FCPATH', realpath(dirname(__FILE__).'/../../public').'/');",
+                    "define('FCPATH', realpath(dirname(__FILE__).'/../../' . $pub).'/');",
                     $contents
                 );
             } elseif (file_exists($app . '/public/index.php')) {
