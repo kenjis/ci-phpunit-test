@@ -75,6 +75,11 @@ $ php vendor/kenjis/ci-phpunit-test/install.php
 
 * The above command always overwrites exisiting files.
 * You must run it at CodeIgniter project root folder.
+* You can change your folder `application` and `public` with option arguments.
+
+~~~
+$ php vendor/kenjis/ci-phpunit-test/install.php -a <application_dir> -p <public_dir>
+~~~
 
 ## Upgrading
 
@@ -89,7 +94,7 @@ If you like Composer:
 ~~~
 $ cd /path/to/codeigniter/
 $ composer update kenjis/ci-phpunit-test
-$ php vendor/kenjis/ci-phpunit-test/update.php
+$ php vendor/kenjis/ci-phpunit-test/update.php [-a <application_dir> -p <public_dir>]
 ~~~
 
 Read [Change Log](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/_ci_phpunit_test/ChangeLog.md).
