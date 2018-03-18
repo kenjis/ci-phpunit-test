@@ -30,6 +30,8 @@ if ($argc > 1) {
             case '-a':
                 if (is_dir($argv[$i+1])) {
                     $app_dir = $argv[$i+1];
+                } else {
+                    throw new Exception('No such directory: ' . $argv[$i+1]);
                 }
                 $i++;
                 break;
@@ -38,6 +40,8 @@ if ($argc > 1) {
             case '-p':
                 if (is_dir($argv[$i+1])) {
                     $pub_dir = $argv[$i+1];
+                } else {
+                    throw new Exception('No such directory: ' . $argv[$i+1]);
                 }
                 $i++;
                 break;
