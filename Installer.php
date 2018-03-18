@@ -71,7 +71,7 @@ class Installer
             dirname(__FILE__) . '/application/tests',
             $this->app_dir . '/' . $this->test_dir
         );
-        $this->fixPath($this->app_dir, $this->pub_dir);
+        $this->fixPath();
     }
 
     /**
