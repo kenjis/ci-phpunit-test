@@ -128,8 +128,6 @@ public function setUp()
 }
 ~~~
 
-If you want to create a model, you can use [$this->newModel()](#testcasenewmodelclassname).
-
 **Note:** When you call [$this->request()](#testcaserequestmethod-argv-params--), you don't have to use this method. Because `$this->request()` resets CodeIgniter instance internally.
 
 **Upgrade Note for v0.6.0**
