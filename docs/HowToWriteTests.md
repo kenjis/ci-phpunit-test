@@ -127,9 +127,9 @@ ci-phpunit-test replaces `CI_Loader` and modifies below methods:
 * `CI_Loader::_ci_load_library()`
 * `CI_Loader::_ci_load_stock_library()`
 
-But if you place MY_Loader, your MY_Loader extends the loader of ci-phpunit-test.
+But if you place `MY_Loader`, your `MY_Loader` extends the loader of ci-phpunit-test.
 
-If your MY_Loader overrides the above methods, you have to take care of changes in the loader of ci-phpunit-test.
+If your `MY_Loader` overrides the above methods, you have to take care of changes in the `CI_Loader` of ci-phpunit-test.
 
 #### MY_Input
 
@@ -138,9 +138,9 @@ ci-phpunit-test replaces `CI_Input` and modifies below method:
 * `CI_Input::set_cookie()`
 * `CI_Input::get_request_header()`
 
-But if you place MY_Input, your MY_Input extends the CI_Input of ci-phpunit-test.
+But if you place `MY_Input`, your `MY_Input` extends the `CI_Input` of ci-phpunit-test.
 
-If your MY_Input overrides the above methods, you have to take care of changes in the CI_Input of ci-phpunit-test.
+If your `MY_Input` overrides the above methods, you have to take care of changes in the `CI_Input` of ci-phpunit-test.
 
 #### MY_Output
 
@@ -149,9 +149,9 @@ ci-phpunit-test replaces `CI_Output` and modifies below method:
 * `CI_Output::_display()`
 * `CI_Output::set_cache_header()`
 
-But if you place MY_Output, your MY_Output extends the CI_Output of ci-phpunit-test.
+But if you place `MY_Output`, your `MY_Output` extends the `CI_Output` of ci-phpunit-test.
 
-If your MY_Output overrides the above methods, you have to take care of changes in the CI_Output of ci-phpunit-test.
+If your `MY_Output` overrides the above methods, you have to take care of changes in the `CI_Output` of ci-phpunit-test.
 
 #### `exit()`
 
