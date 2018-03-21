@@ -19,8 +19,9 @@ An easier way to use PHPUnit with [CodeIgniter](https://github.com/bcit-ci/CodeI
 
 * PHP 5.4.0 or later (5.6 or later is recommended)
 * CodeIgniter 3.x
-* PHPUnit 4.3 or later (4.7 or later is recommended)
-  * If you use NetBeans 8.0.2, please use 4.7. 4.8 is not compatible yet. You can download old version of `phpunit.phar` from <https://phar.phpunit.de/>.
+* PHPUnit 4.3 or later (4.8 or later is recommended)
+  * If you use PHPUnit 6.0, please use ci-phpunit-test v0.14.0 or later.
+  * You can download old version of `phpunit.phar` from <https://phar.phpunit.de/>.
 
 ## Optional
 
@@ -74,6 +75,11 @@ $ php vendor/kenjis/ci-phpunit-test/install.php
 
 * The above command always overwrites exisiting files.
 * You must run it at CodeIgniter project root folder.
+* You can specify your `application` and `public` folder with option arguments, if you use custom folder paths.
+
+~~~
+$ php vendor/kenjis/ci-phpunit-test/install.php -a <application_dir> -p <public_dir>
+~~~
 
 ## Upgrading
 
@@ -88,7 +94,7 @@ If you like Composer:
 ~~~
 $ cd /path/to/codeigniter/
 $ composer update kenjis/ci-phpunit-test
-$ php vendor/kenjis/ci-phpunit-test/update.php
+$ php vendor/kenjis/ci-phpunit-test/update.php [-a <application_dir> -p <public_dir>]
 ~~~
 
 Read [Change Log](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/_ci_phpunit_test/ChangeLog.md).
@@ -135,7 +141,9 @@ class Inventory_model_test extends TestCase
 {
     public function setUp()
     {
-        $this->obj = $this->newModel('Inventory_model');
+        $this->resetInstance();
+        $this->CI->load->model('Inventory_model');
+        $this->obj = $this->CI->Inventory_model;
     }
 
     public function test_get_category_list()
@@ -182,6 +190,10 @@ See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/d
 ## Function/Class Reference
 
 See [Function and Class Reference](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/FunctionAndClassReference.md).
+
+## Tips
+
+See [Tips](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/Tips.md).
 
 ## Related Projects for CodeIgniter 3.x
 
