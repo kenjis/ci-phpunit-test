@@ -193,7 +193,7 @@ $output = $this->request('GET', ['Form', 'index']);
 
 **Upgrade Note for v0.16.0**
 
-v0.16.0 has changed the default behavior of `$this->request()`. it detects all warnings and notices during the execution, and throws exceptions. If you want to disable the checking, you must set `$strictRequestErrorCheck` false in your test case classes:
+v0.16.0 has changed the default behavior of `$this->request()`. It detects all warnings and notices during the execution, and throws exceptions. If you want to disable the checking, you must set `$strictRequestErrorCheck` false in your test case classes:
 
 ~~~php
 protected $strictRequestErrorCheck = false;
