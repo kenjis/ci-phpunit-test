@@ -4,7 +4,8 @@
 
 ### Upgrade Note
 
-* If you use `$this->newModel()`, `$this->newLibrary()`, `$this->newController()` in your test cases, please install `tests/UnitTestCase.php` manually, and change the base classname of the test cases to `UnitTestCase` class.
+* Now ci-phpunit-test detects all warnings and notices during `$this->request()` execution, and throws exceptions. If you want to disable the checking, you must add `protected $strictRequestErrorCheck = false;` in your test classes. See [#235](https://github.com/kenjis/ci-phpunit-test/pull/235).
+* If you use `$this->newModel()`, `$this->newLibrary()`, `$this->newController()` in your test cases, please install `tests/UnitTestCase.php` manually, and change the base classname of the test cases to `UnitTestCase` class. See [#233](https://github.com/kenjis/ci-phpunit-test/pull/233).
 
 ### Added
 

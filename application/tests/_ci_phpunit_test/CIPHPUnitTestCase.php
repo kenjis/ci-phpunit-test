@@ -32,6 +32,15 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	protected $backupGlobalsBlacklist = ['RTR'];
 
 	/**
+	 * Detect warnings and notices in a request output
+	 *
+	 * @var bool
+	 */
+	protected $strictRequestErrorCheck = true;
+
+	protected $restoreErrorHandler = false;
+
+	/**
 	 * @var CI_Controller CodeIgniter instance
 	 */
 	protected $CI;
@@ -83,6 +92,8 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 
 	protected function tearDown()
 	{
+		$this->disableStrictErrorCheck();
+
 		if (class_exists('MonkeyPatch', false))
 		{
 			if (MonkeyPatchManager::isEnabled('FunctionPatcher'))
@@ -125,7 +136,40 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	 */
 	public function request($http_method, $argv, $params = [])
 	{
+		if ($this->strictRequestErrorCheck) {
+			$this->enableStrictErrorCheck();
+		}
+
 		return $this->request->request($http_method, $argv, $params);
+	}
+
+	/**
+	 * Disable strict error check
+	 */
+	public function disableStrictErrorCheck()
+	{
+		if ($this->restoreErrorHandler) {
+			restore_error_handler();
+			$this->restoreErrorHandler = false;
+		}
+	}
+
+	/**
+	 * Enable strict error check
+	 */
+	public function enableStrictErrorCheck()
+	{
+		if ($this->restoreErrorHandler) {
+			throw new LogicException('Already strict error check mode');
+		}
+
+		set_error_handler(
+			function ($errno, $errstr, $errfile, $errline) {
+				throw new RuntimeException($errstr . ' on line ' . $errline . ' in file ' . $errfile);
+			}
+		);
+
+		$this->restoreErrorHandler = true;
 	}
 
 	/**
