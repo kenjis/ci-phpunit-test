@@ -8,6 +8,12 @@
 * If you use `$this->newModel()`, `$this->newLibrary()`, `$this->newController()` in your test cases, please install `tests/UnitTestCase.php` manually, and change the base classname of the test cases to `UnitTestCase` class. See [#233](https://github.com/kenjis/ci-phpunit-test/pull/233).
 * Now ci-phpunit-test replaces `CI_Output`. If you use `MY_Output`, it might delete ci-phpunit-test override for testing. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#my_output) for the details.
 
+### Changed
+
+* Now ci-phpunit-test detects all warnings and notices during `$this->request()` execution, and throws exceptions.
+* `$this->newModel()`, `$this->newLibrary()`, `$this->newController()` moved to `UnitTestCase` class.
+* Now ci-phpunit-test replaces `CI_Output`.
+
 ### Added
 
 * Now you can pass more than 5 arguments to `$this->verifyInvoked*()`. See [#192](https://github.com/kenjis/ci-phpunit-test/pull/192).
