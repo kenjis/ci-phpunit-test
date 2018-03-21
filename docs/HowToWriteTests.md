@@ -139,7 +139,18 @@ ci-phpunit-test replaces `CI_Input` and modifies below method:
 
 But if you place MY_Input, your MY_Input extends the CI_Input of ci-phpunit-test.
 
-If your MY_Input overrides the above method, you have to take care of changes in the CI_Input of ci-phpunit-test.
+If your MY_Input overrides the above methods, you have to take care of changes in the CI_Input of ci-phpunit-test.
+
+#### MY_Output
+
+ci-phpunit-test replaces `CI_Output` and modifies below method:
+
+* `CI_Output::_display()`
+* `CI_Output::set_cache_header()`
+
+But if you place MY_Output, your MY_Output extends the CI_Output of ci-phpunit-test.
+
+If your MY_Output overrides the above methods, you have to take care of changes in the CI_Output of ci-phpunit-test.
 
 #### `exit()`
 
