@@ -23,6 +23,7 @@ version: **v0.16.0** |
 - [Can and Can't](#can-and-cant)
 	- [MY_Loader](#my_loader)
 	- [MY_Input](#my_input)
+	- [MY_Output](#my_output)
 	- [`exit()`](#exit)
 	- [Reset CodeIgniter object](#reset-codeigniter-object)
 	- [Hooks](#hooks)
