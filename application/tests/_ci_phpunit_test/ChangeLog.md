@@ -29,6 +29,7 @@
 ### Others
 
 * Compatible with CodeIgniter 3.1.7
+* Compatible with PHP 7.2
 
 ## v0.15.0 (2017/04/23)
 
