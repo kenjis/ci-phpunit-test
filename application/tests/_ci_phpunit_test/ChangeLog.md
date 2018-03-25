@@ -1,5 +1,11 @@
 # Change Log for ci-phpunit-test
 
+## v0.16.1 (Not Released)
+
+### Others
+
+* Compatible with CodeIgniter 3.1.8
+
 ## v0.16.0 (2018/03/21)
 
 ### Upgrade Note
