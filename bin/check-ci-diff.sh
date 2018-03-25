@@ -25,23 +25,14 @@ rm -rf "$v1/user_guide"
 rm -rf "$v2/user_guide"
 diff -uwbrN "$v1" "$v2" > "$v1-$v2.diff"
 
-# Please add files which you modify.
-list="
-index.php
-system/core/CodeIgniter.php
-system/core/Common.php
-system/core/Input.php
-system/core/Output.php
-system/core/Loader.php
-system/helpers/download_helper.php
-system/helpers/url_helper.php
-system/libraries/Upload.php
-"
+. bin/filelist.sh
 
 diff="$v1-$v2.ci-phpunit-test-only.diff"
 /bin/echo -n > "$diff"
 
+diff -uwb "$v1/index.php" "$v2/index.php" >> "$diff"
+
 for i in $list
 do
-	diff -uwb "$v1/$i" "$v2/$i" >> "$diff"
+	diff -uwb "$v1/system/$i" "$v2/system/$i" >> "$diff"
 done
