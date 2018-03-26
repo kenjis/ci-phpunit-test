@@ -21,9 +21,13 @@ class MonkeyPatchManager
 
 	private static $php_parser = ParserFactory::PREFER_PHP5;
 
-	private static $log_file;
+	/**
+	 * The path to the log file if `$debug` is true.
+	 * Will be set in {@link MonkeyPatchManager::setDebug}.
+	 * @var string|null */
+	public static $log_file = null;
 	private static $load_patchers = false;
-	private static $exit_exception_classname = 
+	private static $exit_exception_classname =
 		'Kenjis\MonkeyPatch\Exception\ExitException';
 	/**
 	 * @var array list of patcher classname
@@ -70,7 +74,11 @@ class MonkeyPatchManager
 		{
 			self::$debug = $config['debug'];
 		}
-		if (self::$debug)
+		if (isset($config['log_file']))
+		{
+			self::$debug = $config['log_file'];
+		}
+		if (self::$debug && is_null(self::$log_file))
 		{
 			self::$log_file = __DIR__ . '/debug.log';
 		}
