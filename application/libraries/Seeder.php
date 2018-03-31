@@ -14,6 +14,7 @@ class Seeder
 	protected $db;
 	protected $dbforge;
 	protected $seedPath;
+	protected $depends = [];
 
 	public function __construct()
 	{
@@ -29,7 +30,7 @@ class Seeder
 	 *
 	 * @param string $seeder Seeder classname
 	 */
-	public function call($seeder)
+	public function call($seeder, $call_depends = true)
 	{
 		if ($this->seedPath === null)
 		{
@@ -37,6 +38,9 @@ class Seeder
 		}
 
 		$obj = $this->loadSeeder($seeder);
+		if ($call_depends === true && $obj instanceof Seeder) {
+			$obj->callDepends($this->seedPath);
+		}
 		$obj->run();
 	}
 
@@ -52,6 +56,24 @@ class Seeder
 		require_once $file;
 
 		return new $seeder;
+	}
+
+	/**
+	 * Call depend seeder list
+	 *
+	 * @param string $seedPath
+	 */
+	public function callDepends($seedPath)
+	{
+		foreach ($this->depends as $path => $seeders) {
+			$this->seedPath = $seedPath;
+			if (is_string($path)) {
+				$this->setPath($path);
+			}
+
+			$this->callDepend($seeders);
+		}
+		$this->setPath($seedPath);
 	}
 
 	/**
