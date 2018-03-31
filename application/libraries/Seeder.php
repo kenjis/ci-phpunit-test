@@ -55,6 +55,26 @@ class Seeder
 	}
 
 	/**
+	 * Call depend seeder
+	 *
+	 * @param string|array $seederName
+	 */
+	protected function callDepend($seederName)
+	{
+		if (is_array($seederName)) {
+			array_map([$this, 'callDepend'], $seederName);
+			return;
+		}
+
+		$seeder = $this->loadSeeder($seederName);
+		if (is_string($this->seedPath)) {
+			$seeder->setPath($this->seedPath);
+		}
+
+		$seeder->call($seederName, true);
+	}
+
+	/**
 	 * Set path for seeder files
 	 *
 	 * @param string $path
