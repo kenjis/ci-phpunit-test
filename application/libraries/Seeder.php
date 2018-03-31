@@ -36,11 +36,22 @@ class Seeder
 			$this->seedPath = APPPATH . 'database/seeds/';
 		}
 
+		$obj = $this->loadSeeder($seeder);
+		$obj->run();
+	}
+
+	/**
+	 * Get Seeder instance
+	 *
+	 * @param string $seeder
+	 * @return Seeder
+	 */
+	protected function loadSeeder($seeder)
+	{
 		$file = $this->seedPath . $seeder . '.php';
 		require_once $file;
 
-		$obj = new $seeder;
-		$obj->run();
+		return new $seeder;
 	}
 
 	/**
