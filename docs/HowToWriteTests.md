@@ -286,6 +286,32 @@ You can use them like below:
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v0.15.0/application/tests/models/Category_model_test.php).
 
+And can be defined other Seeder dependency.
+
+~~~php
+	protected $depends = [
+		'CategorySeeder'
+	];
+~~~
+
+Can be specification seeder path as below.
+
+~~~php
+	public function __construct()
+	{
+		parent::__construct();
+		$this->depends = [
+			APPPATH.'database/seeds' => 'FavoriteSeeder',
+			APPPATH.'database/seeds/FavoriteDetail' => [
+				'FavoriteDetailsClearSeeder',
+				'CodeIgniterTetteiNyumonSeeder'
+			]
+		];
+	}
+~~~
+
+That function is call depends seeder in order.
+
 #### Using PHPUnit Mock Objects
 
 You can use `$this->getMockBuilder()` method in PHPUnit and [$this->verifyInvoked*()](FunctionAndClassReference.md#testcaseverifyinvokedmock-method-params) helper method in ci-phpunit-test.
