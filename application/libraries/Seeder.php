@@ -26,7 +26,7 @@ class Seeder
 
 	/**
 	 * Run another seeder
-	 * 
+	 *
 	 * @param string $seeder Seeder classname
 	 */
 	public function call($seeder)
@@ -45,7 +45,7 @@ class Seeder
 
 	/**
 	 * Set path for seeder files
-	 * 
+	 *
 	 * @param string $path
 	 */
 	public function setPath($path)
