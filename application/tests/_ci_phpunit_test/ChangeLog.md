@@ -2,6 +2,10 @@
 
 ## v0.16.1 (Not Released)
 
+### Fixed
+
+* Fix bug that installer replaces file path in `tests/Bootstrap.php` with wrong code which causes Parse error. See [#247](https://github.com/kenjis/ci-phpunit-test/pull/247).
+
 ### Others
 
 * Compatible with CodeIgniter 3.1.8
