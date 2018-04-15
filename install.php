@@ -8,7 +8,7 @@
  * @link       https://github.com/kenjis/ci-phpunit-test
  */
 
-require __DIR__ . '/Installer.php';
+require __DIR__ . '/lib/Installer.php';
 
 $installer = new Installer($argv);
 $installer->install();
