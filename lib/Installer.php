@@ -121,7 +121,7 @@ class Installer
                     "define('FCPATH', realpath(dirname(__FILE__).'/../public').'/');",
                     $contents
                 );
-                if ($this->app_dir != 'application') {
+                if ($this->app_dir !== 'application') {
                     $contents = str_replace(
                         "\$application_folder = '../../application';",
                         "\$application_folder = '../../{$this->app_dir}';",
