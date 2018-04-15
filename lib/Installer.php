@@ -99,13 +99,13 @@ class Installer
                 // CodeIgniter 3.0.6 and after
                 $contents = str_replace(
                     "define('FCPATH', realpath(dirname(__FILE__).'/../..').DIRECTORY_SEPARATOR);",
-                    "define('FCPATH', realpath(dirname(__FILE__).'/../../'. $this->pub_dir).DIRECTORY_SEPARATOR);",
+                    "define('FCPATH', realpath(dirname(__FILE__).'/../../{$this->pub_dir}').DIRECTORY_SEPARATOR);",
                     $contents
                 );
                 // CodeIgniter 3.0.5 and before
                 $contents = str_replace(
                     "define('FCPATH', realpath(dirname(__FILE__).'/../..').'/');",
-                    "define('FCPATH', realpath(dirname(__FILE__).'/../../' . $this->pub_dir).'/');",
+                    "define('FCPATH', realpath(dirname(__FILE__).'/../../{$this->pub_dir}').'/');",
                     $contents
                 );
             } elseif (file_exists($this->app_dir . '/public/index.php')) {
