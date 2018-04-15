@@ -68,7 +68,7 @@ class Installer
     public function install()
     {
         $this->recursiveCopy(
-            dirname(__FILE__.'/..').'/application/tests',
+            dirname(dirname(__FILE__)).'/application/tests',
             $this->app_dir.'/'.$this->test_dir
         );
         $this->fixPath();
@@ -141,7 +141,7 @@ class Installer
         $target_dir = $this->app_dir.'/'.$this->test_dir.'/_ci_phpunit_test';
         $this->recursiveUnlink($target_dir);
         $this->recursiveCopy(
-            dirname(__FILE__.'/..').'/application/tests/_ci_phpunit_test',
+            dirname(dirname(__FILE__)).'/application/tests/_ci_phpunit_test',
             $target_dir
         );
     }
