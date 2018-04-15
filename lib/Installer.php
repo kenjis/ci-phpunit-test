@@ -44,7 +44,7 @@ class Installer
                     if (is_dir($argv[$i+1])) {
                         $this->app_dir = $argv[$i+1];
                     } else {
-                        throw new Exception('No such directory: ' . $argv[$i+1]);
+                        throw new Exception('No such directory: '.$argv[$i+1]);
                     }
                     $i++;
                     break;
@@ -54,13 +54,13 @@ class Installer
                     if (is_dir($argv[$i+1])) {
                         $this->pub_dir = $argv[$i+1];
                     } else {
-                        throw new Exception('No such directory: ' . $argv[$i+1]);
+                        throw new Exception('No such directory: '.$argv[$i+1]);
                     }
                     $i++;
                     break;
 
                 default:
-                    throw new Exception('Unknown argument: ' . $argv[$i]);
+                    throw new Exception('Unknown argument: '.$argv[$i]);
             }
         }
     }
@@ -68,8 +68,8 @@ class Installer
     public function install()
     {
         $this->recursiveCopy(
-            dirname(__FILE__.'/..') . '/application/tests',
-            $this->app_dir . '/' . $this->test_dir
+            dirname(__FILE__.'/..').'/application/tests',
+            $this->app_dir.'/'.$this->test_dir
         );
         $this->fixPath();
     }
@@ -79,7 +79,7 @@ class Installer
      */
     private function fixPath()
     {
-        $file = $this->app_dir . '/' . $this->test_dir . '/Bootstrap.php';
+        $file = $this->app_dir.'/'.$this->test_dir.'/Bootstrap.php';
         $contents = file_get_contents($file);
 
         if (! file_exists('system')) {
@@ -95,7 +95,7 @@ class Installer
         }
 
         if (! file_exists('index.php')) {
-            if (file_exists($this->pub_dir . '/index.php')) {
+            if (file_exists($this->pub_dir.'/index.php')) {
                 // CodeIgniter 3.0.6 and after
                 $contents = str_replace(
                     "define('FCPATH', realpath(dirname(__FILE__).'/../..').DIRECTORY_SEPARATOR);",
@@ -108,7 +108,7 @@ class Installer
                     "define('FCPATH', realpath(dirname(__FILE__).'/../../{$this->pub_dir}').'/');",
                     $contents
                 );
-            } elseif (file_exists($this->app_dir . '/public/index.php')) {
+            } elseif (file_exists($this->app_dir.'/public/index.php')) {
                 // CodeIgniter 3.0.6 and after
                 $contents = str_replace(
                     "define('FCPATH', realpath(dirname(__FILE__).'/../..').DIRECTORY_SEPARATOR);",
@@ -138,7 +138,7 @@ class Installer
 
     public function update()
     {
-        $target_dir = $this->app_dir . '/' . $this->test_dir . '/_ci_phpunit_test';
+        $target_dir = $this->app_dir.'/'.$this->test_dir.'/_ci_phpunit_test';
         $this->recursiveUnlink($target_dir);
         $this->recursiveCopy(
             dirname(__FILE__.'/..').'/application/tests/_ci_phpunit_test',
@@ -163,12 +163,12 @@ class Installer
 
         foreach ($iterator as $file) {
             if ($file->isDir()) {
-                @mkdir($dst . '/' . $iterator->getSubPathName());
+                @mkdir($dst.'/'.$iterator->getSubPathName());
             } else {
-                $success = copy($file, $dst . '/' . $iterator->getSubPathName());
+                $success = copy($file, $dst.'/'.$iterator->getSubPathName());
                 if ($success) {
                     if (! $this->silent) {
-                        echo 'copied: ' . $dst . '/' . $iterator->getSubPathName() . PHP_EOL;
+                        echo 'copied: '.$dst.'/'.$iterator->getSubPathName().PHP_EOL;
                     }
                 }
             }
