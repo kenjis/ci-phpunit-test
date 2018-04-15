@@ -10,6 +10,9 @@
 
 class CIPHPUnitTestRequest
 {
+    /**
+     * @var TestCase
+     */
 	protected $testCase;
 
 	/**
@@ -39,7 +42,7 @@ class CIPHPUnitTestRequest
 	 */
 	protected $hooks;
 
-	public function __construct(PHPUnit_Framework_TestCase $testCase)
+	public function __construct(TestCase $testCase)
 	{
 		$this->testCase = $testCase;
 		$this->superGlobal = new CIPHPUnitTestSuperGlobal();
@@ -128,6 +131,10 @@ class CIPHPUnitTestRequest
 	 */
 	public function request($http_method, $argv, $params = [])
 	{
+		if ($this->testCase->getStrictRequestErrorCheck()) {
+			$this->testCase->enableStrictErrorCheck();
+		}
+
 		if (is_string($argv))
 		{
 			$argv = ltrim($argv, '/');
@@ -142,18 +149,23 @@ class CIPHPUnitTestRequest
 		try {
 			if (is_array($argv))
 			{
-				return $this->callControllerMethod(
+				$ret = $this->callControllerMethod(
 					$http_method, $argv, $params
 				);
+				$this->testCase->disableStrictErrorCheck();
+				return $ret;
 			}
 			else
 			{
-				return $this->requestUri($http_method, $argv, $params);
+				$ret = $this->requestUri($http_method, $argv, $params);
+				$this->testCase->disableStrictErrorCheck();
+				return $ret;
 			}
 		}
 		// redirect()
 		catch (CIPHPUnitTestRedirectException $e)
 		{
+			$this->testCase->disableStrictErrorCheck();
 			if ($e->getCode() === 0)
 			{
 				set_status_header(200);
@@ -168,18 +180,21 @@ class CIPHPUnitTestRequest
 		// show_404()
 		catch (CIPHPUnitTestShow404Exception $e)
 		{
+			$this->testCase->disableStrictErrorCheck();
 			$this->processError($e);
 			return $e->getMessage();
 		}
 		// show_error()
 		catch (CIPHPUnitTestShowErrorException $e)
 		{
+			$this->testCase->disableStrictErrorCheck();
 			$this->processError($e);
 			return $e->getMessage();
 		}
 		// exit()
 		catch (CIPHPUnitTestExitException $e)
 		{
+			$this->testCase->disableStrictErrorCheck();
 			$output = ob_get_clean();
 			return $output;
 		}

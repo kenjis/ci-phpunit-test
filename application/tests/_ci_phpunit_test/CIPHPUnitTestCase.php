@@ -56,6 +56,11 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 		$this->CI = $CI;
 	}
 
+	public function getStrictRequestErrorCheck()
+	{
+		return $this->strictRequestErrorCheck;
+	}
+
 	public function __get($name)
 	{
 		if (isset($this->class_map[$name]))
@@ -136,10 +141,6 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	 */
 	public function request($http_method, $argv, $params = [])
 	{
-		if ($this->strictRequestErrorCheck) {
-			$this->enableStrictErrorCheck();
-		}
-
 		return $this->request->request($http_method, $argv, $params);
 	}
 
