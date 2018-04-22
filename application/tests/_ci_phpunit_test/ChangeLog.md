@@ -1,6 +1,6 @@
 # Change Log for ci-phpunit-test
 
-## v0.16.1 (Not Released)
+## v0.16.1 (2018/04/22)
 
 ### Fixed
 
