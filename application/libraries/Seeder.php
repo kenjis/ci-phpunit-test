@@ -29,8 +29,9 @@ class Seeder
 	 * Run another seeder
 	 *
 	 * @param string $seeder Seeder classname
+	 * @param bool $callDependencies
 	 */
-	public function call($seeder, $call_depends = true)
+	public function call($seeder, $callDependencies = true)
 	{
 		if ($this->seedPath === null)
 		{
@@ -38,8 +39,8 @@ class Seeder
 		}
 
 		$obj = $this->loadSeeder($seeder);
-		if ($call_depends === true && $obj instanceof Seeder) {
-			$obj->callDepends($this->seedPath);
+		if ($callDependencies === true && $obj instanceof Seeder) {
+			$obj->callDependencies($this->seedPath);
 		}
 		$obj->run();
 	}
@@ -59,11 +60,11 @@ class Seeder
 	}
 
 	/**
-	 * Call depend seeder list
+	 * Call dependency seeders
 	 *
 	 * @param string $seedPath
 	 */
-	public function callDepends($seedPath)
+	public function callDependencies($seedPath)
 	{
 		foreach ($this->depends as $path => $seeders) {
 			$this->seedPath = $seedPath;
@@ -71,20 +72,20 @@ class Seeder
 				$this->setPath($path);
 			}
 
-			$this->callDepend($seeders);
+			$this->callDependency($seeders);
 		}
 		$this->setPath($seedPath);
 	}
 
 	/**
-	 * Call depend seeder
+	 * Call dependency seeder
 	 *
 	 * @param string|array $seederName
 	 */
-	protected function callDepend($seederName)
+	protected function callDependency($seederName)
 	{
 		if (is_array($seederName)) {
-			array_map([$this, 'callDepend'], $seederName);
+			array_map([$this, 'callDependency'], $seederName);
 			return;
 		}
 
