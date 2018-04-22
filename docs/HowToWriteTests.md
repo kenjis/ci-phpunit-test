@@ -1,6 +1,7 @@
 # ci-phpunit-test for CodeIgniter 3.x
 
-version: **v0.16.1** | 
+version: **v0.17.0** | 
+[v0.16.1](https://github.com/kenjis/ci-phpunit-test/blob/v0.16.1/docs/HowToWriteTests.md) | 
 [v0.15.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.15.0/docs/HowToWriteTests.md) | 
 [v0.14.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.14.0/docs/HowToWriteTests.md) | 
 [v0.13.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.13.0/docs/HowToWriteTests.md) | 
@@ -300,7 +301,7 @@ You can use them like below:
 
 See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v0.16.0/application/tests/models/Category_model_test.php).
 
-And can be defined other Seeder dependency.
+You can alse define dependent seeders:
 
 ~~~php
 	protected $depends = [
@@ -308,7 +309,7 @@ And can be defined other Seeder dependency.
 	];
 ~~~
 
-Can be specification seeder path as below.
+You can define seeder paths for dependencies like below:
 
 ~~~php
 	public function __construct()
@@ -324,7 +325,7 @@ Can be specification seeder path as below.
 	}
 ~~~
 
-That function is call depends seeder in order.
+The dependent seeders will be called in the order listed.
 
 #### Using PHPUnit Mock Objects
 
