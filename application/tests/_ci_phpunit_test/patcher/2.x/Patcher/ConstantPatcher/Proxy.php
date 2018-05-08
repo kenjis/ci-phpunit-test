@@ -29,11 +29,11 @@ class Proxy
 
 	/**
 	 * Set a constant patch
-	 * 
+	 *
 	 * @param string $constant      constant name
 	 * @param mixed  $value         value
 	 * @param string $class_method  class::method to apply this patch
-	 * 
+	 *
 	 * @throws LogicException
 	 */
 	public static function patch($constant, $value, $class_method = null)
@@ -72,7 +72,7 @@ class Proxy
 	{
 		$trace = debug_backtrace();
 		$info = Backtrace::getInfo('ConstantPatcher', $trace);
-		
+
 		$class = strtolower($info['class']);
 		$class_method = strtolower($info['class_method']);
 
@@ -98,7 +98,7 @@ class Proxy
 
 	/**
 	 * Get patched constant value
-	 * 
+	 *
 	 * @param string $constant
 	 * @return mixed
 	 */
@@ -106,7 +106,7 @@ class Proxy
 	{
 		self::logInvocation($constant);
 
-		if (isset(self::$patches_to_apply[$constant]))
+		if (!empty(self::$patches_to_apply[$constant]))
 		{
 			if (! self::checkCalledMethod($constant))
 			{
