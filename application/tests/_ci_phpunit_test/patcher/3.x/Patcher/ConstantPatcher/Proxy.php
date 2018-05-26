@@ -106,7 +106,7 @@ class Proxy
 	{
 		self::logInvocation($constant);
 
-		if (!empty(self::$patches_to_apply[$constant]))
+		if (! empty(self::$patches_to_apply[$constant]))
 		{
 			if (! self::checkCalledMethod($constant))
 			{
