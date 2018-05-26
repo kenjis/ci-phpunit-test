@@ -2,6 +2,10 @@
 
 ## v0.17.0 (Not Released)
 
+### Fixed
+
+* Fix `MonkeyPatch::patchConstant()` when the user does not specify `$class_method`. See [#251](https://github.com/kenjis/ci-phpunit-test/pull/251/files).
+
 ### Added
 
 * Now Seeder can call dependent seeders. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#database-seeding).
