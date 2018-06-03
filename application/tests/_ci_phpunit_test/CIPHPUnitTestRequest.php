@@ -42,7 +42,7 @@ class CIPHPUnitTestRequest
 	 */
 	protected $hooks;
 
-	public function __construct(TestCase $testCase)
+	public function __construct(CIPHPUnitTestCase $testCase)
 	{
 		$this->testCase = $testCase;
 		$this->superGlobal = new CIPHPUnitTestSuperGlobal();
