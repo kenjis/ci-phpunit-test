@@ -63,6 +63,19 @@ class CIPHPUnitTestDbTestCase extends CIPHPUnitTestCase
 		}
 	}
 
+	/**
+	 * Reconnect to the database
+	 */
+	public function reconnectDb()
+	{
+		$this->db->close();
+		$this->db = null;
+
+		$CI =& get_instance();
+		$CI->load->database();
+		$this->db = $this->CI->db;
+	}
+
 	//--------------------------------------------------------------------
 	// Database Test Helpers
 	//--------------------------------------------------------------------
