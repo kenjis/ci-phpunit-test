@@ -4,12 +4,14 @@
 
 ### Fixed
 
+* Fix bug that you can't use `$this->request()` and `DbTestCase` class at the same time.
 * Fix `MonkeyPatch::patchConstant()` when the user does not specify `$class_method`. See [#251](https://github.com/kenjis/ci-phpunit-test/pull/251/files).
+* Fix bug that `vendor/kenjis/ci-phpunit-test/update.php` does not work.
 
 ### Added
 
 * Now Seeder can call dependent seeders. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#database-seeding).
-
+* `$this->reconnectDb()` method in `DbTestCase` class.
 
 ## v0.16.1 (2018/04/22)
 
