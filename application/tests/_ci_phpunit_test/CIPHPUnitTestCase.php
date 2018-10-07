@@ -92,11 +92,13 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Reset CodeIgniter instance and assign new CodeIgniter instance as $this->CI
+	 *
+	 *  @param bool $use_my_controller
 	 */
-	public function resetInstance()
+	public function resetInstance($use_my_controller = false)
 	{
 		reset_instance();
-		CIPHPUnitTest::createCodeIgniterInstance();
+		CIPHPUnitTest::createCodeIgniterInstance($use_my_controller);
 		$this->CI =& get_instance();
 	}
 
