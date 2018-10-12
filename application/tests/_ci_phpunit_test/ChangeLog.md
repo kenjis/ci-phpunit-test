@@ -11,7 +11,6 @@
 ### Added
 
 * Now Seeder can call dependent seeders. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#database-seeding).
-* `$this->reconnectDb()` method in `DbTestCase` class.
 
 ## v0.16.1 (2018/04/22)
 

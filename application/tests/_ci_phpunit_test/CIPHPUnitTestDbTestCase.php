@@ -64,10 +64,20 @@ class CIPHPUnitTestDbTestCase extends CIPHPUnitTestCase
 	}
 
 	/**
-	 * Reconnect to the database
+	 * Workaround for the following error
+	 *
+	 *   Error: Call to a member function quote() on boolean
+	 *   vendor/codeigniter/framework/system/database/drivers/pdo/pdo_driver.php:234
+	 *
+	 * I don't know why, but when I call $this->seeInDatabase() after $this->request(),
+	 * I got it
 	 */
-	public function reconnectDb()
+	private function checkDbConnId()
 	{
+		if (is_object($this->db->conn_id)) {
+			return;
+		}
+
 		$this->db->close();
 		$this->db = null;
 
@@ -91,6 +101,8 @@ class CIPHPUnitTestDbTestCase extends CIPHPUnitTestCase
 	 */
 	public function dontSeeInDatabase($table, array $where)
 	{
+		$this->checkDbConnId();
+
 		$this->db->from($table);
 		$this->db->where($where);
 		$count = $this->db->count_all_results();
@@ -111,6 +123,8 @@ class CIPHPUnitTestDbTestCase extends CIPHPUnitTestCase
 	 */
 	public function seeInDatabase($table, array $where)
 	{
+		$this->checkDbConnId();
+
 		$this->db->from($table);
 		$this->db->where($where);
 		$count = $this->db->count_all_results();
@@ -132,6 +146,8 @@ class CIPHPUnitTestDbTestCase extends CIPHPUnitTestCase
 	 */
 	public function grabFromDatabase($table, $column, array $where)
 	{
+		$this->checkDbConnId();
+
 		$this->db->select($column);
 		$this->db->where($where);
 		$query = $this->db->get($table);
@@ -152,6 +168,8 @@ class CIPHPUnitTestDbTestCase extends CIPHPUnitTestCase
 	 */
 	public function hasInDatabase($table, array $data)
 	{
+		$this->checkDbConnId();
+
 		$this->insertCache[] = [
 			$table, $data
 		];
@@ -173,6 +191,8 @@ class CIPHPUnitTestDbTestCase extends CIPHPUnitTestCase
 	 */
 	public function seeNumRecords($expected, $table, array $where = [])
 	{
+		$this->checkDbConnId();
+
 		$this->db->from($table);
 		$this->db->where($where);
 		$count = $this->db->count_all_results();
