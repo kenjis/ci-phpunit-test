@@ -12,6 +12,11 @@
 
 * Now Seeder can call dependent seeders. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#database-seeding).
 
+
+### Others
+
+* Compatible with CodeIgniter 3.1.9
+
 ## v0.16.1 (2018/04/22)
 
 ### Fixed
