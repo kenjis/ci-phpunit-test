@@ -1090,8 +1090,8 @@ class CI_Loader {
 
 		$class = ucfirst($class);
 
-		// Replace library in ci-phpuni-test
-		if (file_exists(TESTPATH.'_ci_phpunit_test/replacing/libraries/'.$subdir.$class.'.php'))
+		// Replace library in ci-phpunit-test
+		if (file_exists(CI_PHPUNIT_TESTPATH.'replacing/libraries/'.$subdir.$class.'.php'))
 		{
 			return $this->_ci_load_stock_library($class, $subdir, $params, $object_name);
 		}
@@ -1217,10 +1217,10 @@ class CI_Loader {
 			}
 		}
 
-		// Replace library in ci-phpuni-test
-		if (file_exists(TESTPATH.'_ci_phpunit_test/replacing/libraries/'.$file_path.$library_name.'.php'))
+		// Replace library in ci-phpunit-test
+		if (file_exists(CI_PHPUNIT_TESTPATH.'replacing/libraries/'.$file_path.$library_name.'.php'))
 		{
-			include_once(TESTPATH.'_ci_phpunit_test/replacing/libraries/'.$file_path.$library_name.'.php');
+			include_once(CI_PHPUNIT_TESTPATH.'replacing/libraries/'.$file_path.$library_name.'.php');
 		}
 		else
 		{

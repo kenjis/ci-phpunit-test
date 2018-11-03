@@ -50,7 +50,7 @@ class_alias('Kenjis\MonkeyPatch\MonkeyPatchManager', 'MonkeyPatchManager');
 //	// Project root directory
 //	'root_dir' => APPPATH . '../',
 //	// Cache directory
-//	'cache_dir' => TESTPATH . '_ci_phpunit_test/tmp/cache',
+//	'cache_dir' => CI_PHPUNIT_TESTPATH . 'tmp/cache',
 //	// Directories to patch on source files
 //	'include_paths' => [
 //		APPPATH,

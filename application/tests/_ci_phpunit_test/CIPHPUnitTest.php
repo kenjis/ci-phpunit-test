@@ -23,6 +23,9 @@ class CIPHPUnitTest
 		if (! defined('TESTPATH')) {
 			define('TESTPATH', APPPATH.'tests'.DIRECTORY_SEPARATOR);
 		}
+		if (!defined(CI_PHPUNIT_TESTPATH)) {
+			define('CI_PHPUNIT_TESTPATH', dirname(__FILE__).DIRECTORY_SEPARATOR);
+		}
 
 		// Fix CLI args
 		$_server_backup = $_SERVER;
@@ -170,7 +173,7 @@ class CIPHPUnitTest
 	{
 		if ($dir === null)
 		{
-			$dir = TESTPATH . '_ci_phpunit_test/tmp/cache';
+			$dir = CI_PHPUNIT_TESTPATH . 'tmp/cache';
 		}
 
 		MonkeyPatchManager::setCacheDir(
