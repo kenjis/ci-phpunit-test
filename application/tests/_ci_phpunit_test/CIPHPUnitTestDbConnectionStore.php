@@ -12,7 +12,7 @@ class CIPHPUnitTestDbConnectionStore
 	public static function destory()
 	{
 		foreach (self::$connections as $db) {
-			$this->closeConnection($db);
+			self::closeConnection($db);
 		}
 
 		self::$connections = [];
