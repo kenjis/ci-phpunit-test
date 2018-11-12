@@ -9,11 +9,6 @@ class CIPHPUnitTestDbConnectionStore
 		self::$connections[] = $db;
 	}
 
-	public static function empty()
-	{
-		return empty(self::$connections);
-	}
-
 	public static function destory()
 	{
 		foreach (self::$connections as $db) {
@@ -25,11 +20,8 @@ class CIPHPUnitTestDbConnectionStore
 
 	private static function closeConnection(CI_DB $db)
 	{
-		if ($db->dsn === 'sqlite::memory:' || $db->database === ':memory:') {
-			return;
+		if ($db->dsn !== 'sqlite::memory:' && $db->database !== ':memory:') {
+			$db->close();
 		}
-
-		$db->close();
-		$db = null;
 	}
 }
