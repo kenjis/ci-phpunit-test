@@ -14,6 +14,7 @@ class Installer
     private $app_dir = 'application';
     private $pub_dir = 'public';
     private $test_dir = 'tests';
+    private $from_composer = false;
 
     public function __construct($argv)
     {
@@ -59,6 +60,11 @@ class Installer
                     $i++;
                     break;
 
+                case '--from-composer':
+                    $this->from_composer = true;
+                    $i++;
+                    break;
+
                 default:
                     throw new Exception('Unknown argument: '.$argv[$i]);
             }
@@ -72,6 +78,9 @@ class Installer
             $this->app_dir.'/'.$this->test_dir
         );
         $this->fixPath();
+        if ($this->from_composer) {
+            $this->recursiveUnlink($this->app_dir.'/'.$this->test_dir.'/_ci_phpunit_test');
+        }
     }
 
     /**

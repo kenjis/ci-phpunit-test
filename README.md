@@ -70,10 +70,10 @@ $ composer require kenjis/ci-phpunit-test --dev
 And run `install.php`:
 
 ~~~
-$ php vendor/kenjis/ci-phpunit-test/install.php
+$ php vendor/kenjis/ci-phpunit-test/install.php --from-composer
 ~~~
 
-* The above command always overwrites exisiting files.
+* The above command always overwrites existing files.
 * You must run it at CodeIgniter project root folder.
 * You can specify your `application` and `public` folder with option arguments, if you use custom folder paths.
 
@@ -94,8 +94,24 @@ If you like Composer:
 ~~~
 $ cd /path/to/codeigniter/
 $ composer update kenjis/ci-phpunit-test
-$ php vendor/kenjis/ci-phpunit-test/update.php [-a <application_dir> -p <public_dir>]
 ~~~
+
+If you're upgrading from a previous version of `ci-phpunit-test` that created
+an `application/test/_ci_phpunit_test` directory and now want to directly use
+`ci-phpunit-test` from Composer, you have a couple of additional steps:
+
+1. Delete the old test library directory: `rm -rf /path/to/codeigniter/application/tests/_ci_phpunit_test`
+2. Edit the `application/tests/Bootstrap.php` file.  At the bottom of the "set the main path constants"
+   section, add the following:
+    ```
+    define('CI_PHPUNIT_TESTPATH', implode(
+        DIRECTORY_SEPARATOR,
+        [dirname(APPPATH), 'vendor', 'kenjis', 'ci-phpunit-test', 'application', 'tests', '_ci_phpunit_test']
+    ).DIRECTORY_SEPARATOR);
+    ```
+    And replace any references to `__DIR__ . '/_ci_phpunit_test/` or `TESTPATH . '_ci_phpunit_test` with
+    `CI_PHPUNIT_TESTPATH . '`.  (So, for example, `__DIR__ . '/_ci_phpunit_test/CIPHPUnitTest.php'`
+    would become `CI_PHPUNIT_TESTPATH . '/CIPHPUnitTest.php'`.)
 
 Read [Change Log](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/_ci_phpunit_test/ChangeLog.md).
 
