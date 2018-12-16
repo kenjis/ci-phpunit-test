@@ -85,6 +85,11 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 		chdir(FCPATH);
 	}
 
+	public static function tearDownAfterClass()
+	{
+		CIPHPUnitTestDbConnectionStore::destory();
+	}
+
 	/**
 	 * Reset CodeIgniter instance and assign new CodeIgniter instance as $this->CI
 	 */

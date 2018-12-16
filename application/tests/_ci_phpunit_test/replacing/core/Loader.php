@@ -400,7 +400,9 @@ class CI_Loader {
 
 		if ($return === TRUE)
 		{
-			return DB($params, $query_builder);
+			$result = DB($params, $query_builder);
+			CIPHPUnitTestDbConnectionStore::add($result);
+			return $result;
 		}
 
 		// Initialize the db variable. Needed to prevent
