@@ -231,7 +231,7 @@ Sets (and resets) a function (callable) to run after controller instantiation.
 $this->request->setCallable(
 	function ($CI) {
 		$CI->load->library('user_agent');
-	};
+	}
 );
 $output = $this->request('GET', ['Bbs', 'index']);
 ~~~
@@ -246,7 +246,7 @@ Adds a function (callable) to run after controller instantiation.
 $this->request->addCallable(
 	function ($CI) {
 		$CI->load->library('user_agent');
-	};
+	}
 );
 $output = $this->request('GET', ['Bbs', 'index']);
 ~~~
