@@ -12,7 +12,7 @@ class InterfaceTest extends \PHPUnit_Framework_TestCase
     /** @var Interface_ */
     protected $builder;
 
-    protected function setUp() {
+    protected function setUp(): void {
         $this->builder = new Interface_('Contract');
     }
 
