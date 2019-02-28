@@ -72,7 +72,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 		throw new LogicException('No such property: ' . $name);
 	}
 
-	public static function setUpBeforeClass()
+	public static function setUpBeforeClass(): void
 	{
 		// Fix CLI args, because you may set invalid URI characters
 		// For example, when you run tests on NetBeans
@@ -85,7 +85,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 		chdir(FCPATH);
 	}
 
-	public static function tearDownAfterClass()
+	public static function tearDownAfterClass(): void
 	{
 		CIPHPUnitTestDbConnectionStore::destory();
 	}
@@ -100,7 +100,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 		$this->CI =& get_instance();
 	}
 
-	protected function tearDown()
+	protected function tearDown(): void
 	{
 		$this->disableStrictErrorCheck();
 
