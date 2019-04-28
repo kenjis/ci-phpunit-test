@@ -22,7 +22,7 @@ version: **v0.16.1** |
 - [*function* `set_is_cli($return)`](#function-set_is_clireturn)
 - [*function* `load_class_instance($classname, $instance)`](#function-load_class_instanceclassname-instance)
 - [*class* TestCase](#class-testcase)
-	- [`TestCase::resetInstance()`](#testcaseresetinstanceuse_my_controller--false)
+	- [`TestCase::resetInstance($use_my_controller = false)`](#testcaseresetinstanceuse_my_controller--false)
 	- [`TestCase::request($method, $argv, $params = [])`](#testcaserequestmethod-argv-params--)
 		- [`request->setHeader()`](#request-setheader)
 		- [`request->setFiles($files)`](#request-setfilesfiles)
