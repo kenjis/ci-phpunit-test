@@ -26,6 +26,7 @@ class MonkeyPatchManager
 	 * Will be set in {@link MonkeyPatchManager::setDebug}.
 	 * @var string|null */
 	public static $log_file = null;
+
 	private static $load_patchers = false;
 	private static $exit_exception_classname =
 		'Kenjis\MonkeyPatch\Exception\ExitException';
@@ -76,9 +77,9 @@ class MonkeyPatchManager
 		}
 		if (isset($config['log_file']))
 		{
-			self::$debug = $config['log_file'];
+			self::$log_file = $config['log_file'];
 		}
-		if (self::$debug && is_null(self::$log_file))
+		if (is_null(self::$log_file))
 		{
 			self::$log_file = __DIR__ . '/debug.log';
 		}
