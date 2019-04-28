@@ -20,12 +20,13 @@
         "forum": "http://forum.codeigniter.com/thread-61725.html"
     },
     "require": {
-        "php": ">=5.4.0",
+        "php": ">=7.2",
         "nikic/php-parser": "^2.1|^3.0"
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0.x-dev"
+            "dev-master": "1.0.x-dev",
+            "dev-2.x": "2.0.x-dev"
         }
     }
 }
