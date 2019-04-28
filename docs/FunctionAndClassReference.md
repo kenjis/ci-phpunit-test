@@ -1,6 +1,7 @@
 # ci-phpunit-test for CodeIgniter 3.x
 
-version: **v0.16.1** | 
+version: **v0.17.0** | 
+[v0.16.1](https://github.com/kenjis/ci-phpunit-test/blob/v0.16.1/docs/FunctionAndClassReference.md) | 
 [v0.15.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.15.0/docs/FunctionAndClassReference.md) | 
 [v0.14.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.14.0/docs/FunctionAndClassReference.md) | 
 [v0.13.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.13.0/docs/FunctionAndClassReference.md) | 
@@ -22,7 +23,7 @@ version: **v0.16.1** |
 - [*function* `set_is_cli($return)`](#function-set_is_clireturn)
 - [*function* `load_class_instance($classname, $instance)`](#function-load_class_instanceclassname-instance)
 - [*class* TestCase](#class-testcase)
-	- [`TestCase::resetInstance()`](#testcaseresetinstance)
+	- [`TestCase::resetInstance($use_my_controller = false)`](#testcaseresetinstanceuse_my_controller--false)
 	- [`TestCase::request($method, $argv, $params = [])`](#testcaserequestmethod-argv-params--)
 		- [`request->setHeader()`](#request-setheader)
 		- [`request->setFiles($files)`](#request-setfilesfiles)
@@ -79,7 +80,7 @@ $controller = new Welcome();
 $this->CI =& get_instance();
 ~~~
 
-Normally, you don't have to use this function. Use [`TestCase::resetInstance()`](#testcaseresetinstance) method instead.
+Normally, you don't have to use this function. Use [`TestCase::resetInstance()`](#testcaseresetinstanceuse_my_controller--false) method instead.
 
 **Note:** Before you create a new controller instance, `get_instance()` returns `CIPHPUnitTestNullCodeIgniter` object.
 
@@ -115,7 +116,7 @@ load_class_instance('email', $email);
 
 ### *class* TestCase
 
-#### `TestCase::resetInstance()`
+#### `TestCase::resetInstance($use_my_controller = false)`
 
 Resets CodeIgniter instance and assign new CodeIgniter instance as `$this->CI`.
 
@@ -127,6 +128,8 @@ public function setUp()
 	$this->obj = $this->CI->Category_model;
 }
 ~~~
+
+If you want your `MY_Controller` as `$this->CI`, use `$this->resetInstance(true)`.
 
 **Note:** When you call [$this->request()](#testcaserequestmethod-argv-params--), you don't have to use this method. Because `$this->request()` resets CodeIgniter instance internally.
 
