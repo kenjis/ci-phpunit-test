@@ -28,7 +28,7 @@ An easier way to use PHPUnit with [CodeIgniter](https://github.com/bcit-ci/CodeI
 
 ## Change Log
 
-See [Change Log](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/_ci_phpunit_test/ChangeLog.md).
+See [Change Log](https://github.com/kenjis/ci-phpunit-test/blob/2.x/application/tests/_ci_phpunit_test/ChangeLog.md).
 
 ## Folder Structure
 
@@ -83,7 +83,7 @@ $ php vendor/kenjis/ci-phpunit-test/install.php -a <application_dir> -p <public_
 
 1. Download latest `ci-phpunit-test` from <https://github.com/kenjis/ci-phpunit-test/releases>.
 2. Unzip and replace `application/tests/_ci_phpunit_test` folder.
-3. Read [Change Log](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/_ci_phpunit_test/ChangeLog.md).
+3. Read [Change Log](https://github.com/kenjis/ci-phpunit-test/blob/2.x/application/tests/_ci_phpunit_test/ChangeLog.md).
 
 ### Upgrading via Composer
 
@@ -95,7 +95,7 @@ $ composer update kenjis/ci-phpunit-test
 $ php vendor/kenjis/ci-phpunit-test/update.php [-a <application_dir> -p <public_dir>]
 ~~~
 
-Read [Change Log](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/_ci_phpunit_test/ChangeLog.md).
+Read [Change Log](https://github.com/kenjis/ci-phpunit-test/blob/2.x/application/tests/_ci_phpunit_test/ChangeLog.md).
 
 ## How to Run Tests
 
