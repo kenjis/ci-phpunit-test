@@ -121,7 +121,7 @@ load_class_instance('email', $email);
 Resets CodeIgniter instance and assign new CodeIgniter instance as `$this->CI`.
 
 ~~~php
-public function setUp()
+public function setUp(): void
 {
 	$this->resetInstance();
 	$this->CI->load->model('Category_model');
@@ -138,7 +138,7 @@ If you want your `MY_Controller` as `$this->CI`, use `$this->resetInstance(true)
 Before v0.6.0, we write `setUp()` method like this:
 
 ~~~php
-public function setUp()
+public function setUp(): void
 {
 	$this->CI =& get_instance();
 	$this->CI->load->model('Category_model');
@@ -660,7 +660,7 @@ To use this test case, you must install `application/tests/UnitTestCase.php` man
 Resets CodeIgniter instance and return new model instance. This method is for model unit testing.
 
 ~~~php
-public function setUp()
+public function setUp(): void
 {
 	$this->obj = $this->newModel('Category_model');
 }
@@ -678,7 +678,7 @@ public function setUp()
 Resets CodeIgniter instance and return new library instance. This method is for library unit testing.
 
 ~~~php
-public function setUp()
+public function setUp(): void
 {
 	$this->obj = $this->newLibrary('Foo_library');
 }

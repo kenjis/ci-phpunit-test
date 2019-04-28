@@ -221,7 +221,7 @@ You must put all directories to search class files in the array.
 ~~~php
 class Foo_test extends TestCase
 {
-	public function setUp()
+	public function setUp(): void
 	{
 		$this->resetInstance();
 		$this->CI->load->library('Foo');
@@ -249,7 +249,7 @@ class Foo_test extends TestCase
 
 class Inventory_model_test extends TestCase
 {
-	public function setUp()
+	public function setUp(): void
 	{
 		$this->resetInstance();
 		$this->CI->load->model('shop/Inventory_model');
@@ -289,9 +289,9 @@ They are not installed, so if you want to use, copy them manually.
 You can use them like below:
 
 ~~~php
-	public static function setUpBeforeClass()
+	public static function setUpBeforeClass(): void
 	{
-		parent::setUpBeforeClass();
+		parent::setUpBeforeClass(): void;
 
 		$CI =& get_instance();
 		$CI->load->library('Seeder');
@@ -334,7 +334,7 @@ You can use `$this->getMockBuilder()` method in PHPUnit and [$this->verifyInvoke
 If you don't know well about PHPUnit Mock Objects, see [Test Doubles](https://phpunit.de/manual/current/en/test-doubles.html).
 
 ~~~php
-	public function setUp()
+	public function setUp(): void
 	{
 		$this->obj = $this->newModel('Category_model');
 	}
@@ -395,7 +395,7 @@ See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/v
 If your library depends on CodeIgniter functionality, I recommend using `setUp()` method like this:
 
 ~~~php
-	public function setUp()
+	public function setUp(): void
 	{
 		$this->resetInstance();
 		$this->CI->load->library('Someclass');
@@ -406,7 +406,7 @@ If your library depends on CodeIgniter functionality, I recommend using `setUp()
 If your library is decoupled from CodeIgniter functionality, you can use `setUp()` method like this:
 
 ~~~php
-	public function setUp()
+	public function setUp(): void
 	{
 		$this->obj = new Someclass();
 	}
@@ -796,7 +796,7 @@ With mock libraries, you could replace your object in CodeIgniter instance.
 This is how to replace Email library with `Mock_Libraries_Email` class.
 
 ~~~php
-	public function setUp()
+	public function setUp(): void
 	{
 		$this->resetInstance();
 		$this->CI->load->model('Mail_model');

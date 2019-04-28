@@ -41,7 +41,7 @@ class CIPHPUnitTestDbTestCase extends CIPHPUnitTestCase
 		}
 	}
 
-	protected function setUp()
+	protected function setUp(): void
 	{
 		$this->loadDependencies();
 	}
@@ -52,7 +52,7 @@ class CIPHPUnitTestDbTestCase extends CIPHPUnitTestCase
 	 * Takes care of any required cleanup after the test, like
 	 * removing any rows inserted via $this->hasInDatabase()
 	 */
-	protected function tearDown()
+	protected function tearDown(): void
 	{
 		if (! empty($this->insertCache))
 		{
