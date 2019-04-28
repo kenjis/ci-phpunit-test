@@ -17,11 +17,9 @@ An easier way to use PHPUnit with [CodeIgniter](https://github.com/bcit-ci/CodeI
 
 ## Requirements
 
-* PHP 5.4.0 or later (5.6 or later is recommended)
+* PHP 7.2 or later
 * CodeIgniter 3.x
-* PHPUnit 4.3 or later (4.8 or later is recommended)
-  * If you use PHPUnit 6.0, please use ci-phpunit-test v0.14.0 or later.
-  * You can download old version of `phpunit.phar` from <https://phar.phpunit.de/>.
+* PHPUnit 8.1 or later
 
 ## Optional
 
@@ -178,7 +176,7 @@ class Welcome_test extends TestCase
     public function test_index()
     {
         $output = $this->request('GET', 'welcome/index');
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<title>Welcome to CodeIgniter</title>', $output
         );
     }
