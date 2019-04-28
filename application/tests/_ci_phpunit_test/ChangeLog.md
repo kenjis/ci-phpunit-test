@@ -12,6 +12,7 @@
 
 * Now Seeder can call dependent seeders. See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md#database-seeding).
 * `$this->resetInstance()` could create `MY_Controller` instance in stead of `CI_Controller` instance. See [#271](https://github.com/kenjis/ci-phpunit-test/pull/271).
+* Now you can change Monkey Patch debug log file path. See [#243](https://github.com/kenjis/ci-phpunit-test/pull/243).
 
 ### Others
 
