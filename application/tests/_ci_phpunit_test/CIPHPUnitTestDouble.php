@@ -8,11 +8,13 @@
  * @link       https://github.com/kenjis/ci-phpunit-test
  */
 
+use PHPUnit\Framework\TestCase;
+
 class CIPHPUnitTestDouble
 {
 	protected $testCase;
 
-	public function __construct(PHPUnit_Framework_TestCase $testCase)
+	public function __construct(TestCase $testCase)
 	{
 		$this->testCase = $testCase;
 	}

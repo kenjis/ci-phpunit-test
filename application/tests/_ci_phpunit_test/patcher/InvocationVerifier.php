@@ -10,7 +10,7 @@
 
 namespace Kenjis\MonkeyPatch;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 class InvocationVerifier
 {
@@ -51,7 +51,7 @@ class InvocationVerifier
 
 				if ($expected_times === 0)
 				{
-					PHPUnit_Framework_TestCase::assertEquals(
+					TestCase::assertEquals(
 						$expected_times,
 						$actual_times,
 						$class_method . '() expected to be not invoked, but invoked ' . $actual_times . ' times.'
@@ -59,7 +59,7 @@ class InvocationVerifier
 				}
 				elseif ($expected_times === '+')
 				{
-					PHPUnit_Framework_TestCase::assertGreaterThanOrEqual(
+					TestCase::assertGreaterThanOrEqual(
 						1,
 						$actual_times,
 						$class_method . '() expected to be invoked at least one time, but invoked ' . $actual_times . ' times.'
@@ -67,7 +67,7 @@ class InvocationVerifier
 				}
 				else
 				{
-					PHPUnit_Framework_TestCase::assertEquals(
+					TestCase::assertEquals(
 						$expected_times,
 						$actual_times,
 						$class_method . '() expected to be invoked ' . $expected_times . ' times, but invoked ' . $actual_times . ' times.'

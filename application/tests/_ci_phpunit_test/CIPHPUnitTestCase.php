@@ -8,6 +8,8 @@
  * @link       https://github.com/kenjis/ci-phpunit-test
  */
 
+use PHPUnit\Framework\TestCase;
+
 // Support PHPUnit 6.0
 if (! class_exists('PHPUnit_Framework_TestCase'))
 {
@@ -19,7 +21,7 @@ if (! class_exists('PHPUnit_Framework_TestCase'))
  * @property CIPHPUnitTestDouble     $double
  * @property CIPHPUnitTestReflection $reflection
  */
-class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
+class CIPHPUnitTestCase extends TestCase
 {
 	protected $_error_reporting = -1;
 
