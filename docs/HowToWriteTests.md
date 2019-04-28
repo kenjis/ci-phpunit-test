@@ -237,7 +237,7 @@ class Foo_test extends TestCase
 }
 ~~~
 
-[$this->resetInstance()](FunctionAndClassReference.md#testcaseresetinstance) method in ci-phpunit-test is a helper method to reset CodeIgniter instance and assign new CodeIgniter instance as `$this->CI`.
+[$this->resetInstance()](FunctionAndClassReference.md#testcaseresetinstanceuse_my_controller--false) method in ci-phpunit-test is a helper method to reset CodeIgniter instance and assign new CodeIgniter instance as `$this->CI`.
 
 ### Models
 
