@@ -19,7 +19,8 @@ An easier way to use PHPUnit with [CodeIgniter](https://github.com/bcit-ci/CodeI
 
 * PHP 5.4.0 or later (5.6 or later is recommended)
 * CodeIgniter 3.x
-* PHPUnit 4.3 or later (4.8 or later is recommended)
+* PHPUnit 4.3 to 7.5 (4.8 or later is recommended)
+  * If you want to use PHPUnit 8 or later, please use ci-phpunit-test [2.x](https://github.com/kenjis/ci-phpunit-test/tree/2.x).
   * If you use PHPUnit 6.0, please use ci-phpunit-test v0.14.0 or later.
   * You can download old version of `phpunit.phar` from <https://phar.phpunit.de/>.
 
