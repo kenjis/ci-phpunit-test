@@ -22,7 +22,7 @@ version: **v0.16.1** |
 - [*function* `set_is_cli($return)`](#function-set_is_clireturn)
 - [*function* `load_class_instance($classname, $instance)`](#function-load_class_instanceclassname-instance)
 - [*class* TestCase](#class-testcase)
-	- [`TestCase::resetInstance()`](#testcaseresetinstance)
+	- [`TestCase::resetInstance()`](#testcaseresetinstanceuse_my_controller--false)
 	- [`TestCase::request($method, $argv, $params = [])`](#testcaserequestmethod-argv-params--)
 		- [`request->setHeader()`](#request-setheader)
 		- [`request->setFiles($files)`](#request-setfilesfiles)
@@ -79,7 +79,7 @@ $controller = new Welcome();
 $this->CI =& get_instance();
 ~~~
 
-Normally, you don't have to use this function. Use [`TestCase::resetInstance()`](#testcaseresetinstance) method instead.
+Normally, you don't have to use this function. Use [`TestCase::resetInstance()`](#testcaseresetinstanceuse_my_controller--false) method instead.
 
 **Note:** Before you create a new controller instance, `get_instance()` returns `CIPHPUnitTestNullCodeIgniter` object.
 
