@@ -115,7 +115,7 @@ load_class_instance('email', $email);
 
 ### *class* TestCase
 
-#### `TestCase::resetInstance()`
+#### `TestCase::resetInstance($use_my_controller = false)`
 
 Resets CodeIgniter instance and assign new CodeIgniter instance as `$this->CI`.
 
@@ -127,6 +127,8 @@ public function setUp()
 	$this->obj = $this->CI->Category_model;
 }
 ~~~
+
+If you want your `MY_Controller` as `$this->CI`, use `$this->resetInstance(true)`.
 
 **Note:** When you call [$this->request()](#testcaserequestmethod-argv-params--), you don't have to use this method. Because `$this->request()` resets CodeIgniter instance internally.
 
