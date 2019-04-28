@@ -1,12 +1,8 @@
 language: php
 
 php:
-  - 5.4
-  - 5.5
-  - 5.6
-  - 7.0
-  - 7.1
   - 7.2
+  - 7.3
 
 before_script:
   - pwd
@@ -14,7 +10,7 @@ before_script:
   - composer self-update
   - cd ..
   - pwd
-  - git clone https://github.com/kenjis/ci-app-for-ci-phpunit-test.git
+  - git clone -b 2.x https://github.com/kenjis/ci-app-for-ci-phpunit-test.git
   - cd ci-app-for-ci-phpunit-test
   - rm application/tests/_ci_phpunit_test
   - composer update
@@ -28,4 +24,4 @@ script:
 
 after_script:
   - cd ../..
-  - if [[ "$TRAVIS_PHP_VERSION" == "5.6" ]]; then php vendor/bin/coveralls -v; fi
+  - if [[ "$TRAVIS_PHP_VERSION" == "7.2" ]]; then php vendor/bin/coveralls -v; fi
