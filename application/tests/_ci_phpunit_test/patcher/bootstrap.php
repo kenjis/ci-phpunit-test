@@ -10,7 +10,11 @@
 
 // If you use Composer
 if (class_exists('PhpParser\Autoloader')) {
-	if (method_exists('PhpParser\Node\Name','set')) {
+	if (class_exists('PhpParser\Node\Identifier')) {
+		// PHP-Parser 4.x
+		require __DIR__ . '/4.x/MonkeyPatchManager.php';
+	}
+	elseif (method_exists('PhpParser\Node\Name','set')) {
 		// PHP-Parser 2.x
 		require __DIR__ . '/2.x/MonkeyPatchManager.php';
 	} else {
