@@ -22,7 +22,7 @@ if (class_exists('PhpParser\Autoloader')) {
 else {
 	if (version_compare(PHP_VERSION, '5.5.0', '>=')) {
 		// Use PHP-Parser 3.x
-		require __DIR__ . '/third_party/PHP-Parser-3.0.3/lib/bootstrap.php';
+		require __DIR__ . '/third_party/PHP-Parser-3.1.5/lib/bootstrap.php';
 		require __DIR__ . '/3.x/MonkeyPatchManager.php';
 	} else {
 		// Use PHP-Parser 2.x
