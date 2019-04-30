@@ -18,7 +18,6 @@
 ### Others
 
 * Update nikic/PHP-Parser to v3.1.5
-* Add nikic/PHP-Parser 4.2 as a Composer dependency
 
 ## v0.17.0 (2019/04/28)
 
