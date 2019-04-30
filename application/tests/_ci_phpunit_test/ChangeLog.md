@@ -6,6 +6,9 @@
 
 * Require PHP 7.2 or later, PHPUnit 8.1 or later
 
+### Others
+
+* Update nikic/PHP-Parser to v3.1.5
 
 ## v0.17.0 (2019/04/28)
 
