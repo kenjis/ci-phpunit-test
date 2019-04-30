@@ -128,7 +128,7 @@ class Proxy
 			}
 			return true;
 		}
-		//Patches the functions only in the class method
+		// Patches the functions only in the class method
 		else
 		{
 			if (self::$patches_to_apply[$function] !== $class_method)
