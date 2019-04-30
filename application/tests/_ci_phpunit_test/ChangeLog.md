@@ -1,5 +1,11 @@
 # Change Log for ci-phpunit-test
 
+## v0.17.1 (Not Released)
+
+### Others
+
+* Update nikic/PHP-Parser to v3.1.5
+
 ## v0.17.0 (2019/04/28)
 
 ### Fixed
