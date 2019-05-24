@@ -314,7 +314,7 @@ switch (ENVIRONMENT)
 	define('VIEWPATH', $view_folder.DIRECTORY_SEPARATOR);
 
 	// Path to the ci-phpunit-test directory
-	if (is_dir(TESTPATH . '_ci_phpunit_test'))
+	if (is_file(TESTPATH . '_ci_phpunit_test' . DIRECTORY_SEPARATOR . 'CIPHPUnitTest.php'))
 	{
 		define('CI_PHPUNIT_TESTPATH', TESTPATH . '_ci_phpunit_test' . DIRECTORY_SEPARATOR);
 	}
