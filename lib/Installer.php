@@ -13,7 +13,7 @@ class Installer
     private $silent = false;
     private $app_dir = 'application';
     private $pub_dir = 'public';
-    private $test_dir = 'tests';
+    private $test_dir = null;
 
     public function __construct($argv)
     {
@@ -58,18 +58,30 @@ class Installer
                     }
                     $i++;
                     break;
+				// php install.php -p public
+                case '-t':
+                    if (is_dir($argv[$i+1])) {
+                        $this->test_dir = $argv[$i+1];
+                    } else {
+                        throw new Exception('No such directory: '.$argv[$i+1]);
+                    }
+                    $i++;
+                    break;
 
                 default:
                     throw new Exception('Unknown argument: '.$argv[$i]);
             }
         }
+        if (is_null($this->test_dir)) {
+			$test_dir = $this->app_dir.'/tests';
+		}
     }
 
     public function install()
     {
         $this->recursiveCopy(
             dirname(dirname(__FILE__)).'/application/tests',
-            $this->app_dir.'/'.$this->test_dir
+            $this->test_dir
         );
         $this->fixPath();
     }
@@ -79,7 +91,7 @@ class Installer
      */
     private function fixPath()
     {
-        $file = $this->app_dir.'/'.$this->test_dir.'/Bootstrap.php';
+        $file = $this->test_dir.'/Bootstrap.php';
         $contents = file_get_contents($file);
 
         if (! file_exists('system')) {
@@ -138,7 +150,7 @@ class Installer
 
     public function update()
     {
-        $target_dir = $this->app_dir.'/'.$this->test_dir.'/_ci_phpunit_test';
+        $target_dir = $this->test_dir.'/_ci_phpunit_test';
         $this->recursiveUnlink($target_dir);
         $this->recursiveCopy(
             dirname(dirname(__FILE__)).'/application/tests/_ci_phpunit_test',
