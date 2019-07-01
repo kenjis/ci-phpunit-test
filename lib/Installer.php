@@ -11,9 +11,9 @@
 class Installer
 {
     private $silent = false;
-    private $app_dir = 'application';
-    private $pub_dir = 'public';
-    private $test_dir = null;
+    private $app_dir = 'application';  // -a DIRECTORY
+    private $pub_dir = 'public';       // -p DIRECTORY
+    private $test_dir = null;          // -t DIRECTORY
 
     public function __construct($argv)
     {
@@ -44,7 +44,7 @@ class Installer
                     if (is_dir($argv[$i+1])) {
                         $this->app_dir = $argv[$i+1];
                     } else {
-                        throw new Exception('No such directory: '.$argv[$i+1]);
+                        throw new Exception('No such application directory: '.$argv[$i+1]);
                     }
                     $i++;
                     break;
@@ -54,16 +54,16 @@ class Installer
                     if (is_dir($argv[$i+1])) {
                         $this->pub_dir = $argv[$i+1];
                     } else {
-                        throw new Exception('No such directory: '.$argv[$i+1]);
+                        throw new Exception('No such public directory: '.$argv[$i+1]);
                     }
                     $i++;
                     break;
-				// php install.php -p public
+				// php install.php -t application/tests
                 case '-t':
                     if (is_dir($argv[$i+1])) {
                         $this->test_dir = $argv[$i+1];
                     } else {
-                        throw new Exception('No such directory: '.$argv[$i+1]);
+                        throw new Exception('No such test directory: '.$argv[$i+1]);
                     }
                     $i++;
                     break;
