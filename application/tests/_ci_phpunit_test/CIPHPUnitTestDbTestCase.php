@@ -83,7 +83,7 @@ class CIPHPUnitTestDbTestCase extends CIPHPUnitTestCase
 
 		$CI =& get_instance();
 		$CI->load->database();
-		$this->db = $this->CI->db;
+		$this->db = $CI->db;
 	}
 
 	//--------------------------------------------------------------------
