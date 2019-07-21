@@ -6,6 +6,11 @@
 
 * Require PHP 7.2 or later, PHPUnit 8.1 or later
 
+### Fixed
+
+* Fix bug that CIPHPUnitTestDbTestCase reconnects DB on every assertions. See [#301](https://github.com/kenjis/ci-phpunit-test/pull/301).
+* Fix typo in CIPHPUnitTestDbTestCase. See [#299](https://github.com/kenjis/ci-phpunit-test/pull/299).
+
 ### Others
 
 * Update nikic/PHP-Parser to v3.1.5
