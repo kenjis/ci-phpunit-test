@@ -74,7 +74,7 @@ class CIPHPUnitTestDbTestCase extends CIPHPUnitTestCase
 	 */
 	private function checkDbConnId()
 	{
-		if (is_object($this->db->conn_id)) {
+		if (is_object($this->db->conn_id) || is_resource($this->db->conn_id)) {
 			return;
 		}
 
