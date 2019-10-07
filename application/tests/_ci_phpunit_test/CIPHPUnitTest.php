@@ -74,6 +74,9 @@ class CIPHPUnitTest
 		// Change current directory
 		chdir(FCPATH);
 
+    // Replace helpers before loading CI (which could auto load helpers)
+		self::replaceHelpers();
+    
 		/*
 		 * --------------------------------------------------------------------
 		 * LOAD THE BOOTSTRAP FILE
@@ -82,8 +85,6 @@ class CIPHPUnitTest
 		 * And away we go...
 		 */
 		require __DIR__ . '/replacing/core/CodeIgniter.php';
-
-		self::replaceHelpers();
 
 		// Create CodeIgniter instance
 		if (! self::wiredesignzHmvcInstalled())
