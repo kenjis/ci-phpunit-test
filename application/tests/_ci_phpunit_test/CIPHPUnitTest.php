@@ -74,9 +74,9 @@ class CIPHPUnitTest
 		// Change current directory
 		chdir(FCPATH);
 
-    // Replace helpers before loading CI (which could auto load helpers)
+	// Replace helpers before loading CI (which could auto load helpers)
 		self::replaceHelpers();
-    
+
 		/*
 		 * --------------------------------------------------------------------
 		 * LOAD THE BOOTSTRAP FILE
