@@ -2,7 +2,7 @@
 /**
  * Test Suite Provider for NetBeans
  * https://github.com/BrickieToolShed/netbeans-phpunit-support
- * 
+ *
  * Modified 2015 by Kenji Suzuki <https://github.com/kenjis>
  * @link       https://github.com/kenjis/ci-phpunit-test
  */
@@ -41,6 +41,11 @@ namespace netbeans\phpunit\support;
 
 use PHPUnit_Framework_TestSuite;
 use PHPUnit_Util_Configuration;
+
+// Support PHPUnit 6.0
+if (! class_exists('PHPUnit_Util_Configuration')) {
+    class_alias('PHPUnit\Util\Configuration', 'PHPUnit_Util_Configuration');
+}
 
 /**
  * TestSuiteProvider
