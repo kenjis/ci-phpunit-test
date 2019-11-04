@@ -36,7 +36,7 @@ class CIPHPUnitTestDouble
 	 * @param  array  $params             [method_name => return_value]
 	 * @param  mixed  $constructor_params false: disable construntor, array: construntor params
 	 * 
-	 * @return object PHPUnit mock object
+	 * @return mixed PHPUnit mock object
 	 */
 	public function getDouble($classname, $params, $constructor_params = false)
 	{
