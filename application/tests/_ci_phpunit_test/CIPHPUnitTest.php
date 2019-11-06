@@ -263,7 +263,7 @@ class CIPHPUnitTest
 	{
 		if ($dir === null)
 		{
-			$dir = TESTPATH . '_ci_phpunit_test/tmp/cache';
+			$dir = CI_PHPUNIT_TESTPATH . 'tmp/cache';
 		}
 
 		MonkeyPatchManager::setCacheDir(
