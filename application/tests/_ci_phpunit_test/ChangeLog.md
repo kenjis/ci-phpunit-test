@@ -25,6 +25,10 @@
 * Fix bug that `$assign_to_config` does not work. See [#314](https://github.com/kenjis/ci-phpunit-test/pull/314).
 * Fix bug that `config.php` is loaded before `constants.php`. See [#348](https://github.com/kenjis/ci-phpunit-test/pull/348).
 
+### Added
+
+* Now you can use `_ci_phpunit_test` directly from vendor path. See [#274](https://github.com/kenjis/ci-phpunit-test/pull/274).
+
 ### Others
 
 * Update nikic/PHP-Parser to v3.1.5
