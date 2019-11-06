@@ -30,7 +30,7 @@ class CIPHPUnitTest
 		if (! defined('TESTPATH')) {
 			define('TESTPATH', APPPATH.'tests'.DIRECTORY_SEPARATOR);
 		}
-        // Current Bootstrap.php should define this, but in case it doesn't:
+		// Current Bootstrap.php should define this, but in case it doesn't:
 		if (! defined('CI_PHPUNIT_TESTPATH')) {
 			define('CI_PHPUNIT_TESTPATH', dirname(__FILE__).DIRECTORY_SEPARATOR);
 		}
