@@ -9,6 +9,10 @@
 * Fix bug that `PHPUnit\Framework\MockObject\Stub` does not work. See [#307](https://github.com/kenjis/ci-phpunit-test/pull/307).
 * Fix bug that modified helpers are not loaded. See [#310](https://github.com/kenjis/ci-phpunit-test/pull/310).
 
+### Added
+
+* Now you can use `_ci_phpunit_test` directly from vendor path. See [#274](https://github.com/kenjis/ci-phpunit-test/pull/274).
+
 ### Others
 
 * Update nikic/PHP-Parser to v3.1.5
