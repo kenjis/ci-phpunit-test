@@ -73,7 +73,7 @@ class ConstantPatcher extends AbstractPatcher
 			{
 				$new_source .= $token;
 			}
-			elseif ($i == $replacement['key'])
+			elseif (isset($replacement['key']) && $i == $replacement['key'])
 			{
 				$new_source .= $replacement['value'];
 				$replacement['key'] = key(self::$replacement);
