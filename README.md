@@ -71,7 +71,7 @@ $ composer require kenjis/ci-phpunit-test --dev
 And run `install.php`:
 
 ~~~
-$ php vendor/kenjis/ci-phpunit-test/install.php --from-composer
+$ php vendor/kenjis/ci-phpunit-test/install.php
 ~~~
 
 * The above command always overwrites existing files.
