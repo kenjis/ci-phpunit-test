@@ -85,6 +85,8 @@ class Installer
 
     /**
      * Fix paths in Bootstrap.php
+	 *
+	 * @FIXME Too ad hoc. Must rewrite, because can't handle complex paths.
      */
     private function fixPath()
     {
