@@ -377,11 +377,6 @@ MonkeyPatchManager::init([
  * -------------------------------------------------------------------
  */
 
-// If you want to change the path of tests directory, set TESTPATH
-/*
-define('TESTPATH', APPPATH.'tests'.DIRECTORY_SEPARATOR);
-*/
-
 require CI_PHPUNIT_TESTPATH . '/CIPHPUnitTest.php';
 
 CIPHPUnitTest::init();
