@@ -76,11 +76,14 @@ $ php vendor/kenjis/ci-phpunit-test/install.php --from-composer
 
 * The above command always overwrites existing files.
 * You must run it at CodeIgniter project root folder.
+* Please remove the line `<exclude>./_ci_phpunit_test/</exclude>` in [tests/phpunit.xml](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/phpunit.xml#L8).
 * You can specify your `application` and `public` folder with option arguments, if you use custom folder paths.
 
 ~~~
 $ php vendor/kenjis/ci-phpunit-test/install.php -a <application_dir> -p <public_dir>
 ~~~
+
+* But some paths may be not correct, in that case, please fix them in [tests/Bootstrap.php](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/Bootstrap.php#L96).
 
 ## Upgrading
 
