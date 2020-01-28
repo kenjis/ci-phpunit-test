@@ -12,6 +12,7 @@
 * Fix typo in CIPHPUnitTestDbTestCase. See [#299](https://github.com/kenjis/ci-phpunit-test/pull/299).
 * Fix bug that `PHPUnit\Framework\MockObject\Stub` does not work. See [#307](https://github.com/kenjis/ci-phpunit-test/pull/307).
 * Fix bug that modified helpers are not loaded. See [#310](https://github.com/kenjis/ci-phpunit-test/pull/310).
+* Fix bug that Monkey Patch causes errors on PHP 7.4. See [#318](https://github.com/kenjis/ci-phpunit-test/pull/318).
 
 ### Others
 
