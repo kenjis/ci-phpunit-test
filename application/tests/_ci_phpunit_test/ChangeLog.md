@@ -1,5 +1,11 @@
 # Change Log for ci-phpunit-test
 
+## v0.17.2 (Not Released)
+
+### Fixed
+
+* Fix bug when you enable exit patcher only, it causes errors. See [#320](https://github.com/kenjis/ci-phpunit-test/pull/320).
+
 ## v0.17.1 (2020/01/22)
 
 ### Fixed
