@@ -55,7 +55,7 @@ EOL;
 		{
 			$i++;
 
-			if ($i == $replacement['key'])
+			if (isset($replacement['key']) && $i == $replacement['key'])
 			{
 				$start_method = true;
 			}
