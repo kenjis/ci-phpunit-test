@@ -141,14 +141,18 @@ class MonkeyPatchManager
 
 		self::loadPatchers();
 
-		self::addTmpFunctionBlacklist();
-
-		if (isset($config['functions_to_patch']))
+		if (static::isEnabled('FunctionPatcher'))
 		{
-			FunctionPatcher::addWhitelists($config['functions_to_patch']);
+			self::addTmpFunctionBlacklist();
+
+			if (isset($config['functions_to_patch']))
+			{
+				FunctionPatcher::addWhitelists($config['functions_to_patch']);
+			}
+
+			self::checkFunctionWhitelistUpdate();
+			FunctionPatcher::lockFunctionList();
 		}
-		self::checkFunctionWhitelistUpdate();
-		FunctionPatcher::lockFunctionList();
 
 		if (isset($config['exit_exception_classname']))
 		{
