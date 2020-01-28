@@ -5,6 +5,7 @@
 ### Fixed
 
 * Fix bug when you enable exit patcher only, it causes errors. See [#320](https://github.com/kenjis/ci-phpunit-test/pull/320).
+* Fix bug that Monkey Patch causes errors on PHP 7.4. See [#318](https://github.com/kenjis/ci-phpunit-test/pull/318).
 
 ## v0.17.1 (2020/01/22)
 
