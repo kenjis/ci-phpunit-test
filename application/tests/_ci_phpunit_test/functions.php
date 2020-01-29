@@ -33,14 +33,14 @@ function reset_instance()
 
 	// Close db connection
 	$CI =& get_instance();
-	if (isset($CI->db))
+	if (isset($CI->db) && $CI->db instanceof CI_DB)
 	{
 		if (
 			$CI->db->dsn !== 'sqlite::memory:'
 			&& $CI->db->database !== ':memory:'
 		)
 		{
-			$CI->db->close();
+			CIPHPUnitTestDbConnectionStore::closeConnection($CI->db);
 			$CI->db = null;
 		}
 		else
