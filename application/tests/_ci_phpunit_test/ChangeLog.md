@@ -1,5 +1,11 @@
 # Change Log for ci-phpunit-test
 
+## v0.17.3 (Not Released)
+
+### Fixed
+
+* Fix buggy tearDown() with MySQL. See [#321](https://github.com/kenjis/ci-phpunit-test/pull/321).
+
 ## v0.17.2 (2020/01/28)
 
 ### Fixed
