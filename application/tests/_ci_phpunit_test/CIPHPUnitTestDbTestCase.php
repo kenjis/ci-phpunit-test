@@ -54,6 +54,8 @@ class CIPHPUnitTestDbTestCase extends CIPHPUnitTestCase
 	 */
 	protected function tearDown(): void
 	{
+		$this->checkDbConnId();
+		
 		if (! empty($this->insertCache))
 		{
 			foreach ($this->insertCache as $row)
