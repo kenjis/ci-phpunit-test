@@ -108,7 +108,7 @@ class CIPHPUnitTestDouble
 	 * 	]
 	 * );
 	 *
-	 * @param object $mock   PHPUnit mock object
+	 * @param mixed  $mock   PHPUnit mock object
 	 * @param string $method
 	 * @param int    $times
 	 * @param array  $params arguments
@@ -123,7 +123,7 @@ class CIPHPUnitTestDouble
 	/**
 	 * Verifies a method was invoked at least once
 	 *
-	 * @param object $mock   PHPUnit mock object
+	 * @param mixed  $mock   PHPUnit mock object
 	 * @param string $method
 	 * @param array  $params arguments
 	 */
@@ -137,7 +137,7 @@ class CIPHPUnitTestDouble
 	/**
 	 * Verifies that method was invoked only once
 	 *
-	 * @param object $mock   PHPUnit mock object
+	 * @param mixed  $mock   PHPUnit mock object
 	 * @param string $method
 	 * @param array  $params arguments
 	 */
@@ -151,7 +151,7 @@ class CIPHPUnitTestDouble
 	/**
 	 * Verifies that method was not called
 	 *
-	 * @param object $mock   PHPUnit mock object
+	 * @param mixed  $mock   PHPUnit mock object
 	 * @param string $method
 	 * @param array  $params arguments
 	 */
