@@ -10,12 +10,12 @@
 
 /**
  * Copyright for Original Code
- * 
+ *
  * @author     CodeIgniter Dev Team
  * @copyright  Copyright (c) 2014 - 2016, British Columbia Institute of Technology (http://bcit.ca/)
  * @license    http://opensource.org/licenses/MIT	MIT License
  * @link       http://codeigniter.com
- * 
+ *
  * @see        https://github.com/bcit-ci/CodeIgniter4/blob/59e1587a9875141586f8333ff9cc64cdae2173c4/system/Test/CIDatabaseTestCase.php
  */
 
@@ -58,7 +58,7 @@ class CIPHPUnitTestDbTestCase extends CIPHPUnitTestCase
 	protected function tearDown()
 	{
 		$this->checkDbConnId();
-		
+
 		if (! empty($this->insertCache))
 		{
 			foreach ($this->insertCache as $row)
@@ -114,13 +114,13 @@ class CIPHPUnitTestDbTestCase extends CIPHPUnitTestCase
 
 		$this->assertTrue($count == 0, 'Row was found in database');
 	}
-	
+
 	//--------------------------------------------------------------------
 
 	/**
 	 * Asserts that records that match the conditions in $where DO
 	 * exist in the database.
-	 * 
+	 *
 	 * @param string $table
 	 * @param array  $where
 	 *
@@ -160,7 +160,7 @@ class CIPHPUnitTestDbTestCase extends CIPHPUnitTestCase
 
 		return isset($row->$column) ? $row->$column : false;
 	}
-	
+
 	//--------------------------------------------------------------------
 
 	/**
@@ -204,7 +204,7 @@ class CIPHPUnitTestDbTestCase extends CIPHPUnitTestCase
 
 		$this->assertEquals($expected, $count, 'Wrong number of matching rows in database.');
 	}
-	
+
 	//--------------------------------------------------------------------
-	
+
 }
