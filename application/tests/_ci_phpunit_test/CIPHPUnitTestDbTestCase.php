@@ -21,6 +21,9 @@
 
 class CIPHPUnitTestDbTestCase extends CIPHPUnitTestCase
 {
+	/**
+	 * @var CI_DB_query_builder
+	 */
 	protected $db;
 
 	/**
