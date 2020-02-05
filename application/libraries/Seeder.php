@@ -10,6 +10,9 @@
 
 class Seeder
 {
+	/**
+	 * @var CI_Controller
+	 */
 	private $CI;
 
 	/**
