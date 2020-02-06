@@ -208,7 +208,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	 * @param  string $classname
 	 * @param  array  $params             [method_name => return_value]
 	 * @param  bool   $enable_constructor enable constructor or not
-	 * @return object PHPUnit mock object
+	 * @return mixed  PHPUnit mock object
 	 */
 	public function getDouble($classname, $params, $enable_constructor = false)
 	{
@@ -237,7 +237,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	 * 	]
 	 * );
 	 *
-	 * @param object $mock   PHPUnit mock object
+	 * @param mixed  $mock   PHPUnit mock object
 	 * @param string $method
 	 * @param int    $times
 	 * @param array  $params arguments
@@ -252,7 +252,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	/**
 	 * Verifies a method was invoked at least once
 	 *
-	 * @param object $mock   PHPUnit mock object
+	 * @param mixed  $mock   PHPUnit mock object
 	 * @param string $method
 	 * @param array  $params arguments
 	 */
@@ -264,7 +264,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	/**
 	 * Verifies that method was invoked only once
 	 *
-	 * @param object $mock   PHPUnit mock object
+	 * @param mixed  $mock   PHPUnit mock object
 	 * @param string $method
 	 * @param array  $params arguments
 	 */
@@ -276,7 +276,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	/**
 	 * Verifies that method was not called
 	 *
-	 * @param object $mock   PHPUnit mock object
+	 * @param mixed  $mock   PHPUnit mock object
 	 * @param string $method
 	 * @param array  $params arguments
 	 */
