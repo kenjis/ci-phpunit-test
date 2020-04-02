@@ -74,6 +74,7 @@ function reset_instance()
 	CIPHPUnitTestSuperGlobal::set_Global('LANG', $LANG);
 
 	CIPHPUnitTest::loadLoader();
+	CIPHPUnitTest::loadConfig();
 
 	// Remove CodeIgniter instance
 	$CI = new CIPHPUnitTestNullCodeIgniter();
