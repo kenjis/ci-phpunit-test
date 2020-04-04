@@ -11,6 +11,7 @@
 class CIPHPUnitTest
 {
 	private static $loader_class = 'CI_Loader';
+	private static $config_class = 'CI_Config';
 	private static $controller_class;
 	private static $autoload_dirs;
 
@@ -108,6 +109,7 @@ class CIPHPUnitTest
 
 		// This code is here, not to cause errors with HMVC
 		self::replaceLoader();
+		self::replaceConfig();
 
 		// Restore $_SERVER. We need this for NetBeans
 		$_SERVER = $_server_backup;
@@ -195,6 +197,22 @@ class CIPHPUnitTest
 		self::loadLoader();
 	}
 
+	protected static function replaceConfig()
+	{
+		$my_config_file =
+			APPPATH . 'core/' . config_item('subclass_prefix') . 'Config.php';
+
+		if (file_exists($my_config_file))
+		{
+			self::$config_class = config_item('subclass_prefix') . 'Config';
+			if ( ! class_exists(self::$config_class))
+			{
+				require $my_config_file;
+			}
+		}
+		self::loadConfig();
+	}
+
 	protected static function replaceHelpers()
 	{
 		$helpers = ['url_helper', 'download_helper'];
@@ -229,5 +247,11 @@ class CIPHPUnitTest
 	{
 		$loader = new self::$loader_class;
 		load_class_instance('Loader', $loader);
+	}
+
+	public static function loadConfig()
+	{
+		$config= new self::$config_class;
+		load_class_instance('Config', $config);
 	}
 }
