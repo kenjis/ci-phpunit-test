@@ -1,5 +1,9 @@
 # Change Log for ci-phpunit-test
 
+## v0.17.4 (Not Released)
+
+* Fix bug that MY_Config does not work. See [#327](https://github.com/kenjis/ci-phpunit-test/pull/327).
+
 ## v0.17.3 (2020/02/05)
 
 ### Fixed
