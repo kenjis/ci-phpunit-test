@@ -75,7 +75,7 @@ class CIPHPUnitTest
 		// Change current directory
 		chdir(FCPATH);
 
-	// Replace helpers before loading CI (which could auto load helpers)
+		// Replace helpers before loading CI (which could auto load helpers)
 		self::replaceHelpers();
 
 		/*
@@ -99,7 +99,9 @@ class CIPHPUnitTest
 
 		// This code is here, not to cause errors with HMVC
 		self::replaceLoader();
-		self::replaceConfig();
+		if (self::wiredesignzHmvcInstalled()) {
+			self::replaceConfig();
+		}
 
 		// Restore $_SERVER. We need this for NetBeans
 		$_SERVER = $_server_backup;

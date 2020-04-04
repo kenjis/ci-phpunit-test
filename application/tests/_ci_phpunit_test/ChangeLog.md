@@ -14,6 +14,7 @@
 * Fix bug that modified helpers are not loaded. See [#310](https://github.com/kenjis/ci-phpunit-test/pull/310).
 * Fix bug that Monkey Patch causes errors on PHP 7.4. See [#318](https://github.com/kenjis/ci-phpunit-test/pull/318).
 * Fix buggy tearDown() with MySQL. See [#321](https://github.com/kenjis/ci-phpunit-test/pull/321).
+* Fix bug that config files are not loaded with HMVC. See [#327](https://github.com/kenjis/ci-phpunit-test/pull/327), [#328](https://github.com/kenjis/ci-phpunit-test/pull/328).
 
 ### Others
 
