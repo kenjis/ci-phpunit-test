@@ -118,7 +118,6 @@ class CIPHPUnitTest
 		chdir($cwd_backup);
 	}
 
-
 	/**
 	 * @param bool $use_my_controller
 	 */
@@ -197,6 +196,7 @@ class CIPHPUnitTest
 		}
 		self::loadLoader();
 	}
+
 	protected static function replaceConfig()
 	{
 		$my_config_file =
@@ -248,6 +248,7 @@ class CIPHPUnitTest
 		$loader = new self::$loader_class;
 		load_class_instance('Loader', $loader);
 	}
+
 	public static function loadConfig()
 	{
 		$config= new self::$config_class;
