@@ -36,7 +36,7 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 	 *
 	 * @var bool
 	 */
-	protected $strictRequestErrorCheck = false;
+	protected $strictRequestErrorCheck = true;
 
 	protected $restoreErrorHandler = false;
 
