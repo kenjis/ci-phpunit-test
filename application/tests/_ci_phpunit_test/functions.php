@@ -58,7 +58,7 @@ function reset_instance()
 	CIPHPUnitTestSuperGlobal::set_Global('EXT', $EXT);
 	$CFG =& load_class('Config', 'core');
 	CIPHPUnitTestSuperGlobal::set_Global('CFG', $CFG);
-	$UNI =& load_class('URI', 'core');
+	$UNI =& load_class('URI', 'core', $CFG);
 	CIPHPUnitTestSuperGlobal::set_Global('UNI', $UNI);
 //	$URI =& load_class('Utf8', 'core');
 //	CIPHPUnitTestSuperGlobal::set_Global('URI', $URI);
