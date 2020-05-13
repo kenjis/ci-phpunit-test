@@ -4,7 +4,7 @@
 
 ### Added
 
-* Now you can assert whether a message is logged. See [#311](https://github.com/kenjis/ci-phpunit-test/pull/331).
+* Now you can assert whether a message is logged. See [#331](https://github.com/kenjis/ci-phpunit-test/pull/331).
 
 ### Fixed
 
