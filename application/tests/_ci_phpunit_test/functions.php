@@ -80,6 +80,9 @@ function reset_instance()
 
 	// Remove CodeIgniter instance
 	$CI = new CIPHPUnitTestNullCodeIgniter();
+
+	// Reset Logs
+	CIPHPUnitTestLogger::resetLogs();
 }
 
 /**
