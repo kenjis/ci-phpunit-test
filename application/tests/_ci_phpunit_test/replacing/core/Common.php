@@ -184,6 +184,32 @@ function show_404($page = '', $log_error = TRUE)
 	throw new CIPHPUnitTestShow404Exception($page, 404);
 }
 
+/**
+ * Error Logging Interface
+ *
+ * We use this as a simple mechanism to access the logging
+ * class and send messages to be logged.
+ *
+ * @param	string	the error level: 'error', 'debug' or 'info'
+ * @param	string	the error message
+ * @return	void
+ */
+function log_message($level, $message)
+{
+	static $_log;
+
+	if ($_log === NULL)
+	{
+		// references cannot be directly assigned to static variables, so we use an array
+		$_log[0] =& load_class('Log', 'core');
+	}
+
+	$_log[0]->write_log($level, $message);
+
+	// added by ci-phpunit-test
+	CIPHPUnitTestLogger::log($level, $message);
+}
+
 function set_status_header($code = 200, $text = '')
 {
 //	if (is_cli())

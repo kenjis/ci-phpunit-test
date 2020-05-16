@@ -1,6 +1,12 @@
 # Change Log for ci-phpunit-test
 
-## v0.17.4 (Not Released)
+## v0.18.0 (Not Released)
+
+### Added
+
+* Now you can assert whether a message is logged. See [#331](https://github.com/kenjis/ci-phpunit-test/pull/331).
+
+### Fixed
 
 * Fix bug that config files are not loaded with HMVC. See [#327](https://github.com/kenjis/ci-phpunit-test/pull/327), [#328](https://github.com/kenjis/ci-phpunit-test/pull/328).
 

@@ -1,20 +1,21 @@
 # ci-phpunit-test for CodeIgniter 3.x
 
-version: **v0.17.0** | 
-[v0.16.1](https://github.com/kenjis/ci-phpunit-test/blob/v0.16.1/docs/HowToWriteTests.md) | 
-[v0.15.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.15.0/docs/HowToWriteTests.md) | 
-[v0.14.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.14.0/docs/HowToWriteTests.md) | 
-[v0.13.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.13.0/docs/HowToWriteTests.md) | 
-[v0.12.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.12.2/docs/HowToWriteTests.md) | 
-[v0.11.3](https://github.com/kenjis/ci-phpunit-test/blob/v0.11.3/docs/HowToWriteTests.md) | 
-[v0.10.1](https://github.com/kenjis/ci-phpunit-test/blob/v0.10.1/docs/HowToWriteTests.md) | 
-[v0.9.1](https://github.com/kenjis/ci-phpunit-test/blob/v0.9.1/docs/HowToWriteTests.md) | 
-[v0.8.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.8.2/docs/HowToWriteTests.md) | 
-[v0.7.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.7.0/docs/HowToWriteTests.md) | 
-[v0.6.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.6.2/docs/HowToWriteTests.md) | 
-[v0.5.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.5.0/docs/HowToWriteTests.md) | 
-[v0.4.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.4.0/docs/HowToWriteTests.md) | 
-[v0.3.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.3.0/docs/HowToWriteTests.md) | 
+version: **v0.18.0** |
+[v0.17.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.17.0/docs/HowToWriteTests.md) |
+[v0.16.1](https://github.com/kenjis/ci-phpunit-test/blob/v0.16.1/docs/HowToWriteTests.md) |
+[v0.15.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.15.0/docs/HowToWriteTests.md) |
+[v0.14.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.14.0/docs/HowToWriteTests.md) |
+[v0.13.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.13.0/docs/HowToWriteTests.md) |
+[v0.12.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.12.2/docs/HowToWriteTests.md) |
+[v0.11.3](https://github.com/kenjis/ci-phpunit-test/blob/v0.11.3/docs/HowToWriteTests.md) |
+[v0.10.1](https://github.com/kenjis/ci-phpunit-test/blob/v0.10.1/docs/HowToWriteTests.md) |
+[v0.9.1](https://github.com/kenjis/ci-phpunit-test/blob/v0.9.1/docs/HowToWriteTests.md) |
+[v0.8.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.8.2/docs/HowToWriteTests.md) |
+[v0.7.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.7.0/docs/HowToWriteTests.md) |
+[v0.6.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.6.2/docs/HowToWriteTests.md) |
+[v0.5.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.5.0/docs/HowToWriteTests.md) |
+[v0.4.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.4.0/docs/HowToWriteTests.md) |
+[v0.3.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.3.0/docs/HowToWriteTests.md) |
 [v0.2.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.2.0/docs/HowToWriteTests.md)
 
 ## How to Write Tests
@@ -94,6 +95,7 @@ The core functions and classes which are modified:
 * function `show_error()`
 * function `show_404()`
 * function `set_status_header()`
+* function `log_message()`
 * class `CI_Loader`
 * class `CI_Input`
 * class `CI_Output`
@@ -1129,11 +1131,11 @@ And if you copy sample api controllers, you must change `require` statement to `
 +++ b/application/controllers/api/Example.php
 @@ -3,7 +3,7 @@
  defined('BASEPATH') OR exit('No direct script access allowed');
- 
+
  // This can be removed if you use __autoload() in config.php OR use Modular Extensions
 -require APPPATH . '/libraries/REST_Controller.php';
 +require_once APPPATH . '/libraries/REST_Controller.php';
- 
+
  /**
   * This is an example of a few basic user interaction methods you could use
 ~~~
