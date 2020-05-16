@@ -20,6 +20,7 @@
 * Fix buggy tearDown() with MySQL. See [#321](https://github.com/kenjis/ci-phpunit-test/pull/321).
 * Fix bug that config files are not loaded with HMVC. See [#327](https://github.com/kenjis/ci-phpunit-test/pull/327), [#328](https://github.com/kenjis/ci-phpunit-test/pull/328).
 * Fix bug that NetBeans test suite provider causes `Class 'PHPUnit_Util_Configuration' not found`. See [#313](https://github.com/kenjis/ci-phpunit-test/pull/313).
+* Fix bug that `$assign_to_config` does not work. See [#314](https://github.com/kenjis/ci-phpunit-test/pull/314).
 
 ### Others
 
