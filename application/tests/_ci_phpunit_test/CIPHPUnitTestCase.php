@@ -444,4 +444,16 @@ class CIPHPUnitTestCase extends TestCase
 			);
 		}
 	}
+
+	/**
+	 * Asserts the message is logged
+	 *
+	 * @param string $level
+	 * @param string $message
+	 */
+	public function assertLogged($level, $message)
+	{
+		$result = CIPHPUnitTestLogger::didLog($level, $message);
+		$this->assertTrue($result);
+	}
 }

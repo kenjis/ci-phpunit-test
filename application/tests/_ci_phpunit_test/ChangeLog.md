@@ -6,6 +6,10 @@
 
 * Require PHP 7.2 or later, PHPUnit 8.1 or later
 
+### Added
+
+* Now you can assert whether a message is logged. See [#331](https://github.com/kenjis/ci-phpunit-test/pull/331).
+
 ### Fixed
 
 * Fix bug that CIPHPUnitTestDbTestCase reconnects DB on every assertions. See [#301](https://github.com/kenjis/ci-phpunit-test/pull/301).

@@ -1,20 +1,21 @@
 # ci-phpunit-test for CodeIgniter 3.x
 
-version: **v0.17.0** | 
-[v0.16.1](https://github.com/kenjis/ci-phpunit-test/blob/v0.16.1/docs/FunctionAndClassReference.md) | 
-[v0.15.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.15.0/docs/FunctionAndClassReference.md) | 
-[v0.14.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.14.0/docs/FunctionAndClassReference.md) | 
-[v0.13.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.13.0/docs/FunctionAndClassReference.md) | 
-[v0.12.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.12.2/docs/FunctionAndClassReference.md) | 
-[v0.11.3](https://github.com/kenjis/ci-phpunit-test/blob/v0.11.3/docs/FunctionAndClassReference.md) | 
-[v0.10.1](https://github.com/kenjis/ci-phpunit-test/blob/v0.10.1/docs/FunctionAndClassReference.md) | 
-[v0.9.1](https://github.com/kenjis/ci-phpunit-test/blob/v0.9.1/docs/FunctionAndClassReference.md) | 
-[v0.8.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.8.2/docs/FunctionAndClassReference.md) | 
-[v0.7.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.7.0/docs/FunctionAndClassReference.md) | 
-[v0.6.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.6.2/docs/FunctionAndClassReference.md) | 
-[v0.5.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.5.0/docs/FunctionAndClassReference.md) | 
-[v0.4.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.4.0/docs/FunctionAndClassReference.md) | 
-[v0.3.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.3.0/docs/FunctionAndClassReference.md) | 
+version: **v0.18.0** |
+[v0.17.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.17.0/docs/FunctionAndClassReference.md) |
+[v0.16.1](https://github.com/kenjis/ci-phpunit-test/blob/v0.16.1/docs/FunctionAndClassReference.md) |
+[v0.15.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.15.0/docs/FunctionAndClassReference.md) |
+[v0.14.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.14.0/docs/FunctionAndClassReference.md) |
+[v0.13.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.13.0/docs/FunctionAndClassReference.md) |
+[v0.12.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.12.2/docs/FunctionAndClassReference.md) |
+[v0.11.3](https://github.com/kenjis/ci-phpunit-test/blob/v0.11.3/docs/FunctionAndClassReference.md) |
+[v0.10.1](https://github.com/kenjis/ci-phpunit-test/blob/v0.10.1/docs/FunctionAndClassReference.md) |
+[v0.9.1](https://github.com/kenjis/ci-phpunit-test/blob/v0.9.1/docs/FunctionAndClassReference.md) |
+[v0.8.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.8.2/docs/FunctionAndClassReference.md) |
+[v0.7.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.7.0/docs/FunctionAndClassReference.md) |
+[v0.6.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.6.2/docs/FunctionAndClassReference.md) |
+[v0.5.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.5.0/docs/FunctionAndClassReference.md) |
+[v0.4.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.4.0/docs/FunctionAndClassReference.md) |
+[v0.3.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.3.0/docs/FunctionAndClassReference.md) |
 [v0.2.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.2.0/docs/FunctionAndClassReference.md)
 
 ## Function/Class Reference
@@ -37,6 +38,7 @@ version: **v0.17.0** |
 	- [`TestCase::assertRedirect($uri, $code = null)`](#testcaseassertredirecturi-code--null)
 	- [`TestCase::assertResponseHeader($name, $value)`](#testcaseassertresponseheadername-value)
 	- [`TestCase::assertResponseCookie($name, $value, $allow_duplicate = false)`](#testcaseassertresponsecookiename-value-allow_duplicate--false)
+	- [`TestCase::assertLogged($level, $message)`](#testcaseassertloggedlevel-message)
 	- [`TestCase::getDouble($classname, $params, $constructor_params = false)`](#testcasegetdoubleclassname-params-constructor_params--false)
 	- [`TestCase::verifyInvoked($mock, $method, $params)`](#testcaseverifyinvokedmock-method-params)
 	- [`TestCase::verifyInvokedOnce($mock, $method, $params)`](#testcaseverifyinvokedoncemock-method-params)
@@ -385,6 +387,19 @@ $this->assertResponseCookie(
 ~~~
 
 **Note:** This method can only assert cookies set by `$this->input->set_cooke()` method.
+
+#### `TestCase::assertLogged($level, $message)`
+
+| param     | type   | description          |
+|-----------|--------|----------------------|
+|`$level`   | string | log level            |
+|`$message` | string | expected log message |
+
+Checks if certain message is logged.
+
+~~~php
+$this->assertLogged('error', 'log message');
+~~~
 
 #### `TestCase::getDouble($classname, $params, $constructor_params = false)`
 
