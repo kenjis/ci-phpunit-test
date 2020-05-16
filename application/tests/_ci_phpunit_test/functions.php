@@ -56,8 +56,19 @@ function reset_instance()
 	CIPHPUnitTestSuperGlobal::set_Global('BM', $BM);
 	$EXT =& load_class('Hooks', 'core');
 	CIPHPUnitTestSuperGlobal::set_Global('EXT', $EXT);
+
 	$CFG =& load_class('Config', 'core');
 	CIPHPUnitTestSuperGlobal::set_Global('CFG', $CFG);
+	// Do we have any manually set config items in the index.php file?
+	global $assign_to_config;
+	if (isset($assign_to_config) && is_array($assign_to_config))
+	{
+		foreach ($assign_to_config as $key => $value)
+		{
+			$CFG->set_item($key, $value);
+		}
+	}
+
 	$UNI =& load_class('URI', 'core');
 	CIPHPUnitTestSuperGlobal::set_Global('UNI', $UNI);
 //	$URI =& load_class('Utf8', 'core');
