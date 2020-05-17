@@ -1,6 +1,6 @@
 # Change Log for ci-phpunit-test
 
-## v0.18.0 (Not Released)
+## v0.18.0 (2020/05/17)
 
 ### Added
 
