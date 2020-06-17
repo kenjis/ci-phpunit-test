@@ -19,7 +19,7 @@
   <phpunitreport infile="build/logs/junit.xml"
                  format="frames"
                  todir="build/report"
-                 styledir="phpunit-frames.xsl"
+                 styledir=""
                  />                
  </target>
 <target name="build" depends="clean,prepare,phpunit"/>
