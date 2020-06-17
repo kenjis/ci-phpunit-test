@@ -14,6 +14,7 @@ An easier way to use PHPUnit with [CodeIgniter](https://github.com/bcit-ci/CodeI
 * Well documented.
 
 ![Screenshot: Running tests on NetBeans 8.1](https://pbs.twimg.com/media/CUUmhxWVAAAwx3b.png)
+![Screenshot: Test result generated with phing](https://raw.githubusercontent.com/biechao/ci-phpunit-test/master/docs/teset_result.png)
 
 ## Requirements
 
@@ -41,6 +42,7 @@ codeigniter/
 │   └── tests/
 │        ├── _ci_phpunit_test/ ... don't touch! files ci-phpunit-test uses
 │        ├── Bootstrap.php     ... bootstrap file for PHPUnit
+│        ├── build.xml         ... config for phing to generate test result report.
 │        ├── DbTestCase.php    ... DbTestCase class
 │        ├── TestCase.php      ... TestCase class
 │        ├── controllers/      ... put your controller tests
@@ -206,6 +208,13 @@ class Welcome_test extends TestCase
 ~~~
 
 See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md) for details.
+
+## How to generate test result report
+
+After run phpunit, it will generate a build folder.
+Creator a folder report under build foler.
+And then run this command "../vendor/phing/phing/bin/phing -f build.xml" after you run phpunit command in tests folder.
+See [How to generate phpunit test report with phing](https://www.phing.info/guide/hlhtml/#PHPUnitReport) for details.
 
 ## Function/Class Reference
 

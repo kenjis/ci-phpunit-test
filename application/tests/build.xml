@@ -1,0 +1,30 @@
+<project name="testreport" default="phpunit" basedir=".">
+ <property name="package" value="MyApplication" override="true" />
+  <target name="clean">
+    <delete dir="build"/>
+  </target>
+  <target name="prepare">
+    <mkdir dir="build/logs"/>
+  </target>	
+ <target name="phpunit">
+ 	<phpunit printsummary="true" haltonfailure="false">
+      <formatter todir="build/logs" type="xml"/>
+      <batchtest>
+        <fileset dir="./">
+          <include name="controllers/*test.php"/>
+        </fileset>
+      </batchtest>
+      <formatter type="xml" todir="build/report" outfile="logfile.xml"/>
+   </phpunit>
+  <phpunitreport infile="build/logs/junit.xml"
+                 format="frames"
+                 todir="build/report"
+                 styledir="phpunit-frames.xsl"
+                 />                
+ </target>
+<target name="build" depends="clean,prepare,phpunit"/>
+<autoloader autoloaderpath="Bootstrap.php"/>
+<autoloader autoloaderpath="./../../vendor/autoload.php"/>
+
+</project>
+
