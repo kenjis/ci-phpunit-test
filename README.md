@@ -14,7 +14,7 @@ An easier way to use PHPUnit with [CodeIgniter](https://github.com/bcit-ci/CodeI
 * Well documented.
 
 ![Screenshot: Running tests on NetBeans 8.1](https://pbs.twimg.com/media/CUUmhxWVAAAwx3b.png)
-![Screenshot: Test result generated with phing](https://raw.githubusercontent.com/biechao/ci-phpunit-test/master/docs/teset_result.png)
+![Screenshot: Test result generated with phing](https://github.com/biechao/ci-phpunit-test/blob/master/docs/test_result.png?raw=true)
 
 ## Requirements
 
