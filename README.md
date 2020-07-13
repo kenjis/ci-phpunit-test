@@ -63,14 +63,7 @@ That's it.
 
 ### Installation via Composer
 
-If you like Composer:
-
-~~~
-$ cd /path/to/codeigniter/
-$ composer require kenjis/ci-phpunit-test --dev
-~~~
-
-Add phing in composer.json
+If you like Composer,Add phing in composer.json: 
 
 ~~~
 "require": {
@@ -80,6 +73,12 @@ Add phing in composer.json
     "phpunit/phpunit": "4.8.16"     
 }
 ~~~
+
+~~~
+$ cd /path/to/codeigniter/
+$ composer require kenjis/ci-phpunit-test --dev
+~~~
+
 
 And run `install.php`:
 
