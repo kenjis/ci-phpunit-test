@@ -13,8 +13,8 @@ An easier way to use PHPUnit with [CodeIgniter](https://github.com/bcit-ci/CodeI
 * Nothing is untestable, maybe.
 * Well documented.
 
-![Screenshot: Running tests on NetBeans 8.1](https://pbs.twimg.com/media/CUUmhxWVAAAwx3b.png)
-![Screenshot: Test result generated with phing](https://github.com/biechao/ci-phpunit-test/blob/master/docs/test_result.png?raw=true)
+![Screenshot: Running tests on NetBeans 8.1](docs/img/netbeans-8.1.png)
+![Screenshot: Test result generated with phing](docs/img/test_result.png)
 
 ## Requirements
 
@@ -68,6 +68,17 @@ If you like Composer:
 ~~~
 $ cd /path/to/codeigniter/
 $ composer require kenjis/ci-phpunit-test --dev
+~~~
+
+Add phing in composer.json
+
+~~~
+"require": {
+    "php": ">=5.4.0",
+    "nikic/php-parser": "^2.1|^3.0|^4.2",
+    "phing/phing": "2.*",
+    "phpunit/phpunit": "4.8.16"     
+}
 ~~~
 
 And run `install.php`:
@@ -211,10 +222,10 @@ See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/d
 
 ## How to generate test result report
 
-Use phpunit-frames.xsl file to replade file vendor/phing/phing/etc/phpunit-frames.xsl //this change is used to show Assertions number in test report
+Use phpunit-frames.xsl file to replade file vendor/phing/phing/etc/phpunit-frames.xsl _//this change is used to show Assertions number in test report_  
 After run phpunit, it will generate a build folder.
-Make sure phpunit command could be run as global.  // /usr/local/bin/phpunit
-And then run this command "../vendor/phing/phing/bin/phing -f build.xml" after you run phpunit command in tests folder.
+Make sure phpunit command could be run as global.  _/usr/local/bin/phpunit_  
+And then run this command "../vendor/phing/phing/bin/phing -f build.xml" after you run phpunit command in tests folder.  
 See [How to generate phpunit test report with phing](https://www.phing.info/guide/hlhtml/#PHPUnitReport) for details.
 
 ## Function/Class Reference
