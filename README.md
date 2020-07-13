@@ -213,6 +213,7 @@ See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/d
 
 Use phpunit-frames.xsl file to replade file vendor/phing/phing/etc/phpunit-frames.xsl //this change is used to show Assertions number in test report
 After run phpunit, it will generate a build folder.
+Make sure phpunit command could be run as global.  // /usr/local/bin/phpunit
 And then run this command "../vendor/phing/phing/bin/phing -f build.xml" after you run phpunit command in tests folder.
 See [How to generate phpunit test report with phing](https://www.phing.info/guide/hlhtml/#PHPUnitReport) for details.
 

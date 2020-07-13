@@ -1,4 +1,4 @@
-<project name="testreport" default="phpunit" basedir=".">
+<project name="TrestResultReportWithPhing" default="phpunit" basedir=".">
  <property name="package" value="MyApplication" override="true" />
   <target name="clean">
     <delete dir="build"/>
@@ -24,7 +24,6 @@
  </target>
 <target name="build" depends="clean,prepare,phpunit"/>
 <autoloader autoloaderpath="Bootstrap.php"/>
-<autoloader autoloaderpath="./../../vendor/autoload.php"/>
-
+<autoloader autoloaderpath="./../vendor/autoload.php"/>
 </project>
 
