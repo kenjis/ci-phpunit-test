@@ -13,8 +13,8 @@ An easier way to use PHPUnit with [CodeIgniter](https://github.com/bcit-ci/CodeI
 * Nothing is untestable, maybe.
 * Well documented.
 
-![Screenshot: Running tests on NetBeans 8.1](docs/img/netbeans-8.1.png)
-![Screenshot: Test result generated with phing](docs/img/test_result.png)
+![Screenshot: Running tests on NetBeans 8.1](docs/imgs/netbeans-8.1.png)
+![Screenshot: Test result generated with phing](docs/imgs/test_result.png)
 
 ## Requirements
 
@@ -63,22 +63,12 @@ That's it.
 
 ### Installation via Composer
 
-If you like Composer,Add phing in composer.json: 
-
-~~~
-"require": {
-    "php": ">=5.4.0",
-    "nikic/php-parser": "^2.1|^3.0|^4.2",
-    "phing/phing": "2.*",
-    "phpunit/phpunit": "4.8.16"     
-}
-~~~
+If you like Composer:
 
 ~~~
 $ cd /path/to/codeigniter/
 $ composer require kenjis/ci-phpunit-test --dev
 ~~~
-
 
 And run `install.php`:
 
@@ -219,7 +209,11 @@ class Welcome_test extends TestCase
 
 See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/HowToWriteTests.md) for details.
 
-## How to generate test result report
+## (Optional) How to generate test result report
+
+~~~
+composer require phing/phing --dev
+~~~
 
 Use phpunit-frames.xsl file to replade file vendor/phing/phing/etc/phpunit-frames.xsl _//this change is used to show Assertions number in test report_  
 After run phpunit, it will generate a build folder.

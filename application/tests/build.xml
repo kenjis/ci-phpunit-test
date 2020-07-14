@@ -26,4 +26,3 @@
 <autoloader autoloaderpath="Bootstrap.php"/>
 <autoloader autoloaderpath="./../vendor/autoload.php"/>
 </project>
-
