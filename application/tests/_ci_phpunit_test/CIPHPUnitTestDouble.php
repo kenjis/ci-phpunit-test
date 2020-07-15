@@ -38,8 +38,6 @@ class CIPHPUnitTestDouble
 	 */
 	public function getDouble($classname, $params, $constructor_params = false)
 	{
-		$methods = array_keys($params);
-
 		// `disableOriginalConstructor()` is the default, because if we call
 		// constructor, it may call `$this->load->...` or other CodeIgniter
 		// methods in it. But we can't use them in
@@ -53,9 +51,34 @@ class CIPHPUnitTestDouble
 		{
 			$mock->setConstructorArgs($constructor_params);
 		}
+
+		$methods = [];
+		$onConsecutiveCalls = [];
+		$otherCalls = [];
+
+		foreach ($params as $key => $val) {
+			if (is_int($key)) {
+				$onConsecutiveCalls = array_merge($onConsecutiveCalls, $val);
+				$methods[] = array_keys($val)[0];
+			} else {
+				$otherCalls[$key] = $val;
+				$methods[] = $key;
+			}
+		}
+
 		$mock = $mock->setMethods($methods)->getMock();
 
-		foreach ($params as $method => $return)
+		foreach ($onConsecutiveCalls as $method => $returns) {
+			$mock->expects($this->testCase->any())->method($method)
+				->will(
+					call_user_func_array(
+						[$this->testCase, 'onConsecutiveCalls'],
+						$returns
+					)
+				);
+		}
+
+		foreach ($otherCalls as $method => $return)
 		{
 			if (is_object($return) && ($return instanceof PHPUnit_Framework_MockObject_Stub || $return instanceof PHPUnit\Framework\MockObject\Stub)) {
 				$mock->expects($this->testCase->any())->method($method)
