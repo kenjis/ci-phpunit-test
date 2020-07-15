@@ -441,9 +441,9 @@ You can also set the mock itself as the return value of a mocked method with usi
 
 ~~~php
 $mock = $this->getDouble('CI_Email', [
-    'to'      => $this->returnSelf(),
-    'subject' => $this->returnSelf(),
-    'send'    => TRUE,
+	'to'      => $this->returnSelf(),
+	'subject' => $this->returnSelf(),
+	'send'    => TRUE,
 ]);
 ~~~
 
