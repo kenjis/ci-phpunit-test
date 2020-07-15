@@ -32,8 +32,8 @@ class CIPHPUnitTestDouble
 	 *
 	 * @param  string $classname
 	 * @param  array  $params             [method_name => return_value]
-	 * @param  mixed  $constructor_params false: disable construntor, array: construntor params
-	 * 
+	 * @param  mixed  $constructor_params false: disable constructor, array: constructor params
+	 *
 	 * @return mixed PHPUnit mock object
 	 */
 	public function getDouble($classname, $params, $constructor_params = false)
@@ -41,7 +41,7 @@ class CIPHPUnitTestDouble
 		$methods = array_keys($params);
 
 		// `disableOriginalConstructor()` is the default, because if we call
-		// construnctor, it may call `$this->load->...` or other CodeIgniter
+		// constructor, it may call `$this->load->...` or other CodeIgniter
 		// methods in it. But we can't use them in
 		// `$this->request->setCallablePreConstructor()`
 		$mock = $this->testCase->getMockBuilder($classname);
