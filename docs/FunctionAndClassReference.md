@@ -1,6 +1,7 @@
 # ci-phpunit-test for CodeIgniter 3.x
 
-version: **v0.18.0** |
+version: **v0.19.0** |
+[v0.18.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.18.0/docs/FunctionAndClassReference.md) |
 [v0.17.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.17.0/docs/FunctionAndClassReference.md) |
 [v0.16.1](https://github.com/kenjis/ci-phpunit-test/blob/v0.16.1/docs/FunctionAndClassReference.md) |
 [v0.15.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.15.0/docs/FunctionAndClassReference.md) |
@@ -407,6 +408,7 @@ $this->assertLogged('error', 'log message');
 |---------------------|-------------|--------------------------------------------------------|
 |`$classname`         | string      | class name                                             |
 |`$params`            | array       | [method_name => return_value]                          |
+|                     |             | [[method_name => [return_value1, return_value2 [, ...]]] |
 |`$constructor_params`| false/array | false: disable constructor / array: constructor params |
 
 `returns` (object) PHPUnit mock object
@@ -445,6 +447,28 @@ $mock = $this->getDouble('CI_Email', [
 	'subject' => $this->returnSelf(),
 	'send'    => TRUE,
 ]);
+~~~
+
+You can create mocks with consecutive calls.
+
+~~~php
+$mock = $this->getMockBuilder('CI_Input')
+	->disableOriginalConstructor()
+	->setMethods(['method'])
+	->getMock();
+$mock->expects($this->any())->method('method')
+	->will($this->onConsecutiveCalls('GET', 'POST' ,'DELETE'));
+~~~
+
+You could write code above like below:
+
+~~~php
+$mock = $this->getDouble(
+	'CI_Input',
+	[
+		['method' => ['GET', 'POST' ,'DELETE']],
+	]
+);
 ~~~
 
 **Upgrade Note for v0.10.0**
