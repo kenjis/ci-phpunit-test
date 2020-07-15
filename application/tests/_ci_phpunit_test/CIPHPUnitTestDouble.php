@@ -42,14 +42,14 @@ class CIPHPUnitTestDouble
 		// constructor, it may call `$this->load->...` or other CodeIgniter
 		// methods in it. But we can't use them in
 		// `$this->request->setCallablePreConstructor()`
-		$mock = $this->testCase->getMockBuilder($classname);
+		$mockBuilder = $this->testCase->getMockBuilder($classname);
 		if ($constructor_params === false)
 		{
-			$mock->disableOriginalConstructor();
+			$mockBuilder->disableOriginalConstructor();
 		}
 		elseif (is_array($constructor_params))
 		{
-			$mock->setConstructorArgs($constructor_params);
+			$mockBuilder->setConstructorArgs($constructor_params);
 		}
 
 		$methods = [];
@@ -66,7 +66,7 @@ class CIPHPUnitTestDouble
 			}
 		}
 
-		$mock = $mock->setMethods($methods)->getMock();
+		$mock = $mockBuilder->setMethods($methods)->getMock();
 
 		foreach ($onConsecutiveCalls as $method => $returns) {
 			$mock->expects($this->testCase->any())->method($method)
