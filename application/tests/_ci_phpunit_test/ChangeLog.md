@@ -1,5 +1,11 @@
 # Change Log for ci-phpunit-test
 
+## v0.19.0 (Not Released)
+
+### Added
+
+* Add functionality to create mocks on consecutive calls. See [#339](https://github.com/kenjis/ci-phpunit-test/pull/339).
+
 ## v0.18.0 (2020/05/17)
 
 ### Added
