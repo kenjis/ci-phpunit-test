@@ -9,6 +9,7 @@
 ### Added
 
 * Now you can assert whether a message is logged. See [#331](https://github.com/kenjis/ci-phpunit-test/pull/331).
+* Add functionality to create mocks on consecutive calls. See [#339](https://github.com/kenjis/ci-phpunit-test/pull/339).
 
 ### Fixed
 

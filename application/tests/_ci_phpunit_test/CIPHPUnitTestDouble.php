@@ -34,30 +34,53 @@ class CIPHPUnitTestDouble
 	 *
 	 * @param  string $classname
 	 * @param  array  $params             [method_name => return_value]
-	 * @param  mixed  $constructor_params false: disable construntor, array: construntor params
-	 * 
+	 * @param  mixed  $constructor_params false: disable constructor, array: constructor params
+	 *
 	 * @return mixed PHPUnit mock object
 	 */
 	public function getDouble($classname, $params, $constructor_params = false)
 	{
-		$methods = array_keys($params);
-
 		// `disableOriginalConstructor()` is the default, because if we call
-		// construnctor, it may call `$this->load->...` or other CodeIgniter
+		// constructor, it may call `$this->load->...` or other CodeIgniter
 		// methods in it. But we can't use them in
 		// `$this->request->setCallablePreConstructor()`
-		$mock = $this->testCase->getMockBuilder($classname);
+		$mockBuilder = $this->testCase->getMockBuilder($classname);
 		if ($constructor_params === false)
 		{
-			$mock->disableOriginalConstructor();
+			$mockBuilder->disableOriginalConstructor();
 		}
 		elseif (is_array($constructor_params))
 		{
-			$mock->setConstructorArgs($constructor_params);
+			$mockBuilder->setConstructorArgs($constructor_params);
 		}
-		$mock = $mock->setMethods($methods)->getMock();
 
-		foreach ($params as $method => $return)
+		$methods = [];
+		$onConsecutiveCalls = [];
+		$otherCalls = [];
+
+		foreach ($params as $key => $val) {
+			if (is_int($key)) {
+				$onConsecutiveCalls = array_merge($onConsecutiveCalls, $val);
+				$methods[] = array_keys($val)[0];
+			} else {
+				$otherCalls[$key] = $val;
+				$methods[] = $key;
+			}
+		}
+
+		$mock = $mockBuilder->setMethods($methods)->getMock();
+
+		foreach ($onConsecutiveCalls as $method => $returns) {
+			$mock->expects($this->testCase->any())->method($method)
+				->will(
+					call_user_func_array(
+						[$this->testCase, 'onConsecutiveCalls'],
+						$returns
+					)
+				);
+		}
+
+		foreach ($otherCalls as $method => $return)
 		{
 			if (is_object($return) && ($return instanceof PHPUnit_Framework_MockObject_Stub || $return instanceof PHPUnit\Framework\MockObject\Stub)) {
 				$mock->expects($this->testCase->any())->method($method)
