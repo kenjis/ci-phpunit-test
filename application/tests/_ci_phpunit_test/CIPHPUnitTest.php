@@ -20,7 +20,7 @@ class CIPHPUnitTest
 	 *
 	 * @param array $autoload_dirs directories to search class file for autoloader
 	 *
-	 * Exclude from code coverage:  This is test suite bootstrap code, so we
+	 * Exclude from code coverage: This is test suite bootstrap code, so we
 	 * know it's executed, but because it's bootstrap code, it runs outside of
 	 * any coverage tracking.
 	 *
