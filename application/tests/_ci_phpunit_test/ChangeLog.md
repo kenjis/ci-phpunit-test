@@ -6,6 +6,10 @@
 
 * Add functionality to create mocks on consecutive calls. See [#339](https://github.com/kenjis/ci-phpunit-test/pull/339).
 
+### Fixed
+
+* Fix bug that `config.php` is loaded before `constants.php`. See [#348](https://github.com/kenjis/ci-phpunit-test/pull/348).
+
 ## v0.18.0 (2020/05/17)
 
 ### Added

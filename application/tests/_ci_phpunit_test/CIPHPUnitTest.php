@@ -20,7 +20,7 @@ class CIPHPUnitTest
 	 *
 	 * @param array $autoload_dirs directories to search class file for autoloader
 	 *
-	 * Exclude from code coverage:  This is test suite bootstrap code, so we
+	 * Exclude from code coverage: This is test suite bootstrap code, so we
 	 * know it's executed, but because it's bootstrap code, it runs outside of
 	 * any coverage tracking.
 	 *
@@ -28,13 +28,7 @@ class CIPHPUnitTest
 	 */
 	public static function init(array $autoload_dirs = null)
 	{
-		if (! defined('TESTPATH')) {
-			define('TESTPATH', APPPATH.'tests'.DIRECTORY_SEPARATOR);
-		}
-		// Current Bootstrap.php should define this, but in case it doesn't:
-		if (! defined('CI_PHPUNIT_TESTPATH')) {
-			define('CI_PHPUNIT_TESTPATH', dirname(__FILE__).DIRECTORY_SEPARATOR);
-		}
+		self::defineConstants();
 
 		// Fix CLI args
 		$_server_backup = $_SERVER;
@@ -51,19 +45,7 @@ class CIPHPUnitTest
 		// Load autoloader for ci-phpunit-test
 		require __DIR__ . '/autoloader.php';
 
-		require TESTPATH . 'TestCase.php';
-
-		$db_test_case_file = TESTPATH . 'DbTestCase.php';
-		if (is_readable($db_test_case_file))
-		{
-			require $db_test_case_file;
-		}
-
-		$unit_test_case_file = TESTPATH . 'UnitTestCase.php';
-		if (is_readable($unit_test_case_file))
-		{
-			require $unit_test_case_file;
-		}
+		self::loadTestCaseClasses();
 
 		// Replace a few Common functions
 		require __DIR__ . '/replacing/core/Common.php';
@@ -85,17 +67,7 @@ class CIPHPUnitTest
 		// Change current directory
 		chdir(FCPATH);
 
-		// Replace helpers before loading CI (which could auto load helpers)
-		self::replaceHelpers();
-
-		/*
-		 * --------------------------------------------------------------------
-		 * LOAD THE BOOTSTRAP FILE
-		 * --------------------------------------------------------------------
-		 *
-		 * And away we go...
-		 */
-		require __DIR__ . '/replacing/core/CodeIgniter.php';
+		self::loadCodeIgniter();
 
 		// Create CodeIgniter instance
 		if (! self::wiredesignzHmvcInstalled())
@@ -118,6 +90,60 @@ class CIPHPUnitTest
 
 		// Restore cwd to use `Usage: phpunit [options] <directory>`
 		chdir($cwd_backup);
+	}
+
+	private static function loadCodeIgniter(){
+		// Load constants.php before replacing helpers,
+		// because config_item() loads config.php
+		if (file_exists(APPPATH.'config/'.ENVIRONMENT.'/constants.php'))
+		{
+			require_once(APPPATH.'config/'.ENVIRONMENT.'/constants.php');
+		}
+
+		if (file_exists(APPPATH.'config/constants.php'))
+		{
+			require_once(APPPATH.'config/constants.php');
+		}
+
+		// Replace helpers before loading CI (which could auto load helpers)
+		self::replaceHelpers();
+
+		/*
+		 * --------------------------------------------------------------------
+		 * LOAD THE BOOTSTRAP FILE
+		 * --------------------------------------------------------------------
+		 *
+		 * And away we go...
+		 */
+		require __DIR__ . '/replacing/core/CodeIgniter.php';
+	}
+
+	private static function defineConstants()
+	{
+		if (! defined('TESTPATH')) {
+			define('TESTPATH', APPPATH.'tests'.DIRECTORY_SEPARATOR);
+		}
+		// Current Bootstrap.php should define this, but in case it doesn't:
+		if (! defined('CI_PHPUNIT_TESTPATH')) {
+			define('CI_PHPUNIT_TESTPATH', dirname(__FILE__).DIRECTORY_SEPARATOR);
+		}
+	}
+
+	private static function loadTestCaseClasses()
+	{
+		require TESTPATH . 'TestCase.php';
+
+		$db_test_case_file = TESTPATH . 'DbTestCase.php';
+		if (is_readable($db_test_case_file))
+		{
+			require $db_test_case_file;
+		}
+
+		$unit_test_case_file = TESTPATH . 'UnitTestCase.php';
+		if (is_readable($unit_test_case_file))
+		{
+			require $unit_test_case_file;
+		}
 	}
 
 	/**
