@@ -92,7 +92,7 @@ class CIPHPUnitTest
 		chdir($cwd_backup);
 	}
 
-	public static function loadCodeIgniter(){
+	private static function loadCodeIgniter(){
 		// Load constants.php before replacing helpers,
 		// because config_item() loads config.php
 		if (file_exists(APPPATH.'config/'.ENVIRONMENT.'/constants.php'))
@@ -118,7 +118,7 @@ class CIPHPUnitTest
 		require __DIR__ . '/replacing/core/CodeIgniter.php';
 	}
 
-	public static function defineConstants()
+	private static function defineConstants()
 	{
 		if (! defined('TESTPATH')) {
 			define('TESTPATH', APPPATH.'tests'.DIRECTORY_SEPARATOR);
@@ -129,7 +129,7 @@ class CIPHPUnitTest
 		}
 	}
 
-	public static function loadTestCaseClasses()
+	private static function loadTestCaseClasses()
 	{
 		require TESTPATH . 'TestCase.php';
 
