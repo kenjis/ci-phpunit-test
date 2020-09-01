@@ -67,17 +67,7 @@ class CIPHPUnitTest
 		// Change current directory
 		chdir(FCPATH);
 
-		// Replace helpers before loading CI (which could auto load helpers)
-		self::replaceHelpers();
-
-		/*
-		 * --------------------------------------------------------------------
-		 * LOAD THE BOOTSTRAP FILE
-		 * --------------------------------------------------------------------
-		 *
-		 * And away we go...
-		 */
-		require __DIR__ . '/replacing/core/CodeIgniter.php';
+		self::loadCodeIgniter();
 
 		// Create CodeIgniter instance
 		if (! self::wiredesignzHmvcInstalled())
@@ -100,6 +90,20 @@ class CIPHPUnitTest
 
 		// Restore cwd to use `Usage: phpunit [options] <directory>`
 		chdir($cwd_backup);
+	}
+
+	public static function loadCodeIgniter(){
+		// Replace helpers before loading CI (which could auto load helpers)
+		self::replaceHelpers();
+
+		/*
+		 * --------------------------------------------------------------------
+		 * LOAD THE BOOTSTRAP FILE
+		 * --------------------------------------------------------------------
+		 *
+		 * And away we go...
+		 */
+		require __DIR__ . '/replacing/core/CodeIgniter.php';
 	}
 
 	public static function defineConstants()
