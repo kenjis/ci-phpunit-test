@@ -93,6 +93,18 @@ class CIPHPUnitTest
 	}
 
 	public static function loadCodeIgniter(){
+		// Load constants.php before replacing helpers,
+		// because config_item() loads config.php
+		if (file_exists(APPPATH.'config/'.ENVIRONMENT.'/constants.php'))
+		{
+			require_once(APPPATH.'config/'.ENVIRONMENT.'/constants.php');
+		}
+
+		if (file_exists(APPPATH.'config/constants.php'))
+		{
+			require_once(APPPATH.'config/constants.php');
+		}
+
 		// Replace helpers before loading CI (which could auto load helpers)
 		self::replaceHelpers();
 
