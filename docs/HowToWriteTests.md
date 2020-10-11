@@ -76,7 +76,7 @@ If you are not familiar with *testing*, I recommend you read my book, *[CodeIgni
 
 Tests always run on `testing` environment.
 
-If you don't know well about config files and environments, see [CodeIgniter User Guide](http://www.codeigniter.com/user_guide/libraries/config.html#environments).
+If you don't know well about config files and environments, see [CodeIgniter User Guide](https://codeigniter.com/userguide3/libraries/config.html#environments).
 
 ### Can and Can't
 
