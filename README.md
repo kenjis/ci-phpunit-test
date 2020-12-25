@@ -71,7 +71,7 @@ And run `install.php`:
 $ php vendor/kenjis/ci-phpunit-test/install.php
 ~~~
 
-* The above command always overwrites exisiting files.
+* The above command always overwrites existing files.
 * You must run it at CodeIgniter project root folder.
 * You can specify your `application` and `public` folder with option arguments, if you use custom folder paths.
 
