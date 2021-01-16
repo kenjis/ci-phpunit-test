@@ -114,3 +114,21 @@ function reset_config()
 	get_config([], TRUE);
 	config_item(NULL, TRUE);
 }
+
+if ( ! function_exists('is_testing_env'))
+{
+	/**
+	 * Testing Environment or not?
+	 *
+	 * @return bool
+	 */
+	function is_testing_env()
+	{
+		if (ENVIRONMENT === 'testing')
+		{
+			return TRUE;
+		}
+
+		return FALSE;
+	}
+}
