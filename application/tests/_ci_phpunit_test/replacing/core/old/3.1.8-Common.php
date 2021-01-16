@@ -275,7 +275,7 @@ function set_status_header($code = 200, $text = '')
 
 	// Everything is done, so return
 	// added by ci-phpunit-test
-	if (ENVIRONMENT === 'testing')
+	if (is_testing_env())
 	{
 		return;
 	}

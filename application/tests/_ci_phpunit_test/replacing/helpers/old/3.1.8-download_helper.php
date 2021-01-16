@@ -115,7 +115,7 @@ if ( ! function_exists('force_download'))
 			header('Cache-Control: private, no-transform, no-store, must-revalidate');
 		}
 
-		if (ENVIRONMENT === 'testing')
+		if (is_testing_env())
 		{
 			$CI =& get_instance();
 			$CI->output->set_header('Content-Type: '.$mime);
