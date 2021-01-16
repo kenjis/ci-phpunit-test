@@ -63,12 +63,7 @@ if (! defined('ENVIRONMENT'))
 // If you want to change `testing`, you must define `is_testing_env()`.
 //function is_testing_env()
 //{
-//	if (ENVIRONMENT === 'unittest')
-//	{
-//		return TRUE;
-//	}
-//
-//	return FALSE;
+//    return (ENVIRONMENT === 'unittest');
 //}
 
 /*

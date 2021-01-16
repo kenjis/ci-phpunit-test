@@ -124,11 +124,6 @@ if ( ! function_exists('is_testing_env'))
 	 */
 	function is_testing_env()
 	{
-		if (ENVIRONMENT === 'testing')
-		{
-			return TRUE;
-		}
-
-		return FALSE;
+		return (ENVIRONMENT === 'testing');
 	}
 }
