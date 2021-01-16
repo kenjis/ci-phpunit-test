@@ -56,7 +56,7 @@
 
 // Define testing environment for ci-phpunit-test
 // This `if` statement is needed for @runInSeparateProcess
-if (! defined('ENVIRONMENT'))
+if ( ! defined('ENVIRONMENT'))
 {
 	define('ENVIRONMENT', 'testing');
 }
