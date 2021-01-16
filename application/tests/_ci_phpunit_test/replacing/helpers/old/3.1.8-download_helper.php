@@ -98,7 +98,7 @@ if ( ! function_exists('force_download'))
 			return;
 		}
 
-		if (ENVIRONMENT !== 'testing')
+		if ( ! is_testing_env())
 		{
 			// Clean output buffer
 			if (ob_get_level() !== 0 && @ob_end_clean() === FALSE)
@@ -134,7 +134,7 @@ if ( ! function_exists('force_download'))
 		// If we have raw data - just dump it
 		if ($data !== NULL)
 		{
-			if (ENVIRONMENT !== 'testing')
+			if ( ! is_testing_env())
 			{
 				exit($data);
 			}
@@ -152,7 +152,7 @@ if ( ! function_exists('force_download'))
 		}
 
 		fclose($fp);
-		if (ENVIRONMENT !== 'testing')
+		if ( ! is_testing_env())
 		{
 			exit;
 		}
