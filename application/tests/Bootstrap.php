@@ -53,11 +53,23 @@
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
-// This `if` statemant is needed for @runInSeparateProcess
+
+// Define testing environment for ci-phpunit-test
+// This `if` statement is needed for @runInSeparateProcess
 if (! defined('ENVIRONMENT'))
 {
 	define('ENVIRONMENT', 'testing');
 }
+// If you want to change `testing`, you must define `is_testing_env()`.
+//function is_testing_env()
+//{
+//	if (ENVIRONMENT === 'unittest')
+//	{
+//		return TRUE;
+//	}
+//
+//	return FALSE;
+//}
 
 /*
  *---------------------------------------------------------------
