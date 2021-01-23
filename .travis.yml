@@ -13,6 +13,10 @@ matrix:
     - php: 7.3
     - php: 7.4
 
+env:
+  global:
+    - XDEBUG_MODE=coverage
+
 before_script:
   - pwd
   - export cwd=`pwd`
