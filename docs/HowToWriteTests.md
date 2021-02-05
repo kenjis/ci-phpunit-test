@@ -818,6 +818,8 @@ ci-phpunit-test has four monkey patchers.
 * `MethodPatcher`: Patching Methods in User-defined Classes
 * `ConstantPatcher`: Changing Constant Values
 
+**Note:** If you use PHP 7.3 or later, you must use PHP-Parser 4.2 as a Composer dependency.
+
 **Note:** This functionality has a negative impact on speed of tests.
 
 To enable monkey patching, uncomment below code in `tests/Bootstrap.php` and configure them:
