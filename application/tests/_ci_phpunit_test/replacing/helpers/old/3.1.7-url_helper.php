@@ -52,20 +52,20 @@ if ( ! function_exists('redirect'))
 		switch ($method)
 		{
 			case 'refresh':
-				if ( ! is_testing_env())
+				if ( ! TestCase::isTestingEnv())
 				{
 					header('Refresh:0;url='.$uri);
 				}
 				break;
 			default:
-				if ( ! is_testing_env())
+				if ( ! TestCase::isTestingEnv())
 				{
 					header('Location: '.$uri, TRUE, $code);
 				}
 				break;
 		}
 
-		if ( ! is_testing_env())
+		if ( ! TestCase::isTestingEnv())
 		{
 			exit;
 		}

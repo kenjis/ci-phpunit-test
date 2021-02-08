@@ -454,4 +454,14 @@ class CIPHPUnitTestCase extends PHPUnit_Framework_TestCase
 		$result = CIPHPUnitTestLogger::didLog($level, $message);
 		$this->assertTrue($result);
 	}
+
+	/**
+	 * Testing Environment or not?
+	 *
+	 * @return bool
+	 */
+	public static function isTestingEnv()
+	{
+		return (ENVIRONMENT === 'testing');
+	}
 }
