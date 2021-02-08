@@ -98,7 +98,7 @@ if ( ! function_exists('force_download'))
 			return;
 		}
 
-		if ( ! is_testing_env())
+		if ( ! TestCase::isTestingEnv())
 		{
 			// Clean output buffer
 			if (ob_get_level() !== 0 && @ob_end_clean() === FALSE)
@@ -115,7 +115,7 @@ if ( ! function_exists('force_download'))
 			header('Cache-Control: private, no-transform, no-store, must-revalidate');
 		}
 
-		if (is_testing_env())
+		if (TestCase::isTestingEnv())
 		{
 			$CI =& get_instance();
 			$CI->output->set_header('Content-Type: '.$mime);
@@ -134,7 +134,7 @@ if ( ! function_exists('force_download'))
 		// If we have raw data - just dump it
 		if ($data !== NULL)
 		{
-			if ( ! is_testing_env())
+			if ( ! TestCase::isTestingEnv())
 			{
 				exit($data);
 			}
@@ -152,7 +152,7 @@ if ( ! function_exists('force_download'))
 		}
 
 		fclose($fp);
-		if ( ! is_testing_env())
+		if ( ! TestCase::isTestingEnv())
 		{
 			exit;
 		}
