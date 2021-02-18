@@ -8,6 +8,7 @@
 
 ### Added
 
+* Now you can use `_ci_phpunit_test` directly from vendor path. See [#274](https://github.com/kenjis/ci-phpunit-test/pull/274).
 * Now you can assert whether a message is logged. See [#331](https://github.com/kenjis/ci-phpunit-test/pull/331).
 * Add functionality to create mocks on consecutive calls. See [#339](https://github.com/kenjis/ci-phpunit-test/pull/339).
 * Add functionality to change `ENVIRONMENT` constant value `testing`. See [#360](https://github.com/kenjis/ci-phpunit-test/pull/360).
@@ -24,10 +25,6 @@
 * Fix bug that NetBeans test suite provider causes `Class 'PHPUnit_Util_Configuration' not found`. See [#313](https://github.com/kenjis/ci-phpunit-test/pull/313).
 * Fix bug that `$assign_to_config` does not work. See [#314](https://github.com/kenjis/ci-phpunit-test/pull/314).
 * Fix bug that `config.php` is loaded before `constants.php`. See [#348](https://github.com/kenjis/ci-phpunit-test/pull/348).
-
-### Added
-
-* Now you can use `_ci_phpunit_test` directly from vendor path. See [#274](https://github.com/kenjis/ci-phpunit-test/pull/274).
 
 ### Others
 
