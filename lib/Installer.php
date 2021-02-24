@@ -72,7 +72,6 @@ class Installer
 
                 case '--from-composer':
                     $this->from_composer = true;
-                    $i++;
                     break;
 
                 default:
