@@ -26,6 +26,10 @@ class Installer
         $argc = count($argv);
 
         if ($argc === 1) {
+            if (is_null($this->test_dir)) {
+                $this->test_dir = $this->app_dir.'/tests';
+            }
+
             return;
         }
 
