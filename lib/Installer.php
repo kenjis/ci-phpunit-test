@@ -59,7 +59,7 @@ class Installer
                     }
                     $i++;
                     break;
-				// php install.php -t application/tests
+                // php install.php -t application/tests
                 case '-t':
                     if (is_dir($argv[$i+1])) {
                         $this->test_dir = $argv[$i+1];
@@ -79,8 +79,8 @@ class Installer
             }
         }
         if (is_null($this->test_dir)) {
-			$test_dir = $this->app_dir.'/tests';
-		}
+            $test_dir = $this->app_dir.'/tests';
+        }
     }
 
     public function install()
@@ -97,8 +97,8 @@ class Installer
 
     /**
      * Fix paths in Bootstrap.php
-	 *
-	 * @FIXME Too ad hoc. Must rewrite, because can't handle complex paths.
+     *
+     * @FIXME Too ad hoc. Must rewrite, because can't handle complex paths.
      */
     private function fixPath()
     {
