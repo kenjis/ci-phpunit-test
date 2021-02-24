@@ -81,7 +81,7 @@ class Installer
         }
 
         if (is_null($this->test_dir)) {
-            $test_dir = $this->app_dir.'/tests';
+            $this->test_dir = $this->app_dir.'/tests';
         }
     }
 
