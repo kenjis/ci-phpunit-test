@@ -59,6 +59,7 @@ class Installer
                     }
                     $i++;
                     break;
+
                 // php install.php -t application/tests
                 case '-t':
                     if (is_dir($argv[$i+1])) {
@@ -78,6 +79,7 @@ class Installer
                     throw new Exception('Unknown argument: '.$argv[$i]);
             }
         }
+
         if (is_null($this->test_dir)) {
             $test_dir = $this->app_dir.'/tests';
         }
