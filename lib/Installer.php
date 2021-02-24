@@ -11,9 +11,9 @@
 class Installer
 {
     private $silent = false;
-    private $app_dir = 'application';
-    private $pub_dir = 'public';
-    private $test_dir = 'tests';
+    private $app_dir = 'application';  // -a DIRECTORY
+    private $pub_dir = 'public';       // -p DIRECTORY
+    private $test_dir = null;          // -t DIRECTORY
     private $from_composer = false;
 
     public function __construct($argv)
@@ -26,6 +26,10 @@ class Installer
         $argc = count($argv);
 
         if ($argc === 1) {
+            if (is_null($this->test_dir)) {
+                $this->test_dir = $this->app_dir.'/tests';
+            }
+
             return;
         }
 
@@ -45,7 +49,7 @@ class Installer
                     if (is_dir($argv[$i+1])) {
                         $this->app_dir = $argv[$i+1];
                     } else {
-                        throw new Exception('No such directory: '.$argv[$i+1]);
+                        throw new Exception('No such application directory: '.$argv[$i+1]);
                     }
                     $i++;
                     break;
@@ -55,19 +59,32 @@ class Installer
                     if (is_dir($argv[$i+1])) {
                         $this->pub_dir = $argv[$i+1];
                     } else {
-                        throw new Exception('No such directory: '.$argv[$i+1]);
+                        throw new Exception('No such public directory: '.$argv[$i+1]);
+                    }
+                    $i++;
+                    break;
+
+                // php install.php -t application/tests
+                case '-t':
+                    if (is_dir($argv[$i+1])) {
+                        $this->test_dir = $argv[$i+1];
+                    } else {
+                        throw new Exception('No such test directory: '.$argv[$i+1]);
                     }
                     $i++;
                     break;
 
                 case '--from-composer':
                     $this->from_composer = true;
-                    $i++;
                     break;
 
                 default:
                     throw new Exception('Unknown argument: '.$argv[$i]);
             }
+        }
+
+        if (is_null($this->test_dir)) {
+            $this->test_dir = $this->app_dir.'/tests';
         }
     }
 
@@ -75,7 +92,7 @@ class Installer
     {
         $this->recursiveCopy(
             dirname(dirname(__FILE__)).'/application/tests',
-            $this->app_dir.'/'.$this->test_dir
+            $this->test_dir
         );
         $this->fixPath();
         if ($this->from_composer) {
@@ -85,10 +102,12 @@ class Installer
 
     /**
      * Fix paths in Bootstrap.php
+     *
+     * @FIXME Too ad hoc. Must rewrite, because can't handle complex paths.
      */
     private function fixPath()
     {
-        $file = $this->app_dir.'/'.$this->test_dir.'/Bootstrap.php';
+        $file = $this->test_dir.'/Bootstrap.php';
         $contents = file_get_contents($file);
 
         if (! file_exists('system')) {
@@ -147,7 +166,7 @@ class Installer
 
     public function update()
     {
-        $target_dir = $this->app_dir.'/'.$this->test_dir.'/_ci_phpunit_test';
+        $target_dir = $this->test_dir.'/_ci_phpunit_test';
         $this->recursiveUnlink($target_dir);
         $this->recursiveCopy(
             dirname(dirname(__FILE__)).'/application/tests/_ci_phpunit_test',

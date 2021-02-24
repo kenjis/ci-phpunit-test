@@ -77,8 +77,13 @@ $ php vendor/kenjis/ci-phpunit-test/install.php --from-composer
 * You can specify your `application` and `public` folder with option arguments, if you use custom folder paths.
 
 ~~~
-$ php vendor/kenjis/ci-phpunit-test/install.php -a <application_dir> -p <public_dir>
+$ php vendor/kenjis/ci-phpunit-test/install.php -a <application_dir> -p <public_dir> -t <unittest_dir>
 ~~~
+So the default would be:
+~~~
+$ php vendor/kenjis/ci-phpunit-test/install.php -a application -p public -t application/tests
+~~~
+
 
 ## Upgrading
 
