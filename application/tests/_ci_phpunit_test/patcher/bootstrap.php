@@ -8,18 +8,29 @@
  * @link       https://github.com/kenjis/ci-phpunit-test
  */
 
+use Kenjis\MonkeyPatch\PhpParserVersion;
+
+require __DIR__ . '/PhpParserVersion.php';
+
+$phpParserVersion = new PhpParserVersion();
+
 // If you use Composer
-if (class_exists('PhpParser\Autoloader')) {
-	if (class_exists('PhpParser\Node\Identifier')) {
-		// PHP-Parser 4.x
+if ($phpParserVersion->isComposerInstalled()) {
+	if ($phpParserVersion->isGreaterThan('4.5')) {
+		// PHP-Parser 4.6 -
 		require __DIR__ . '/4.x/MonkeyPatchManager.php';
 	}
-	elseif (method_exists('PhpParser\Node\Name','set')) {
-		// PHP-Parser 2.x
-		require __DIR__ . '/2.x/MonkeyPatchManager.php';
-	} else {
+	elseif ($phpParserVersion->isGreaterThan('4.0')) {
+		// PHP-Parser 4.0 - 4.5
+		require __DIR__ . '/4.5/MonkeyPatchManager.php';
+	}
+	elseif ($phpParserVersion->isGreaterThan('3.0')) {
 		// PHP-Parser 3.x
 		require __DIR__ . '/3.x/MonkeyPatchManager.php';
+	}
+	else {
+		// PHP-Parser 2.x
+		require __DIR__ . '/2.x/MonkeyPatchManager.php';
 	}
 }
 // If you don't use Composer
