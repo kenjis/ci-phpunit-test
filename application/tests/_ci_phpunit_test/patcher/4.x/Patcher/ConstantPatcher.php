@@ -20,7 +20,7 @@ use Kenjis\MonkeyPatch\Patcher\ConstantPatcher\NodeVisitor;
 class ConstantPatcher extends AbstractPatcher
 {
 	/**
-	 * @var special constant names which we don't patch
+	 * @var string[] special constant names which we don't patch
 	 */
 	private static $blacklist = [
 		'true',
