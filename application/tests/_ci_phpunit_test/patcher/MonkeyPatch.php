@@ -39,9 +39,9 @@ class MonkeyPatch
 	/**
      * Patch on constant
      * 
-     * @param type $constant
-     * @param type $value
-     * @param type $class_method
+     * @param string $constant
+     * @param mixed $value
+     * @param string $class_method
      */
 	public static function patchConstant($constant, $value, $class_method = null)
 	{
