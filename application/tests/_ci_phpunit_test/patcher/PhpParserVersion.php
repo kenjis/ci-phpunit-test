@@ -67,8 +67,8 @@ class PhpParserVersion
 			return true;
 		}
 
-		if ($minor_installed <= $minor) {
-			return false;
+		if ($minor_installed >= $minor) {
+			return true;
 		}
 
 		return false;
