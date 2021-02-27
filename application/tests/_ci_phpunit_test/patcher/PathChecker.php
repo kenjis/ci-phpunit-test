@@ -47,7 +47,7 @@ class PathChecker
 			}
 			$new_paths[] = $excluded ? '-'.$real_path : $real_path;
 		}
-		array_unique($new_paths, SORT_STRING);
+		$new_paths = array_unique($new_paths, SORT_STRING);
 		sort($new_paths, SORT_STRING);
 		return $new_paths;
 	}

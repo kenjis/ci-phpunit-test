@@ -10,6 +10,7 @@
 
 namespace Kenjis\MonkeyPatch;
 
+use LogicException;
 use RuntimeException;
 
 use RecursiveIteratorIterator;

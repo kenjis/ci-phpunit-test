@@ -13,7 +13,6 @@ namespace Kenjis\MonkeyPatch\Patcher;
 use PhpParser\ParserFactory;
 use PhpParser\Lexer;
 use PhpParser\NodeTraverser;
-use PhpParser\PrettyPrinter;
 use Kenjis\MonkeyPatch\MonkeyPatchManager;
 
 abstract class AbstractPatcher
@@ -38,16 +37,12 @@ abstract class AbstractPatcher
 		$traverser->addVisitor($this->node_visitor);
 
 		$ast_orig = $parser->parse($source);
-		$prettyPrinter = new PrettyPrinter\Standard();
-		$source_ = $prettyPrinter->prettyPrintFile($ast_orig);
-
-		$ast = $parser->parse($source);
-		$traverser->traverse($ast);
+		$traverser->traverse($ast_orig);
 
 		if (static::$replacement !== [])
 		{
 			$patched = true;
-			$new_source = static::generateNewSource($source_);
+			$new_source = static::generateNewSource($source);
 		}
 		else
 		{
