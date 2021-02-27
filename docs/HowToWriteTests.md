@@ -818,7 +818,9 @@ ci-phpunit-test has four monkey patchers.
 * `MethodPatcher`: Patching Methods in User-defined Classes
 * `ConstantPatcher`: Changing Constant Values
 
-**Note:** If you use PHP 7.3 or later, you must use PHP-Parser 4.2 as a Composer dependency.
+**Note:** * If you use Monkey Patching with PHP-Parser 4.6 or later, the line number when an error occurs is probably different from the actual source code. Please check the cache file of the source that Monkey Patching creates.
+
+**Note:** If you use PHP 7.3 or later, you must use PHP-Parser 4.2 or later as a Composer dependency.
 
 **Note:** This functionality has a negative impact on speed of tests.
 

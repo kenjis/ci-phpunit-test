@@ -2,8 +2,13 @@
 
 ## v0.19.0 (Not Released)
 
+### Changed
+
+* If you use Monkey Patching with nikic/PHP-Parser 4.6 or later, the line number when an error occurs is probably different from the actual source code. Please check the cache file of the source that Monkey Patching creates.
+
 ### Added
 
+* Now you can use nikic/PHP-Parser 4.6 or later as a Composer dependency. See [#364](https://github.com/kenjis/ci-phpunit-test/pull/364).
 * Now you can specify custom test directory. See [#362](https://github.com/kenjis/ci-phpunit-test/pull/362).
 * Add functionality to create mocks on consecutive calls. See [#339](https://github.com/kenjis/ci-phpunit-test/pull/339).
 * Add functionality to change `ENVIRONMENT` constant value `testing`. See [#360](https://github.com/kenjis/ci-phpunit-test/pull/360).
