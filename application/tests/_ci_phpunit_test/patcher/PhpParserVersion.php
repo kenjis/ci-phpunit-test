@@ -49,15 +49,15 @@ class PhpParserVersion
 	/**
 	 * @param string $version eg. '4.5'
 	 */
-	public function isGreaterThan($version)
+	public function isGreaterThanOrEqualTo($version)
 	{
 		$parts = explode('.', $version);
-		$major = $parts[0];
-		$minor = $parts[1];
+		$major = (int) $parts[0];
+		$minor = (int) $parts[1];
 
 		$parts = explode('.', $this->version);
-		$major_installed = $parts[0];
-		$minor_installed = $parts[1];
+		$major_installed = (int) $parts[0];
+		$minor_installed = (int) $parts[1];
 
 		if ($major_installed < $major) {
 			return false;
@@ -71,6 +71,6 @@ class PhpParserVersion
 			return false;
 		}
 
-		return true;
+		return false;
 	}
 }

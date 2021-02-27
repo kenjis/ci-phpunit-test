@@ -16,15 +16,15 @@ $phpParserVersion = new PhpParserVersion();
 
 // If you use Composer
 if ($phpParserVersion->isComposerInstalled()) {
-	if ($phpParserVersion->isGreaterThan('4.5')) {
+	if ($phpParserVersion->isGreaterThanOrEqualTo('4.6')) {
 		// PHP-Parser 4.6 -
 		require __DIR__ . '/4.x/MonkeyPatchManager.php';
 	}
-	elseif ($phpParserVersion->isGreaterThan('4.0')) {
+	elseif ($phpParserVersion->isGreaterThanOrEqualTo('4.0')) {
 		// PHP-Parser 4.0 - 4.5
 		require __DIR__ . '/4.5/MonkeyPatchManager.php';
 	}
-	elseif ($phpParserVersion->isGreaterThan('3.0')) {
+	elseif ($phpParserVersion->isGreaterThanOrEqualTo('3.0')) {
 		// PHP-Parser 3.x
 		require __DIR__ . '/3.x/MonkeyPatchManager.php';
 	}
