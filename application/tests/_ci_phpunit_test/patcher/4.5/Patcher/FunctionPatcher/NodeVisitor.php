@@ -55,7 +55,12 @@ class NodeVisitor extends NodeVisitorAbstract
 			FunctionPatcher::isWhitelisted((string) $node->name)
 			&& ! FunctionPatcher::isBlacklisted((string) $node->name)
 		) {
-			$replacement = new FullyQualified('__FuncProxy__::' . (string) $node->name);
+			$replacement = new FullyQualified('\__FuncProxy__::' . (string) $node->name);
+
+			$pos = $node->getAttribute('startTokenPos');
+			FunctionPatcher::$replacement[$pos] = 
+				'\__FuncProxy__::' . (string) $node->name;
+
 			$node->name = $replacement;
 		}
 	}

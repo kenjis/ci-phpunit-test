@@ -13,13 +13,9 @@ namespace Kenjis\MonkeyPatch\Patcher;
 require __DIR__ . '/FunctionPatcher/NodeVisitor.php';
 require __DIR__ . '/FunctionPatcher/Proxy.php';
 
-use Kenjis\MonkeyPatch\MonkeyPatchManager;
-use Kenjis\MonkeyPatch\Patcher\FunctionPatcher\NodeVisitor;
-use PhpParser\Lexer;
-use PhpParser\NodeTraverser;
-use PhpParser\ParserFactory;
-use PhpParser\PrettyPrinter;
 use LogicException;
+
+use Kenjis\MonkeyPatch\Patcher\FunctionPatcher\NodeVisitor;
 
 class FunctionPatcher extends AbstractPatcher
 {
@@ -162,37 +158,52 @@ class FunctionPatcher extends AbstractPatcher
 		return false;
 	}
 
-	public function patch($source)
+	protected static function generateNewSource($source)
 	{
-		$patched = false;
-		static::$replacement = [];
+		$tokens = token_get_all($source);
+		$new_source = '';
+		$i = -1;
 
-		$parser = (new ParserFactory())
-			->create(
-				MonkeyPatchManager::getPhpParser(),
-				new Lexer(
-					['usedAttributes' => ['startTokenPos', 'endTokenPos']]
-				)
-			);
-		$traverser = new NodeTraverser();
-		$traverser->addVisitor($this->node_visitor);
-
-		$ast_orig = $parser->parse($source);
-		$prettyPrinter = new PrettyPrinter\Standard();
-		$source_ = $prettyPrinter->prettyPrintFile($ast_orig);
-
-		$ast = $parser->parse($source);
-		$traverser->traverse($ast);
-
-		$new_source = $prettyPrinter->prettyPrintFile($ast);
-
-		if ($source_ !== $new_source) {
-			$patched = true;
+		ksort(self::$replacement);
+		reset(self::$replacement);
+		$replacement['key'] = key(self::$replacement);
+		$replacement['value'] = current(self::$replacement);
+		next(self::$replacement);
+		if ($replacement['key'] === null)
+		{
+			$replacement = false;
 		}
 
-		return [
-			$new_source,
-			$patched,
-		];
+		foreach ($tokens as $token)
+		{
+			$i++;
+
+			if (is_string($token))
+			{
+				$new_source .= $token;
+			}
+			elseif (isset($replacement['key']) && $i == $replacement['key'])
+			{
+				$new_source .= $replacement['value'];
+				$replacement['key'] = key(self::$replacement);
+				$replacement['value'] = current(self::$replacement);
+				next(self::$replacement);
+				if ($replacement['key'] === null)
+				{
+					$replacement = false;
+				}
+			}
+			else
+			{
+				$new_source .= $token[1];
+			}
+		}
+
+		if ($replacement !== false)
+		{
+			throw new LogicException('Replacement data still remain');
+		}
+
+		return $new_source;
 	}
 }
