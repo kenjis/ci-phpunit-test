@@ -26,8 +26,14 @@ class NodeVisitor extends NodeVisitorAbstract
 
 		$parser = (new ParserFactory())->create(ParserFactory::PREFER_PHP7);
 
-		if ($node->returnType !== null && $node->returnType->name === 'void') {
-			$ast = $parser->parse('<?php ' . MethodPatcher::CODENORET);
+		if ($node->returnType !== null) {
+			if (isset($node->returnType->name) && $node->returnType->name === 'void') {
+				$ast = $parser->parse('<?php ' . MethodPatcher::CODENORET);
+			} elseif (isset($node->returnType->parts) && $node->returnType->parts[0] === 'void') {
+				$ast = $parser->parse('<?php ' . MethodPatcher::CODENORET);
+			} else {
+				$ast = $parser->parse('<?php ' . MethodPatcher::CODE);
+			}
 		} else {
 			$ast = $parser->parse('<?php ' . MethodPatcher::CODE);
 		}
