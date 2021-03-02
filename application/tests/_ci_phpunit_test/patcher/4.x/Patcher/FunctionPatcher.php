@@ -13,12 +13,7 @@ namespace Kenjis\MonkeyPatch\Patcher;
 require __DIR__ . '/FunctionPatcher/NodeVisitor.php';
 require __DIR__ . '/FunctionPatcher/Proxy.php';
 
-use Kenjis\MonkeyPatch\MonkeyPatchManager;
 use Kenjis\MonkeyPatch\Patcher\FunctionPatcher\NodeVisitor;
-use PhpParser\Lexer;
-use PhpParser\NodeTraverser;
-use PhpParser\ParserFactory;
-use PhpParser\PrettyPrinter;
 use LogicException;
 
 class FunctionPatcher extends AbstractPatcher
@@ -160,39 +155,5 @@ class FunctionPatcher extends AbstractPatcher
 		}
 
 		return false;
-	}
-
-	public function patch($source)
-	{
-		$patched = false;
-		static::$replacement = [];
-
-		$parser = (new ParserFactory())
-			->create(
-				MonkeyPatchManager::getPhpParser(),
-				new Lexer(
-					['usedAttributes' => ['startTokenPos', 'endTokenPos']]
-				)
-			);
-		$traverser = new NodeTraverser();
-		$traverser->addVisitor($this->node_visitor);
-
-		$ast_orig = $parser->parse($source);
-		$prettyPrinter = new PrettyPrinter\Standard();
-		$source_ = $prettyPrinter->prettyPrintFile($ast_orig);
-
-		$ast = $parser->parse($source);
-		$traverser->traverse($ast);
-
-		$new_source = $prettyPrinter->prettyPrintFile($ast);
-
-		if ($source_ !== $new_source) {
-			$patched = true;
-		}
-
-		return [
-			$new_source,
-			$patched,
-		];
 	}
 }
