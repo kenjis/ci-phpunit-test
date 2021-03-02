@@ -26,8 +26,6 @@ class ConstantPatcher extends AbstractPatcher
 		'null',
 	];
 
-	public static $replacement;
-
 	public function __construct()
 	{
 		$this->node_visitor = new NodeVisitor();

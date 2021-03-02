@@ -76,8 +76,6 @@ class FunctionPatcher extends AbstractPatcher
 		'redirect',
 	];
 
-	public static $replacement;
-
 	public function __construct()
 	{
 		$this->node_visitor = new NodeVisitor();

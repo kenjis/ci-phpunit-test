@@ -24,8 +24,6 @@ EOL;
 if (($__ret__ = \__PatchManager__::getReturn(__CLASS__, __FUNCTION__, func_get_args())) !== __GO_TO_ORIG__) return;
 EOL;
 
-	public static $replacement;
-
 	public function __construct()
 	{
 		$this->node_visitor = new NodeVisitor();
