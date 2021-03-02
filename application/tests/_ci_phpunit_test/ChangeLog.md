@@ -8,7 +8,7 @@
 
 ### Added
 
-* Now you can use nikic/PHP-Parser 4.6 or later as a Composer dependency. See [#364](https://github.com/kenjis/ci-phpunit-test/pull/364).
+* Now you can use nikic/PHP-Parser 4.6 or later as a Composer dependency. See [#364](https://github.com/kenjis/ci-phpunit-test/pull/364), [#366](https://github.com/kenjis/ci-phpunit-test/pull/366).
 * Now you can specify custom test directory. See [#362](https://github.com/kenjis/ci-phpunit-test/pull/362).
 * Add functionality to create mocks on consecutive calls. See [#339](https://github.com/kenjis/ci-phpunit-test/pull/339).
 * Add functionality to change `ENVIRONMENT` constant value `testing`. See [#360](https://github.com/kenjis/ci-phpunit-test/pull/360).
