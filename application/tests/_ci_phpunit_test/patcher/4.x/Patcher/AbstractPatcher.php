@@ -25,16 +25,15 @@ abstract class AbstractPatcher
 	public function patch($source)
 	{
 		$patched = false;
-		static::$replacement = [];
 
-		$parser = (new ParserFactory)
+		$parser = (new ParserFactory())
 			->create(
 				MonkeyPatchManager::getPhpParser(),
 				new Lexer(
 					['usedAttributes' => ['startTokenPos', 'endTokenPos']]
 				)
 			);
-		$traverser = new NodeTraverser;
+		$traverser = new NodeTraverser();
 		$traverser->addVisitor($this->node_visitor);
 
 		$ast_orig = $parser->parse($source);
@@ -44,14 +43,10 @@ abstract class AbstractPatcher
 		$ast = $parser->parse($source);
 		$traverser->traverse($ast);
 
-		if (static::$replacement !== [])
-		{
+		$new_source = $prettyPrinter->prettyPrintFile($ast);
+
+		if ($source_ !== $new_source) {
 			$patched = true;
-			$new_source = static::generateNewSource($source_);
-		}
-		else
-		{
-			$new_source = $source;
 		}
 
 		return [
