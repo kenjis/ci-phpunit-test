@@ -10,11 +10,10 @@
 
 namespace Kenjis\MonkeyPatch\Patcher\MethodPatcher;
 
+use Kenjis\MonkeyPatch\Patcher\MethodPatcher;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\NodeVisitorAbstract;
-
-use Kenjis\MonkeyPatch\Patcher\MethodPatcher;
 use PhpParser\ParserFactory;
 
 class NodeVisitor extends NodeVisitorAbstract
