@@ -13,9 +13,12 @@ namespace Kenjis\MonkeyPatch\Patcher;
 require __DIR__ . '/MethodPatcher/NodeVisitor.php';
 require __DIR__ . '/MethodPatcher/PatchManager.php';
 
-use LogicException;
-
+use Kenjis\MonkeyPatch\MonkeyPatchManager;
 use Kenjis\MonkeyPatch\Patcher\MethodPatcher\NodeVisitor;
+use PhpParser\Lexer;
+use PhpParser\NodeTraverser;
+use PhpParser\ParserFactory;
+use PhpParser\PrettyPrinter;
 
 class MethodPatcher extends AbstractPatcher
 {
@@ -33,93 +36,36 @@ EOL;
 		$this->node_visitor = new NodeVisitor();
 	}
 
-	protected static function generateNewSource($source)
+	public function patch($source)
 	{
-		$tokens = token_get_all($source);
-		$new_source = '';
-		$i = -1;
+		$patched = false;
 
-		ksort(self::$replacement);
-		reset(self::$replacement);
-		$replacement['key'] = key(self::$replacement);
-		$replacement['value'] = current(self::$replacement);
-		next(self::$replacement);
-		if ($replacement['key'] === null)
-		{
-			$replacement = false;
+		$parser = (new ParserFactory())
+			->create(
+				MonkeyPatchManager::getPhpParser(),
+				new Lexer(
+					['usedAttributes' => ['startTokenPos', 'endTokenPos']]
+				)
+			);
+		$traverser = new NodeTraverser();
+		$traverser->addVisitor($this->node_visitor);
+
+		$ast_orig = $parser->parse($source);
+		$prettyPrinter = new PrettyPrinter\Standard();
+		$source_ = $prettyPrinter->prettyPrintFile($ast_orig);
+
+		$ast = $parser->parse($source);
+		$traverser->traverse($ast);
+
+		$new_source = $prettyPrinter->prettyPrintFile($ast);
+
+		if ($source_ !== $new_source) {
+			$patched = true;
 		}
 
-		$start_method = false;
-
-		foreach ($tokens as $key => $token)
-		{
-			$i++;
-
-			if (isset($replacement['key']) && $i == $replacement['key'])
-			{
-				$start_method = true;
-			}
-
-			if (is_string($token))
-			{
-				if ($start_method && $token === '{')
-				{
-					if(self::isVoidFunction($tokens, $key)){
-						$new_source .= '{ ' . self::CODENORET;
-					}
-					else{
-						$new_source .= '{ ' . self::CODE;
-					}
-					$start_method = false;
-					$replacement['key'] = key(self::$replacement);
-					$replacement['value'] = current(self::$replacement);
-					next(self::$replacement);
-					if ($replacement['key'] === null)
-					{
-						$replacement = false;
-					}
-				}
-				else
-				{
-					$new_source .= $token;
-				}
-			}
-			else
-			{
-				$new_source .= $token[1];
-			}
-		}
-
-		return $new_source;
-	}
-
-	/**
-	 * Checks if a function has a void return type
-	 *
-	 * @param $tokens
-	 * @param $key
-	 * @return bool
-	 */
-	protected static function isVoidFunction($tokens, $key){
-		if($key - 1 <= 0){
-			return false;
-		}
-		$token = $tokens[$key - 1];
-		if(is_array($token)){
-			$token = $token[1];
-		}
-		//Loop backwards though the start of the function block till you either find "void" or the end of the
-		//parameters declaration.
-		while($token !== ")"){
-			if(strpos($token, "void") !== false){
-				return true;
-			}
-			$token = $tokens[$key - 1];
-			if(is_array($token)){
-				$token = $token[1];
-			}
-			$key--;
-		}
-		return false;
+		return [
+			$new_source,
+			$patched,
+		];
 	}
 }
