@@ -20,7 +20,8 @@ An easier way to use PHPUnit with [CodeIgniter](https://github.com/bcit-ci/CodeI
 * PHP 7.2 or later
   * If you use PHP 7.3 or later and Monkey Patching, you must use PHP-Parser 4.2 or later as a Composer dependency.
 * CodeIgniter 3.x
-* PHPUnit 8.1 or later
+* PHPUnit 8.1 to 9.2
+  * If you want to use PHPUnit 9.3 or later, please use ci-phpunit-test [3.x](https://github.com/kenjis/ci-phpunit-test/tree/3.x).
   * If you want to use PHPUnit 7.5 or earlier, please use ci-phpunit-test [1.x](https://github.com/kenjis/ci-phpunit-test/tree/master).
 
 ## Optional
