@@ -1,10 +1,10 @@
 # Change Log for ci-phpunit-test
 
-## v2.0.0 (Not Released)
+## v2.0.0 (2021/03/03)
 
 ### Changed
 
-* Require PHP 7.2 or later, PHPUnit 8.1 or later
+* Require PHP 7.2 or later, PHPUnit 8.1 to 9.2
 
 ## v1.0.0 (2021/03/03)
 
