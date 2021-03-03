@@ -2,9 +2,9 @@
 
 [![Latest Stable Version](https://poser.pugx.org/kenjis/ci-phpunit-test/v/stable)](https://packagist.org/packages/kenjis/ci-phpunit-test) [![Total Downloads](https://poser.pugx.org/kenjis/ci-phpunit-test/downloads)](https://packagist.org/packages/kenjis/ci-phpunit-test) [![Latest Unstable Version](https://poser.pugx.org/kenjis/ci-phpunit-test/v/unstable)](https://packagist.org/packages/kenjis/ci-phpunit-test) [![License](https://poser.pugx.org/kenjis/ci-phpunit-test/license)](https://packagist.org/packages/kenjis/ci-phpunit-test)
 
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/kenjis/ci-phpunit-test/badges/quality-score.png?b=2.x)](https://scrutinizer-ci.com/g/kenjis/ci-phpunit-test/?branch=2.x)
-[![Coverage Status](https://coveralls.io/repos/kenjis/ci-phpunit-test/badge.svg?branch=2.x)](https://coveralls.io/r/kenjis/ci-phpunit-test?branch=2.x)
-[![Build Status](https://travis-ci.org/kenjis/ci-phpunit-test.svg?branch=2.x)](https://travis-ci.org/kenjis/ci-phpunit-test)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/kenjis/ci-phpunit-test/badges/quality-score.png?b=3.x)](https://scrutinizer-ci.com/g/kenjis/ci-phpunit-test/?branch=3.x)
+[![Coverage Status](https://coveralls.io/repos/kenjis/ci-phpunit-test/badge.svg?branch=3.x)](https://coveralls.io/r/kenjis/ci-phpunit-test?branch=3.x)
+[![Build Status](https://travis-ci.org/kenjis/ci-phpunit-test.svg?branch=3.x)](https://travis-ci.org/kenjis/ci-phpunit-test)
 
 An easier way to use PHPUnit with [CodeIgniter](https://github.com/bcit-ci/CodeIgniter) 3.x.
 
@@ -17,11 +17,11 @@ An easier way to use PHPUnit with [CodeIgniter](https://github.com/bcit-ci/CodeI
 
 ## Requirements
 
-* PHP 7.2 or later
+* PHP 7.3 or later
   * If you use PHP 7.3 or later and Monkey Patching, you must use PHP-Parser 4.2 or later as a Composer dependency.
 * CodeIgniter 3.x
-* PHPUnit 8.1 or later
-  * If you want to use PHPUnit 7.5 or earlier, please use ci-phpunit-test [1.x](https://github.com/kenjis/ci-phpunit-test/tree/master).
+* PHPUnit 9.3 or later
+  * If you want to use PHPUnit 9.2 or earlier, please use ci-phpunit-test [2.x](https://github.com/kenjis/ci-phpunit-test/tree/2.x).
 
 ## Optional
 
@@ -30,7 +30,7 @@ An easier way to use PHPUnit with [CodeIgniter](https://github.com/bcit-ci/CodeI
 
 ## Change Log
 
-See [Change Log](https://github.com/kenjis/ci-phpunit-test/blob/2.x/application/tests/_ci_phpunit_test/ChangeLog.md).
+See [Change Log](https://github.com/kenjis/ci-phpunit-test/blob/3.x/application/tests/_ci_phpunit_test/ChangeLog.md).
 
 ## Folder Structure
 
@@ -64,7 +64,7 @@ If you like Composer:
 
 ~~~
 $ cd /path/to/codeigniter/
-$ composer require kenjis/ci-phpunit-test:2.x-dev --dev
+$ composer require kenjis/ci-phpunit-test:3.x-dev --dev
 ~~~
 
 And run `install.php`:
@@ -86,13 +86,13 @@ So the default would be:
 $ php vendor/kenjis/ci-phpunit-test/install.php -a application -p public -t application/tests
 ~~~
 
-* But some paths may be not correct, in that case, please fix them in [tests/Bootstrap.php](https://github.com/kenjis/ci-phpunit-test/blob/2.x/application/tests/Bootstrap.php#L96).
+* But some paths may be not correct, in that case, please fix them in [tests/Bootstrap.php](https://github.com/kenjis/ci-phpunit-test/blob/3.x/application/tests/Bootstrap.php#L96).
 
 ## Upgrading
 
 1. Download latest `ci-phpunit-test` from <https://github.com/kenjis/ci-phpunit-test/releases>.
 2. Unzip and replace `application/tests/_ci_phpunit_test` folder.
-3. Read [Change Log](https://github.com/kenjis/ci-phpunit-test/blob/2.x/application/tests/_ci_phpunit_test/ChangeLog.md).
+3. Read [Change Log](https://github.com/kenjis/ci-phpunit-test/blob/3.x/application/tests/_ci_phpunit_test/ChangeLog.md).
 
 ### Upgrading via Composer
 
@@ -123,7 +123,7 @@ an `application/test/_ci_phpunit_test` directory and now want to directly use
     `CI_PHPUNIT_TESTPATH . '`.  (So, for example, `__DIR__ . '/_ci_phpunit_test/CIPHPUnitTest.php'`
     would become `CI_PHPUNIT_TESTPATH . '/CIPHPUnitTest.php'`.)
 
-Read [Change Log](https://github.com/kenjis/ci-phpunit-test/blob/2.x/application/tests/_ci_phpunit_test/ChangeLog.md).
+Read [Change Log](https://github.com/kenjis/ci-phpunit-test/blob/3.x/application/tests/_ci_phpunit_test/ChangeLog.md).
 
 ## How to Run Tests
 
@@ -211,15 +211,15 @@ class Welcome_test extends TestCase
 }
 ~~~
 
-See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/2.x/docs/HowToWriteTests.md) for details.
+See [How to Write Tests](https://github.com/kenjis/ci-phpunit-test/blob/3.x/docs/HowToWriteTests.md) for details.
 
 ## Function/Class Reference
 
-See [Function and Class Reference](https://github.com/kenjis/ci-phpunit-test/blob/2.x/docs/FunctionAndClassReference.md).
+See [Function and Class Reference](https://github.com/kenjis/ci-phpunit-test/blob/3.x/docs/FunctionAndClassReference.md).
 
 ## Tips
 
-See [Tips](https://github.com/kenjis/ci-phpunit-test/blob/2.x/docs/Tips.md).
+See [Tips](https://github.com/kenjis/ci-phpunit-test/blob/3.x/docs/Tips.md).
 
 ## Related Projects for CodeIgniter 3.x
 
