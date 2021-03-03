@@ -1,24 +1,7 @@
 # ci-phpunit-test for CodeIgniter 3.x
 
-version: **v1.0.0** |
-[v0.19.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.19.0/docs/HowToWriteTests.md) |
-[v0.18.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.18.0/docs/HowToWriteTests.md) |
-[v0.17.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.17.0/docs/HowToWriteTests.md) |
-[v0.16.1](https://github.com/kenjis/ci-phpunit-test/blob/v0.16.1/docs/HowToWriteTests.md) |
-[v0.15.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.15.0/docs/HowToWriteTests.md) |
-[v0.14.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.14.0/docs/HowToWriteTests.md) |
-[v0.13.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.13.0/docs/HowToWriteTests.md) |
-[v0.12.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.12.2/docs/HowToWriteTests.md) |
-[v0.11.3](https://github.com/kenjis/ci-phpunit-test/blob/v0.11.3/docs/HowToWriteTests.md) |
-[v0.10.1](https://github.com/kenjis/ci-phpunit-test/blob/v0.10.1/docs/HowToWriteTests.md) |
-[v0.9.1](https://github.com/kenjis/ci-phpunit-test/blob/v0.9.1/docs/HowToWriteTests.md) |
-[v0.8.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.8.2/docs/HowToWriteTests.md) |
-[v0.7.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.7.0/docs/HowToWriteTests.md) |
-[v0.6.2](https://github.com/kenjis/ci-phpunit-test/blob/v0.6.2/docs/HowToWriteTests.md) |
-[v0.5.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.5.0/docs/HowToWriteTests.md) |
-[v0.4.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.4.0/docs/HowToWriteTests.md) |
-[v0.3.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.3.0/docs/HowToWriteTests.md) |
-[v0.2.0](https://github.com/kenjis/ci-phpunit-test/blob/v0.2.0/docs/HowToWriteTests.md)
+version: **v2.0.0** |
+[v1.0.0](https://github.com/kenjis/ci-phpunit-test/blob/v1.0.0/docs/HowToWriteTests.md)
 
 ## How to Write Tests
 
@@ -70,7 +53,7 @@ Here is my advice:
 * You don't have to write your business logic in your controllers. Write them in your models.
 * You should test models first, and test them well.
 
-And PHPUnit has great documentation. You should read [Writing Tests for PHPUnit](https://phpunit.readthedocs.io/en/7.5/writing-tests-for-phpunit.html).
+And PHPUnit has great documentation. You should read [Writing Tests for PHPUnit](https://phpunit.readthedocs.io/en/9.2/writing-tests-for-phpunit.html).
 
 If you are not familiar with *testing*, I recommend you read our book, *[CodeIgniter Testing Guide](https://leanpub.com/codeigniter-testing-guide)*. It is a beginners' guide to automated testing in PHP.
 
@@ -335,7 +318,7 @@ The dependent seeders will be called in the order listed.
 
 You can use `$this->getMockBuilder()` method in PHPUnit and [$this->verifyInvoked*()](FunctionAndClassReference.md#testcaseverifyinvokedmock-method-params) helper method in ci-phpunit-test.
 
-If you don't know well about PHPUnit Mock Objects, see [Test Doubles](https://phpunit.de/manual/current/en/test-doubles.html).
+If you don't know well about PHPUnit Mock Objects, see [Test Doubles](https://phpunit.readthedocs.io/en/9.2/test-doubles.html).
 
 ~~~php
 	public function setUp(): void
@@ -1038,11 +1021,11 @@ There are a few known limitations:
 * Cannot patch constants that are used as default values in property declarations.
 * Cannot patch constants that are used as default values in static variable declarations.
 
-See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/master/application/tests/controllers/Patching_on_constant_test.php).
+See [working sample](https://github.com/kenjis/ci-app-for-ci-phpunit-test/blob/2.x/application/tests/controllers/Patching_on_constant_test.php).
 
 ##### Upgrade Note for v0.12.0
 
-If you want to use the constant patcher, please add `ConstantPatcher` in the `patcher_list` in [tests/Bootstrap.php](https://github.com/kenjis/ci-phpunit-test/blob/master/application/tests/Bootstrap.php#L340).
+If you want to use the constant patcher, please add `ConstantPatcher` in the `patcher_list` in [tests/Bootstrap.php](https://github.com/kenjis/ci-phpunit-test/blob/2.x/application/tests/Bootstrap.php#L340).
 
 *before:*
 ~~~php
