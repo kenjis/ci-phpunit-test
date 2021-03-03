@@ -21,8 +21,8 @@
         "forum": "http://forum.codeigniter.com/thread-61725.html"
     },
     "require": {
-        "php": ">=7.2",
-        "nikic/php-parser": "^2.1|^3.0|^4.2"
+        "php": ">=7.3",
+        "nikic/php-parser": "^4.2"
     },
     "extra": {
         "branch-alias": {
