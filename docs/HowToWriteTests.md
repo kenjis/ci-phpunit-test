@@ -54,7 +54,7 @@ Here is my advice:
 * You don't have to write your business logic in your controllers. Write them in your models.
 * You should test models first, and test them well.
 
-And PHPUnit has great documentation. You should read [Writing Tests for PHPUnit](https://phpunit.readthedocs.io/en/9.2/writing-tests-for-phpunit.html).
+And PHPUnit has great documentation. You should read [Writing Tests for PHPUnit](https://phpunit.readthedocs.io/en/9.5/writing-tests-for-phpunit.html).
 
 If you are not familiar with *testing*, I recommend you read our book, *[CodeIgniter Testing Guide](https://leanpub.com/codeigniter-testing-guide)*. It is a beginners' guide to automated testing in PHP.
 
