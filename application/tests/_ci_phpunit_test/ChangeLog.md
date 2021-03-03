@@ -5,16 +5,59 @@
 ### Changed
 
 * Require PHP 7.2 or later, PHPUnit 8.1 or later
+
+## v1.0.0 (2021/03/03)
+
+* The first official version
+* Same as v0.19.0
+
+## v0.19.0 (2021/03/02)
+
+### Changed
+
 * If you use Monkey Patching with nikic/PHP-Parser 4.6 or later, the line number when an error occurs is probably different from the actual source code. Please check the cache file of the source that Monkey Patching creates.
 
 ### Added
 
-* Now you can use `_ci_phpunit_test` directly from vendor path. See [#274](https://github.com/kenjis/ci-phpunit-test/pull/274).
-* Now you can assert whether a message is logged. See [#331](https://github.com/kenjis/ci-phpunit-test/pull/331).
+* Now you can use nikic/PHP-Parser 4.6 or later as a Composer dependency. See [#364](https://github.com/kenjis/ci-phpunit-test/pull/364), [#366](https://github.com/kenjis/ci-phpunit-test/pull/366).
+* Now you can specify custom test directory. See [#362](https://github.com/kenjis/ci-phpunit-test/pull/362).
 * Add functionality to create mocks on consecutive calls. See [#339](https://github.com/kenjis/ci-phpunit-test/pull/339).
 * Add functionality to change `ENVIRONMENT` constant value `testing`. See [#360](https://github.com/kenjis/ci-phpunit-test/pull/360).
-* Now you can specify custom test directory. See [#362](https://github.com/kenjis/ci-phpunit-test/pull/362).
-* Now you can use nikic/PHP-Parser 4.6 or later as a Composer dependency. See [#364](https://github.com/kenjis/ci-phpunit-test/pull/364), [#366](https://github.com/kenjis/ci-phpunit-test/pull/366).
+
+### Fixed
+
+* Fix bug that `config.php` is loaded before `constants.php`. See [#348](https://github.com/kenjis/ci-phpunit-test/pull/348).
+
+## v0.18.0 (2020/05/17)
+
+### Added
+
+* Now you can assert whether a message is logged. See [#331](https://github.com/kenjis/ci-phpunit-test/pull/331).
+
+### Fixed
+
+* Fix bug that config files are not loaded with HMVC. See [#327](https://github.com/kenjis/ci-phpunit-test/pull/327), [#328](https://github.com/kenjis/ci-phpunit-test/pull/328).
+* Fix bug that NetBeans test suite provider causes `Class 'PHPUnit_Util_Configuration' not found`. See [#313](https://github.com/kenjis/ci-phpunit-test/pull/313).
+* Fix bug that `$assign_to_config` does not work. See [#314](https://github.com/kenjis/ci-phpunit-test/pull/314).
+
+## v0.17.3 (2020/02/05)
+
+### Fixed
+
+* Fix buggy tearDown() with MySQL. See [#321](https://github.com/kenjis/ci-phpunit-test/pull/321).
+
+### Others
+
+* Add and fix PHPDoc
+
+## v0.17.2 (2020/01/28)
+
+### Fixed
+
+* Fix bug when you enable exit patcher only, it causes errors. See [#320](https://github.com/kenjis/ci-phpunit-test/pull/320).
+* Fix bug that Monkey Patch causes errors on PHP 7.4. See [#318](https://github.com/kenjis/ci-phpunit-test/pull/318).
+
+## v0.17.1 (2020/01/22)
 
 ### Fixed
 
@@ -22,12 +65,10 @@
 * Fix typo in CIPHPUnitTestDbTestCase. See [#299](https://github.com/kenjis/ci-phpunit-test/pull/299).
 * Fix bug that `PHPUnit\Framework\MockObject\Stub` does not work. See [#307](https://github.com/kenjis/ci-phpunit-test/pull/307).
 * Fix bug that modified helpers are not loaded. See [#310](https://github.com/kenjis/ci-phpunit-test/pull/310).
-* Fix bug that Monkey Patch causes errors on PHP 7.4. See [#318](https://github.com/kenjis/ci-phpunit-test/pull/318).
-* Fix buggy tearDown() with MySQL. See [#321](https://github.com/kenjis/ci-phpunit-test/pull/321).
-* Fix bug that config files are not loaded with HMVC. See [#327](https://github.com/kenjis/ci-phpunit-test/pull/327), [#328](https://github.com/kenjis/ci-phpunit-test/pull/328).
-* Fix bug that NetBeans test suite provider causes `Class 'PHPUnit_Util_Configuration' not found`. See [#313](https://github.com/kenjis/ci-phpunit-test/pull/313).
-* Fix bug that `$assign_to_config` does not work. See [#314](https://github.com/kenjis/ci-phpunit-test/pull/314).
-* Fix bug that `config.php` is loaded before `constants.php`. See [#348](https://github.com/kenjis/ci-phpunit-test/pull/348).
+
+### Added
+
+* Now you can use `_ci_phpunit_test` directly from vendor path. See [#274](https://github.com/kenjis/ci-phpunit-test/pull/274).
 
 ### Others
 
