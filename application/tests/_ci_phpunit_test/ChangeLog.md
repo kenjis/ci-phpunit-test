@@ -1,5 +1,10 @@
 # Change Log for ci-phpunit-test
 
+## v1.0.0 (2021/03/03)
+
+* The first official version
+* Same as v0.19.0
+
 ## v0.19.0 (2021/03/02)
 
 ### Changed
