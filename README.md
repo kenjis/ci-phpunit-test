@@ -64,7 +64,7 @@ If you like Composer:
 
 ~~~
 $ cd /path/to/codeigniter/
-$ composer require kenjis/ci-phpunit-test:3.x-dev --dev
+$ composer require kenjis/ci-phpunit-test:^2.0 --dev
 ~~~
 
 And run `install.php`:
