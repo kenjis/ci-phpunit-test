@@ -1,5 +1,11 @@
 # Change Log for ci-phpunit-test
 
+## v3.0.0 (2021/03/03)
+
+### Changed
+
+* Require PHP 7.3 or later, PHPUnit 9.3 or later
+
 ## v2.0.0 (2021/03/03)
 
 ### Changed
