@@ -29,21 +29,11 @@ class CIPHPUnitTestCase extends TestCase
 	 * If you have a route with closure, PHPUnit can't serialize global variables.
 	 * You would see `Exception: Serialization of 'Closure' is not allowed`.
 	 *
-	 * PHPUnit 9.2 and earlier
-	 *
-	 * @var array
-	 */
-	protected $backupGlobalsBlacklist = ['RTR'];
-
-	/**
-	 * If you have a route with closure, PHPUnit can't serialize global variables.
-	 * You would see `Exception: Serialization of 'Closure' is not allowed`.
-	 *
 	 * PHPUnit 9.3 and later
 	 *
 	 * @var string[]
 	 */
-//	protected $backupGlobalsExcludeList = ['RTR'];
+	protected $backupGlobalsExcludeList = ['RTR'];
 
 	/**
 	 * Detect warnings and notices in a request output
