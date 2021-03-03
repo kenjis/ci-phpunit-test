@@ -1,26 +1,30 @@
-<phpunit
-	bootstrap="./Bootstrap.php"
-	backupGlobals="true"
-	colors="true">
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
+		 bootstrap="./Bootstrap.php"
+		 backupGlobals="true"
+		 colors="true">
 	<testsuites>
 		<testsuite name="CodeIgniter Application Test Suite">
 			<directory suffix="test.php">./</directory>
 			<exclude>./_ci_phpunit_test/</exclude>
 		</testsuite>
 	</testsuites>
-	<filter>
-		<whitelist>
+	<coverage processUncoveredFiles="true">
+		<include>
 			<directory suffix=".php">../controllers</directory>
 			<directory suffix=".php">../models</directory>
 			<directory suffix=".php">../views</directory>
 			<directory suffix=".php">../libraries</directory>
 			<directory suffix=".php">../helpers</directory>
 			<directory suffix=".php">../hooks</directory>
-		</whitelist>
-	</filter>
+		</include>
+		<report>
+			<html outputDirectory="build/coverage" lowUpperBound="50" highLowerBound="90"/>
+			<clover outputFile="build/logs/clover.xml"/>
+		</report>
+	</coverage>
 	<logging>
-		<log type="coverage-html" target="build/coverage"/>
-		<log type="coverage-clover" target="build/logs/clover.xml"/>
-		<log type="junit" target="build/logs/junit.xml"/>
+		<junit outputFile="build/logs/junit.xml"/>
 	</logging>
 </phpunit>
