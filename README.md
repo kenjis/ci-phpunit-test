@@ -223,6 +223,7 @@ See [Tips](https://github.com/kenjis/ci-phpunit-test/blob/2.x/docs/Tips.md).
 
 ## Related Projects for CodeIgniter 3.x
 
+* [CodeIgniter Test Application for ci-phpunit-test](https://github.com/kenjis/ci-app-for-ci-phpunit-test)
 * [CodeIgniter Composer Installer](https://github.com/kenjis/codeigniter-composer-installer)
 * [Cli for CodeIgniter 3.0](https://github.com/kenjis/codeigniter-cli)
 * [CodeIgniter Simple and Secure Twig](https://github.com/kenjis/codeigniter-ss-twig)
