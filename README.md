@@ -227,6 +227,7 @@ See [Tips](https://github.com/kenjis/ci-phpunit-test/blob/3.x/docs/Tips.md).
 Some features of *ci-phpunit-test* are available in the following standalone packages.
 
 * https://github.com/kenjis/phpunit-helper
+* https://github.com/kenjis/monkey-patch
 
 ## Related Projects for CodeIgniter 3.x
 
