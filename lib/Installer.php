@@ -96,7 +96,7 @@ class Installer
         );
         $this->fixPath();
         if ($this->from_composer) {
-            $this->recursiveUnlink($this->app_dir.'/'.$this->test_dir.'/_ci_phpunit_test');
+            $this->recursiveUnlink($this->test_dir.'/_ci_phpunit_test');
         }
     }
 
