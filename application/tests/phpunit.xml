@@ -19,6 +19,9 @@
 			<directory suffix=".php">../helpers</directory>
 			<directory suffix=".php">../hooks</directory>
 		</include>
+		<exclude>
+			<directory suffix=".php">../views/errors</directory>
+		</exclude>
 		<report>
 			<html outputDirectory="build/coverage" lowUpperBound="50" highLowerBound="90"/>
 			<clover outputFile="build/logs/clover.xml"/>
