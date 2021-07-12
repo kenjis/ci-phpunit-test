@@ -63,14 +63,14 @@ That's it.
 
 ### Composer Installation
 
-~~~
+~~~sh-session
 $ cd /path/to/codeigniter/
 $ composer require kenjis/ci-phpunit-test:^3.0 --dev
 ~~~
 
 And run `install.php`:
 
-~~~
+~~~sh-session
 $ php vendor/kenjis/ci-phpunit-test/install.php --from-composer
 ~~~
 
@@ -78,12 +78,12 @@ $ php vendor/kenjis/ci-phpunit-test/install.php --from-composer
 * You must run it at CodeIgniter project root folder.
 * You can specify your `application` and `public` folder with option arguments, if you use custom folder paths.
 
-~~~
+~~~sh-session
 $ php vendor/kenjis/ci-phpunit-test/install.php -a <application_dir> -p <public_dir> -t <unittest_dir>
 ~~~
 
 So the default would be:
-~~~
+~~~sh-session
 $ php vendor/kenjis/ci-phpunit-test/install.php -a application -p public -t application/tests
 ~~~
 
@@ -99,7 +99,7 @@ $ php vendor/kenjis/ci-phpunit-test/install.php -a application -p public -t appl
 
 ### Composer Upgrading
 
-~~~
+~~~sh-session
 $ cd /path/to/codeigniter/
 $ composer update kenjis/ci-phpunit-test
 ~~~
@@ -113,12 +113,12 @@ an `application/test/_ci_phpunit_test` directory and now want to directly use
 `ci-phpunit-test` from Composer, you have a couple of additional steps:
 
 1. Delete the old test library directory: 
-    ```
-    rm -rf /path/to/codeigniter/application/tests/_ci_phpunit_test
+    ```sh-session
+    $ rm -rf /path/to/codeigniter/application/tests/_ci_phpunit_test
     ```
 2. Edit the `application/tests/Bootstrap.php` file. At the bottom of the "set the main path constants"
    section, add the following:
-    ```
+    ```php
     define('CI_PHPUNIT_TESTPATH', implode(
         DIRECTORY_SEPARATOR,
         [dirname(APPPATH), 'vendor', 'kenjis', 'ci-phpunit-test', 'application', 'tests', '_ci_phpunit_test']
@@ -133,13 +133,13 @@ an `application/test/_ci_phpunit_test` directory and now want to directly use
 You need to install PHPUnit before running tests.
 
 If you use Composer:
-```
+```sh-session
 $ composer require phpunit/phpunit --dev
 ```
 
 ### Run All Tests
 
-~~~
+~~~sh-session
 $ cd /path/to/codeigniter/
 $ vendor/bin/phpunit -c application/tests/
 PHPUnit 9.5.4 by Sebastian Bergmann and contributors.
@@ -161,7 +161,7 @@ To generate coverage report, Xdebug is needed.
 
 If you want to run a single test case file:
 
-~~~
+~~~sh-session
 $ vendor/bin/phpunit -c application/tests/ application/tests/models/Category_model_test.php
 ~~~
 
