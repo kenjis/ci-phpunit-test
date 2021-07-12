@@ -4,7 +4,7 @@
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/kenjis/ci-phpunit-test/badges/quality-score.png?b=3.x)](https://scrutinizer-ci.com/g/kenjis/ci-phpunit-test/?branch=3.x)
 [![Coverage Status](https://coveralls.io/repos/kenjis/ci-phpunit-test/badge.svg?branch=3.x)](https://coveralls.io/r/kenjis/ci-phpunit-test?branch=3.x)
-[![Build Status](https://travis-ci.org/kenjis/ci-phpunit-test.svg?branch=3.x)](https://travis-ci.org/kenjis/ci-phpunit-test)
+[![Build Status](https://travis-ci.com/kenjis/ci-phpunit-test.svg?branch=3.x)](https://travis-ci.com/kenjis/ci-phpunit-test)
 
 An easier way to use PHPUnit with [CodeIgniter](https://github.com/bcit-ci/CodeIgniter) 3.x.
 
@@ -54,14 +54,14 @@ codeigniter/
 
 ## Installation
 
+### Manual Installation
+
 1. Download latest `ci-phpunit-test` from <https://github.com/kenjis/ci-phpunit-test/releases>.
 2. Unzip and copy `application/tests` folder into your `application` folder in CodeIgniter project.
 
 That's it.
 
-### Installation via Composer
-
-If you like Composer:
+### Composer Installation
 
 ~~~
 $ cd /path/to/codeigniter/
@@ -87,22 +87,26 @@ So the default would be:
 $ php vendor/kenjis/ci-phpunit-test/install.php -a application -p public -t application/tests
 ~~~
 
-* But some paths may be not correct, in that case, please fix them in [tests/Bootstrap.php](https://github.com/kenjis/ci-phpunit-test/blob/3.x/application/tests/Bootstrap.php#L96).
+* But some paths may be not correct, in that case, please fix them in [tests/Bootstrap.php](https://github.com/kenjis/ci-phpunit-test/blob/3.x/application/tests/Bootstrap.php#L98).
 
 ## Upgrading
+
+### Manual Upgrading
 
 1. Download latest `ci-phpunit-test` from <https://github.com/kenjis/ci-phpunit-test/releases>.
 2. Unzip and replace `application/tests/_ci_phpunit_test` folder.
 3. Read [Change Log](https://github.com/kenjis/ci-phpunit-test/blob/3.x/application/tests/_ci_phpunit_test/ChangeLog.md).
 
-### Upgrading via Composer
-
-If you like Composer:
+### Composer Upgrading
 
 ~~~
 $ cd /path/to/codeigniter/
 $ composer update kenjis/ci-phpunit-test
 ~~~
+
+Read [Change Log](https://github.com/kenjis/ci-phpunit-test/blob/3.x/application/tests/_ci_phpunit_test/ChangeLog.md).
+
+#### If you want to remove application/test/_ci_phpunit_test/
 
 If you're upgrading from a previous version of `ci-phpunit-test` that created
 an `application/test/_ci_phpunit_test` directory and now want to directly use
@@ -124,37 +128,41 @@ an `application/test/_ci_phpunit_test` directory and now want to directly use
     `CI_PHPUNIT_TESTPATH . '`.  (So, for example, `__DIR__ . '/_ci_phpunit_test/CIPHPUnitTest.php'`
     would become `CI_PHPUNIT_TESTPATH . '/CIPHPUnitTest.php'`.)
 
-Read [Change Log](https://github.com/kenjis/ci-phpunit-test/blob/3.x/application/tests/_ci_phpunit_test/ChangeLog.md).
-
 ## How to Run Tests
 
-You have to install PHPUnit before running tests.
+You need to install PHPUnit before running tests.
 
-**Note:** You must run `phpunit` command in `application/tests` folder.
+If you use Composer:
+```
+$ composer require phpunit/phpunit --dev
+```
+
+### Run All Tests
 
 ~~~
 $ cd /path/to/codeigniter/
-$ cd application/tests/
-$ phpunit
-PHPUnit 4.8.31 by Sebastian Bergmann and contributors.
+$ vendor/bin/phpunit -c application/tests/
+PHPUnit 9.5.4 by Sebastian Bergmann and contributors.
 
-...
+...                                                                 3 / 3 (100%)
 
-Time: 341 ms, Memory: 5.50Mb
+Time: 00:00.102, Memory: 12.00 MB
 
 OK (3 tests, 3 assertions)
 
-Generating code coverage report in Clover XML format ... done
+Generating code coverage report in Clover XML format ... done [00:00.002]
 
-Generating code coverage report in HTML format ... done
+Generating code coverage report in HTML format ... done [00:00.012]
 ~~~
 
 To generate coverage report, Xdebug is needed.
 
+### Run a Single Test
+
 If you want to run a single test case file:
 
 ~~~
-$ phpunit models/Category_model_test.php
+$ vendor/bin/phpunit -c application/tests/ application/tests/models/Category_model_test.php
 ~~~
 
 ## How to Write Tests
