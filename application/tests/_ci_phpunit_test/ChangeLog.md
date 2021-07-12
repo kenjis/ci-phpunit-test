@@ -1,5 +1,13 @@
 # Change Log for ci-phpunit-test
 
+## v3.0.1 (Not Released)
+
+### Fixed
+
+* Fix bug that `install.php --from-composer` does not work. See [#371](https://github.com/kenjis/ci-phpunit-test/pull/371).
+* Exclude `views/errors/` for PHPUnit coverage report. See [#372](https://github.com/kenjis/ci-phpunit-test/pull/372).
+* Fix bug that *Monkey Patching* causes Warning: flock(): Illegal operation argument. See [#377](https://github.com/kenjis/ci-phpunit-test/issues/377).
+
 ## v3.0.0 (2021/03/03)
 
 ### Changed
@@ -61,7 +69,7 @@
 ### Fixed
 
 * Fix bug when you enable exit patcher only, it causes errors. See [#320](https://github.com/kenjis/ci-phpunit-test/pull/320).
-* Fix bug that Monkey Patch causes errors on PHP 7.4. See [#318](https://github.com/kenjis/ci-phpunit-test/pull/318).
+* Fix bug that Monkey Patching causes errors on PHP 7.4. See [#318](https://github.com/kenjis/ci-phpunit-test/pull/318).
 
 ## v0.17.1 (2020/01/22)
 
