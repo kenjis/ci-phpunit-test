@@ -23,7 +23,7 @@ before_script:
   - composer self-update
   - cd ..
   - pwd
-  - git clone https://github.com/kenjis/ci-app-for-ci-phpunit-test.git
+  - git clone -b master https://github.com/kenjis/ci-app-for-ci-phpunit-test.git
   - cd ci-app-for-ci-phpunit-test
   - rm application/tests/_ci_phpunit_test
   - composer update
