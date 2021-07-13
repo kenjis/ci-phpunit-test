@@ -1,5 +1,12 @@
 # Change Log for ci-phpunit-test
 
+## v2.0.1 (Not Released)
+
+### Fixed
+
+* Fix bug that `install.php --from-composer` does not work. See [#371](https://github.com/kenjis/ci-phpunit-test/pull/371).
+* Fix bug that *Monkey Patching* causes Warning: flock(): Illegal operation argument. See [#377](https://github.com/kenjis/ci-phpunit-test/issues/377).
+
 ## v2.0.0 (2021/03/03)
 
 ### Changed
