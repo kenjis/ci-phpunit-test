@@ -4,7 +4,7 @@
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/kenjis/ci-phpunit-test/badges/quality-score.png?b=2.x)](https://scrutinizer-ci.com/g/kenjis/ci-phpunit-test/?branch=2.x)
 [![Coverage Status](https://coveralls.io/repos/kenjis/ci-phpunit-test/badge.svg?branch=2.x)](https://coveralls.io/r/kenjis/ci-phpunit-test?branch=2.x)
-[![Build Status](https://travis-ci.org/kenjis/ci-phpunit-test.svg?branch=2.x)](https://travis-ci.org/kenjis/ci-phpunit-test)
+[![Build Status](https://travis-ci.com/kenjis/ci-phpunit-test.svg?branch=2.x)](https://travis-ci.com/kenjis/ci-phpunit-test)
 
 An easier way to use PHPUnit with [CodeIgniter](https://github.com/bcit-ci/CodeIgniter) 3.x.
 
