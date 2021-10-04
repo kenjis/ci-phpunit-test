@@ -97,7 +97,7 @@ class CIPHPUnitTestDouble
 		return $mock;
 	}
 
-	protected function _verify($mock, $method, $params = null, $expects, $with)
+	protected function _verify($mock, $method, $params, $expects, $with)
 	{
 		$invocation = $mock->expects($expects)
 			->method($method);
