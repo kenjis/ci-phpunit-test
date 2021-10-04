@@ -60,6 +60,11 @@ class CIPHPUnitTestReflection
 	public static function getPrivateProperty($obj, $property)
 	{
 		$ref_property = self::getAccessibleRefProperty($obj, $property);
-		return $ref_property->getValue($obj);
+
+		if (is_object($obj)) {
+			return $ref_property->getValue($obj);
+		}
+
+		return $ref_property->getValue();
 	}
 }

@@ -1,5 +1,11 @@
 # Change Log for ci-phpunit-test
 
+## v3.0.2 (Not Released)
+
+### Others
+
+* Compatible with PHP 8.0
+
 ## v3.0.1 (2021/07/14)
 
 ### Fixed
