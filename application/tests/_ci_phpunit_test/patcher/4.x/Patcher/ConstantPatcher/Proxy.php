@@ -38,6 +38,10 @@ class Proxy
 	 */
 	public static function patch($constant, $value, $class_method = null)
 	{
+		if ($class_method === null) {
+			$class_method = '';
+		}
+
 		self::$patches[$constant] = $value;
 		self::$patches_to_apply[$constant] = strtolower($class_method);
 	}
