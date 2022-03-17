@@ -79,6 +79,11 @@ class Cache
 
 	protected static function createDir($dir)
 	{
+		if ($dir === null)
+		{
+			throw new RuntimeException('Failed to create folder: ' . $dir);
+		}
+
 		if (! is_dir($dir))
 		{
 			if (! @mkdir($dir, 0777, true))
