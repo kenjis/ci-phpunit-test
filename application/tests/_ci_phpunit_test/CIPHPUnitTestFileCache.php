@@ -21,6 +21,11 @@ class CIPHPUnitTestFileCache implements ArrayAccess
 		if (file_exists($this->file))
 		{
 			$this->map = unserialize(file_get_contents($this->file));
+
+			if (! is_array($this->map)) {
+				$this->map = [];
+			}
+
 			return;
 		}
 
