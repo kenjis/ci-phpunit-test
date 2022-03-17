@@ -1,6 +1,6 @@
 # Change Log for ci-phpunit-test
 
-## v3.0.3 (Not Released)
+## v3.0.3 (2022/03/17)
 
 ### Others
 
