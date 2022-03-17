@@ -257,10 +257,10 @@ class Cache
 	}
 
 	/**
-	* Recursive Unlink
-	*
-	* @param string $dir
-	*/
+	 * Recursive Unlink
+	 *
+	 * @param string $dir
+	 */
 	protected static function recursiveUnlink($dir)
 	{
 		if (! is_dir($dir))
