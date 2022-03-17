@@ -1,5 +1,23 @@
 # Change Log for ci-phpunit-test
 
+## v3.0.4 (Not Released)
+
+### Added
+
+* You can set return value type `void` as `':void'` when you use `$this->getDouble()`.
+
+```php
+$mock = $this->getDouble(
+    'SplFileObject',
+    ['next' => ':void'],
+    ['php://memory']
+);
+```
+
+### Others
+
+* Compatible with PHP 8.1
+
 ## v3.0.3 (2022/03/17)
 
 ### Others

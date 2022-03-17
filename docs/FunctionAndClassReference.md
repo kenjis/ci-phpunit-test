@@ -1,6 +1,6 @@
 # ci-phpunit-test for CodeIgniter 3.x
 
-version: **v3.0.1** |
+version: **v3.0.4** |
 [v2.x](https://github.com/kenjis/ci-phpunit-test/blob/2.x/docs/FunctionAndClassReference.md) |
 [v1.x](https://github.com/kenjis/ci-phpunit-test/blob/master/docs/FunctionAndClassReference.md)
 
@@ -413,6 +413,15 @@ You could write code above like below:
 
 ~~~php
 $email = $this->getDouble('CI_Email', ['send' => TRUE]);
+~~~
+
+If the return value of a method is `void`, you specify `':void'`:
+~~~php
+$mock = $this->getDouble(
+	'SplFileObject',
+	['next' => ':void'],
+	['php://memory']
+);
 ~~~
 
 You can set Closure as the return value of a mocked method.
