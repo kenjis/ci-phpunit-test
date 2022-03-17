@@ -40,22 +40,22 @@ class Cache
 	{
 		self::createDir($dir);
 		self::$cache_dir = realpath($dir);
-		
+
 		if (self::$cache_dir === false)
 		{
 			throw new LogicException("No such directory: $dir");
 		}
-		
+
 		self::$src_cache_dir = self::$cache_dir . '/src';
-		self::$tmp_function_whitelist_file = 
+		self::$tmp_function_whitelist_file =
 			self::$cache_dir . '/conf/func_whiltelist.php';
-		self::$tmp_function_blacklist_file = 
+		self::$tmp_function_blacklist_file =
 			self::$cache_dir . '/conf/func_blacklist.php';
-		self::$tmp_patcher_list_file = 
+		self::$tmp_patcher_list_file =
 			self::$cache_dir . '/conf/patcher_list.php';
-		self::$tmp_include_paths_file = 
+		self::$tmp_include_paths_file =
 			self::$cache_dir . '/conf/include_paths.php';
-		self::$tmp_exclude_paths_file = 
+		self::$tmp_exclude_paths_file =
 			self::$cache_dir . '/conf/exclude_paths.php';
 	}
 
@@ -113,7 +113,7 @@ class Cache
 
 	/**
 	 * Write to src cache file
-	 * 
+	 *
 	 * @param string $path   original source file path
 	 * @param string $source source code
 	 */
@@ -128,7 +128,7 @@ class Cache
 
 	/**
 	 * Write to cache file
-	 * 
+	 *
 	 * @param string $path   file path
 	 * @param string $contents file contents
 	 */
