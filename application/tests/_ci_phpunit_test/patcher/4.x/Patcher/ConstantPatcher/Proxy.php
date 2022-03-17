@@ -77,8 +77,8 @@ class Proxy
 		$trace = debug_backtrace();
 		$info = Backtrace::getInfo('ConstantPatcher', $trace);
 
-		$class = strtolower($info['class']);
-		$class_method = strtolower($info['class_method']);
+		$class = strtolower((string) $info['class']);
+		$class_method = strtolower((string) $info['class_method']);
 
 		// Patches the constants only in the class
 		if (strpos(self::$patches_to_apply[$constant], '::') === false)
