@@ -88,6 +88,8 @@ class CIPHPUnitTestDouble
 			} elseif (is_object($return) && $return instanceof Closure) {
 				$mock->expects($this->testCase->any())->method($method)
 					->willReturnCallback($return);
+			} elseif ($return === ':void') {
+				$mock->expects($this->testCase->any())->method($method);
 			} else {
 				$mock->expects($this->testCase->any())->method($method)
 					->willReturn($return);
