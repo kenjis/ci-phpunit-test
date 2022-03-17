@@ -21,6 +21,11 @@ class CIPHPUnitTestFileCache implements ArrayAccess
 		if (file_exists($this->file))
 		{
 			$this->map = unserialize(file_get_contents($this->file));
+
+			if (! is_array($this->map)) {
+				$this->map = [];
+			}
+
 			return;
 		}
 
@@ -50,7 +55,7 @@ class CIPHPUnitTestFileCache implements ArrayAccess
 
 	/**
 	 * Dump cache data (sorted by key)
-	 * 
+	 *
 	 * @return array
 	 */
 	public function dump()
@@ -60,12 +65,14 @@ class CIPHPUnitTestFileCache implements ArrayAccess
 		return $map;
 	}
 
+	#[\ReturnTypeWillChange]
 	public function offsetSet($key, $value)
 	{
 		$this->map[$key] = $value;
 		$this->updated = true;
 	}
 
+	#[\ReturnTypeWillChange]
 	public function offsetGet($key)
 	{
 		if ($this->offsetExists($key))
@@ -78,11 +85,13 @@ class CIPHPUnitTestFileCache implements ArrayAccess
 		}
 	}
 
+	#[\ReturnTypeWillChange]
 	public function offsetExists($key)
 	{
 		return isset($this->map[$key]);
 	}
 
+	#[\ReturnTypeWillChange]
 	public function offsetUnset($key)
 	{
 		unset($this->map[$key]);

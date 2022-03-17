@@ -76,6 +76,11 @@ if ( ! function_exists('redirect'))
 				ob_end_clean();
 			}
 
+			if ($code === NULL)
+			{
+				$code = 200;
+			}
+
 			throw new CIPHPUnitTestRedirectException('Redirect to ' . $uri, $code);
 		}
 	}

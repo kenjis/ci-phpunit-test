@@ -27,8 +27,8 @@ function exit__($status = null)
 
 	$exception_name = Kenjis\MonkeyPatch\MonkeyPatchManager::getExitExceptionClassname();
 	$exception = new $exception_name($message);
-	$exception->file = $file;
-	$exception->line = $line;
+	$exception->setFile($file);
+	$exception->setLine($line);
 	$exception->class = $class;
 	$exception->method = $method;
 	$exception->exit_status = $status;

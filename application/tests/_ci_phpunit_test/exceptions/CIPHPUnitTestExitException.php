@@ -10,9 +10,17 @@
 
 class CIPHPUnitTestExitException extends RuntimeException
 {
-	public $file;
-	public $line;
 	public $class;
 	public $method;
 	public $exit_status;
+
+	public function setFile($file)
+	{
+		$this->file = $file;
+	}
+
+	public function setLine($line)
+	{
+		$this->line = $line;
+	}
 }
