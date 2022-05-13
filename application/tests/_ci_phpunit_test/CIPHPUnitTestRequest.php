@@ -324,7 +324,12 @@ class CIPHPUnitTestRequest
 	{
 		ob_start();
 
+		$GLOBALS['class'] = $class;
+		$GLOBALS['method'] = $method;
+		// pre_controller can modify global $class $method variables to modify route
 		$this->callHook('pre_controller');
+		$class = $GLOBALS['class'];
+		$method = $GLOBALS['method'];
 
 		// Run callablePreConstructor
 		if ($this->callablePreConstructors !== [])
