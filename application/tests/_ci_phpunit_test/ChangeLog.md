@@ -1,6 +1,6 @@
 # Change Log for ci-phpunit-test
 
-## v3.0.4 (Not Released)
+## v3.0.4 (2022/12/26)
 
 ### Added
 
@@ -13,6 +13,10 @@ $mock = $this->getDouble(
     ['php://memory']
 );
 ```
+
+### Fixed
+
+* Fix bug that `pre_controller` can't modify `$class`/`$method`. See [#394](https://github.com/kenjis/ci-phpunit-test/pull/394).
 
 ### Others
 
