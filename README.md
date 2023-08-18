@@ -6,6 +6,13 @@
 [![Coverage Status](https://coveralls.io/repos/kenjis/ci-phpunit-test/badge.svg?branch=3.x)](https://coveralls.io/r/kenjis/ci-phpunit-test?branch=3.x)
 [![Build Status](https://travis-ci.com/kenjis/ci-phpunit-test.svg?branch=3.x)](https://travis-ci.com/kenjis/ci-phpunit-test)
 
+---
+
+> **Warning**
+> [Upgrading to CodeIgniter4 is strongly recommended](https://github.com/kenjis/ci-phpunit-test/issues/409).
+
+---
+
 An easier way to use PHPUnit with [CodeIgniter](https://github.com/bcit-ci/CodeIgniter) 3.x.
 
 * You don't have to modify CodeIgniter core files at all.
