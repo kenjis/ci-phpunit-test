@@ -8,7 +8,7 @@
 
 ---
 
-> **Warning**
+> [!WARNING]
 > [Upgrading to CodeIgniter4 is strongly recommended](https://github.com/kenjis/ci-phpunit-test/issues/409).
 
 ---
