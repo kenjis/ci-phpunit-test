@@ -1,0 +1,74 @@
+name: PHPUnit
+
+on:
+  push:
+    branches: [ "3.x" ]
+  pull_request:
+    branches: [ "3.x" ]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: PHP ${{ matrix.php-versions }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-versions: [ '7.3', '7.4', '8.0', '8.1' ]
+        experimental: [ false ]
+        include:
+          - php-versions: '8.2'
+            experimental: true
+    continue-on-error: ${{ matrix.experimental }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          tools: composer, phive, phpunit
+          extensions: intl, json, mbstring, gd, xdebug, xml, sqlite3, sqlsrv, oci8, pgsql
+          coverage: xdebug
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install
+        run: |
+          pwd
+          export cwd=`pwd`
+          composer self-update
+          cd ..
+          pwd
+          ls -l
+          git clone -b 3.x https://github.com/kenjis/ci-app-for-ci-phpunit-test.git
+          cd ci-app-for-ci-phpunit-test
+          rm application/tests/_ci_phpunit_test
+          composer update --prefer-dist --no-progress
+          mv vendor/kenjis/ci-phpunit-test vendor/kenjis/ci-phpunit-test.tmp
+          mv "$cwd" vendor/kenjis/ci-phpunit-test
+          php install.php
+          git checkout -- application/tests/Bootstrap.php
+          cd ..
+          mv ci-app-for-ci-phpunit-test "$cwd"
+
+      - name: Run test suite
+        run: |
+          pwd
+          ls -l
+          vendor/bin/phpunit -c application/tests --coverage-text
+
+      - if: matrix.php-versions == '8.1'
+        name: Upload coverage results to Coveralls
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          composer global require php-coveralls/php-coveralls
+          php-coveralls --coverage_clover=application/tests/build/logs/clover.xml -v
