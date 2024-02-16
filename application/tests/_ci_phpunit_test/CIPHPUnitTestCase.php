@@ -21,6 +21,7 @@ if (! class_exists('PHPUnit_Framework_TestCase'))
  * @property CIPHPUnitTestDouble     $double
  * @property CIPHPUnitTestReflection $reflection
  */
+#[\AllowDynamicProperties]
 class CIPHPUnitTestCase extends TestCase
 {
 	protected $_error_reporting = -1;
